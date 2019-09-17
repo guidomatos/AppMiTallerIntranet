@@ -1,0 +1,9 @@
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\bin\Release\AppMiTaller.Intranet.DA.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\bin\Release\AppMiTaller.Intranet.DA.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\bin\Release\AppMiTaller.Intranet.BE.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\bin\Release\AppMiTaller.Intranet.BE.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Release\AppMiTaller.Intranet.DA.csprojAssemblyReference.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Release\AppMiTaller.Intranet.DA.csproj.CoreCompileInputs.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Release\AppMiTaller.Intranet.DA.csproj.CopyComplete
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Release\AppMiTaller.Intranet.DA.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Release\AppMiTaller.Intranet.DA.pdb

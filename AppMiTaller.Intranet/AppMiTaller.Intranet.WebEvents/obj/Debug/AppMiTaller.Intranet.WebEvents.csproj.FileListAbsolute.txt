@@ -1,0 +1,16 @@
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\Gildemeister.SGS.WebEvents\bin\Debug\Gildemeister.SGS.WebEvents.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\Gildemeister.SGS.WebEvents\bin\Debug\Gildemeister.SGS.WebEvents.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\Gildemeister.SGS.WebEvents\obj\Debug\AppMiTaller.Intranet.WebEvents.csprojAssemblyReference.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\Gildemeister.SGS.WebEvents\obj\Debug\AppMiTaller.Intranet.WebEvents.csproj.CoreCompileInputs.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\bin\Debug\AppMiTaller.Intranet.WebEvents.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\bin\Debug\AppMiTaller.Intranet.WebEvents.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\obj\Debug\AppMiTaller.Intranet.WebEvents.csproj.CoreCompileInputs.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\obj\Debug\AppMiTaller.Intranet.WebEvents.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\obj\Debug\AppMiTaller.Intranet.WebEvents.pdb
+C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\bin\Debug\AppMiTaller.Intranet.WebEvents.dll
+C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\bin\Debug\AppMiTaller.Intranet.WebEvents.pdb
+C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\obj\Debug\AppMiTaller.Intranet.WebEvents.csproj.CoreCompileInputs.cache
+C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\obj\Debug\AppMiTaller.Intranet.WebEvents.dll
+C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\obj\Debug\AppMiTaller.Intranet.WebEvents.pdb

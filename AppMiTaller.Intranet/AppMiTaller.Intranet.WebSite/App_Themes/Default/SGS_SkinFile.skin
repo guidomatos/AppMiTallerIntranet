@@ -1,0 +1,53 @@
+<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+
+<%--CAJAS DE TEXTO O TEXTAREAS--%>
+
+<%--Obligatorio--%>
+<asp:TextBox SkinID="txtob" runat="server" BorderStyle="Solid" BorderWidth="1px" BorderColor="#95a6c6" Font-Size="10px" Font-Names="Verdana" BackColor="#dfe4ec"  ForeColor="#555b6c"></asp:TextBox>
+<%--Deshabilitado--%>
+<asp:TextBox SkinID="txtdes" runat="server" BorderStyle="Groove" BorderWidth="1px" BorderColor="#d2d2d4" Font-Size="10px" Font-Names="Verdana" BackColor="#f0f1f1"  ForeColor="#555b6c"></asp:TextBox>
+
+<%--COMBOS--%>
+
+<%--Combo deshabilitado--%>
+<asp:DropDownList SkinID="cbodes" runat="server" BorderStyle="Groove" BorderWidth="1px" BorderColor="#d2d2d4" Font-Size="11px" Font-Names="Arial" BackColor="#f0f1f1" ForeColor="#555b6c" Font-Bold="true"></asp:DropDownList>	
+<%--Combo obligatorio--%>
+<asp:DropDownList SkinID="cboob" runat="server" BorderStyle="Solid" BorderWidth="1px" BorderColor="#95a6c6" Font-Size="11px" Font-Names="Arial" BackColor="#DADFE9" ForeColor="#555b6c" Font-Bold="true"></asp:DropDownList>	
+
+
+<%--LABELS--%>
+<%--Master--%>
+<asp:Label runat="server" SkinID="lblLogeo" Font-Names="Arial" Font-Size="11px" ForeColor="#ffffff" Font-Bold="true"></asp:Label>
+
+<%--Criterios de Busqueda--%>
+<asp:Label runat="server" SkinID="lblCB" Font-Names="Arial" Font-Size="11px" ForeColor="#3b83cb" Font-Bold="true" ></asp:Label>
+
+<%--Total Registros--%>
+<asp:Label runat="server" SkinID="lblTR" Font-Names="Arial" Font-Size="12px" ForeColor="#3b83cb" Font-Bold="true"></asp:Label>
+
+<%--SubTitulo --%>
+<asp:Label runat="server" SkinID="Divisiones" Font-Names="Arial" Font-Size="11px" ForeColor="#0C356D" Font-Bold="true"  BackColor="#c7d7ee"></asp:Label>
+<asp:Label runat="server" SkinID="DatosDivisiones" Font-Names="Arial" Font-Size="11px" ForeColor="#0E376f" Font-Bold="true"></asp:Label>
+
+<%--GRILLAS--%>
+<asp:GridView runat="server" SkinId="Grilla" ShowFooter="True" PagerStyle-BorderStyle="None" BorderWidth="0" Cellspacing="0" BorderColor="white">
+    <AlternatingRowStyle BackColor="#e3e7f2" />
+    <HeaderStyle CssClass="CabeceraGrilla" ForeColor="#ffffff"/>
+    <RowStyle CssClass="textogrilla" Height="20px"  />
+    <FooterStyle CssClass="Footer" />
+    <PagerStyle HorizontalAlign="Right" CssClass="Paginacion" ForeColor="#555a6d"/>
+</asp:GridView>

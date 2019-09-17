@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{166182CC-CC85-408F-B9E0-01AA611F0CBA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppMiTaller.Intranet.BL</RootNamespace>
+    <AssemblyName>AppMiTaller.Intranet.BL</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CarlosAg.ExcelXmlWriter, Version=1.0.0.6, Culture=neutral, PublicKeyToken=eac822d9c4196ba1">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dll_Externos\CarlosAg.ExcelXmlWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing">
+      <HintPath>..\..\Dll_Externos\zxing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminCitasBL.cs" />
+    <Compile Include="BaseBL.cs" />
+    <Compile Include="CitasBL.cs" />
+    <Compile Include="CitasHistorialesBL.cs" />
+    <Compile Include="ComboBL.cs" />
+    <Compile Include="Exportacion\ExportarExcelXml.cs" />
+    <Compile Include="ClienteBL.cs" />
+    <Compile Include="ServicioBL.cs" />
+    <Compile Include="TallerBL.cs" />
+    <Compile Include="TipoServicioBL.cs" />
+    <Compile Include="TipoServicioMarcaBL.cs" />
+    <Compile Include="UsuarioTallerBL.cs" />
+    <Compile Include="MaestroVehiculoBL.cs" />
+    <Compile Include="Mantenimiento\DestinoBL.cs" />
+    <Compile Include="Mantenimiento\EmpresaBL.cs" />
+    <Compile Include="Mantenimiento\MarcaBL.cs" />
+    <Compile Include="ModeloBL.cs" />
+    <Compile Include="Mantenimiento\NegocioBL.cs" />
+    <Compile Include="Mantenimiento\NegocioLineaBL.cs" />
+    <Compile Include="Mantenimiento\PaisBL.cs" />
+    <Compile Include="Mantenimiento\TipoDestinoBL.cs" />
+    <Compile Include="Mantenimiento\TipoTablaDetalleBL.cs" />
+    <Compile Include="Mantenimiento\UbigeoBL.cs" />
+    <Compile Include="ParametrosBackOffieBL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad\PerfilBL.cs" />
+    <Compile Include="Seguridad\SeguridadBL.cs" />
+    <Compile Include="Seguridad\UsuarioBL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppMiTaller.Intranet.BE\AppMiTaller.Intranet.BE.csproj">
+      <Project>{7D19CE7C-BDCA-4C2B-B91C-8F25EE327A65}</Project>
+      <Name>AppMiTaller.Intranet.BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppMiTaller.Intranet.DA\AppMiTaller.Intranet.DA.csproj">
+      <Project>{C430278B-AAA4-4909-8CEB-0E1ED11CD3BE}</Project>
+      <Name>AppMiTaller.Intranet.DA</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

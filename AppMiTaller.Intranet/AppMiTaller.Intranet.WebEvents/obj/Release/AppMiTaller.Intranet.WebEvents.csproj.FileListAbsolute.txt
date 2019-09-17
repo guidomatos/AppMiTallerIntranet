@@ -1,0 +1,6 @@
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\bin\Release\AppMiTaller.Intranet.WebEvents.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\bin\Release\AppMiTaller.Intranet.WebEvents.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\obj\Release\AppMiTaller.Intranet.WebEvents.csprojAssemblyReference.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\obj\Release\AppMiTaller.Intranet.WebEvents.csproj.CoreCompileInputs.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\obj\Release\AppMiTaller.Intranet.WebEvents.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.WebEvents\obj\Release\AppMiTaller.Intranet.WebEvents.pdb

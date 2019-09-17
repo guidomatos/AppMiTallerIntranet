@@ -1,0 +1,161 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Principal.master.cs" Inherits="Principal" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head id="Head1" runat="server">
+    <title>Sistema de Reserva de Citas</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8; IE=EmulateIE9" />
+
+    <script type="text/javascript" src="../HttpCombiner.ashx?s=Set_Javascript&t=type/javascript&v=2"></script>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <!--  CSS -->
+    <link rel="shortcut icon" href="Images/Minvest.ico" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-select.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/JqGrid/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/JqGrid/ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/JqGrid/ui.jqgrid-responsive.min.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/font-awesome.min.css" />
+
+    <script type="text/javascript" src="../bootstrap/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/jqGrid-4.6.0/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/jqGrid-4.6.0/jquery-1.11.1-ui.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/jqGrid-4.6.0/grid.locale-en.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/jqGrid-4.6.0/jquery.jqGrid.src.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/jqGrid-4.6.0/Funciones.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/plugins/slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap-select.js"></script>
+    <!-- Masked inputs -->
+    <script type="text/javascript" src="../bootstrap/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/plugins/gritter/jquery.gritter.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/eakroko.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/application.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/mensaje.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/autoNumeric.js"></script>
+    <script type="text/javascript" src="../js/jquery.smartmenus.js"></script>
+    <script type="text/javascript" src="../js/jquery.smartmenus.bootstrap.js"></script>
+
+</head>
+
+<body style="margin-top: 0px; margin-left: 0px; margin-right: 0px; margin-bottom: 0px; background-repeat: repeat-x; background-image: url(../Images/fondo.gif);">
+    <form id="form1" runat="server">
+        <div style="display: none">
+            <asp:CheckBox ID="btnCerrarSesion1" runat="server" OnCheckedChanged="btnCerrarSesion_OnClick" AutoPostBack="true" />
+        </div>
+        <table cellpadding="0" cellspacing="0" border="0"
+            style="width: 100%; height: 155px; margin-top: 0px; margin-left: 0px;">
+            <tr>
+                <td>
+                    <div style="padding-top: 3px;">
+                    </div>
+                    <div class="container-fluid">
+                        <div class="dropdown" style="padding: 0px 10px;">
+                            <div style="float: left; padding-top: 4px !important">
+                                <img src="../bootstrap/img/ico_user.png" style="margin-left: 0px;" alt="" />
+                                <span id="lblUsuario" style="vertical-align: middle; color: #fff; font-weight: bold; font: Arial; font-size: 11px;"></span>
+                            </div>
+                            <div style="float: right;">
+                                <ul class="stats" style="padding: 0px 5px;">
+                                    <li class='lightred' style="padding: 0px 3px;"><a href="#">
+                                        <img src="../bootstrap/img/cerrar_session.png" onclick="fc_CerrarSesion();" style="cursor: pointer;"
+                                            title="Cerrar sesión" alt="" />
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-top: 3px;">
+                    </div>
+                    <nav class="navbar navbar-default navbar-static-top marginBottom-0" id="" role="navigation">
+                        <div class="navbar-header">
+                            <a href="#" class="pull-left brandlogo" >.</a>
+                            <button type="button" class="pull-left navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            
+                            <ul class='nav navbar-nav' runat="server" id="id_menu">   
+                            </ul>
+                            <div class="user">
+                                <div class="dropdown">
+                                    <a href="#" class='dropdown-toggle' data-toggle="dropdown"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </td>
+            </tr>
+        </table>
+        <div style="width: 100%; height: 505px; margin-left: 10px; vertical-align: top; margin-top: 5px;">
+            <ajaxToolkit:ToolkitScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" ScriptMode="Release" EnablePageMethods="true" AsyncPostBackTimeout="360000" />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+        <table style="width: 100%; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; background-color: Black"
+            border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="txtopiepag" style="height: 25px;">©2019 Todos los derechos reservados | App Mi Taller v1.0</td>
+            </tr>
+        </table>
+
+        <div class="modalProgress" id="divProgress">
+            <div>
+                <img alt="...Cargando..." src="../bootstrap/img/ajax-loader.gif" style="position: absolute; left: 45%; top: 30%; vertical-align: middle;" />
+            </div>
+        </div>
+
+    </form>
+    <asp:ContentPlaceHolder ID="cphFormPost" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript">
+
+        Sys.Browser.WebKit = {};
+        if (navigator.userAgent.indexOf('WebKit/') > -1) {
+            Sys.Browser.agent = Sys.Browser.WebKit;
+            Sys.Browser.version = parseFloat(navigator.userAgent.match(/WebKit\/(\d+(\.\d+)?)/)[1]);
+            Sys.Browser.name = 'WebKit';
+        }
+
+        $(function () {
+            $('#lblUsuario').html('Bienvenido(a): ' + '<%=Profile.Usuario.VNOMUSR %>');
+        });
+
+        function fc_FechasAccesoPerfilCaducado() {
+            alert("El rango de fechas de acceso al sistema del perfil asignado a caducado.")
+            document.getElementById('<%=btnCerrarSesion1.ClientID%>').click();
+        }
+        function fc_HorarioAccesoPerfilCaducado() {
+            alert("Se encuentra fuera del rango de horas de acceso al sistema del perfil asignado.")
+            document.getElementById('<%=btnCerrarSesion1.ClientID%>').click();
+        }
+        function fc_FechasAccesoUsuarioCaducado() {
+            alert("El rango de fechas de acceso al sistema a caducado.")
+            document.getElementById('<%=btnCerrarSesion1.ClientID%>').click();
+        }
+        function fc_HorarioAccesoUsuarioCaducado() {
+            alert("Se encuentra fuera del rango de horas de acceso al sistema.")
+            document.getElementById('<%=btnCerrarSesion1.ClientID%>').click();
+        }
+
+        function fc_CerrarSesion() {
+            if (!confirm("Esta seguro de cerrar sesión?")) {
+                return false;
+            }
+            document.getElementById('<%=btnCerrarSesion1.ClientID%>').click();
+            return true;
+        }
+    </script>
+</body>
+</html>

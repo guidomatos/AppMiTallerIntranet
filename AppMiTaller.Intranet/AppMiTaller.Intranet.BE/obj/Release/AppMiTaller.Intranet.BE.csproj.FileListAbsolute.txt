@@ -1,0 +1,6 @@
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\bin\Release\AppMiTaller.Intranet.BE.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\bin\Release\AppMiTaller.Intranet.BE.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Release\AppMiTaller.Intranet.BE.csprojAssemblyReference.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Release\AppMiTaller.Intranet.BE.csproj.CoreCompileInputs.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Release\AppMiTaller.Intranet.BE.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Release\AppMiTaller.Intranet.BE.pdb

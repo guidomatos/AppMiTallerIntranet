@@ -1,0 +1,16 @@
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\bin\Debug\Gildemeister.SGS.WebEvents.dll
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\bin\Debug\Gildemeister.SGS.WebEvents.pdb
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.csprojResolveAssemblyReference.cache
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.dll
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.pdb
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\Gildemeister.SGS.WebEvents\bin\Debug\Gildemeister.SGS.WebEvents.dll
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\Gildemeister.SGS.WebEvents\bin\Debug\Gildemeister.SGS.WebEvents.pdb
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.csprojResolveAssemblyReference.cache
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.dll
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.pdb
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\bin\Debug\Gildemeister.SGS.WebEvents.dll
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\bin\Debug\Gildemeister.SGS.WebEvents.pdb
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.csproj.CoreCompileInputs.cache
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.dll
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.pdb
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\Gildemeister.SGS.WebEvents\obj\Debug\Gildemeister.SGS.WebEvents.csprojAssemblyReference.cache

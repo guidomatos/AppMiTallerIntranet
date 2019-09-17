@@ -1,0 +1,25 @@
+﻿.divCabeceraMenu
+{
+	background-color:#365291; 
+	border-left:solid 1px #8db6d8; 
+	border-right:solid 1px #8db6d8;
+	font-family: Arial;
+	font-size: 12px;
+	color: #ffffff;
+	font-weight: bold;
+	text-align:center;
+	vertical-align: middle;
+}
+
+.divOpcionMenuOff
+{
+	background-color:#365291; 
+	border-left:solid 1px #8db6d8; 
+	border-right:solid 1px #8db6d8;
+	font-family: Arial;
+	font-size: 12px;
+	color: #ffffff;
+	text-decoration: underline;
+	text-align:center;
+	vertical-align: middle;
+}

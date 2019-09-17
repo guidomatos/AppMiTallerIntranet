@@ -1,0 +1,23 @@
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.DA.dll
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.DA.pdb
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.BE.dll
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.BE.pdb
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.csprojResolveAssemblyReference.cache
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.dll
+D:\AGP\TFS\AGP_PROD\FrontEnd\PryWebSGA\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.pdb
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.DA.dll
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.DA.pdb
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.BE.dll
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.BE.pdb
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.csprojResolveAssemblyReference.cache
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.dll
+D:\FPS Archivos\FPS\AG PERU\Req. Proyectos\201903 - Citas Nueva BD\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.pdb
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.DA.dll
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.DA.pdb
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.BE.dll
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\AGP.SRC.DA\bin\Debug\AGP.SRC.BE.pdb
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.csprojAssemblyReference.cache
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.csproj.CoreCompileInputs.cache
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.csproj.CopyComplete
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.dll
+D:\gmatos\proyectos\AppMiTaller\PryWebSGA\PryWebSGA\AGP.SRC.DA\obj\Debug\AGP.SRC.DA.pdb

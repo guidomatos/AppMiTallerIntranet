@@ -1,0 +1,22 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Seguridad.master.cs" Inherits="Seguridad" MasterPageFile="~/Principal.master" %>
+<%@ MasterType VirtualPath="~/Principal.master" %>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolder1" ID="cphCuerpo" runat="server">
+    <table style="width:997px; height:495px;vertical-align:top; margin-top:5px" border="0">
+        <tr style="height:100%" >
+            <td style="width:167px; height:100%;">
+                <div style="width:165px; height: 4px;vertical-align:top"><img id="imgTopMenu" alt="" src="../Images/Menu_Izquierda/menu2a.gif" style="vertical-align:top" /></div>
+                <div class="divCabeceraMenu" style="height:20px; width:163px; overflow:hidden" >Seguridad</div>
+                <div id="divOpciones" runat="server" class="divOpcionMenuOff" style="height:450px; width:163px; overflow:auto;"></div>
+                <div style="width:165px; height: 4px;vertical-align:top"><img id="img1" alt="" src="../Images/Menu_Izquierda/menu2b.gif" style="vertical-align:top" /></div>
+            </td>
+            <td style="padding-left:15px">
+                <div>
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </td>
+        </tr>
+    </table>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="cphFormPost" ID="ContentPlaceHolder2" runat="server">
+    <asp:ContentPlaceHolder id="cphFormPost" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>

@@ -1,0 +1,2 @@
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ComboDepartamento.ascx.cs" Inherits="SGS_UserControl_ComboDepartamento" %>
+<asp:DropDownList ID="cboDepartamento" runat="server" Width="120px" OnSelectedIndexChanged="cboDepartamento_SelectedIndexChanged"></asp:DropDownList>
