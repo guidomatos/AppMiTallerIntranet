@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -49,8 +47,8 @@
             width: 600px; border-bottom: dimgray 2px solid; position:static;">
             <table style="font-style: normal; font-family: verdana; text-align: left;" width="100%">
                 <tr>
-                    <td align="center"><img height="50" style="margin-top: 5px" width="127" src="{ImagenLogo}" /></td>
-                    <td align="left"><img height="50" style="margin-top: 5px" width="450" src="{Titulo}" /></td>
+                    <td align="center"></td>
+                    <td align="left"></td>
                 </tr>
                 <tr><td colspan="2" align="center"><hr style="width: 576px" /></td></tr>
                 <tr>
@@ -105,28 +103,15 @@
                         </div>
                         <table border="0" cellpadding="0" width="100%">
                             <tr>
-                                <td style="font-size: 8pt; font-family: verdana; height: 23px" valign="bottom">
-                                    En caso desee reprogramar su cita llame a nuestro callcenter al {CallCenter}</td>
-                            </tr>
-                            <tr>
-                                <td style="font-size: 8pt; font-family: verdana">
-                                    Para ingresar al Sistema de Reserva de Citas haga click <a href ="{UrlPagina}">aqu&iacute;</a> 
-                                    </td>
-                            </tr>
-                            <tr>
                                 <td style="font-weight: bold; font-size: 8pt; font-family: verdana; height: 23px;" align="center" valign="bottom">
                                     Gracias por utilizar nuestro sistema</td>
                             </tr>
                         </table>
                     </td>
                 </tr>
-                <tr><td colspan="2" align="center"><img src="{ImagenPie}" width="580" height="20" /></td></tr>
             </table>
         </div>
     </center>
-    
-	<!-- IMPRESION DEL RESUMEN DE LA CITA -->
-	
     <center>
             <table border="0" cellpadding="0" cellspacing="0">
                 <tr>

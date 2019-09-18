@@ -1,6 +1,3 @@
-<!--
-	@001 Mantra : Se añadio el parametro del QR 22/12/2017
--->
 <html>
 <head>
 <title>Datos de la Cita</title>    
@@ -35,21 +32,12 @@
         <div style="border-right: dimgray 2px solid; border-top: dimgray 2px solid; border-left: dimgray 2px solid;
             width: 600px; border-bottom: dimgray 2px solid; position:static;"><!--  height: 550px -->
             <table style="font-style: normal; font-family: verdana; text-align: left;" width="600px">
-                <tr id='trLogo' style="display:{blLogo};">				
-                    <td align="center" ><img height="50" style="margin-top: 5px" width="127" src="{ImagenLogo}" /></td>
-                    <td align="left" ><img height="50" style="margin-top: 5px" width="450" src="{Titulo}"     /></td>
-                </tr>
-                <tr id='trLogoApp' style="display:{blLogo};">				
-                    <td colspan="2" style="text-align: center;" ><img width="450" height="50" src="{ImagenLogoApp}" /></td>	
-					<!--<td colspan="2" style="text-align: center;" ><img width="580" height="55" src="http://citas.agildemeister.com.pe/images/logo_app.jpg" /></td>-->			
-                </tr>
-                <tr><td colspan="2" align="center" style="display:{blLogo};"><hr style="width: 576px" /></td></tr>
                 <tr>
                     <td colspan="2" style="font-size: 10pt; padding-left: 15px;"> Estimado Sr(a):
                         <span style="font-family:verdana;font-size:11pt;font-weight:bold;">{Cliente}</span></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding-left: 15px; font-size: 10pt">Se le adjunta el res&uacute;men de la {TipoCita} de su Cita:</td>
+                    <td colspan="2" style="padding-left: 15px; font-size: 10pt">Se le adjunta el resumen de la {TipoCita} de su Cita:</td>
                 </tr>
                 <tr>
 					<td style="padding-left: 15px; font-size: 9pt; margin-right: 18px; font-weight: bold; font-family: arial;" colSpan="2" class="csNombre">
@@ -65,7 +53,8 @@
                                 <tr><td class="csTitulo">  Veh&iacute;culo</td></tr>
                                 <tr><td style="padding-left: 50px">
                                         <span class="csNombre" style="display:inline-block;width:70px;">{TipoPlaca}</span>
-                                        <span class="csTexto">{NumPlaca}</span></td>                                </tr>
+                                        <span class="csTexto">{NumPlaca}</span></td>
+								</tr>
                                 <tr>
                                     <td style="padding-left: 50px;">
                                         <span class="csNombre" style="display:inline-block;width:70px;">Marca:</span><span class="csTexto">{Marca}</span>
@@ -122,7 +111,6 @@
 								<br><br>
 								</span>
 								<span id='SPAN_2' style="font-family: Verdana; color: #646464; padding-left: 1px;font-size: 7pt;width:100%;">
-								<!--De acuerdo a lo establecido en el D.LEG. N° 940, el mantenimiento y reparaci&oacute;n de bienes muebles se encuentra sujeto al SPOT con la tasa del 9%, por lo que, en caso su Factura supere los S/.700, deber&aacute; efectuar el dep&oacute;sito correspondiente en la Cta. Cte. del Banco de la Naci&oacute;n N°00-000-785016 MN al momento del pago.-->
 								{TextoPieCorreo}
 								</span>
 								<span id='SPAN_3' style="font-family: Verdana; color: #646464; padding-left: 1px;font-size: 7pt;width:100%;" ><br><br>
@@ -132,22 +120,8 @@
 								</td></tr>
                             </table>
                         </div>
-                        <table border="0" cellpadding="0" width="100%" style="display:{blCallCenter};">
-                            <tr>
-                              <td>
-                            	<span id='SPAN_4' style="font-family: Verdana; color: #646464; padding-left: 1px;font-size: 7pt;width:100%;">
-								En caso desee reprogramar su cita llame a nuestro callcenter al {CallCenter}<br>
-								Para ingresar al Sistema de Reserva de Citas haga click <a href ="{UrlPagina}">aqu&iacute;</a> 
-								</span>
-                              </td>
-                            </tr>
-                        </table>
                     </td>
                 </tr>
-				<!-- @001 I -->
-				{QR}
-				<!-- @001 F -->
-                <tr><td colspan="2" align="center"><img src="{ImagenPie}" width="580" height="20" /></td></tr>
             </table>
         </div>
     </center>

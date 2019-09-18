@@ -14,8 +14,8 @@
             <table  style="width: 600px; text-align: left" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td colspan="4" style="height: 52px; text-align: left" align="right">
-                        <img src="{ImagenLogo}" style="margin-top: 5px" height="50" />
-                        <img height="50" src="{Titulo}" style="margin-top: 5px; border-top-width: thin; border-left-width: thin; border-bottom-width: thin; border-right-width: thin;" width="448" /></td>
+                        
+                        </td>
                 </tr>
                 <tr>
 
@@ -45,7 +45,7 @@
                         <br />
                         <table align="center" border="0" cellpadding="0" cellspacing="1" style="border-right: darkgray thin solid;
                             background-position: center center; border-top: darkgray thin solid; background-attachment: scroll;
-                            background-image: url({Fondo}); border-left: darkgray thin solid;
+                            border-left: darkgray thin solid;
                             width: 552px; border-bottom: darkgray thin solid; height: 110px;" id="TABLE1" onclick="return TABLE1_onclick()">
                             <tr>
                                 <td align="left" style="width: 100px; font-size: 10pt; color: gray; font-family: verdana; font-weight: bold; height: 7px;">

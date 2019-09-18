@@ -52,7 +52,7 @@ public class CorreoElectronico
 
         string strRutaPlantilla = Path.Combine(String.Concat(this.path_server, "SRC_Operaciones\\"), ConfigurationManager.AppSettings["PlantillaCorreo"].Replace("/", "\\"));
 
-        string strVerNota = oDatos.fl_nota; /*Nota: 26.11.2012 */
+        string strVerNota = oDatos.fl_nota;
         try
         {
             if (!System.IO.File.Exists(strRutaPlantilla))
@@ -84,24 +84,12 @@ public class CorreoElectronico
                     strTextoPie = strTextoPie.Replace("{num_cuenta}", oDatos.nu_cuenta);
                     strNumCallCenter = oDatos.nu_callcenter.Trim();
                 }
-
-                string url = "";
-                switch (oDatos.Nid_empresa)
-                {
-                    case 1: url = ConfigurationManager.AppSettings["UrlCitasGildemeister"].ToString(); break;
-                    case 2: url = ConfigurationManager.AppSettings["UrlCitasManasa"].ToString(); break;
-                    case 3: url = ConfigurationManager.AppSettings["UrlCitasMotormundo"].ToString(); break;
-                }
-
+                
                 string linea = null;
 
                 while (reader.Peek() > -1)
                 {
                     linea = reader.ReadLine().ToString();
-                    linea = linea.Replace("{ImagenLogo}", url + "img/marcas/logo_" + oDatos.nid_marca + ".jpg");
-                    linea = linea.Replace("{ImagenLogoApp}", url + "img/titulo.jpg");
-                    linea = linea.Replace("{Titulo}", url + "img/titulo.jpg");
-                    linea = linea.Replace("{Fondo}", url + "img/fondoC1.jpg");
                     linea = linea.Replace("{Cliente}", oDatos.no_cliente.Trim().ToUpper() + " " + oDatos.no_ape_paterno.Trim().ToUpper() + " " + oDatos.no_ape_materno.Trim().ToUpper());
                     linea = linea.Replace("{TipoCita}", strTipoCita);
                     linea = linea.Replace("{TipoPlaca}", oParametros.N_Placa + ": ");
@@ -109,7 +97,7 @@ public class CorreoElectronico
                     linea = linea.Replace("{Marca}", oDatos.no_marca.ToUpper());
                     linea = linea.Replace("{Modelo}", oDatos.no_modelo.ToUpper());
                     linea = linea.Replace("{DiaHoraCita}", GetFechaLarga(oDatos.fe_prog) + " - " + FormatoHora(oDatos.ho_inicio_c));
-                    linea = linea.Replace("{TextoAsesor}", oDatos.fl_entrega.Equals("1") ? "Asesor de Entrega:" : oParametros.N_Asesor + ": "); //@001
+                    linea = linea.Replace("{TextoAsesor}", oParametros.N_Asesor + ": ");
                     linea = linea.Replace("{Asesor}", oDatos.no_asesor);
                     linea = linea.Replace("{MovilAsesor}", oDatos.nu_telefono_a);
                     linea = linea.Replace("{Servicio}", oDatos.no_servicio.Trim().ToUpper());
@@ -122,11 +110,8 @@ public class CorreoElectronico
                     linea = linea.Replace("{FormaRecordatorio}", "- Por Email");
                     linea = linea.Replace("{TextoPieCorreo}", strTextoPie);
                     linea = linea.Replace("{CallCenter}", strNumCallCenter);
-                    linea = linea.Replace("{UrlPagina}", url);
-                    linea = linea.Replace("{ImagenPie}", url + "img/Pie1.jpg");
                     linea = linea.Replace("{blLogo}", ((oParametros.SRC_MostrarLogo.Equals("1")) ? "block" : "none"));
                     linea = linea.Replace("{nu_taller}", oDatos.nu_telefono_t);
-                    linea = linea.Replace("{QR}", oDatos.no_nombreqr == null ? "" : oDatos.no_nombreqr == "" ? "" : oParametros.SRC_PlantillaCorreoQR.Replace("{QR}", oParametros.SRC_AccedeQR + oDatos.no_nombreqr)); //@010 I/F
 
                     strBodyHTML.Append(linea);
                 }
@@ -145,7 +130,7 @@ public class CorreoElectronico
             if (oDatos.fl_entrega.Equals("1")) strBodyHTML = Ocultar_Etiqueta_2(strBodyHTML, "Envio_2");
             if (oDatos.fl_entrega.Equals("1")) strBodyHTML = Ocultar_Etiqueta_2(strBodyHTML, "Envio_3");
             if (oDatos.fl_entrega.Equals("0")) strBodyHTML = Ocultar_Etiqueta(strBodyHTML, "SPAN_5");
-            if (!oDatos.nid_marca.ToString().Equals("12") && oParametros.SRC_CodPais.Equals("1")) strBodyHTML = Ocultar_Etiqueta_2(strBodyHTML, "trLogoApp");
+            if (!oDatos.nid_marca.ToString().Equals("12") ) strBodyHTML = Ocultar_Etiqueta_2(strBodyHTML, "trLogoApp");
         }
         catch//(Exception ex)
         {
@@ -181,20 +166,10 @@ public class CorreoElectronico
                 }
 
                 string linea = null;
-                string url = "";
-                switch (oDatos.Nid_empresa)
-                {
-                    case 1: url = ConfigurationManager.AppSettings["UrlCitasGildemeister"].ToString(); break;
-                    case 2: url = ConfigurationManager.AppSettings["UrlCitasManasa"].ToString(); break;
-                    case 3: url = ConfigurationManager.AppSettings["UrlCitasMotormundo"].ToString(); break;
-                }
 
                 while (reader.Peek() > -1)
                 {
                     linea = reader.ReadLine().ToString();
-                    linea = linea.Replace("{ImagenLogo}", (url + "Images/SRC/marcas/logo_" + oDatos.nid_marca.ToString() + ".jpg")); //@011 I/F
-                    linea = linea.Replace("{ImagenLogo}", (url + "Images/SRC/marcas/logo_" + oDatos.nid_marca.ToString() + ".jpg")); /*@001: */
-                    linea = linea.Replace("{Fondo}", (url + ConfigurationManager.AppSettings["Fondo"]));
                     linea = linea.Replace("{Asesor}", oDatos.no_asesor.Trim().ToUpper());
                     linea = linea.Replace("{TipoCita}", strTipoCita);
                     linea = linea.Replace("{FechaCita}", GetFechaLarga(oDatos.fe_prog).ToUpper());
@@ -205,8 +180,6 @@ public class CorreoElectronico
                     linea = linea.Replace("{Placa}", oDatos.nu_placa.ToUpper());
                     linea = linea.Replace("{Marca}", oDatos.no_marca);
                     linea = linea.Replace("{Modelo}", oDatos.no_modelo);
-                    linea = linea.Replace("{UrlPagina}", url);
-                    linea = linea.Replace("{ImagenPie}", (url + ConfigurationManager.AppSettings["Pie" + oParametros.SRC_CodEmpresa + ""]));
                     strBodyHTML.Append(linea);
                 }
 
@@ -248,20 +221,10 @@ public class CorreoElectronico
                 }
 
                 string linea = null;
-                string url = "";
-                switch (oDatos.Nid_empresa)
-                {
-                    case 1: url = ConfigurationManager.AppSettings["UrlCitasGildemeister"].ToString(); break;
-                    case 2: url = ConfigurationManager.AppSettings["UrlCitasManasa"].ToString(); break;
-                    case 3: url = ConfigurationManager.AppSettings["UrlCitasMotormundo"].ToString(); break;
-                }
 
                 while (reader.Peek() > -1)
                 {
                     linea = reader.ReadLine().ToString();
-                    linea = linea.Replace("{ImagenLogo}", (url + "Images/SRC/marcas/logo_" + oDatos.nid_marca.ToString() + ".jpg")); //@011 I/F
-                    linea = linea.Replace("{Titulo}", (url + ConfigurationManager.AppSettings["Titulo"]));
-                    linea = linea.Replace("{Fondo}", (url + ConfigurationManager.AppSettings["Fondo"]));
                     linea = linea.Replace("{Asesor}", oDatos.no_asesor.Trim().ToUpper());
                     linea = linea.Replace("{TipoCita}", strTipoCita);
                     linea = linea.Replace("{FechaCita}", GetFechaLarga(oDatos.fe_prog).ToUpper());
@@ -272,8 +235,6 @@ public class CorreoElectronico
                     linea = linea.Replace("{Placa}", oDatos.nu_placa.ToUpper());
                     linea = linea.Replace("{Marca}", oDatos.no_marca);
                     linea = linea.Replace("{Modelo}", oDatos.no_modelo);
-                    linea = linea.Replace("{UrlPagina}", url);
-                    linea = linea.Replace("{ImagenPie}", (url + ConfigurationManager.AppSettings["Pie" + oParametros.SRC_CodEmpresa + ""]));
                     strBodyHTML.Append(linea);
                 }
 
@@ -334,7 +295,7 @@ public class CorreoElectronico
         if (strHTML.ToString().Equals("-1") || strHTML.ToString().Equals("-2"))
         {
             //-1 Error al cargar la Plantilla
-            //-2 Error al rrellenar Plantilla
+            //-2 Error al rellenar Plantilla
 
             intResp = Int32.Parse(strHTML.ToString());
             flEnvio = false;
@@ -354,7 +315,7 @@ public class CorreoElectronico
                     case Parametros.EstadoCita.REASIGNADA: strAsunto = "SubjectCitaAsigna"; break;
                     case Parametros.EstadoCita.ANULADA: strAsunto = "SubjectCitaAnula"; break;
                 }
-                if (oDatos.fl_entrega.Equals("1")) strAsunto = "SubjectCitaEntrega";
+                
                 oEmail.From = new System.Net.Mail.MailAddress(ConfigurationManager.AppSettings["MailAddress"], ConfigurationManager.AppSettings["DisplayName"]);
 
                 switch (oPersona)
@@ -378,12 +339,13 @@ public class CorreoElectronico
                 oEmail.BodyEncoding = Encoding.GetEncoding("UTF-8");
                 oEmail.IsBodyHtml = true;
                 oEmail.Priority = System.Net.Mail.MailPriority.High;
-                if (oDatos.fl_entrega.Equals("1") && oPersona == Parametros.PERSONA.CLIENTE) { oEmail.Bcc.Add("yaguirre@agildemeister.com.pe"); }/* @005 I/F  */
+                //oEmail.Bcc.Add(ConfigurationManager.AppSettings["MailBcc"]);
                 smtp.Host = ConfigurationManager.AppSettings["Host"];
                 smtp.Port = Convert.ToInt32(ConfigurationManager.AppSettings["Puerto"].ToString());
                 smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["UsuarioMail"].ToString(), ConfigurationManager.AppSettings["ClaveMail"].ToString());
+                smtp.EnableSsl = true;
 
-                smtp.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback); //@001
+                smtp.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
                 object userState = oEmail;
                 try
                 {
@@ -400,7 +362,6 @@ public class CorreoElectronico
                         smtp.SendAsyncCancel();*/
                     //oEmail.Dispose();
                 }
-                //@007-F
             }
             catch//(Exception ex)
             {

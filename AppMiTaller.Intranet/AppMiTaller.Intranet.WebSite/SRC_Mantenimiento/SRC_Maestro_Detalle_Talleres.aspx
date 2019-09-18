@@ -353,7 +353,7 @@
             else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabServicios').style.visibility != 'hidden') index = 3;
             else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabMarcasModelos').style.visibility != 'hidden') index = 4;
             else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabHorExcepional').style.visibility != 'hidden') index = 5;
-            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabContenidoInformativo').style.visibility != 'hidden') index = 6;  //@002
+            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabContenidoInformativo').style.visibility != 'hidden') index = 6;
 
             Fc_SetCambiartab(index);
 
@@ -1677,7 +1677,6 @@
                                             </table>
                                         </ContentTemplate>
                                     </cc1:TabPanel>
-                                    <!-- @002-F -->
                                 </cc1:TabContainer>
                             </ContentTemplate>
                         </asp:UpdatePanel>
@@ -1693,7 +1692,6 @@
     <asp:UpdatePanel ID="upd_pn_popup_horexcepcional" runat="server" UpdateMode="Always">
         <ContentTemplate>
             <asp:Panel ID="Panel3" runat="server" Width="650px" CssClass="modalPopup" Style="background-repeat: repeat; background-image: url(../Images/fondo.gif); padding-top: 0px; padding-bottom: 8px">
-                <%--CABEZERA--%>
                 <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; height: 44px;">
                     <tr>
                         <td style="width: 153px; background-repeat: repeat; background-image: url(../Images/flotante/popcab1.gif);">&nbsp;

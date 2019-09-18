@@ -2931,8 +2931,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             oCitasBE.ho_fin = Convert.ToDateTime(ho_inicio).AddMinutes(qt_intervalo_atenc).ToString("HH:mm");
             oCitasBE.fl_datos_pend = (nu_telefono.Trim().Length == 0) ? "1" : "0";
             oCitasBE.tx_observacion = tx_observacion.Trim();
-            String strPais = (oParametros.SRC_CodPais.Equals("1") ? "PE" : "CH");
-            oCitasBE.No_pais = strPais;
+            oCitasBE.No_pais = "PE";
             oCitasBE.Tipo_reg = strTipoReg;
             oCitasBE.dd_atencion = getDiaSemana(oCitasBE.fe_prog);
             oCitasBE.fl_taxi = fl_taxi;
@@ -2943,11 +2942,10 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             oCitasBE.co_usuario_crea = co_usuario;
             oCitasBE.no_usuario_red = no_usuario_red;
             oCitasBE.no_estacion_red = no_estacion_red;
-            
-            string hoy = DateTime.Now.ToString("dd/MM/yyyy");
+
+            string hoy = DateTime.Now.ToString(ConstanteBE.formato_fecha_es);
             oCitasBE.co_tipo_cita = "001";
-            if (!oParametros.SRC_CodPais.Equals("2") && sfe_programada.Equals(hoy))
-                oCitasBE.co_tipo_cita = "002";
+            if (sfe_programada.Equals(hoy)) oCitasBE.co_tipo_cita = "002";
 
             //-----------------------------------------------------------------------
             //> Registrando la Cita
@@ -2969,13 +2967,9 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                 msg_retorno = ("Ya se ha alcanzado el limite de atenciones por día del Asesor.");
             else if (oRespBO.Equals("C6"))
                 msg_retorno = ("Ya se ha alcanzado el limite de atenciones por día del Taller y Modelo.");
-            else if (oRespBO.Contains(strPais))
+            else if (oRespBO.Contains("PE"))
             {
                 //OK -- PERU
-            }
-            else if (oParametros.SRC_Pais == 2)
-            {
-                //OK -- CHILE
             }
             else if (!oRespBO.Equals("CE"))
             {
@@ -3029,7 +3023,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                 };
 
                 //>>------ ENVIO DE CORREOS --------- >>
-                //EnviarCorreo_Cliente(oCitasBE, Parametros.EstadoCita.REGISTRADA); --pendiente
+                EnviarCorreo_Cliente(oCitasBE, Parametros.EstadoCita.REGISTRADA);
                 //EnviarCorreo_Asesor(oCitasBE, Parametros.EstadoCita.REGISTRADA); --pendiente
             }
         #endregion "- Registro de cita"
@@ -3079,7 +3073,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                                 + "<div><span style='font-weight: bold; background-color: #ebeff7; display:inline-block;width:130px;'>Dirección</span><span>{DIRECCION}</span></div>"
                             + "</div>"
                             + "<div style='padding:5px;'><span style='font-size: 11px; font-weight: bold; color: #4264af; font-family: arial; text-align: justify; width: 100%;'>En caso desee reprogramar su cita llame a nuestro Call Center al {CallCenter}</span></div>"
-                            + "<div style='text-align: center; font-size: 11px; color: #ffffff; font-family: Arial; background-color: #000000;padding:5px;'><b>&copy; 2016 Grupo Gildemeister todos los derechos reservados</b></div>"
+                            + "<div style='text-align: center; font-size: 11px; color: #ffffff; font-family: Arial; background-color: #000000;padding:5px;'><b>&copy; 2019 AppMiTaller todos los derechos reservados</b></div>"
                         + "</div>"
                     + "</div>"
                 + "</div>"

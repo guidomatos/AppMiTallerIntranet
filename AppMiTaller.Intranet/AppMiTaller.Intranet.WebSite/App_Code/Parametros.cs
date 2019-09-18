@@ -4,7 +4,7 @@ using System.Web.UI;
 
 public class Parametros
 {
-    //Nombres de los Mensajes [PERU - CHILE]
+    //Nombres de los Mensajes
     public string SRC_CodEmpresa = Convert.ToString(ConfigurationManager.AppSettings["codEmpresa"]);
     public Int32 SRC_Pais = Convert.ToInt32(ConfigurationManager.AppSettings["CodPais"]);
     public string SRC_CodPais = Convert.ToString(ConfigurationManager.AppSettings["CodPais"]);
@@ -13,17 +13,11 @@ public class Parametros
     public string SRC_TelefonoCC = Convert.ToString(ConfigurationManager.AppSettings["HoraFinCallCenter"]);
     public string SRC_DerechosCC = Convert.ToString(ConfigurationManager.AppSettings["HoraFinCallCenter"]);
     public string SRC_CambiarTaller = Convert.ToString(ConfigurationManager.AppSettings["CambiarTaller"]);
-    public string SRC_DirArchivosAdjuntos = Convert.ToString(ConfigurationManager.AppSettings["ArchivosAdjuntos"]);
-    public string SRC_DirListasGeneradas = Convert.ToString(ConfigurationManager.AppSettings["ListasGeneradas"]);
     public string SRC_OrdenGrilla = Convert.ToString(ConfigurationManager.AppSettings["OrdenGrilla"]);
     public string SRC_MostrarLogo = Convert.ToString(ConfigurationManager.AppSettings["MostrarLogo"]);
     public string SRC_MostrarTextoPie = Convert.ToString(ConfigurationManager.AppSettings["MostrarTextoPie"]);
     public string SRC_VINObligatorio = Convert.ToString(ConfigurationManager.AppSettings["VINObligatorio"]);
     public string SRC_MostrarColumnasUbigeo = Convert.ToString(ConfigurationManager.AppSettings["MostrarColumnasUbigeo"]);
-
-	public string SRC_PlantillaCorreoQR = "'<tr><td colspan='2' align='center'><img src='{QR}' style='width: 200px;height: 200px;padding-top: 10px;'/></td></tr>";
-    public string SRC_GuardaQR = ConfigurationManager.AppSettings["FileServerPath"].ToString() + @"Imagenes\QRCode\";
-    public string SRC_AccedeQR = "http://localhost/FileServer/" + @"Imagenes/QRCode/";
 
     private static string nombreMensaje(string strMSG)
     {
@@ -68,7 +62,7 @@ public class Parametros
     }
 
 
-    //Nombres de los Controles [PERU - CHILE]
+    //Nombres de los Controles
     public string N_Placa = Parametros.nombreMensaje("nPlaca");
     public string N_Departamento = Parametros.nombreMensaje("nDepartamento");
     public string N_Provincia = Parametros.nombreMensaje("nProvincia");
@@ -192,13 +186,4 @@ public class Parametros
         CALL_CENTER = 3
     }
 
-   
-    /*
-    public Parametros()
-    {
-        //
-        // TODO: Agregar aquí la lógica del constructor
-        //
-        
-    }*/
 }
