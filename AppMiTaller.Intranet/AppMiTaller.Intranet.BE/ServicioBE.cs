@@ -19,7 +19,7 @@ namespace AppMiTaller.Intranet.BE
         public string XmlServicios { get; set; }
         public String Fl_quick_service { get; set; }
         public String no_dias_validos { get; set; }
-        public int nid_usuario { get; set; }
+        public int Nid_usuario { get; set; }
         public long nu_item { get; set; }
         public int nid_tipo_servicio { get; set; }
         public int nu_registro_por_pagina { get; set; }

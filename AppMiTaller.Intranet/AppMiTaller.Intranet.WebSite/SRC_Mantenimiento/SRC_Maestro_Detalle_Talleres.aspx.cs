@@ -62,7 +62,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
     private void CargarUbigeo()
     {
         TallerBL objneg = new TallerBL();
-        List<TallerBE> ListUbigeo = objneg.GETListarUbigeo(Profile.Usuario.NID_USUARIO);
+        List<TallerBE> ListUbigeo = objneg.GETListarUbigeo(Profile.Usuario.Nid_usuario);
         System.Data.DataTable dtUbigeo = new System.Data.DataTable();
         dtUbigeo.Columns.Add("coddpto", System.Type.GetType("System.String"));
         dtUbigeo.Columns.Add("codprov", System.Type.GetType("System.String"));
@@ -306,7 +306,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
     {
         TallerBE ent = new TallerBE();
         ent.Co_perfil_usuario = Profile.Usuario.co_perfil_usuario;
-        ent.Nid_usuario = Profile.Usuario.NID_USUARIO;
+        ent.Nid_usuario = Profile.Usuario.Nid_usuario;
 
         List<TallerBE> List = objNeg.GETListarMarcasModelos(ent);
 
@@ -547,7 +547,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
         TallerBL objNeg = new TallerBL();
         TallerBE objEnt = new TallerBE();
         objEnt.Co_perfil_usuario = Profile.Usuario.co_perfil_usuario;
-        objEnt.Nid_usuario = Profile.Usuario.NID_USUARIO;
+        objEnt.Nid_usuario = Profile.Usuario.Nid_usuario;
         List<TallerBE> List = objNeg.GETListarUbicacion(objEnt);
         if (List.Count > 0)
         {
@@ -1429,21 +1429,45 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                     System.Data.DataTable dtHorario_editar = (System.Data.DataTable)ViewState["dtHorario_editar"];
                     System.Data.DataTable dtHorario_sel = (System.Data.DataTable)ViewState["dtHorario_sel"];
 
-                    for (Int32 i = 0; i < dtHorario_sel.Rows.Count; i++)
+                    if (dtHorario_sel != null)
                     {
-                        if (dtHorario_sel.Rows[i]["habil"].ToString() == dtHorario_editar.Rows[i]["habil"].ToString())  //update
+                        for (Int32 i = 0; i < dtHorario_sel.Rows.Count; i++)
                         {
-                            // update
-                            // 0 = 0 - Sin Accion
-                            if (dtHorario_sel.Rows[i]["habil"].ToString() == "1")
+                            if (dtHorario_sel.Rows[i]["habil"].ToString() == dtHorario_editar.Rows[i]["habil"].ToString())  //update
                             {
-                                if ((dtHorario_sel.Rows[i]["ho_inicio"].ToString() == dtHorario_editar.Rows[i]["ho_inicio"].ToString()) && (dtHorario_editar.Rows[i]["ho_fin"].ToString() == dtHorario_sel.Rows[i]["ho_fin"].ToString()))
+                                // update
+                                // 0 = 0 - Sin Accion
+                                if (dtHorario_sel.Rows[i]["habil"].ToString() == "1")
                                 {
-                                    //no actualizo nada
+                                    if ((dtHorario_sel.Rows[i]["ho_inicio"].ToString() == dtHorario_editar.Rows[i]["ho_inicio"].ToString()) && (dtHorario_editar.Rows[i]["ho_fin"].ToString() == dtHorario_sel.Rows[i]["ho_fin"].ToString()))
+                                    {
+                                        //no actualizo nada
+                                    }
+                                    else
+                                    {
+                                        //actualizo - U                                    
+                                        if (Session["editar"] != null)
+                                            objEnt.nid_taller = Convert.ToInt32(Session["editar"].ToString());
+                                        else if (Session["detalle"] != null)
+                                            objEnt.nid_taller = Convert.ToInt32(Session["detalle"].ToString());
+                                        objEnt.Dd_atencion = Convert.ToInt32(dtHorario_sel.Rows[i]["dd_atencion"].ToString());
+                                        objEnt.HoraInicio = dtHorario_sel.Rows[i]["ho_inicio"].ToString();
+                                        objEnt.HoraFin = dtHorario_sel.Rows[i]["ho_fin"].ToString();
+                                        objEnt.Co_usuario_modi = "";
+                                        objEnt.co_usuario_red = Profile.UsuarioRed;
+                                        objEnt.no_estacion_red = Profile.Estacion;
+                                        //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                        objEnt.fl_activo = "A";
+                                        objNeg.ActualizarHorario(objEnt);
+                                    }
                                 }
-                                else
+                            }
+                            else
+                            {
+                                //ha pasado de 1 a 0
+                                if (dtHorario_sel.Rows[i]["habil"].ToString() == "0")
                                 {
-                                    //actualizo - U                                    
+                                    //actualizo - U                          
                                     if (Session["editar"] != null)
                                         objEnt.nid_taller = Convert.ToInt32(Session["editar"].ToString());
                                     else if (Session["detalle"] != null)
@@ -1455,47 +1479,26 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                                     objEnt.co_usuario_red = Profile.UsuarioRed;
                                     objEnt.no_estacion_red = Profile.Estacion;
                                     //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                    objEnt.fl_activo = "A";
+                                    objEnt.fl_activo = "I";
                                     objNeg.ActualizarHorario(objEnt);
                                 }
+                                //ha pasado de 0 a 1
+                                else if (dtHorario_sel.Rows[i]["habil"].ToString() == "1")
+                                {
+                                    //inserto - I
+                                    objEnt.Dd_atencion = Convert.ToInt32(dtHorario_sel.Rows[i]["dd_atencion"].ToString());
+                                    objEnt.HoraInicio = dtHorario_sel.Rows[i]["ho_inicio"].ToString();
+                                    objEnt.HoraFin = dtHorario_sel.Rows[i]["ho_fin"].ToString();
+                                    objEnt.Fl_tipo = "T";
+                                    objEnt.co_usuario = Profile.UserName;
+                                    objEnt.co_usuario_red = Profile.UsuarioRed;
+                                    objEnt.no_estacion_red = Profile.Estacion;
+                                    objEnt.fl_activo = "A";
+                                    //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                    objNeg.InsertTallerHorario(objEnt);
+                                }
+                                //insert
                             }
-                        }
-                        else
-                        {
-                            //ha pasado de 1 a 0
-                            if (dtHorario_sel.Rows[i]["habil"].ToString() == "0")
-                            {
-                                //actualizo - U                          
-                                if (Session["editar"] != null)
-                                    objEnt.nid_taller = Convert.ToInt32(Session["editar"].ToString());
-                                else if (Session["detalle"] != null)
-                                    objEnt.nid_taller = Convert.ToInt32(Session["detalle"].ToString());
-                                objEnt.Dd_atencion = Convert.ToInt32(dtHorario_sel.Rows[i]["dd_atencion"].ToString());
-                                objEnt.HoraInicio = dtHorario_sel.Rows[i]["ho_inicio"].ToString();
-                                objEnt.HoraFin = dtHorario_sel.Rows[i]["ho_fin"].ToString();
-                                objEnt.Co_usuario_modi = "";
-                                objEnt.co_usuario_red = Profile.UsuarioRed;
-                                objEnt.no_estacion_red = Profile.Estacion;
-                                //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                objEnt.fl_activo = "I";
-                                objNeg.ActualizarHorario(objEnt);
-                            }
-                            //ha pasado de 0 a 1
-                            else if (dtHorario_sel.Rows[i]["habil"].ToString() == "1")
-                            {
-                                //inserto - I
-                                objEnt.Dd_atencion = Convert.ToInt32(dtHorario_sel.Rows[i]["dd_atencion"].ToString());
-                                objEnt.HoraInicio = dtHorario_sel.Rows[i]["ho_inicio"].ToString();
-                                objEnt.HoraFin = dtHorario_sel.Rows[i]["ho_fin"].ToString();
-                                objEnt.Fl_tipo = "T";
-                                objEnt.co_usuario = Profile.UserName;
-                                objEnt.co_usuario_red = Profile.UsuarioRed;
-                                objEnt.no_estacion_red = Profile.Estacion;
-                                objEnt.fl_activo = "A";
-                                //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                objNeg.InsertTallerHorario(objEnt);
-                            }
-                            //insert
                         }
                     }
                     dtHorario_editar = null;
@@ -1562,17 +1565,93 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                     else if (Session["detalle"] != null)
                         objEnt.nid_taller = Convert.ToInt32(Session["detalle"].ToString());
 
-                    if (List.Count > lst_DiasExcep.Items.Count)
+                    if (List != null && lst_DiasExcep != null)
                     {
-                        for (Int32 i = 0; i < List.Count; i++)
+
+                        if (List.Count > lst_DiasExcep.Items.Count)
                         {
-                            if (lst_DiasExcep.Items.Count == 0)
+                            for (Int32 i = 0; i < List.Count; i++)
                             {
-                                objEnt.Op = "D";
-                                objEnt.Fe_exceptuada = Convert.ToDateTime(List[i].Fe_exceptuada1.Split('|')[1]);
-                                objNeg.MantenimientoTallerDiasExceptuados(objEnt);
+                                if (lst_DiasExcep.Items.Count == 0)
+                                {
+                                    objEnt.Op = "D";
+                                    objEnt.Fe_exceptuada = Convert.ToDateTime(List[i].Fe_exceptuada1.Split('|')[1]);
+                                    objNeg.MantenimientoTallerDiasExceptuados(objEnt);
+                                }
+                                else
+                                {
+                                    for (Int32 j = 0; j < lst_DiasExcep.Items.Count; j++)
+                                    {
+                                        if (List[i].Fe_exceptuada1.Split('|')[0] == lst_DiasExcep.Items[j].Text)
+                                        {
+                                            flag4 = true;
+                                            break;
+                                        }
+                                        else
+                                            flag4 = false;
+                                    }
+                                    if (flag4)
+                                    {
+                                        //UPDATE
+                                    }
+                                    else
+                                    {
+                                        //DELETE
+                                        objEnt.Op = "D";
+                                        objEnt.Fe_exceptuada = Convert.ToDateTime(List[i].Fe_exceptuada1.Split('|')[1]);
+                                        objNeg.MantenimientoTallerDiasExceptuados(objEnt);
+                                    }
+                                }
                             }
-                            else
+                        }
+                        else if (List.Count < lst_DiasExcep.Items.Count)
+                        {
+                            for (Int32 i = 0; i < lst_DiasExcep.Items.Count; i++)
+                            {
+                                if (List.Count == 0)
+                                {
+                                    objEnt.Fe_exceptuada = Convert.ToDateTime(lst_DiasExcep.Items[i].Value);
+                                    objEnt.co_usuario = Profile.UserName;
+                                    objEnt.co_usuario_red = Profile.UsuarioRed;
+                                    objEnt.no_estacion_red = Profile.Estacion;
+                                    objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                    objEnt.Op = "I";
+                                    objNeg.MantenimientoTallerDiasExceptuados(objEnt);
+                                    //insert
+                                }
+                                else
+                                {
+                                    for (Int32 j = 0; j < List.Count; j++)
+                                    {
+                                        if (lst_DiasExcep.Items[i].Text == List[j].Fe_exceptuada1.Split('|')[0])
+                                        {
+                                            flag4 = true;
+                                            break;
+                                        }
+                                        else
+                                            flag4 = false;
+                                    }
+                                    if (flag4)
+                                    {
+                                        //update
+                                    }
+                                    else
+                                    {
+                                        objEnt.Fe_exceptuada = Convert.ToDateTime(lst_DiasExcep.Items[i].Value);
+                                        objEnt.co_usuario = Profile.UserName;
+                                        objEnt.co_usuario_red = Profile.UsuarioRed;
+                                        objEnt.no_estacion_red = Profile.Estacion;
+                                        objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                        objEnt.Op = "I";
+                                        objNeg.MantenimientoTallerDiasExceptuados(objEnt);
+                                        //insert
+                                    }
+                                }
+                            }
+                        }
+                        else if (List.Count == lst_DiasExcep.Items.Count)
+                        {
+                            for (Int32 i = 0; i < List.Count; i++)
                             {
                                 for (Int32 j = 0; j < lst_DiasExcep.Items.Count; j++)
                                 {
@@ -1596,26 +1675,11 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                                     objNeg.MantenimientoTallerDiasExceptuados(objEnt);
                                 }
                             }
-                        }
-                    }
-                    else if (List.Count < lst_DiasExcep.Items.Count)
-                    {
-                        for (Int32 i = 0; i < lst_DiasExcep.Items.Count; i++)
-                        {
-                            if (List.Count == 0)
+
+
+                            for (Int32 i = 0; i < lst_DiasExcep.Items.Count; i++)
                             {
-                                objEnt.Fe_exceptuada = Convert.ToDateTime(lst_DiasExcep.Items[i].Value);
-                                objEnt.co_usuario = Profile.UserName;
-                                objEnt.co_usuario_red = Profile.UsuarioRed;
-                                objEnt.no_estacion_red = Profile.Estacion;
-                                objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                objEnt.Op = "I";
-                                objNeg.MantenimientoTallerDiasExceptuados(objEnt);
-                                //insert
-                            }
-                            else
-                            {
-                                for (Int32 j = 0; j < List.Count; j++)
+                                for (Int32 j = 0; i < List.Count; j++)
                                 {
                                     if (lst_DiasExcep.Items[i].Text == List[j].Fe_exceptuada1.Split('|')[0])
                                     {
@@ -1631,6 +1695,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                                 }
                                 else
                                 {
+                                    //insert
                                     objEnt.Fe_exceptuada = Convert.ToDateTime(lst_DiasExcep.Items[i].Value);
                                     objEnt.co_usuario = Profile.UserName;
                                     objEnt.co_usuario_red = Profile.UsuarioRed;
@@ -1638,65 +1703,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                                     objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
                                     objEnt.Op = "I";
                                     objNeg.MantenimientoTallerDiasExceptuados(objEnt);
-                                    //insert
                                 }
-                            }
-                        }
-                    }
-                    else if (List.Count == lst_DiasExcep.Items.Count)
-                    {
-                        for (Int32 i = 0; i < List.Count; i++)
-                        {
-                            for (Int32 j = 0; j < lst_DiasExcep.Items.Count; j++)
-                            {
-                                if (List[i].Fe_exceptuada1.Split('|')[0] == lst_DiasExcep.Items[j].Text)
-                                {
-                                    flag4 = true;
-                                    break;
-                                }
-                                else
-                                    flag4 = false;
-                            }
-                            if (flag4)
-                            {
-                                //UPDATE
-                            }
-                            else
-                            {
-                                //DELETE
-                                objEnt.Op = "D";
-                                objEnt.Fe_exceptuada = Convert.ToDateTime(List[i].Fe_exceptuada1.Split('|')[1]);
-                                objNeg.MantenimientoTallerDiasExceptuados(objEnt);
-                            }
-                        }
-
-
-                        for (Int32 i = 0; i < lst_DiasExcep.Items.Count; i++)
-                        {
-                            for (Int32 j = 0; i < List.Count; j++)
-                            {
-                                if (lst_DiasExcep.Items[i].Text == List[j].Fe_exceptuada1.Split('|')[0])
-                                {
-                                    flag4 = true;
-                                    break;
-                                }
-                                else
-                                    flag4 = false;
-                            }
-                            if (flag4)
-                            {
-                                //update
-                            }
-                            else
-                            {
-                                //insert
-                                objEnt.Fe_exceptuada = Convert.ToDateTime(lst_DiasExcep.Items[i].Value);
-                                objEnt.co_usuario = Profile.UserName;
-                                objEnt.co_usuario_red = Profile.UsuarioRed;
-                                objEnt.no_estacion_red = Profile.Estacion;
-                                objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                objEnt.Op = "I";
-                                objNeg.MantenimientoTallerDiasExceptuados(objEnt);
                             }
                         }
                     }
@@ -1715,19 +1722,139 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                     else if (Session["detalle"] != null)
                         objEnt.nid_taller = Convert.ToInt32(Session["detalle"].ToString());
 
-                    if (dtServActual.Rows.Count > dtServSelec.Rows.Count)
+                    if (dtServActual != null && dtServSelec != null)
                     {
-                        foreach (DataRow f1 in dtServActual.Rows)
+                        if (dtServActual.Rows.Count > dtServSelec.Rows.Count)
                         {
-                            if (dtServSelec.Rows.Count == 0)
+                            foreach (DataRow f1 in dtServActual.Rows)
                             {
-                                objEnt.Op = "D";
-                                objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
-                                objNeg.MantenimientoTallerServicios(objEnt);
-                                //delete
+                                if (dtServSelec.Rows.Count == 0)
+                                {
+                                    objEnt.Op = "D";
+                                    objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
+                                    objNeg.MantenimientoTallerServicios(objEnt);
+                                    //delete
+                                }
+                                else
+                                {
+                                    foreach (DataRow f2 in dtServSelec.Rows)
+                                    {
+                                        if (f1["nid_servicio"].ToString() == f2["nid_servicio"].ToString())
+                                        {
+                                            flag = true;
+                                            break;
+                                        }
+                                        else
+                                            flag = false;
+                                    }
+                                    if (flag)
+                                    {
+                                        //objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
+                                        //objEnt.Co_usuario_modi = "";
+                                        //objEnt.co_usuario_red = Profile.UsuarioRed;
+                                        //objEnt.no_estacion_red = Profile.Estacion; 
+                                        //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                        //objEnt.Op = "U";
+                                        //objNeg.MantenimientoTallerServicios(objEnt);                                    
+                                        //update
+                                    }
+                                    else
+                                    {
+                                        objEnt.Op = "D";
+                                        objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
+                                        objEnt.no_dias = string.Empty;
+                                        objNeg.MantenimientoTallerServicios(objEnt);
+                                        //delete
+                                    }
+                                }
                             }
-                            else
+                        }
+                        else if (dtServActual.Rows.Count < dtServSelec.Rows.Count)
+                        {
+                            foreach (DataRow f1 in dtServSelec.Rows)
                             {
+                                if (dtServActual.Rows.Count == 0)
+                                {
+                                    string _strDias = f1["no_dias"].ToString();
+                                    string strDias = string.Empty;
+                                    strDias += _strDias[0].ToString().Equals("1") ? "1|" : "";
+                                    strDias += _strDias[1].ToString().Equals("1") ? "2|" : "";
+                                    strDias += _strDias[2].ToString().Equals("1") ? "3|" : "";
+                                    strDias += _strDias[3].ToString().Equals("1") ? "4|" : "";
+                                    strDias += _strDias[4].ToString().Equals("1") ? "5|" : "";
+                                    strDias += _strDias[5].ToString().Equals("1") ? "6|" : "";
+                                    strDias = (!string.IsNullOrEmpty(strDias)) ? strDias.Substring(0, strDias.Length - 1) : strDias;
+
+                                    //------------------------------
+
+                                    objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
+                                    objEnt.no_dias = strDias;
+                                    objEnt.co_usuario = Profile.UserName;
+                                    objEnt.co_usuario_red = Profile.UsuarioRed;
+                                    objEnt.no_estacion_red = Profile.Estacion;
+                                    objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                    objEnt.Op = "I";
+                                    objNeg.MantenimientoTallerServicios(objEnt);
+                                    //insert
+                                }
+                                else
+                                {
+                                    foreach (DataRow f2 in dtServActual.Rows)
+                                    {
+                                        if (f1["nid_servicio"].ToString() == f2["nid_servicio"].ToString())
+                                        {
+                                            flag = true;
+                                            break;
+                                        }
+                                        else
+                                            flag = false;
+                                    }
+                                    if (flag)
+                                    {
+                                        //objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
+
+                                        //objEnt.Co_usuario_modi = "";
+                                        //objEnt.co_usuario_red = Profile.UsuarioRed;
+                                        //objEnt.no_estacion_red = Profile.Estacion; 
+                                        //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                        //objEnt.Op = "U";
+                                        //objNeg.MantenimientoTallerServicios(objEnt);
+
+                                        //update
+                                    }
+                                    else
+                                    {
+                                        string _strDias = f1["no_dias"].ToString();
+                                        string strDias = string.Empty;
+                                        strDias += _strDias[0].ToString().Equals("1") ? "1|" : "";
+                                        strDias += _strDias[1].ToString().Equals("1") ? "2|" : "";
+                                        strDias += _strDias[2].ToString().Equals("1") ? "3|" : "";
+                                        strDias += _strDias[3].ToString().Equals("1") ? "4|" : "";
+                                        strDias += _strDias[4].ToString().Equals("1") ? "5|" : "";
+                                        strDias += _strDias[5].ToString().Equals("1") ? "6|" : "";
+                                        strDias = (!string.IsNullOrEmpty(strDias)) ? strDias.Substring(0, strDias.Length - 1) : strDias;
+
+                                        //---------------------------------------
+                                        objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
+                                        objEnt.no_dias = strDias;
+                                        objEnt.co_usuario = Profile.UserName;
+                                        objEnt.co_usuario_red = Profile.UsuarioRed;
+                                        objEnt.no_estacion_red = Profile.Estacion;
+                                        objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                        objEnt.Op = "I";
+                                        objNeg.MantenimientoTallerServicios(objEnt);
+                                        //insert
+                                    }
+                                }
+                            }
+                        }
+                        else if (dtServActual.Rows.Count == dtServSelec.Rows.Count)
+                        {
+                            Int32 index = 0;
+
+                            foreach (DataRow f1 in dtServActual.Rows)
+                            {
+                                index = 0;
                                 foreach (DataRow f2 in dtServSelec.Rows)
                                 {
                                     if (f1["nid_servicio"].ToString() == f2["nid_servicio"].ToString())
@@ -1736,59 +1863,46 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                                         break;
                                     }
                                     else
+                                    {
                                         flag = false;
+                                    }
+                                    index += 1;
                                 }
                                 if (flag)
                                 {
-                                    //objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
-                                    //objEnt.Co_usuario_modi = "";
-                                    //objEnt.co_usuario_red = Profile.UsuarioRed;
-                                    //objEnt.no_estacion_red = Profile.Estacion; 
-                                    //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                    //objEnt.Op = "U";
-                                    //objNeg.MantenimientoTallerServicios(objEnt);                                    
+                                    string _strDias = dtServSelec.Rows[index]["no_dias"].ToString();
+                                    string strDias = string.Empty;
+                                    strDias += _strDias[0].ToString().Equals("1") ? "1|" : "";
+                                    strDias += _strDias[1].ToString().Equals("1") ? "2|" : "";
+                                    strDias += _strDias[2].ToString().Equals("1") ? "3|" : "";
+                                    strDias += _strDias[3].ToString().Equals("1") ? "4|" : "";
+                                    strDias += _strDias[4].ToString().Equals("1") ? "5|" : "";
+                                    strDias += _strDias[5].ToString().Equals("1") ? "6|" : "";
+                                    strDias = (!string.IsNullOrEmpty(strDias)) ? strDias.Substring(0, strDias.Length - 1) : strDias;
+
+                                    //---------------------------------------
+
+                                    objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
+                                    objEnt.no_dias = strDias;
+
+                                    objEnt.Co_usuario_modi = "";
+                                    objEnt.co_usuario_red = Profile.UsuarioRed;
+                                    objEnt.no_estacion_red = Profile.Estacion;
+                                    objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                    objEnt.Op = "U";
+                                    objNeg.MantenimientoTallerServicios(objEnt);
+
                                     //update
                                 }
                                 else
                                 {
-                                    objEnt.Op = "D";
                                     objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
-                                    objEnt.no_dias = string.Empty;
+                                    objEnt.Op = "D";
                                     objNeg.MantenimientoTallerServicios(objEnt);
                                     //delete
                                 }
                             }
-                        }
-                    }
-                    else if (dtServActual.Rows.Count < dtServSelec.Rows.Count)
-                    {
-                        foreach (DataRow f1 in dtServSelec.Rows)
-                        {
-                            if (dtServActual.Rows.Count == 0)
-                            {
-                                string _strDias = f1["no_dias"].ToString();
-                                string strDias = string.Empty;
-                                strDias += _strDias[0].ToString().Equals("1") ? "1|" : "";
-                                strDias += _strDias[1].ToString().Equals("1") ? "2|" : "";
-                                strDias += _strDias[2].ToString().Equals("1") ? "3|" : "";
-                                strDias += _strDias[3].ToString().Equals("1") ? "4|" : "";
-                                strDias += _strDias[4].ToString().Equals("1") ? "5|" : "";
-                                strDias += _strDias[5].ToString().Equals("1") ? "6|" : "";
-                                strDias = (!string.IsNullOrEmpty(strDias)) ? strDias.Substring(0, strDias.Length - 1) : strDias;
-
-                                //------------------------------
-
-                                objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
-                                objEnt.no_dias = strDias;
-                                objEnt.co_usuario = Profile.UserName;
-                                objEnt.co_usuario_red = Profile.UsuarioRed;
-                                objEnt.no_estacion_red = Profile.Estacion;
-                                objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                objEnt.Op = "I";
-                                objNeg.MantenimientoTallerServicios(objEnt);
-                                //insert
-                            }
-                            else
+                            foreach (DataRow f1 in dtServSelec.Rows)
                             {
                                 foreach (DataRow f2 in dtServActual.Rows)
                                 {
@@ -1803,7 +1917,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                                 if (flag)
                                 {
                                     //objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
-
                                     //objEnt.Co_usuario_modi = "";
                                     //objEnt.co_usuario_red = Profile.UsuarioRed;
                                     //objEnt.no_estacion_red = Profile.Estacion; 
@@ -1826,6 +1939,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                                     strDias = (!string.IsNullOrEmpty(strDias)) ? strDias.Substring(0, strDias.Length - 1) : strDias;
 
                                     //---------------------------------------
+
                                     objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
                                     objEnt.no_dias = strDias;
                                     objEnt.co_usuario = Profile.UserName;
@@ -1839,111 +1953,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                             }
                         }
                     }
-                    else if (dtServActual.Rows.Count == dtServSelec.Rows.Count)
-                    {
-                        Int32 index = 0;
-
-                        foreach (DataRow f1 in dtServActual.Rows)
-                        {
-                            index = 0;
-                            foreach (DataRow f2 in dtServSelec.Rows)
-                            {
-                                if (f1["nid_servicio"].ToString() == f2["nid_servicio"].ToString())
-                                {
-                                    flag = true;
-                                    break;
-                                }
-                                else
-                                {
-                                    flag = false;
-                                }
-                                index += 1;
-                            }
-                            if (flag)
-                            {
-                                string _strDias = dtServSelec.Rows[index]["no_dias"].ToString();
-                                string strDias = string.Empty;
-                                strDias += _strDias[0].ToString().Equals("1") ? "1|" : "";
-                                strDias += _strDias[1].ToString().Equals("1") ? "2|" : "";
-                                strDias += _strDias[2].ToString().Equals("1") ? "3|" : "";
-                                strDias += _strDias[3].ToString().Equals("1") ? "4|" : "";
-                                strDias += _strDias[4].ToString().Equals("1") ? "5|" : "";
-                                strDias += _strDias[5].ToString().Equals("1") ? "6|" : "";
-                                strDias = (!string.IsNullOrEmpty(strDias)) ? strDias.Substring(0, strDias.Length - 1) : strDias;
-
-                                //---------------------------------------
-
-                                objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
-                                objEnt.no_dias = strDias;
-
-                                objEnt.Co_usuario_modi = "";
-                                objEnt.co_usuario_red = Profile.UsuarioRed;
-                                objEnt.no_estacion_red = Profile.Estacion; 
-                                objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                objEnt.Op = "U";
-                                objNeg.MantenimientoTallerServicios(objEnt);
-
-                                //update
-                            }
-                            else
-                            {
-                                objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
-                                objEnt.Op = "D";
-                                objNeg.MantenimientoTallerServicios(objEnt);
-                                //delete
-                            }
-                        }
-                        foreach (DataRow f1 in dtServSelec.Rows)
-                        {
-                            foreach (DataRow f2 in dtServActual.Rows)
-                            {
-                                if (f1["nid_servicio"].ToString() == f2["nid_servicio"].ToString())
-                                {
-                                    flag = true;
-                                    break;
-                                }
-                                else
-                                    flag = false;
-                            }
-                            if (flag)
-                            {
-                                //objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
-                                //objEnt.Co_usuario_modi = "";
-                                //objEnt.co_usuario_red = Profile.UsuarioRed;
-                                //objEnt.no_estacion_red = Profile.Estacion; 
-                                //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                //objEnt.Op = "U";
-                                //objNeg.MantenimientoTallerServicios(objEnt);
-
-                                //update
-                            }
-                            else
-                            {
-                                string _strDias = f1["no_dias"].ToString();
-                                string strDias = string.Empty;
-                                strDias += _strDias[0].ToString().Equals("1") ? "1|" : "";
-                                strDias += _strDias[1].ToString().Equals("1") ? "2|" : "";
-                                strDias += _strDias[2].ToString().Equals("1") ? "3|" : "";
-                                strDias += _strDias[3].ToString().Equals("1") ? "4|" : "";
-                                strDias += _strDias[4].ToString().Equals("1") ? "5|" : "";
-                                strDias += _strDias[5].ToString().Equals("1") ? "6|" : "";
-                                strDias = (!string.IsNullOrEmpty(strDias)) ? strDias.Substring(0, strDias.Length - 1) : strDias;
-
-                                //---------------------------------------
-
-                                objEnt.Nid_serv = Convert.ToInt32(f1["nid_servicio"].ToString());
-                                objEnt.no_dias = strDias;
-                                objEnt.co_usuario = Profile.UserName;
-                                objEnt.co_usuario_red = Profile.UsuarioRed;
-                                objEnt.no_estacion_red = Profile.Estacion;
-                                objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                objEnt.Op = "I";
-                                objNeg.MantenimientoTallerServicios(objEnt);
-                                //insert
-                            }
-                        }
-                    }
-
                     #endregion
 
                     #region ACTUALIZAR MODELOS
@@ -1957,20 +1966,137 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                     else if (Session["detalle"] != null)
                         objEnt.nid_taller = Convert.ToInt32(Session["detalle"].ToString());
 
-                    if (dtModeloActual.Rows.Count > dtModeloSelec.Rows.Count)
+                    if (dtModeloActual != null && dtModeloSelec != null)
                     {
-                        foreach (DataRow f1 in dtModeloActual.Rows)
+                        if (dtModeloActual.Rows.Count > dtModeloSelec.Rows.Count)
                         {
-                            if (dtModeloSelec.Rows.Count == 0)
+                            foreach (DataRow f1 in dtModeloActual.Rows)
                             {
-                                objEnt.Op = "D";
-                                objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
-                                objNeg.MantenimientoTallerModelos(objEnt);
-                                
-                                //delete taller-modelo-capacidad
+                                if (dtModeloSelec.Rows.Count == 0)
+                                {
+                                    objEnt.Op = "D";
+                                    objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
+                                    objNeg.MantenimientoTallerModelos(objEnt);
+
+                                    //delete taller-modelo-capacidad
+                                }
+                                else
+                                {
+                                    foreach (DataRow f2 in dtModeloSelec.Rows)
+                                    {
+                                        if (f1["nid_modelo"].ToString() == f2["nid_modelo"].ToString())
+                                        {
+                                            flag2 = true;
+                                            break;
+                                        }
+                                        else
+                                            flag2 = false;
+                                    }
+                                    if (flag2)
+                                    {
+                                        //objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
+                                        //objEnt.Co_usuario_modi = "";
+                                        //objEnt.co_usuario_red = Profile.UsuarioRed;
+                                        //objEnt.no_estacion_red = Profile.Estacion; 
+                                        //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                        //objEnt.Op = "U";
+                                        //objNeg.MantenimientoTallerModelos(objEnt);
+
+                                        //update
+                                    }
+                                    else
+                                    {
+                                        objEnt.Op = "D";
+                                        objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
+                                        objNeg.MantenimientoTallerModelos(objEnt);
+                                        //delete
+                                    }
+                                }
                             }
-                            else
+                        }
+                        else if (dtModeloActual.Rows.Count < dtModeloSelec.Rows.Count)
+                        {
+                            foreach (DataRow f1 in dtModeloSelec.Rows)
                             {
+                                if (dtModeloActual.Rows.Count == 0)
+                                {
+                                    objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
+                                    objEnt.co_usuario = Profile.UserName;
+                                    objEnt.co_usuario_red = Profile.UsuarioRed;
+                                    objEnt.no_estacion_red = Profile.Estacion;
+                                    objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                    objEnt.Op = "I";
+                                    objNeg.MantenimientoTallerModelos(objEnt);
+
+                                    //insert-> Capacidad taller-modelo //06092012
+                                    string strCapacidad = f1["qt_capacidad"].ToString();
+                                    foreach (string sCapacidad in strCapacidad.Split('|'))
+                                    {
+                                        if (!String.IsNullOrEmpty(sCapacidad.Split('-').GetValue(1).ToString().Trim().Replace("0", "")))
+                                        {
+                                            objEnt.Dd_atencion = Int32.Parse(sCapacidad.Split('-').GetValue(0).ToString());
+                                            objEnt.qt_capacidad = Int32.Parse(sCapacidad.Split('-').GetValue(1).ToString());
+
+                                            Int32 oResp = objNeg.InsertarTallerModeloCapacidad(objEnt);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (DataRow f2 in dtModeloActual.Rows)
+                                    {
+                                        if (f1["nid_modelo"].ToString() == f2["nid_modelo"].ToString())
+                                        {
+                                            flag2 = true;
+                                            break;
+                                        }
+                                        else
+                                            flag2 = false;
+                                    }
+                                    if (flag2)
+                                    {
+                                        //objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
+                                        //objEnt.Co_usuario_modi = "";
+                                        //objEnt.co_usuario_red = Profile.UsuarioRed;
+                                        //objEnt.no_estacion_red = Profile.Estacion; 
+                                        //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                        //objEnt.Op = "U";
+                                        //objNeg.MantenimientoTallerModelos(objEnt);
+                                        //update
+                                    }
+                                    else
+                                    {
+                                        objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
+                                        objEnt.co_usuario = Profile.UserName;
+                                        objEnt.co_usuario_red = Profile.UsuarioRed;
+                                        objEnt.no_estacion_red = Profile.Estacion;
+                                        objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                        objEnt.Op = "I";
+                                        objNeg.MantenimientoTallerModelos(objEnt);
+
+                                        //insert-> Capacidad taller-modelo //06092012
+                                        string strCapacidad = f1["qt_capacidad"].ToString();
+                                        foreach (string sCapacidad in strCapacidad.Split('|'))
+                                        {
+                                            if (String.IsNullOrEmpty(sCapacidad)) continue;
+
+                                            if (!String.IsNullOrEmpty(sCapacidad.Split('-').GetValue(1).ToString().Trim().Replace("0", "")))
+                                            {
+                                                objEnt.Dd_atencion = Int32.Parse(sCapacidad.Split('-').GetValue(0).ToString());
+                                                objEnt.qt_capacidad = Int32.Parse(sCapacidad.Split('-').GetValue(1).ToString());
+
+                                                Int32 oResp = objNeg.InsertarTallerModeloCapacidad(objEnt);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (dtModeloActual.Rows.Count == dtModeloSelec.Rows.Count)
+                        {
+                            foreach (DataRow f1 in dtModeloActual.Rows)
+                            {
+                                Int32 index = 0;
                                 foreach (DataRow f2 in dtModeloSelec.Rows)
                                 {
                                     if (f1["nid_modelo"].ToString() == f2["nid_modelo"].ToString())
@@ -1980,57 +2106,43 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                                     }
                                     else
                                         flag2 = false;
+
+                                    index += 1;
                                 }
                                 if (flag2)
                                 {
-                                    //objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
-                                    //objEnt.Co_usuario_modi = "";
-                                    //objEnt.co_usuario_red = Profile.UsuarioRed;
-                                    //objEnt.no_estacion_red = Profile.Estacion; 
-                                    //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                    //objEnt.Op = "U";
-                                    //objNeg.MantenimientoTallerModelos(objEnt);
+                                    /* 06092012*/
+                                    objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
+                                    objEnt.co_usuario = Profile.UserName;
+                                    objEnt.co_usuario_red = Profile.UsuarioRed;
+                                    objEnt.no_estacion_red = Profile.Estacion;
+                                    objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
+                                    objEnt.Op = "U";
+                                    objNeg.MantenimientoTallerModelos(objEnt);
 
                                     //update
+                                    //update-> Capacidad taller-modelo //06092012
+                                    string strCapacidad = dtModeloSelec.Rows[index]["qt_capacidad"].ToString();
+                                    foreach (string sCapacidad in strCapacidad.Split('|'))
+                                    {
+                                        if (!String.IsNullOrEmpty(sCapacidad.Split('-').GetValue(1).ToString().Trim().Replace("0", "")))
+                                        {
+                                            objEnt.Dd_atencion = Int32.Parse(sCapacidad.Split('-').GetValue(0).ToString());
+                                            objEnt.qt_capacidad = Int32.Parse(sCapacidad.Split('-').GetValue(1).ToString());
+
+                                            Int32 oResp = objNeg.MantenimientoTallerModelosCapacidad(objEnt);
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    objEnt.Op = "D";
                                     objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
+                                    objEnt.Op = "D";
                                     objNeg.MantenimientoTallerModelos(objEnt);
                                     //delete
                                 }
                             }
-                        }
-                    }
-                    else if (dtModeloActual.Rows.Count < dtModeloSelec.Rows.Count)
-                    {
-                        foreach (DataRow f1 in dtModeloSelec.Rows)
-                        {
-                            if (dtModeloActual.Rows.Count == 0)
-                            {
-                                objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
-                                objEnt.co_usuario = Profile.UserName;
-                                objEnt.co_usuario_red = Profile.UsuarioRed;
-                                objEnt.no_estacion_red = Profile.Estacion;
-                                objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                objEnt.Op = "I";
-                                objNeg.MantenimientoTallerModelos(objEnt);
-
-                                //insert-> Capacidad taller-modelo //06092012
-                                string strCapacidad = f1["qt_capacidad"].ToString();
-                                foreach (string sCapacidad in strCapacidad.Split('|'))
-                                {
-                                    if (!String.IsNullOrEmpty(sCapacidad.Split('-').GetValue(1).ToString().Trim().Replace("0", "")))
-                                    {
-                                        objEnt.Dd_atencion = Int32.Parse(sCapacidad.Split('-').GetValue(0).ToString());
-                                        objEnt.qt_capacidad = Int32.Parse(sCapacidad.Split('-').GetValue(1).ToString());
-
-                                        Int32 oResp = objNeg.InsertarTallerModeloCapacidad(objEnt);
-                                    }
-                                }                                
-                            }
-                            else
+                            foreach (DataRow f1 in dtModeloSelec.Rows)
                             {
                                 foreach (DataRow f2 in dtModeloActual.Rows)
                                 {
@@ -2051,6 +2163,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                                     //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
                                     //objEnt.Op = "U";
                                     //objNeg.MantenimientoTallerModelos(objEnt);
+
                                     //update
                                 }
                                 else
@@ -2062,13 +2175,11 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                                     objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
                                     objEnt.Op = "I";
                                     objNeg.MantenimientoTallerModelos(objEnt);
-  
+
                                     //insert-> Capacidad taller-modelo //06092012
                                     string strCapacidad = f1["qt_capacidad"].ToString();
                                     foreach (string sCapacidad in strCapacidad.Split('|'))
                                     {
-                                        if (String.IsNullOrEmpty(sCapacidad)) continue;
-
                                         if (!String.IsNullOrEmpty(sCapacidad.Split('-').GetValue(1).ToString().Trim().Replace("0", "")))
                                         {
                                             objEnt.Dd_atencion = Int32.Parse(sCapacidad.Split('-').GetValue(0).ToString());
@@ -2076,105 +2187,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
 
                                             Int32 oResp = objNeg.InsertarTallerModeloCapacidad(objEnt);
                                         }
-                                    }
-                                }
-                            }
-                        }
-                    }                      
-                    else if (dtModeloActual.Rows.Count == dtModeloSelec.Rows.Count)
-                    {
-                        foreach (DataRow f1 in dtModeloActual.Rows)
-                        {
-                            Int32 index = 0;
-                            foreach (DataRow f2 in dtModeloSelec.Rows)
-                            {
-                                if (f1["nid_modelo"].ToString() == f2["nid_modelo"].ToString())
-                                {
-                                    flag2 = true;
-                                    break;
-                                }
-                                else
-                                    flag2 = false;
-
-                                index += 1;
-                            }
-                            if (flag2)
-                            {
-                                /* 06092012*/
-                                objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
-                                objEnt.co_usuario = Profile.UserName;
-                                objEnt.co_usuario_red = Profile.UsuarioRed;
-                                objEnt.no_estacion_red = Profile.Estacion;
-                                objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                objEnt.Op = "U";
-                                objNeg.MantenimientoTallerModelos(objEnt);
-
-                                //update
-                                //update-> Capacidad taller-modelo //06092012
-                                string strCapacidad = dtModeloSelec.Rows [index]["qt_capacidad"].ToString();
-                                foreach (string sCapacidad in strCapacidad.Split('|'))
-                                {
-                                    if (!String.IsNullOrEmpty(sCapacidad.Split('-').GetValue(1).ToString().Trim().Replace("0", "")))
-                                    {
-                                        objEnt.Dd_atencion = Int32.Parse(sCapacidad.Split('-').GetValue(0).ToString());
-                                        objEnt.qt_capacidad = Int32.Parse(sCapacidad.Split('-').GetValue(1).ToString());
-
-                                        Int32 oResp = objNeg.MantenimientoTallerModelosCapacidad(objEnt);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
-                                objEnt.Op = "D";
-                                objNeg.MantenimientoTallerModelos(objEnt);
-                                //delete
-                            }
-                        }
-                        foreach (DataRow f1 in dtModeloSelec.Rows)
-                        {
-                            foreach (DataRow f2 in dtModeloActual.Rows)
-                            {
-                                if (f1["nid_modelo"].ToString() == f2["nid_modelo"].ToString())
-                                {
-                                    flag2 = true;
-                                    break;
-                                }
-                                else
-                                    flag2 = false;
-                            }
-                            if (flag2)
-                            {
-                                //objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
-                                //objEnt.Co_usuario_modi = "";
-                                //objEnt.co_usuario_red = Profile.UsuarioRed;
-                                //objEnt.no_estacion_red = Profile.Estacion; 
-                                //objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                //objEnt.Op = "U";
-                                //objNeg.MantenimientoTallerModelos(objEnt);
-
-                                //update
-                            }
-                            else
-                            {
-                                objEnt.Nid_modelo = Convert.ToInt32(f1["nid_modelo"].ToString());
-                                objEnt.co_usuario = Profile.UserName;
-                                objEnt.co_usuario_red = Profile.UsuarioRed;
-                                objEnt.no_estacion_red = Profile.Estacion;
-                                objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-                                objEnt.Op = "I";
-                                objNeg.MantenimientoTallerModelos(objEnt);
-
-                                //insert-> Capacidad taller-modelo //06092012
-                                string strCapacidad = f1["qt_capacidad"].ToString();
-                                foreach (string sCapacidad in strCapacidad.Split('|'))
-                                {
-                                    if (!String.IsNullOrEmpty(sCapacidad.Split('-').GetValue(1).ToString().Trim().Replace("0", "")))
-                                    {
-                                        objEnt.Dd_atencion = Int32.Parse(sCapacidad.Split('-').GetValue(0).ToString());
-                                        objEnt.qt_capacidad = Int32.Parse(sCapacidad.Split('-').GetValue(1).ToString());
-
-                                        Int32 oResp = objNeg.InsertarTallerModeloCapacidad(objEnt);
                                     }
                                 }
                             }
@@ -3536,7 +3548,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
     [WebMethod]
     public static string cargarNegocioTaller(string nid_taller)
     {
-        int id_usuario = (((ProfileCommon)HttpContext.Current.Profile)).Usuario.NID_USUARIO;
+        int id_usuario = (((ProfileCommon)HttpContext.Current.Profile)).Usuario.Nid_usuario;
         int id_taller = int.Parse(nid_taller);
 
         return TallerBL.ListarNegocioTaller(id_taller,id_usuario, 1, _TODOS);

@@ -50,9 +50,9 @@ namespace AppMiTaller.Intranet.BL
             return new UsuarioTallerDA().GETListarPerfiles(ent);
         }
 
-        public UsuarioBEList GETListarUbigeo(int nid_usuario)
+        public UsuarioBEList GETListarUbigeo(int Nid_usuario)
         {
-            return new UsuarioTallerDA().GETListarUbigeo(nid_usuario);
+            return new UsuarioTallerDA().GETListarUbigeo(Nid_usuario);
         }
 
         public UsuarioBEList GETListarTalleresDistrito(UsuarioBE ent)
@@ -86,14 +86,14 @@ namespace AppMiTaller.Intranet.BL
             return new UsuarioTallerDA().GETListarTipoPuntosRedPorDistrito();
         }
 
-        public UsuarioBEList GETListarMarcaEmpresa(int nid_usuario)
+        public UsuarioBEList GETListarMarcaEmpresa(int Nid_usuario)
         {
-            return new UsuarioTallerDA().GETListarMarcaEmpresa(nid_usuario);
+            return new UsuarioTallerDA().GETListarMarcaEmpresa(Nid_usuario);
         }
 
-        public UsuarioBEList GETListarLineaComercialMarca(int nid_usuario)
+        public UsuarioBEList GETListarLineaComercialMarca(int Nid_usuario)
         {
-            return new UsuarioTallerDA().GETListarLineaComercialMarca(nid_usuario);
+            return new UsuarioTallerDA().GETListarLineaComercialMarca(Nid_usuario);
         }
 
         public UsuarioBEList GETListarModelo_LineaMarca(UsuarioBE ent)

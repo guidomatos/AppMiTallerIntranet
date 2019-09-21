@@ -11,7 +11,7 @@ namespace AppMiTaller.Intranet.DA
         int var2 = 0;
         #endregion
 
-        public VehiculoBEList GETListarVehiculos(VehiculoBE ent, Int32 nid_usuario)
+        public VehiculoBEList GETListarVehiculos(VehiculoBE ent, Int32 Nid_usuario)
         {
             VehiculoBEList lista = new VehiculoBEList();
             IDataReader DReader = null;
@@ -26,7 +26,7 @@ namespace AppMiTaller.Intranet.DA
                     db.AddParameter("@nid_modelo", DbType.Int32, ParameterDirection.Input, ent.nid_modelo);
                     db.AddParameter("@qt_km_actual", DbType.Int64, ParameterDirection.Input, ent.qt_km_actual);
                     db.AddParameter("@Estado", DbType.String, ParameterDirection.Input, ent.fl_activo);
-                    db.AddParameter("@nid_usuario", DbType.Int32, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@Nid_usuario", DbType.Int32, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -44,7 +44,7 @@ namespace AppMiTaller.Intranet.DA
             }
             return lista;
         }
-        public CombosBEList GETListarModelosXMarca(VehiculoBE ent, int nid_usuario)
+        public CombosBEList GETListarModelosXMarca(VehiculoBE ent, int Nid_usuario)
         {
             CombosBEList lista = new CombosBEList();
             IDataReader DReader = null;
@@ -54,7 +54,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[SRC_SPS_SEL_DDL_MODELO]";
                     db.AddParameter("@nid_marca", DbType.Int32, ParameterDirection.Input, ent.nid_marca);
-                    db.AddParameter("@nid_usuario", DbType.String, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@Nid_usuario", DbType.String, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())

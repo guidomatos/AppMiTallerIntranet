@@ -181,7 +181,6 @@ var mstrError = "";
                                             <asp:BoundField DataField="Nom_dpto" HeaderText="Dpto." SortExpression="Nom_dpto" HeaderStyle-Width="10%" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Left" />
                                             <asp:BoundField DataField="Nom_provincia" HeaderText="Prov." SortExpression="Nom_provincia" HeaderStyle-Width="10%" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Left" />
                                             <asp:BoundField DataField="Nom_distrito" HeaderText="Dist." SortExpression="Nom_distrito" HeaderStyle-Width="10%" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Left" />
-                                            <asp:BoundField DataField="Nombre_contacto" HeaderText="Contacto" SortExpression="Nombre_contacto" HeaderStyle-Width="15%" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Left" />
                                             <asp:BoundField DataField="Dsc_estado" HeaderText="Estado" SortExpression="Dsc_estado" HeaderStyle-Width="5%" ItemStyle-Width="5%" ItemStyle-HorizontalAlign="Left" />
                                         </Columns>
                                     </asp:GridView>

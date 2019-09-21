@@ -597,7 +597,7 @@
                                                     <asp:HiddenField ID="txhCadenaTotalPU" runat="server" />
                                                     <asp:GridView ID="gvAsigPerfilUsuario" runat="server" AutoGenerateColumns="false" AllowPaging="true"
                                                         AllowSorting="true" SkinID="Grilla" Width="100%" 
-                                                        DataKeyNames="NID_USUARIO" 
+                                                        DataKeyNames="Nid_usuario" 
                                                         OnRowDataBound="gvAsigPerfilUsuario_RowDataBound" 
                                                         OnSorting="gvAsigPerfilUsuario_Sorting"
                                                         OnPageIndexChanging="gvAsigPerfilUsuario_PageIndexChanging">

@@ -45,7 +45,7 @@ public partial class Mantenimientos : System.Web.UI.MasterPage
             oOpcionSeguridadBE.CCOAPL = Profile.Aplicacion;
             oOpcionSeguridadBE.NIVEL = 0;
             oOpcionSeguridadBE.CSTRUCT = CONSTANTE_SEGURIDAD.Mantenimiento_Tablas;
-            oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, Profile.Usuario.NID_PERFIL, Profile.Usuario.NID_USUARIO);
+            oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, Profile.Usuario.NID_PERFIL, Profile.Usuario.Nid_usuario);
             oOpcionSeguridadBEList = oOpcionSeguridadBEList.Ordenar();
 
             OpcionSeguridadBE oOpSeguridad;

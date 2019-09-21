@@ -367,7 +367,7 @@ namespace AppMiTaller.Intranet.BE
 
 
         private Nullable<Int32> _nid_estado;
-        private Nullable<Int32> _nid_usuario;
+        private Nullable<Int32> _Nid_usuario;
         private Nullable<Int32> _nid_asesor;
         private Nullable<Int32> _nid_servicio;
         private string _cod_reserva_cita;
@@ -938,10 +938,10 @@ namespace AppMiTaller.Intranet.BE
             set { _nid_estado = value; }
         }
 
-        public Nullable<Int32> nid_usuario
+        public Nullable<Int32> Nid_usuario
         {
-            get { return _nid_usuario; }
-            set { _nid_usuario = value; }
+            get { return _Nid_usuario; }
+            set { _Nid_usuario = value; }
         }
 
         public Nullable<Int32> nid_asesor

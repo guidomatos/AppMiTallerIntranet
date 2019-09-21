@@ -35,7 +35,7 @@ namespace AppMiTaller.Intranet.DA
             }
             return lista;
         }
-        public CombosBEList GETListarTalleres(int PuntoRed, int nid_usuario)
+        public CombosBEList GETListarTalleres(int PuntoRed, int Nid_usuario)
         {
             CombosBEList lista = new CombosBEList();
             IDataReader DReader = null;
@@ -45,8 +45,8 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[SRC_SPS_SEL_DDL_TALLER]";
                     db.AddParameter("@NID_UBICA", DbType.Int32, ParameterDirection.Input, PuntoRed);
-                    //db.AddParameter("@nid_usuario", DbType.String, ParameterDirection.Input, nid_usuario);
-                    db.AddParameter("@nid_usuario", DbType.Int32, ParameterDirection.Input, nid_usuario);
+                    //db.AddParameter("@Nid_usuario", DbType.String, ParameterDirection.Input, Nid_usuario);
+                    db.AddParameter("@Nid_usuario", DbType.Int32, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -64,7 +64,7 @@ namespace AppMiTaller.Intranet.DA
             }
             return lista;
         }
-        public AdminCitaBEList GETListaAdminCitasP(AdminCitaBE ent, int nid_usuario)
+        public AdminCitaBEList GETListaAdminCitasP(AdminCitaBE ent, int Nid_usuario)
         {
             AdminCitaBEList lista = new AdminCitaBEList();
             IDataReader DReader = null;
@@ -95,7 +95,7 @@ namespace AppMiTaller.Intranet.DA
                     db.AddParameter("@nu_documento", DbType.String, ParameterDirection.Input, ent.nu_documento);
                     db.AddParameter("@no_cliente", DbType.String, ParameterDirection.Input, ent.no_cliente);
                     db.AddParameter("@no_apellidos", DbType.String, ParameterDirection.Input, ent.no_apellidos);
-                    db.AddParameter("@nid_usuario", DbType.String, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@Nid_usuario", DbType.String, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -274,7 +274,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[SRC_SPI_REASIGNAR_CITA_BO]";
                     db.AddParameter("@nid_cita", DbType.Int32, ParameterDirection.Input, int.Parse(ent.grid_nid_cita.ToString().Trim()));
-                    db.AddParameter("@nid_usuario", DbType.Int32, ParameterDirection.Input, int.Parse(ent.grid_Id_Asesor.ToString().Trim()));
+                    db.AddParameter("@Nid_usuario", DbType.Int32, ParameterDirection.Input, int.Parse(ent.grid_Id_Asesor.ToString().Trim()));
                     db.AddParameter("@co_usuario_crea", DbType.String, ParameterDirection.Input, ent.CTRECOR_co_usuario_modi.ToString().Trim());
                     db.AddParameter("@co_usuario_red", DbType.String, ParameterDirection.Input, ent.CTRECOR_co_usuario_red.ToString().Trim());
                     db.AddParameter("@no_estacion_red", DbType.String, ParameterDirection.Input, ent.CTRECOR_no_estacion_red.ToString().Trim());
@@ -288,7 +288,7 @@ namespace AppMiTaller.Intranet.DA
                 //        {
                 //            db.ProcedureName = "[SRC_SPEMAIL_ASESOR_REASIGNAR]";
                 //            db.AddParameter("@nid_cita", DbType.Int32, ParameterDirection.Input, int.Parse(ent.grid_nid_cita.ToString().Trim()));
-                //            db.AddParameter("@nid_usuario", DbType.Int32, ParameterDirection.Input, int.Parse(ent.grid_Id_Asesor.ToString().Trim()));
+                //            db.AddParameter("@Nid_usuario", DbType.Int32, ParameterDirection.Input, int.Parse(ent.grid_Id_Asesor.ToString().Trim()));
                 //            db.Execute();
                 //        }
                 //    }
@@ -318,7 +318,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[SRC_SPI_CITAS_COLADEESPERA_BO]";
                     db.AddParameter("@nid_cita", DbType.Int32, ParameterDirection.Input, int.Parse(ent.grid_nid_cita.ToString().Trim()));
-                    db.AddParameter("@nid_usuario", DbType.Int32, ParameterDirection.Input, int.Parse(ent.nid_usuario.ToString().Trim()));
+                    db.AddParameter("@Nid_usuario", DbType.Int32, ParameterDirection.Input, int.Parse(ent.Nid_usuario.ToString().Trim()));
                     db.AddParameter("@co_usuario_crea", DbType.String, ParameterDirection.Input, ent.CTRECOR_co_usuario_modi.ToString().Trim());
                     db.AddParameter("@co_usuario_red", DbType.String, ParameterDirection.Input, ent.CTRECOR_co_usuario_red.ToString().Trim());
                     db.AddParameter("@no_estacion_red", DbType.String, ParameterDirection.Input, ent.CTRECOR_no_estacion_red.ToString().Trim());

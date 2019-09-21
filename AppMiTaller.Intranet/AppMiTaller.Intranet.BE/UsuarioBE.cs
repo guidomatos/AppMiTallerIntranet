@@ -61,12 +61,12 @@ namespace AppMiTaller.Intranet.BE
             set { _Co_Perfil_Login = value; }
         }
 
-        private Int32 _Nid_Usuario_Login;
+        private Int32 _Nid_usuario_Login;
 
-        public Int32 Nid_Usuario_Login
+        public Int32 Nid_usuario_Login
         {
-            get { return _Nid_Usuario_Login; }
-            set { _Nid_Usuario_Login = value; }
+            get { return _Nid_usuario_Login; }
+            set { _Nid_usuario_Login = value; }
         }
 
         private String _VPASSMD5;
@@ -273,12 +273,12 @@ namespace AppMiTaller.Intranet.BE
             set { _DES = value; }
         }
 
-        private Int32 _nid_usuario;
+        private Int32 _Nid_usuario;
 
         public Int32 Nid_usuario
         {
-            get { return _nid_usuario; }
-            set { _nid_usuario = value; }
+            get { return _Nid_usuario; }
+            set { _Nid_usuario = value; }
         }
         private String _no_ape_paterno;
 
@@ -608,7 +608,6 @@ namespace AppMiTaller.Intranet.BE
 
 
         #region "Atributos"
-        private Int32 _NID_USUARIO;
         private String _NO_APE_PATERNO;
         private String _NO_APE_MATERNO;
         private String _VUSR_PASS_MD5;
@@ -665,12 +664,6 @@ namespace AppMiTaller.Intranet.BE
             get { return this._passwordDesEnc; }
             set { this._passwordDesEnc = value; }
         }
-        public Int32 NID_USUARIO
-        {
-            get { return this._NID_USUARIO; }
-            set { this._NID_USUARIO = value; }
-        }
-        
         public String NO_APE_PATERNO
         {
             get { return this._NO_APE_PATERNO; }

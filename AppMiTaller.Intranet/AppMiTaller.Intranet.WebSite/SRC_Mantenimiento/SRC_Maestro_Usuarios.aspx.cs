@@ -70,7 +70,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
         ddl_departamento.Items.Clear();
         ddl_departamento.Enabled = false;
         UsuarioTallerBL objNegUsu = new UsuarioTallerBL();
-        List<UsuarioBE> ListUbigeo = objNegUsu.GETListarUbigeo(Profile.Usuario.NID_USUARIO);
+        List<UsuarioBE> ListUbigeo = objNegUsu.GETListarUbigeo(Profile.Usuario.Nid_usuario);
         DataTable dtUbigeo = new DataTable();
         dtUbigeo.Columns.Add("coddpto", System.Type.GetType("System.String"));
         dtUbigeo.Columns.Add("codprov", System.Type.GetType("System.String"));
@@ -110,7 +110,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
         UsuarioTallerBL objNegUsu = new UsuarioTallerBL();
         UsuarioBE objEntUsu = new UsuarioBE();
         objEntUsu.Co_Perfil_Login = Profile.Usuario.co_perfil_usuario;
-        objEntUsu.Nid_Usuario_Login = Profile.Usuario.NID_USUARIO;
+        objEntUsu.Nid_usuario_Login = Profile.Usuario.Nid_usuario;
         List<UsuarioBE> ListTallerDist = objNegUsu.GETListarTalleresDistrito(objEntUsu);
         DataTable dtTallerDist = new DataTable();
         dtTallerDist.Columns.Add("nid_taller", System.Type.GetType("System.Int32"));
@@ -135,7 +135,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
         UsuarioBE objent = new UsuarioBE();
 
         objent.Co_Perfil_Login = Profile.Usuario.co_perfil_usuario;
-        objent.Nid_Usuario_Login = Profile.Usuario.NID_USUARIO;
+        objent.Nid_usuario_Login = Profile.Usuario.Nid_usuario;
 
         List<UsuarioBE> List = objneg.GETListarPtoRedTaller_PorDistrito(objent);
 
@@ -186,7 +186,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
     {
         TallerBE ent = new TallerBE();
         ent.Co_perfil_usuario = Profile.Usuario.co_perfil_usuario;
-        ent.Nid_usuario = Profile.Usuario.NID_USUARIO;
+        ent.Nid_usuario = Profile.Usuario.Nid_usuario;
         return objNeg.GETListarMarcasModelos(ent);
     }
 
@@ -213,7 +213,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
         TallerBL objNegTal = new TallerBL();
         TallerBE objEntTal = new TallerBE();
         objEntTal.Co_perfil_usuario = Profile.Usuario.co_perfil_usuario;
-        objEntTal.Nid_usuario = Profile.Usuario.NID_USUARIO;
+        objEntTal.Nid_usuario = Profile.Usuario.Nid_usuario;
         List<TallerBE> List = objNegTal.GETListarUbicacion(objEntTal);
         if (List.Count > 0)
         {
@@ -339,7 +339,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
         UsuarioBE objEntUsu = new UsuarioBE();
 
         objEntUsu.Co_Perfil_Login = Profile.Usuario.co_perfil_usuario;
-        objEntUsu.Nid_Usuario_Login = Profile.Usuario.NID_USUARIO;
+        objEntUsu.Nid_usuario_Login = Profile.Usuario.Nid_usuario;
         objEntUsu.CUSR_ID = txt_Usuario.Text.Trim();
         objEntUsu.Nu_tipo_documento = txt_NroDNI.Text.Trim();
         objEntUsu.VNOMUSR = txt_Nombres.Text.Trim();
@@ -384,20 +384,20 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
 
     protected void btnVerDet_Click(object sender, ImageClickEventArgs e)
     {
-        if (txh_nid_usuario.Value.ToString() != "")
+        if (txh_Nid_usuario.Value.ToString() != "")
         {
-            Session["nid_usuario_detalle"] = txh_nid_usuario.Value.ToString();
-            Session["nid_usuario_editar"] = null;
-            Session["nid_usuario_nuevo"] = null;
+            Session["Nid_usuario_detalle"] = txh_Nid_usuario.Value.ToString();
+            Session["Nid_usuario_editar"] = null;
+            Session["Nid_usuario_nuevo"] = null;
             EnviarFiltros();
             Response.Redirect("SRC_Maestro_Detalle_Usuarios.aspx");
         }
     }
     protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
     {
-        Session["nid_usuario_detalle"] = null;
-        Session["nid_usuario_editar"] = null;
-        Session["nid_usuario_nuevo"] = "n";
+        Session["Nid_usuario_detalle"] = null;
+        Session["Nid_usuario_editar"] = null;
+        Session["Nid_usuario_nuevo"] = "n";
         EnviarFiltros();
         Response.Redirect("SRC_Maestro_Detalle_Usuarios.aspx");
     }
@@ -413,11 +413,11 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
 
     protected void BtnEditar_Click(object sender, ImageClickEventArgs e)
     {
-        if (txh_nid_usuario.Value.ToString() != "")
+        if (txh_Nid_usuario.Value.ToString() != "")
         {
-            Session["nid_usuario_editar"] = txh_nid_usuario.Value.ToString();
-            Session["nid_usuario_detalle"] = null;
-            Session["nid_usuario_nuevo"] = null;
+            Session["Nid_usuario_editar"] = txh_Nid_usuario.Value.ToString();
+            Session["Nid_usuario_detalle"] = null;
+            Session["Nid_usuario_nuevo"] = null;
             EnviarFiltros();
             Response.Redirect("SRC_Maestro_Detalle_Usuarios.aspx");
         }
@@ -433,7 +433,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
             UsuarioBE objEntUsu = new UsuarioBE();
 
             objEntUsu.Co_Perfil_Login = Profile.Usuario.co_perfil_usuario;
-            objEntUsu.Nid_Usuario_Login = Profile.Usuario.NID_USUARIO;
+            objEntUsu.Nid_usuario_Login = Profile.Usuario.Nid_usuario;
             objEntUsu.CUSR_ID = txt_Usuario.Text.Trim();
             objEntUsu.Nu_tipo_documento = txt_NroDNI.Text.Trim();
             objEntUsu.VNOMUSR = txt_Nombres.Text.Trim();
@@ -576,7 +576,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
         gdUsuarios.DataSource = (List<UsuarioBE>)Session["ListUsu"];
         gdUsuarios.PageIndex = e.NewPageIndex;
         gdUsuarios.DataBind();
-        txh_nid_usuario.Value = String.Empty;
+        txh_Nid_usuario.Value = String.Empty;
     }
     protected void gdUsuarios_RowDataBound(object sender, GridViewRowEventArgs e)
     {
@@ -584,7 +584,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
             DataKey dataKey = gdUsuarios.DataKeys[e.Row.RowIndex];
-            Int32.TryParse(dataKey.Values["nid_usuario"].ToString(), out aux);
+            Int32.TryParse(dataKey.Values["Nid_usuario"].ToString(), out aux);
             if (aux == 0)
             {
                 e.Row.Visible = false;
@@ -592,9 +592,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
             }
             e.Row.Style["cursor"] = "pointer";
             e.Row.Attributes["onclick"] = String.Format("javascript: fc_SeleccionaFilaSimple(this); document.getElementById('{0}').value = '{1}'"
-                                            , txh_nid_usuario.ClientID, dataKey.Values["nid_usuario"].ToString());
+                                            , txh_Nid_usuario.ClientID, dataKey.Values["Nid_usuario"].ToString());
             if (VerBoton())
-                e.Row.Attributes["ondblclick"] = String.Format("javascript: location.href='SRC_Maestro_Detalle_Usuarios.aspx?nid_usu={0}'", dataKey.Values["nid_usuario"].ToString());
+                e.Row.Attributes["ondblclick"] = String.Format("javascript: location.href='SRC_Maestro_Detalle_Usuarios.aspx?nid_usu={0}'", dataKey.Values["Nid_usuario"].ToString());
         }
     }
     protected void gdUsuarios_Sorting(object sender, GridViewSortEventArgs e)
@@ -604,7 +604,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
             UsuarioBEList oMaestroUsuariosBEList = (UsuarioBEList)(List<UsuarioBE>)Session["ListUsu"];
             SortDirection indOrden = (SortDirection)ViewState["ordenGridUsuarios"];
 
-            txh_nid_usuario.Value = String.Empty;
+            txh_Nid_usuario.Value = String.Empty;
 
             if (oMaestroUsuariosBEList != null)
             {
@@ -1800,7 +1800,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Usuarios : System.Web.UI.Page
                 oMaestroUsuariosBE.No_estacion_red = no_estacion_red;
                 oMaestroUsuariosBE.No_usuario_red = no_usuario_red;
 
-                idUsuario = objneg.InsertarUsuario(oMaestroUsuariosBE);//Obtener el nid_usuario de la BD
+                idUsuario = objneg.InsertarUsuario(oMaestroUsuariosBE);//Obtener el Nid_usuario de la BD
 
                 if (idUsuario <= 0)
                 {

@@ -340,7 +340,7 @@ namespace AppMiTaller.Intranet.DA
             return lista;
         }
 
-        public static TallerContenidoBEList ListarNeogiciosTaller(int nid_taller, int nid_usuario)
+        public static TallerContenidoBEList ListarNeogiciosTaller(int nid_taller, int Nid_usuario)
         {
             TallerContenidoBEList lista = new TallerContenidoBEList();
             TallerContenidoBE Entidad;
@@ -349,7 +349,7 @@ namespace AppMiTaller.Intranet.DA
             SqlCommand cmd = new SqlCommand("src_sps_negocio_taller_bo", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@vi_nid_taller", nid_taller);
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", Nid_usuario);
             try
             {
                 conn.Open();

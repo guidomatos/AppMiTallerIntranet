@@ -41,7 +41,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Modelos : System.Web.UI.Page
     }
     private void CargarMarcas()
     {
-        ddl_marca.DataSource = objNeg.GETListarMarcas(Profile.Usuario.NID_USUARIO);
+        ddl_marca.DataSource = objNeg.GETListarMarcas(Profile.Usuario.Nid_usuario);
         ddl_marca.DataTextField = "DES";
         ddl_marca.DataValueField = "ID";
         ddl_marca.DataBind();

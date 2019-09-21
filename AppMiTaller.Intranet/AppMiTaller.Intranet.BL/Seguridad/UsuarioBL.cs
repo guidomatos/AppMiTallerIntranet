@@ -52,7 +52,7 @@ namespace AppMiTaller.Intranet.BL
             UsuarioDA oUsuarioDA = new UsuarioDA();
             try
             {
-                if (oUsuario.NID_USUARIO == 0)
+                if (oUsuario.Nid_usuario == 0)
                 {
                     return oUsuarioDA.InsertarUsuario(oUsuario, aplicacionID);
                 }

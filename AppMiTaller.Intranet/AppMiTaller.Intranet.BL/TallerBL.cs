@@ -221,10 +221,10 @@ namespace AppMiTaller.Intranet.BL
                     sCombo += "<option value='" + oEntidad.co_estado.ToString() + "'>" + oEntidad.no_estado.Trim() + "</option>";
             return sCombo;
         }
-        public static string ListarNegocioTaller(int nid_taller, int nid_usuario, int opcion_sel, string texto_sel)
+        public static string ListarNegocioTaller(int nid_taller, int Nid_usuario, int opcion_sel, string texto_sel)
         {
             string sCombo = "";
-            TallerContenidoBEList oLista = TallerContenidoDA.ListarNeogiciosTaller(nid_taller, nid_usuario);
+            TallerContenidoBEList oLista = TallerContenidoDA.ListarNeogiciosTaller(nid_taller, Nid_usuario);
 
             if (oLista.Count == 1) opcion_sel = 2;
             if (opcion_sel == 1)
@@ -255,14 +255,14 @@ namespace AppMiTaller.Intranet.BL
             }
         }
 
-        public TallerBEList GETListarUbigeo(int nid_usuario)
+        public TallerBEList GETListarUbigeo(int Nid_usuario)
         {
-            return new TallerDA().GETListarUbigeo(nid_usuario);
+            return new TallerDA().GETListarUbigeo(Nid_usuario);
         }
 
-        public CombosBEList GETListarDepartamento(int nid_usuario)
+        public CombosBEList GETListarDepartamento(int Nid_usuario)
         {
-            return new TallerDA().GETListarDepartamento(nid_usuario);
+            return new TallerDA().GETListarDepartamento(Nid_usuario);
         }
 
 
@@ -271,19 +271,19 @@ namespace AppMiTaller.Intranet.BL
             return new TallerDA().GETListarUbicacion(ent);
         }
 
-        public CombosBEList GETListarProvincia(TallerBE ent, int nid_usuario)
+        public CombosBEList GETListarProvincia(TallerBE ent, int Nid_usuario)
         {
-            return new TallerDA().GETListarProvincia(ent, nid_usuario);
+            return new TallerDA().GETListarProvincia(ent, Nid_usuario);
         }
 
-        public CombosBEList GETListarDistrito(TallerBE ent, int nid_usuario)
+        public CombosBEList GETListarDistrito(TallerBE ent, int Nid_usuario)
         {
-            return new TallerDA().GETListarDistrito(ent, nid_usuario);
+            return new TallerDA().GETListarDistrito(ent, Nid_usuario);
         }
 
-        public CombosBEList GETListarPuntoRed(TallerBE ent, int nid_usuario)
+        public CombosBEList GETListarPuntoRed(TallerBE ent, int Nid_usuario)
         {
-            return new TallerDA().GETListarPuntoRed(ent, nid_usuario);
+            return new TallerDA().GETListarPuntoRed(ent, Nid_usuario);
         }
 
         //HORARIOS

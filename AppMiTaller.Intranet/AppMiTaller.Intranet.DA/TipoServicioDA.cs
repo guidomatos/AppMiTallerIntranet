@@ -131,7 +131,7 @@ namespace AppMiTaller.Intranet.DA
             SqlDataReader reader = null;
 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             cmd.Parameters.AddWithValue("@vi_nid_modelo", ent.nid_modelo == 0 ? (object)DBNull.Value : ent.nid_modelo); 
             try
             {

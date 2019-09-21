@@ -15,7 +15,7 @@ public partial class _Default : System.Web.UI.Page
             oOpcionSeguridadBE.CCOAPL = Profile.Aplicacion;
             oOpcionSeguridadBE.NIVEL = 0;
             oOpcionSeguridadBE.CSTRUCT = String.Empty;
-            Profile.Opciones = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, Profile.Usuario.NID_PERFIL, Profile.Usuario.NID_USUARIO);
+            Profile.Opciones = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, Profile.Usuario.NID_PERFIL, Profile.Usuario.Nid_usuario);
         }
     }
 }

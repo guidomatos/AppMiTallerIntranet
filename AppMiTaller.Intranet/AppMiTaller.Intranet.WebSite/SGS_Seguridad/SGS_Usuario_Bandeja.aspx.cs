@@ -90,7 +90,7 @@ public partial class SGS_Seguridad_SGS_Usuario_Bandeja : PaginaBase
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
             DataKey dataKey = this.gvUsuarios.DataKeys[e.Row.RowIndex];
-            Int32.TryParse(dataKey.Values["NID_USUARIO"].ToString(), out aux);
+            Int32.TryParse(dataKey.Values["Nid_usuario"].ToString(), out aux);
             if (aux == 0)
             {
                 e.Row.Visible = false;
@@ -100,13 +100,13 @@ public partial class SGS_Seguridad_SGS_Usuario_Bandeja : PaginaBase
             e.Row.Style["cursor"] = "pointer";
             e.Row.Attributes["onclick"] = String.Format("javascript: fc_SeleccionaFilaSimple(this); document.getElementById('{0}').value = '{1}'"
                                             , txhUsuarioID.ClientID
-                                            , dataKey.Values["fl_inactivo"].ToString().Trim().Equals("0") ? dataKey.Values["NID_USUARIO"].ToString() : "-1");
-            e.Row.Attributes["ondblclick"] = String.Format("javascript: location.href='SGS_Usuario_Mantenimiento.aspx?usuarioID={0}'", dataKey.Values["NID_USUARIO"].ToString());
+                                            , dataKey.Values["Fl_inactivo"].ToString().Trim().Equals("0") ? dataKey.Values["Nid_usuario"].ToString() : "-1");
+            e.Row.Attributes["ondblclick"] = String.Format("javascript: location.href='SGS_Usuario_Mantenimiento.aspx?usuarioID={0}'", dataKey.Values["Nid_usuario"].ToString());
             if (e.Row.Visible == true)
             {
                 this.txhNroFilasNum.Value = Convert.ToString(Convert.ToInt32(this.txhNroFilasNum.Value) + 1);
                 dataKey = this.gvUsuarios.DataKeys[e.Row.RowIndex];
-                valorIdvin = dataKey.Values["NID_USUARIO"].ToString();
+                valorIdvin = dataKey.Values["Nid_usuario"].ToString();
                 chkSelNum = (CheckBox)e.Row.FindControl("chkSelNum");
                 chkSelNum.Attributes.Add("onclick", "javascript:Fc_SeleccionaItemAsigNum('" + valorIdvin + "')");
                 if (this.txhCadenaSelNum.Value.Contains("|" + valorIdvin + "|").Equals(true) && chkSelNum.Enabled == true)
@@ -195,7 +195,7 @@ public partial class SGS_Seguridad_SGS_Usuario_Bandeja : PaginaBase
                 for (int i = 0; i < oUsuarioListBE.Count; i++)
                 {
                     this.txhCadenaTotalNum.Value = this.txhCadenaTotalNum.Value +
-                        oUsuarioListBE[i].NID_USUARIO.ToString() + "|";
+                        oUsuarioListBE[i].Nid_usuario.ToString() + "|";
 
                 }
                 GuardaParametros(0);
@@ -220,7 +220,6 @@ public partial class SGS_Seguridad_SGS_Usuario_Bandeja : PaginaBase
         String[] arrCodigos = this.txhCadenaSelNum.Value.Trim().Split('|');
         contador = arrCodigos.Length - 2;
         
-        //oUsuarioBE.NID_USUARIO = Int32.Parse(this.txhUsuarioID.Value.Trim());
         oUsuarioBE.CO_USUARIO_CREA = Profile.Usuario.CUSR_ID;
         oUsuarioBE.NO_ESTACION_RED = Profile.Estacion;
         oUsuarioBE.NO_USUARIO_RED = Profile.UsuarioRed;
@@ -253,7 +252,6 @@ public partial class SGS_Seguridad_SGS_Usuario_Bandeja : PaginaBase
         String[] arrCodigos = this.txhCadenaSelNum.Value.Trim().Split('|');
         contador = arrCodigos.Length - 2;
 
-        //oUsuarioBE.NID_USUARIO = Int32.Parse(this.txhUsuarioID.Value.Trim());
         oUsuarioBE.CO_USUARIO_CREA = Profile.Usuario.CUSR_ID;
         oUsuarioBE.NO_ESTACION_RED = Profile.Estacion;
         oUsuarioBE.NO_USUARIO_RED = Profile.UsuarioRed;
@@ -307,8 +305,8 @@ public partial class SGS_Seguridad_SGS_Usuario_Bandeja : PaginaBase
 
         String estado = this.cboEstado.SelectedValue.ToString();
 
-        String idUsuario = Profile.Usuario.NID_USUARIO.ToString();
-
+        String idUsuario = Profile.Usuario.Nid_usuario.ToString();
+        
 
         String coPaginaActual = CONSTANTE_SEGURIDAD.Usuarios;
 

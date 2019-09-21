@@ -30,7 +30,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Talleres : System.Web.UI.Page
     private void CargarUbigeo()
     {       
         TallerBL objneg = new TallerBL();
-        List<TallerBE> ListUbigeo = objneg.GETListarUbigeo(Profile.Usuario.NID_USUARIO);
+        List<TallerBE> ListUbigeo = objneg.GETListarUbigeo(Profile.Usuario.Nid_usuario);
         DataTable dtUbigeo = new DataTable();
         dtUbigeo.Columns.Add("coddpto", System.Type.GetType("System.String"));
         dtUbigeo.Columns.Add("codprov", System.Type.GetType("System.String"));
@@ -61,7 +61,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Talleres : System.Web.UI.Page
         TallerBL objNegTal = new TallerBL();
         TallerBE objEntTal = new TallerBE();
         objEntTal.Co_perfil_usuario = Profile.Usuario.co_perfil_usuario;
-        objEntTal.Nid_usuario = Profile.Usuario.NID_USUARIO;
+        objEntTal.Nid_usuario = Profile.Usuario.Nid_usuario;
         List<TallerBE> List = objNegTal.GETListarUbicacion(objEntTal);
         if (List.Count > 0)
         {
@@ -286,7 +286,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Talleres : System.Web.UI.Page
             TallerBL oMaestroTallerBL = new TallerBL();
             oMaestroTallerBL.ErrorEvent += new TallerBL.ErrorDelegate(Master.Transaction_ErrorEvent);
 
-            objEnt.Nid_usuario = Profile.Usuario.NID_USUARIO;
+            objEnt.Nid_usuario = Profile.Usuario.Nid_usuario;
             objEnt.Co_perfil_usuario = Profile.Usuario.co_perfil_usuario;
             objEnt.co_taller = txt_codtaller.Text.Trim();
             objEnt.no_taller = txt_nomtaller.Text.Trim();
@@ -452,7 +452,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Talleres : System.Web.UI.Page
     {
         hf_exportaexcel.Value = String.Empty;
 
-        objEnt.Nid_usuario = Profile.Usuario.NID_USUARIO;
+        objEnt.Nid_usuario = Profile.Usuario.Nid_usuario;
         objEnt.Co_perfil_usuario = Profile.Usuario.co_perfil_usuario;
         objEnt.co_taller = txt_codtaller.Text.Trim();
         objEnt.no_taller = txt_nomtaller.Text.Trim();        
@@ -543,7 +543,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Talleres : System.Web.UI.Page
     {
         TallerBE ent = new TallerBE();
         ent.Co_perfil_usuario = Profile.Usuario.co_perfil_usuario;
-        ent.Nid_usuario = Profile.Usuario.NID_USUARIO;
+        ent.Nid_usuario = Profile.Usuario.Nid_usuario;
         return objNeg.GETListarMarcasModelos(ent);
     }
 

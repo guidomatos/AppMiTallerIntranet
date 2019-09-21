@@ -75,10 +75,10 @@ namespace AppMiTaller.Intranet.BE
             set { _no_taller = value; }
         }
 
-        private Int32 _nid_usuario;
-        public Int32 nid_usuario {
-            get { return _nid_usuario; }
-            set { _nid_usuario = value; }
+        private Int32 _Nid_usuario;
+        public Int32 Nid_usuario {
+            get { return _Nid_usuario; }
+            set { _Nid_usuario = value; }
         }
 
         private String _AsesorServ;

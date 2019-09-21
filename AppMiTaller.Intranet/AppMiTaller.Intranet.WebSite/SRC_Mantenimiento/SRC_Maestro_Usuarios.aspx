@@ -148,15 +148,15 @@
                 return false;//anula la entrada de texto.        
         }
         function Valida_Boton_Detalle() {
-            var txh_nid_usuario = document.getElementById('<%=txh_nid_usuario.ClientID%>');
-            if (txh_nid_usuario.value == "") {
+            var txh_Nid_usuario = document.getElementById('<%=txh_Nid_usuario.ClientID%>');
+            if (txh_Nid_usuario.value == "") {
                 alert('Debe Seleccionar un Registro de la Grilla.');
                 return false;
             }
         }
         function Valida_Boton_Editar() {
-            var txh_nid_usuario = document.getElementById('<%=txh_nid_usuario.ClientID%>');
-            if (txh_nid_usuario.value == "") {
+            var txh_Nid_usuario = document.getElementById('<%=txh_Nid_usuario.ClientID%>');
+            if (txh_Nid_usuario.value == "") {
                 alert('Debe Seleccionar un Registro de la Grilla.');
                 return false;
             }
@@ -344,7 +344,7 @@
                                                                                         <tbody>
                                                                                             <tr>
                                                                                                 <td>&nbsp;<div style="overflow: auto; width: 965px; height: 300px">
-                                                                                                    <asp:GridView ID="gdUsuarios" runat="server" Width="1200px" OnSorting="gdUsuarios_Sorting" OnRowDataBound="gdUsuarios_RowDataBound" DataKeyNames="nid_usuario" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" SkinID="Grilla" OnPageIndexChanging="gdUsuarios_PageIndexChanging">
+                                                                                                    <asp:GridView ID="gdUsuarios" runat="server" Width="1200px" OnSorting="gdUsuarios_Sorting" OnRowDataBound="gdUsuarios_RowDataBound" DataKeyNames="Nid_usuario" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" SkinID="Grilla" OnPageIndexChanging="gdUsuarios_PageIndexChanging">
                                                                                                         <Columns>
                                                                                                             <asp:BoundField DataField="nu_tipo_documento" HeaderText="Nro. Doc" SortExpression="Nu_tipo_documento">
                                                                                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle>
@@ -408,7 +408,7 @@
                                                                                             </tr>
                                                                                         </tbody>
                                                                                     </table>
-                                                                                    <asp:HiddenField ID="txh_nid_usuario" runat="server"></asp:HiddenField>
+                                                                                    <asp:HiddenField ID="txh_Nid_usuario" runat="server"></asp:HiddenField>
                                                                                     <asp:HiddenField ID="hf_exportaexcel" runat="server"></asp:HiddenField>
                                                                                 </ContentTemplate>
                                                                                 <Triggers>

@@ -9,13 +9,13 @@ namespace AppMiTaller.Intranet.BL
         {
             return new AdminCitasDA().GETListarEstCitas();
         }
-        public CombosBEList GETListarTalleres(int PuntoRed, int nid_usuario)
+        public CombosBEList GETListarTalleres(int PuntoRed, int Nid_usuario)
         {
-            return new AdminCitasDA().GETListarTalleres(PuntoRed, nid_usuario);
+            return new AdminCitasDA().GETListarTalleres(PuntoRed, Nid_usuario);
         }
-        public AdminCitaBEList GETListaAdminCitasP(AdminCitaBE ent, int nid_usuario)
+        public AdminCitaBEList GETListaAdminCitasP(AdminCitaBE ent, int Nid_usuario)
         {
-            return new AdminCitasDA().GETListaAdminCitasP(ent, nid_usuario);
+            return new AdminCitasDA().GETListaAdminCitasP(ent, Nid_usuario);
         }
         public AdminCitaBEList GETListaAdminCitasDetalle(AdminCitaBE ent)
         {

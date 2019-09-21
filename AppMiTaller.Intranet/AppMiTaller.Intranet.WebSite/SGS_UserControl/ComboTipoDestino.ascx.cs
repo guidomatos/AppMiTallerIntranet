@@ -103,7 +103,7 @@ public partial class SGS_UserControl_ComboTipoDestino : System.Web.UI.UserContro
         {
             if (cTipoLlamada.Trim().Equals("13"))
             {
-                oList = oTipoDestinoBL.ListarDestinoUsuario(tipUbica, Profile.Usuario.NID_USUARIO);
+                oList = oTipoDestinoBL.ListarDestinoUsuario(tipUbica, Profile.Usuario.Nid_usuario);
             }
             else
             {
@@ -114,7 +114,7 @@ public partial class SGS_UserControl_ComboTipoDestino : System.Web.UI.UserContro
         {
             if (cTipoLlamada.Trim().Equals("13"))
             {
-                oList = oTipoDestinoBL.ListarDestinoUsuario(tipUbica, Profile.Usuario.NID_USUARIO);
+                oList = oTipoDestinoBL.ListarDestinoUsuario(tipUbica, Profile.Usuario.Nid_usuario);
             }
             else
             {

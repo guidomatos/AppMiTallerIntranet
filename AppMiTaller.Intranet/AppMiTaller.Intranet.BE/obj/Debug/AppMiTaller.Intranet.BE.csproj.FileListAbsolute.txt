@@ -14,3 +14,8 @@ C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.I
 C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.csproj.CoreCompileInputs.cache
 C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.dll
 C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.csproj.CoreCompileInputs.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\bin\Debug\AppMiTaller.Intranet.BE.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\bin\Debug\AppMiTaller.Intranet.BE.pdb

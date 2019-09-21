@@ -27,7 +27,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
                     oUsuario = new UsuarioBE();
 
                     indice = reader.GetOrdinal("id_usuario");
-                    if (!reader.IsDBNull(indice)) oUsuario.NID_USUARIO = reader.GetInt32(indice);
+                    if (!reader.IsDBNull(indice)) oUsuario.Nid_usuario = reader.GetInt32(indice);
 
                     indice = reader.GetOrdinal("vusr_pass");
                     oUsuario.VPASSMD5 = reader.IsDBNull(indice) ? String.Empty : reader.GetString(indice);
@@ -133,7 +133,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "sgsnet_spi_usuario_opcion";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, IdUsuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, IdUsuario);
                     db.AddParameter("@vi_xml_menu", DbType.String, ParameterDirection.Input, xml);
                     db.AddParameter("@vi_vh_co_usuario", DbType.String, ParameterDirection.Input, coUsuario);
                     db.AddParameter("@vi_vh_estacion_red", DbType.String, ParameterDirection.Input, noEstacioRed);

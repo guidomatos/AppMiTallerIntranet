@@ -16,9 +16,7 @@
             document.getElementById("<%=this.txtApeMat.ClientID %>").value = "";
             document.getElementById("<%=this.cboPerfil.ClientID %>").value = "";
             document.getElementById("<%=this.cboEstado.ClientID %>_cboEstado").value = "0";
-            //Agregado por Ncamacho 08/06/2011
             document.getElementById("<%=this.txtNumDoc.ClientID %>").value = "";
-            //Fin del agregado por Ncamacho 08/06/2011
 
             document.getElementById("<%=this.cboPuntoVenta.ClientID %>").value = "";
             document.getElementById("<%=this.txtLogin.ClientID %>").value = "";
@@ -215,7 +213,7 @@
                                                 
                                                 <asp:GridView ID="gvUsuarios" runat="server" AutoGenerateColumns="false"
                                                     AllowPaging="true" AllowSorting="true" SkinID="Grilla" Width="98%"
-                                                    DataKeyNames="NID_USUARIO, fl_inactivo" 
+                                                    DataKeyNames="Nid_usuario, Fl_inactivo" 
                                                     OnRowDataBound="gvUsuarios_RowDataBound"
                                                     OnSorting="gvUsuarios_Sorting"
                                                     OnPageIndexChanging="gvUsuarios_PageIndexChanging">

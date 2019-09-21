@@ -13,7 +13,7 @@
             return;
 
         var parametros = new Array();
-        parametros[0] = "<%=this.Profile.Usuario.NID_USUARIO %>";
+        parametros[0] = "<%=this.Profile.Usuario.Nid_usuario %>";
 
         var Obligatorio = "";
 

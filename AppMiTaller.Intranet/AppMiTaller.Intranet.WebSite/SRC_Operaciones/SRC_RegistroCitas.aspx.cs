@@ -57,7 +57,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
 
     [System.Web.Script.Services.ScriptMethod(ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
     [WebMethod]
-    public static object Get_Inicial(Int32 nid_usuario)
+    public static object Get_Inicial(Int32 Nid_usuario)
     {
         CitasBL oCitasBL = new CitasBL();
         List<object> oComboMarca = new List<object>();
@@ -72,7 +72,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
 
         #region "- Obtiene Marcas"
         CitasBE oCitasBE = new CitasBE();
-        oCitasBE.nid_usuario = nid_usuario;
+        oCitasBE.Nid_usuario = Nid_usuario;
         CitasBEList oMarcas = oCitasBL.GETListarMarcas(oCitasBE);
         foreach (CitasBE obj in oMarcas)
         {
@@ -214,11 +214,11 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
         try
         {
             String nu_placa = strParametros[0].Trim();
-            Int32 nid_usuario = Convert.ToInt32(strParametros[1]);
+            Int32 Nid_usuario = Convert.ToInt32(strParametros[1]);
 
             oVehiculoBE = new CitasBE();
             oVehiculoBE.nu_placa = nu_placa;
-            oVehiculoBE.nid_usuario = nid_usuario;
+            oVehiculoBE.Nid_usuario = Nid_usuario;
             CitasBEList oVehiculoBEList = oCitasBL.GETListarDatosVehiculoClientePorPlaca(oVehiculoBE);
 
             object oVehiculo = null;
@@ -377,7 +377,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                 #region "- Obtiene Tipos de Servicio por Modelo"
                 TipoServicioBL oMaestroTipoServicioBL = new TipoServicioBL();
                 TipoServicioBE oMaestroTipoServicioBE = new TipoServicioBE();
-                oMaestroTipoServicioBE.nid_usuario = nid_usuario;
+                oMaestroTipoServicioBE.Nid_usuario = Nid_usuario;
                 oMaestroTipoServicioBE.nid_modelo = Convert.ToInt32(oVehiculoBE.nid_modelo);
                 List<TipoServicioBE> lstTipoServicios = oMaestroTipoServicioBL.GETListarTiposServicio(oMaestroTipoServicioBE);
 
@@ -438,7 +438,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
     [WebMethod]
     public static object Get_Modelos(String[] strParametros)
     {
-        Int32 nid_usuario; Int32.TryParse(strParametros[0], out nid_usuario);
+        Int32 Nid_usuario; Int32.TryParse(strParametros[0], out Nid_usuario);
         Int32 nid_marca; Int32.TryParse(strParametros[1], out nid_marca);
 
         List<object> oComboModelo = new List<object>();
@@ -447,7 +447,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
         {
             CitasBL oCitasBL = new CitasBL();
             CitasBE oCitasBE = new CitasBE();
-            oCitasBE.nid_usuario = nid_usuario;
+            oCitasBE.Nid_usuario = Nid_usuario;
             oCitasBE.nid_marca = nid_marca;
             CitasBEList oModelos = oCitasBL.GETListarModelosPorMarca(oCitasBE);
 
@@ -534,13 +534,13 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
         try
         {
             Int32 nid_tipo_servicio; Int32.TryParse(strParametros[0], out nid_tipo_servicio);
-            Int32 nid_usuario; Int32.TryParse(strParametros[1], out nid_usuario);
+            Int32 Nid_usuario; Int32.TryParse(strParametros[1], out Nid_usuario);
             Int32 nid_modelo; Int32.TryParse(strParametros[2], out nid_modelo);
 
             ServicioBE oMaestroServicioBE = new ServicioBE();
             ServicioBL oMaestroServicioBL = new ServicioBL();
             oMaestroServicioBE.Id_TipoServicio = nid_tipo_servicio;
-            oMaestroServicioBE.nid_usuario = nid_usuario;
+            oMaestroServicioBE.Nid_usuario = Nid_usuario;
             oMaestroServicioBE.nid_modelo = nid_modelo;
             ServicioBEList oServicioBEList = oMaestroServicioBL.GETListarServiciosPorTipo(oMaestroServicioBE);
 
@@ -594,7 +594,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             Int32 nid_servicio; Int32.TryParse(strParametros[0], out nid_servicio);
             Int32 nid_marca; Int32.TryParse(strParametros[1], out nid_marca);
             Int32 nid_modelo; Int32.TryParse(strParametros[2], out nid_modelo);
-            Int32 nid_usuario; Int32.TryParse(strParametros[3], out nid_usuario);
+            Int32 Nid_usuario; Int32.TryParse(strParametros[3], out Nid_usuario);
             String nu_placa = strParametros[4];
 
             if (nid_servicio > 0)
@@ -621,7 +621,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                     CitasBE oCitasBE = new CitasBE();
                     oCitasBE.nid_Servicio = nid_servicio;
                     oCitasBE.nid_modelo = nid_modelo;
-                    oCitasBE.nid_usuario = nid_usuario;
+                    oCitasBE.Nid_usuario = Nid_usuario;
                     CitasBEList oUbigeoDisponible = oCitasBL.GetListar_Ubigeos_Disponibles(oCitasBE);
                     if (oUbigeoDisponible.Count > 0)
                     {
@@ -711,7 +711,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             String coddpto = strParametros[2] == "" ? "0" : strParametros[2];
             String codprov = strParametros[3] == "" ? "0" : strParametros[3];
             String coddist = strParametros[4] == "" ? "0" : strParametros[4];
-            Int32 nid_usuario; Int32.TryParse(strParametros[5], out nid_usuario);
+            Int32 Nid_usuario; Int32.TryParse(strParametros[5], out Nid_usuario);
 
             #region - Obtiene Ubicacion Disponible
             CitasBE oTallerBE = new CitasBE();
@@ -721,7 +721,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             oTallerBE.coddpto = coddpto;
             oTallerBE.codprov = codprov;
             oTallerBE.coddis = coddist;
-            oTallerBE.nid_usuario = nid_usuario;
+            oTallerBE.Nid_usuario = Nid_usuario;
             CitasBEList oUbicacionDisponible = oTallerBL.Listar_PuntosRed(oTallerBE);
             if (oUbicacionDisponible.Count > 0)
             {
@@ -758,7 +758,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                 oTallerBE.codprov = codprov;
                 oTallerBE.coddis = coddist;
                 oTallerBE.nid_ubica = 0; //para que liste todos los talleres
-                oTallerBE.nid_usuario = nid_usuario;
+                oTallerBE.Nid_usuario = Nid_usuario;
                 CitasBEList oTallerDisponible = oTallerBL.Listar_Talleres(oTallerBE);
                 if (oTallerDisponible.Count > 0)
                 {
@@ -895,9 +895,9 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             String sfe_reserva = strParametros[7];
             String sho_inicio_visible = strParametros[8];
             String sho_final_visible = strParametros[9];
-            Int32 nid_usuario; Int32.TryParse(strParametros[10], out nid_usuario);
+            Int32 Nid_usuario; Int32.TryParse(strParametros[10], out Nid_usuario);
 
-            sfe_min_reserva = GetFechaMinReserva(nid_usuario);
+            sfe_min_reserva = GetFechaMinReserva(Nid_usuario);
             
             #region - Obtiene Horario Disponible
             Int32 intPRM = 3;
@@ -928,12 +928,12 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                 oCitasBE.coddis = coddist;
                 oCitasBE.nid_ubica = nid_ubica;
                 oCitasBE.nid_taller = nid_taller;
-                oCitasBE.nid_usuario = nid_usuario;
+                oCitasBE.Nid_usuario = Nid_usuario;
                 if ((string.IsNullOrEmpty(sfe_reserva)))
                 {
                     sfe_reserva = SRC_FECHA_HABIL(nid_modelo, nid_servicio, coddpto, codprov, coddist, nid_ubica, nid_taller
                         , out lstTalleres_Disponibles, out _lstTalleresHE, out _lstAsesores_Disponibles, out _lstCitas
-                        , nid_usuario).ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
+                        , Nid_usuario).ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
                 }
                 oCitasBE.fe_atencion = Convert.ToDateTime(sfe_reserva);
                 oCitasBE.dd_atencion = getDiaSemana(oCitasBE.fe_atencion);
@@ -1464,7 +1464,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
 
     private static DateTime SRC_FECHA_HABIL(Int32 nid_modelo, Int32 nid_servicio, String coddpto, String codprov, String coddist, Int32 nid_ubica, Int32 nid_taller
         , out CitasBEList lstTalleres, out CitasBEList _lstTalleresHE, out CitasBEList _lstAsesores, out CitasBEList _lstCitas
-        , Int32 nid_usuario)
+        , Int32 Nid_usuario)
     {
         lstTalleres = _lstTalleresHE = _lstAsesores = _lstCitas = null;
 
@@ -1476,7 +1476,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
         Int32 _ID_SERVICIO = nid_servicio;
         Int32 _ID_MODELO = nid_modelo;
         string _TALLER = string.Empty;
-        DateTime dFechaIni = Convert.ToDateTime(GetFechaMinReserva(nid_usuario));
+        DateTime dFechaIni = Convert.ToDateTime(GetFechaMinReserva(Nid_usuario));
         DateTime dFechaFin = Convert.ToDateTime(GetFechaMaxReserva());
         DateTime dHoraIni_T, dHoraFin_T, _dHoraIni_T, _dHoraFin_T, dHoraIni_A, dHoraFin_A;
         dHoraIni_T = dHoraFin_T = _dHoraIni_T = _dHoraFin_T = dHoraIni_A = dHoraFin_A = DateTime.MinValue;
@@ -1500,7 +1500,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                 oCitasBE.nid_taller = _ID_TALLER;
                 oCitasBE.fe_atencion = dFechaIni;
                 oCitasBE.dd_atencion = getDiaSemana(dFechaIni);
-                oCitasBE.nid_usuario = nid_usuario;
+                oCitasBE.Nid_usuario = Nid_usuario;
                 lstTalleres = oCitasBL.ListarTalleresDisponibles_PorFecha(oCitasBE);//   1-Listado todos Talleres
                 if (lstTalleres.Count == 0)
                 {
@@ -1725,7 +1725,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             Int32 qt_intervalo_global_taller; Int32.TryParse(strParametros[10], out qt_intervalo_global_taller);
             String sho_inicio_visible = strParametros[11];
             String sho_final_visible = strParametros[12];
-            Int32 nid_usuario; Int32.TryParse(strParametros[13], out nid_usuario);
+            Int32 Nid_usuario; Int32.TryParse(strParametros[13], out Nid_usuario);
 
             DateTime ho_inicio_preseleccion = DateTime.Now, ho_final_preseleccion = DateTime.Now;
             if (!String.IsNullOrEmpty(sho_inicio_preseleccion))
@@ -1773,7 +1773,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             oCitasBE.nid_taller = nid_taller;
             oCitasBE.fe_atencion = Convert.ToDateTime(sfe_atencion);
             oCitasBE.dd_atencion = getDiaSemana(oCitasBE.fe_atencion);
-            oCitasBE.nid_usuario = nid_usuario;
+            oCitasBE.Nid_usuario = Nid_usuario;
             CitasBL oCitasBL = new CitasBL();
             CitasBEList _lstCitas, lstTalleres, lstAsesores, lstTalleresHE;
             lstTalleres = oCitasBL.ListarTalleresDisponibles_PorFecha(oCitasBE);//  1-Listado el Taller
@@ -2283,7 +2283,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             CitasBE oCitasBE = new CitasBE();
             oCitasBE.nid_Servicio = nid_servicio;
             oCitasBE.nid_taller = nid_taller;
-            oCitasBE.nid_usuario = nid_asesor;
+            oCitasBE.Nid_usuario = nid_asesor;
             oCitasBE.ho_inicio = ho_inicio;
             oCitasBE.ho_fin = ho_fin;
             oCitasBE.fe_prog = Convert.ToDateTime(sfecha);
@@ -2406,7 +2406,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             String sfe_reserva_hasta = strParametros[8];
             String sho_inicio_visible = strParametros[9];
             String sho_final_visible = strParametros[10];
-            Int32 nid_usuario; Int32.TryParse(strParametros[11], out nid_usuario);
+            Int32 Nid_usuario; Int32.TryParse(strParametros[11], out Nid_usuario);
 
             //-------
             ServicioBE oMaestroServicioBE = new ServicioBE();
@@ -2481,7 +2481,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                     oCitasBE.coddis = coddist;
                     oCitasBE.nid_ubica = nid_ubica;
                     oCitasBE.nid_taller = nid_taller;
-                    oCitasBE.nid_usuario = nid_usuario;
+                    oCitasBE.Nid_usuario = Nid_usuario;
                     oCitasBE.fe_atencion = dFechaIni;
                     oCitasBE.dd_atencion = getDiaSemana(oCitasBE.fe_atencion);
 
@@ -2920,7 +2920,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             // 3 - Datos de la Cita
             //=========================================== 
             oCitasBE.nid_taller = nid_taller;
-            oCitasBE.nid_usuario = nid_asesor;
+            oCitasBE.Nid_usuario = nid_asesor;
             oCitasBE.nid_Servicio = nid_servicio;
             oCitasBE.nu_placa = nu_placa.ToUpper();
             oCitasBE.nid_marca = nid_marca;
@@ -3138,7 +3138,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
 
         Int32 nid_marca; Int32.TryParse(strFiltros[1], out nid_marca);
         Int32 nid_modelo; Int32.TryParse(strFiltros[2], out nid_modelo);
-        Int32 nid_usuario; Int32.TryParse(strFiltros[10], out nid_usuario);
+        Int32 Nid_usuario; Int32.TryParse(strFiltros[10], out Nid_usuario);
 
         CitasBL oCitasBL = new CitasBL();
         CitasBE oCitasBE = new CitasBE();
@@ -3155,7 +3155,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
         oCitasBE.no_ape_materno = strFiltros[9].Trim();
         Parametros oParametro = new Parametros();
         oCitasBE.Nid_empresa = Convert.ToInt32(oParametro.SRC_CodEmpresa);
-        oCitasBE.nid_usuario = nid_usuario;
+        oCitasBE.Nid_usuario = Nid_usuario;
 
         object objParametros = new
         {
@@ -3173,7 +3173,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             ,
             no_ape_paterno = oCitasBE.no_ape_pat_cli,
             no_ape_materno = oCitasBE.no_ape_materno,
-            nid_usuario = oCitasBE.nid_usuario
+            Nid_usuario = oCitasBE.Nid_usuario
         };
         System.Web.Script.Serialization.JavaScriptSerializer ser_json = new System.Web.Script.Serialization.JavaScriptSerializer();
 
@@ -3381,7 +3381,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
             String co_usuario_red = strParametros[16].ToString().Trim();
             String no_estacion_red = strParametros[17].ToString().Trim();
             String nu_placa = strParametros[18].ToString().Trim();
-            Int32 nid_usuario; Int32.TryParse(strParametros[19].ToString(), out nid_usuario);
+            Int32 Nid_usuario; Int32.TryParse(strParametros[19].ToString(), out Nid_usuario);
             Int32 nid_pais_celular; Int32.TryParse(strParametros[20].ToString(), out nid_pais_celular);
             Int32 nid_pais_telefono; Int32.TryParse(strParametros[21].ToString(), out nid_pais_telefono);
             String nu_anexo_telefono = strParametros[22].ToString();
@@ -3432,7 +3432,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                 CitasBE oCitasBE = new CitasBE();
                 CitasBL oCitasBL = new CitasBL();
                 oCitasBE.nu_placa = nu_placa;
-                oCitasBE.nid_usuario = nid_usuario;
+                oCitasBE.Nid_usuario = Nid_usuario;
                 CitasBEList oCitasBEList = oCitasBL.GETListarDatosVehiculoClientePorPlaca(oCitasBE);
                 CitasBE oDatos = oCitasBEList[0];
 
@@ -3472,7 +3472,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
 
                     oCitasBE = new CitasBE();
                     oCitasBE.nu_placa = nu_placa;
-                    oCitasBE.nid_usuario = nid_usuario;
+                    oCitasBE.Nid_usuario = Nid_usuario;
                     oCitasBEList = oCitasBL.GETListarDatosVehiculoClientePorPlaca(oCitasBE);
                     if (oCitasBEList.Count > 0)
                     {
@@ -3630,10 +3630,10 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
         try
         {
             String nu_placa = strParametros[0].Trim().ToUpper();
-            Int32 nid_usuario; Int32.TryParse(strParametros[1].ToString(), out nid_usuario);
+            Int32 Nid_usuario; Int32.TryParse(strParametros[1].ToString(), out Nid_usuario);
 
             oCitasBE.nu_placa = nu_placa;
-            oCitasBE.nid_usuario = nid_usuario;
+            oCitasBE.Nid_usuario = Nid_usuario;
             oCitasBE = oCitasBL.Listar_HistorialCitasPorVehiculo(oCitasBE);
 
             String no_tipo_doc = oCitasBE.doc_cliente;
@@ -3700,20 +3700,20 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
         return DateTime.TryParse(expression.ToString(), out testDate);
     }
 
-    private static string GetFechaMinReserva(Int32 nid_usuario)
+    private static string GetFechaMinReserva(Int32 Nid_usuario)
     {
         Parametros oParametros = new Parametros();
         Int32 diasMin = 0;
         if (oParametros.SRC_CodPais.Equals("2"))
-            diasMin = CitasBL.VerificarAsesorCitaDiaria(nid_usuario).Equals("1") ? 0 : Convert.ToInt32(oParametros.GetValor(Parametros.PARM._05));
+            diasMin = CitasBL.VerificarAsesorCitaDiaria(Nid_usuario).Equals("1") ? 0 : Convert.ToInt32(oParametros.GetValor(Parametros.PARM._05));
         else
-            diasMin = ValidarEntreCita(nid_usuario) ? 0 : Convert.ToInt32(oParametros.GetValor(Parametros.PARM._05));
+            diasMin = ValidarEntreCita(Nid_usuario) ? 0 : Convert.ToInt32(oParametros.GetValor(Parametros.PARM._05));
         CitasBL oCitasBL = new CitasBL();
         string strFecha = String.Format("{0:d}", DateTime.Now.AddDays(Convert.ToDouble(diasMin)));
         return strFecha;
     }
 
-    private static bool ValidarEntreCita(Int32 nid_usuario)
+    private static bool ValidarEntreCita(Int32 Nid_usuario)
     {
         AppMiTaller.Intranet.BE.TipoTablaDetalleBEList oLista = new AppMiTaller.Intranet.BE.TipoTablaDetalleBEList();
 
@@ -3728,7 +3728,7 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
                 string[] datos = objretorno.Valor3.Split('|');
                 foreach (string str in datos)
                 {
-                    if (str.Equals(nid_usuario.ToString()))
+                    if (str.Equals(Nid_usuario.ToString()))
                         return true;
                 }
                 return false;

@@ -142,7 +142,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[SRC_SPS_LISTAR_SERVICIOS_POR_TIPO_BO]";
                     db.AddParameter("@vi_nid_tipo_servicio", DbType.String, ParameterDirection.Input, ent.Id_TipoServicio);
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     db.AddParameter("@vi_nid_modelo", DbType.Int32, ParameterDirection.Input, ent.nid_modelo == 0 ? (object)DBNull.Value : ent.nid_modelo); // @0001 I/F
 
                     DReader = db.GetDataReader();

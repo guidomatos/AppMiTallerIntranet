@@ -19,44 +19,7 @@
         function Fc_Valida() {
 
             if (fc_Trim(document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value) == "") {
-                mstrError += mstrDebeSeleccionar + "tipo destino.\n";
-            }
-
-            if (fc_Trim(document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value) == "AL") {
-                if (fc_Trim(document.getElementById("<%=this.txtCodAduana.ClientID %>").value) == "") {
-                    mstrError += mstrDebeIngresar + "cod. aduana.\n";
-                }
-                else if (!fc_Trim(document.getElementById("<%=this.txtCodAduana.ClientID %>").value).match(RE_CODIGO)) {
-                    mstrError += mstrElCampo + "cod. aduana" + mstrCodigo;
-                }
-            }
-
-
-            if (fc_Trim(document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value) == "CO") {
-                if (fc_Trim(document.getElementById("<%=this.txtvitrinaIdeal.ClientID %>").value) == "") {
-                    mstrError += mstrDebeIngresar + "vitrina ideal.\n";
-                }
-                else if (!fc_Trim(document.getElementById("<%=this.txtvitrinaIdeal.ClientID %>").value).match(RE_SOLONRO)) {
-                    mstrError += mstrElCampo + "vitrina ideal" + mstrReSoloNro;
-                }
-            }
-
-            if (fc_Trim(document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value) == "SU") {
-                if (fc_Trim(document.getElementById("<%=this.txtvitrinaIdeal.ClientID %>").value) == "") {
-                    mstrError += mstrDebeIngresar + "vitrina ideal.\n";
-                }
-                else if (!fc_Trim(document.getElementById("<%=this.txtvitrinaIdeal.ClientID %>").value).match(RE_SOLONRO)) {
-                    mstrError += mstrElCampo + "vitrina ideal" + mstrReSoloNro;
-                }
-            }
-
-            if (fc_Trim(document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value) == "TE") {
-                if (fc_Trim(document.getElementById("<%=this.txtNroTerminal.ClientID %>").value) == "") {
-                    mstrError += mstrDebeIngresar + "el número de terminal.\n";
-                }
-                else if (!fc_Trim(document.getElementById("<%=this.txtNroTerminal.ClientID %>").value).match(RE_SOLONRO)) {
-                    mstrError += mstrElCampo + "número de terminal" + mstrReSoloNro;
-                }
+                mstrError += mstrDebeSeleccionar + "tipo ubicacion.\n";
             }
 
             if (fc_Trim(document.getElementById("<%=this.txtDescripcion.ClientID %>").value) == "") {
@@ -91,40 +54,6 @@
                 mstrError += mstrDebeSeleccionar + "estado.\n";
             }
 
-
-            if (fc_Trim(document.getElementById("<%=this.txtContacto.ClientID %>").value) != "") {
-                if (!fc_Trim(document.getElementById("<%=this.txtContacto.ClientID %>").value).match(RE_ALAFANUMERICO)) {
-                    mstrError += mstrElCampo + "contacto" + mstrReAlfanumerico;
-                }
-            }
-
-
-            if (fc_Trim(document.getElementById("<%=this.txtCorreo.ClientID %>").value) != "") {
-                if (!fc_Trim(document.getElementById("<%=this.txtCorreo.ClientID %>").value).match(RE_EMAIL)) {
-                    mstrError += mstrElCampo + "correo" + mstrCorreo;
-                }
-            }
-
-            if (fc_Trim(document.getElementById("<%=this.txtDestinoGuia.ClientID %>").value) == "") {
-                mstrError += mstrDebeIngresar + "destino guía.\n";
-            }
-            else if (!fc_Trim(document.getElementById("<%=this.txtDestinoGuia.ClientID %>").value).match(RE_ALAFANUMERICO)) {
-                mstrError += mstrElCampo + "destino guía" + mstrReAlfanumerico;
-            }
-
-            if (fc_Trim(document.getElementById("<%=this.txtTelefono.ClientID %>").value) != "") {
-                if (!fc_Trim(document.getElementById("<%=this.txtTelefono.ClientID %>").value).match(RE_NUMERO_TELEFONO)) {
-                    mstrError += mstrElCampo + "teléfono" + mstrTelefono;
-                }
-            }
-
-            if (fc_Trim(document.getElementById("<%=this.txtCelular.ClientID %>").value) != "") {
-                if (!fc_Trim(document.getElementById("<%=this.txtCelular.ClientID %>").value).match(RE_NUMERO_TELEFONO)) {
-                    mstrError += mstrElCampo + "celular" + mstrTelefono;
-                }
-            }
-
-
             if (mstrError != "") {
                 alert(mstrError);
                 mstrError = "";
@@ -132,71 +61,6 @@
             }
 
             return confirm(mstrSeguroGrabar);
-        }
-    
-        function Fc_Chekea() {
-
-            document.getElementById("<%=this.tdVitrina1.ClientID %>").style.display = "none";
-            document.getElementById("<%=this.tdVitrina2.ClientID %>").style.display = "none";
-            document.getElementById("<%=this.tdCentral1.ClientID %>").style.display = "none";
-            document.getElementById("<%=this.tdCentral2.ClientID %>").style.display = "none";
-
-            document.getElementById("<%=this.tdTerminal1.ClientID %>").style.display = "none";
-            document.getElementById("<%=this.tdTerminal2.ClientID %>").style.display = "none";
-
-            document.getElementById("<%=this.tdCotizacion1.ClientID %>").style.display = "none";
-            document.getElementById("<%=this.tdCotizacion2.ClientID %>").style.display = "none";
-
-            if (document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value == "CL") {
-                document.getElementById("<%=this.chkAlmacenCampo.ClientID %>").disabled = true;
-            }
-            else if (document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value == "TE") {
-                document.getElementById("<%=this.chkAlmacenCampo.ClientID %>").checked = false;
-                document.getElementById("<%=this.chkAlmacenCampo.ClientID %>").disabled = true;
-                document.getElementById("<%=this.tdTerminal1.ClientID %>").style.display = "";
-                document.getElementById("<%=this.tdTerminal2.ClientID %>").style.display = "";
-            }
-            else {
-                document.getElementById("<%=this.chkAlmacenCampo.ClientID %>").disabled = false;
-            }
-
-            if (document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value == "AL") {
-                document.getElementById("<%=this.tdAduana1.ClientID %>").style.display = "";
-                document.getElementById("<%=this.tdAduana2.ClientID %>").style.display = "";
-            }
-            else {
-                document.getElementById("<%=this.tdAduana1.ClientID %>").style.display = "none";
-                document.getElementById("<%=this.tdAduana2.ClientID %>").style.display = "none";
-            }
-
-            if (document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value == "CO") {
-                document.getElementById("<%=this.tdVitrina1.ClientID %>").style.display = "";
-                document.getElementById("<%=this.tdVitrina2.ClientID %>").style.display = "";
-
-                document.getElementById("<%=this.tdCotizacion1.ClientID %>").style.display = "";
-                document.getElementById("<%=this.tdCotizacion2.ClientID %>").style.display = "";
-            }
-
-            if (document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value == "SU") {
-                document.getElementById("<%=this.tdVitrina1.ClientID %>").style.display = "";
-                document.getElementById("<%=this.tdVitrina2.ClientID %>").style.display = "";
-
-                document.getElementById("<%=this.tdCotizacion1.ClientID %>").style.display = "";
-                document.getElementById("<%=this.tdCotizacion2.ClientID %>").style.display = "";
-            }
-
-            if (document.getElementById("<%=this.ComboTipoDestino1.ClientID %>_cboTipoDestino").value == "DE") {
-                document.getElementById("<%=this.tdCentral1.ClientID %>").style.display = "";
-                document.getElementById("<%=this.tdCentral2.ClientID %>").style.display = "";
-                document.getElementById("<%=this.tdCtrlAlmacenaje1.ClientID %>").style.display = "";
-                document.getElementById("<%=this.tdCtrlAlmacenaje2.ClientID %>").style.display = "";
-            }
-            else {
-                document.getElementById("<%=this.tdCentral1.ClientID %>").style.display = "none";
-                document.getElementById("<%=this.tdCentral2.ClientID %>").style.display = "none";
-                document.getElementById("<%=this.tdCtrlAlmacenaje1.ClientID %>").style.display = "none";
-                document.getElementById("<%=this.tdCtrlAlmacenaje2.ClientID %>").style.display = "none";
-            }
         }
     </script>
 
@@ -242,7 +106,7 @@
                                 style="margin-left: 5px; margin-right: 5px; margin-top: 5px; height: 280px;">
                                 <tr>
                                     <td style="width: 100px">
-                                        Tipo Destino</td>
+                                        Tipo Ubicacion</td>
                                     <td style="width: 303px">
                                         <uc1:ComboTipoDestino ID="ComboTipoDestino1" OnSelectedIndexChanged="ComboTipo_SelectedIndexChanged"
                                             runat="server" OnChange="javascript: return Fc_Chekea();" Width="245" AutoPostBack="false" />
@@ -261,15 +125,7 @@
                                     <td>
                                         Nro. Documento</td>
                                     <td>
-                                        <asp:UpdatePanel ID="upRucImportador" runat="server" UpdateMode="Conditional">
-                                            <ContentTemplate>
-                                                <asp:TextBox ID="txtRuc" SkinID="txtob" runat="server" MaxLength="11" Width="85px"></asp:TextBox>
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="cboPuntoVenta" EventName="SelectedIndexChanged">
-                                                </asp:AsyncPostBackTrigger>
-                                            </Triggers>
-                                        </asp:UpdatePanel>
+                                        <asp:TextBox ID="txtRuc" SkinID="txtob" runat="server" MaxLength="11" Width="85px"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -322,101 +178,11 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        Contacto
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtContacto" runat="server" Width="240px"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        Correo
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtCorreo" runat="server" Width="215px"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Teléfono
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtTelefono" MaxLength="15" runat="server" Width="110px"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        Celular
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtCelular" MaxLength="15" runat="server" Width="110px"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Destino Guía</td>
-                                    <td colspan="3">
-                                        <asp:TextBox ID="txtDestinoGuia" MaxLength="100" runat="server" Width="635px" SkinID="txtob"></asp:TextBox></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Almacén
-                                    </td>
-                                    <td>
-                                        Campo&nbsp;<asp:CheckBox ID="chkAlmacenCampo" runat="server" />
-                                        Aduanero&nbsp;<asp:CheckBox ID="chkAlmacenAduanero" runat="server" />
-                                        
-                                    </td>
-                                    <td id="tdAduana1" runat="server" style="display: none">
-                                        Cod. Aduana</td>
-                                    <td id="tdAduana2" runat="server" style="display: none">
-                                        <asp:TextBox ID="txtCodAduana" SkinID="txtob" runat="server" Width="68px" MaxLength="3"></asp:TextBox>
-                                    </td>
-                                    <td id="tdVitrina1" runat="server" style="display: none;">
-                                        Vitrina Ideal</td>
-                                    <td id="tdVitrina2" runat="server" style="display: none;">
-                                        <asp:TextBox ID="txtvitrinaIdeal" SkinID="txtob" runat="server" Width="68px" MaxLength="3"></asp:TextBox>
-                                    </td>
-                                    <td id="tdCentral1" runat="server" style="display: none;">
-                                        Almacen Central</td>
-                                    <td id="tdCentral2" runat="server" style="display: none;">
-                                        <asp:CheckBox ID="chkCentral" runat="server" />
-                                    </td>
-                                    
-                                    
-                                    
-                                    <td id="tdTerminal1" runat="server" style="display: none;">
-                                        Nro Terminal</td>
-                                    <td id="tdTerminal2" runat="server" style="display: none;">
-                                        <asp:TextBox ID="txtNroTerminal" SkinID="txtob" runat="server" Width="68px" MaxLength="3"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Almacen Satelite</td>
-                                    <td>
-                                        <asp:CheckBox ID="chkFlagAlsa" runat="server" /></td>
-                                         <td>
-                                        Carrocero</td>
-                                    <td>
-                                        <asp:CheckBox ID="chkCarrocero" runat="server" /></td>                                                                                                                                                   
-                                </tr>      
-                                <tr>
-                                    <td>
                                         Estado
                                     </td>
                                     <td>
                                         <span id="spanCboEstado1" runat="server"></span>
                                     </td>
-                                    <td id="tdCotizacion1" runat="server" style="display: none;">
-                                        Validar Cotizacion</td>
-                                    <td id="tdCotizacion2" runat="server" style="display: none;">
-                                        <asp:CheckBox ID="chkCotizacion" runat="server" />
-                                    </td>
-                                <!-- @002 I -->
-                                    <td id="tdCtrlAlmacenaje1" runat="server" style="display: none;">
-                                        Control Almacenaje
-                                    </td>
-                                    <td id="tdCtrlAlmacenaje2" runat="server" style="display: none;">
-                                        <asp:CheckBox ID="chkCtrlAlmacenaje" runat="server" />
-                                    </td>
-                                <!-- @002 -->
                                 </tr>
                             </table>
                         </td>

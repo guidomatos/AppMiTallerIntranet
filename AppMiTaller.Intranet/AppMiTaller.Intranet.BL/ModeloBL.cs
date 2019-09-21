@@ -96,9 +96,9 @@ namespace AppMiTaller.Intranet.BL
         {
             return new ModeloDA().GETListarNegocios_X_Marca(s_nid_marca);
         }
-        public CombosBEList GETListarMarcas(int nid_usuario)
+        public CombosBEList GETListarMarcas(int Nid_usuario)
         {
-            return new ModeloDA().GETListarMarcas(nid_usuario);
+            return new ModeloDA().GETListarMarcas(Nid_usuario);
         }
         public string[] GETListarParamByModelo(ModeloBE ent)
         {

@@ -26,7 +26,7 @@ namespace AppMiTaller.Intranet.DA
 {
     public class CitasDA
     {
-        Int32 nid_usuario; //@004 I/F
+        Int32 Nid_usuario; //@004 I/F
         
         public static XmlDocument WSListarCitasXML(string consultaXML)
         {
@@ -386,7 +386,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.Parameters.AddWithValue("@vi_nid_taller", ent.nid_taller);
             cmd.Parameters.AddWithValue("@VI_FECHA", ent.fe_atencion);
             cmd.Parameters.AddWithValue("@VI_DD_ATENCION", ent.dd_atencion);
-            cmd.Parameters.AddWithValue("@VI_NID_USUARIO", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@VI_Nid_usuario", ent.Nid_usuario);
 
             try
             {
@@ -565,7 +565,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.Parameters.AddWithValue("@vi_nid_taller", ent.nid_taller);
             cmd.Parameters.AddWithValue("@VI_FECHA", ent.fe_atencion);
             cmd.Parameters.AddWithValue("@VI_DD_ATENCION", ent.dd_atencion);
-            cmd.Parameters.AddWithValue("@VI_NID_USUARIO", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@VI_Nid_usuario", ent.Nid_usuario);
 
             try
             {
@@ -657,7 +657,7 @@ namespace AppMiTaller.Intranet.DA
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AppMiTallerCN"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SRC_SPS_VERIFICAR_FECHAEXCEPTUADA_ASESOR_BO", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             cmd.Parameters.AddWithValue("@vi_fecha", ent.fe_prog);
 
             Int32 count = 0;
@@ -873,7 +873,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.Parameters.AddWithValue("@vi_nid_taller", ent.nid_taller);
             cmd.Parameters.AddWithValue("@VI_FECHA", ent.fe_atencion);
             cmd.Parameters.AddWithValue("@VI_DD_ATENCION", ent.dd_atencion);
-            cmd.Parameters.AddWithValue("@VI_NID_USUARIO", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@VI_Nid_usuario", ent.Nid_usuario);
 
             try
             {
@@ -943,7 +943,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@VI_FECHACITA", ent.fe_prog);
             cmd.Parameters.AddWithValue("@VI_NID_TALLER", ent.nid_taller);
-            cmd.Parameters.AddWithValue("@VI_NID_USUARIO", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@VI_Nid_usuario", ent.Nid_usuario);
             try
             {
                 conn.Open();
@@ -1008,7 +1008,7 @@ namespace AppMiTaller.Intranet.DA
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@vi_nid_cita", ent.nid_cita);
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             if (String.IsNullOrEmpty(ent.nu_placa))
                 cmd.Parameters.AddWithValue("@vi_nu_placa", DBNull.Value);
             else
@@ -1140,7 +1140,7 @@ namespace AppMiTaller.Intranet.DA
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@vi_nu_placa", ent.nu_placa);
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             try
             {
                 conn.Open();
@@ -1172,7 +1172,7 @@ namespace AppMiTaller.Intranet.DA
             SqlDataReader reader = null;
 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             try
             {
                 conn.Open();
@@ -1204,7 +1204,7 @@ namespace AppMiTaller.Intranet.DA
             SqlDataReader reader = null;
 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             cmd.Parameters.AddWithValue("@vi_nid_marca", ent.nid_marca);
             try
             {
@@ -1339,7 +1339,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.Parameters.AddWithValue("@vi_nid_taller", ent.nid_taller);
             cmd.Parameters.AddWithValue("@vi_nid_estado_ant", ent.nid_Estado);
             cmd.Parameters.AddWithValue("@vi_tx_observacion", ent.tx_observacion);
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             cmd.Parameters.AddWithValue("@VI_DD_ATENCION", ent.dd_atencion);
             //-------------------------
             cmd.Parameters.AddWithValue("@vi_co_usuario_crea", ent.co_usuario_crea);
@@ -1373,7 +1373,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@vi_nid_Servicio", ent.nid_Servicio);
             cmd.Parameters.AddWithValue("@vi_nid_taller", ent.nid_taller);
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             cmd.Parameters.AddWithValue("@vi_ho_inicio", ent.ho_inicio);
             cmd.Parameters.AddWithValue("@vi_ho_fin", ent.ho_fin);
             cmd.Parameters.AddWithValue("@vi_fe_programada", ent.fe_prog);
@@ -1526,7 +1526,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.Parameters.AddWithValue("@vi_co_tipo_documento", ent.cod_tipo_documento);
             cmd.Parameters.AddWithValue("@vi_nu_documento", ent.nu_documento);
             cmd.Parameters.AddWithValue("@vi_nid_empresa", ent.Nid_empresa);
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
 
             try
             {
@@ -1601,7 +1601,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.Parameters.AddWithValue("@vi_no_correo_alter", ent.no_correo_alter);
             cmd.Parameters.AddWithValue("@vi_no_pais", ent.No_pais);
             cmd.Parameters.AddWithValue("@vi_nid_taller", ent.nid_taller);
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             cmd.Parameters.AddWithValue("@vi_nid_servicio", ent.nid_Servicio);
             cmd.Parameters.AddWithValue("@vi_nu_placa", ent.nu_placa);
             cmd.Parameters.AddWithValue("@vi_nid_marca", ent.nid_marca);
@@ -1652,7 +1652,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@vi_nid_Servicio", ent.nid_Servicio);
             cmd.Parameters.AddWithValue("@vi_nid_modelo", ent.nid_modelo);
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
 
             try
             {
@@ -1690,7 +1690,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.Parameters.AddWithValue("@VI_CODDPTO", ent.coddpto);
             cmd.Parameters.AddWithValue("@VI_CODPROV", ent.codprov);
             cmd.Parameters.AddWithValue("@VI_CODDIST", ent.coddis);
-            cmd.Parameters.AddWithValue("@VI_NID_USUARIO", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@VI_Nid_usuario", ent.Nid_usuario);
 
             try
             {
@@ -1726,7 +1726,7 @@ namespace AppMiTaller.Intranet.DA
             cmd.Parameters.AddWithValue("@VI_NID_SERVICIO", ent.nid_Servicio);
             cmd.Parameters.AddWithValue("@VI_NID_MODELO", ent.nid_modelo);
             cmd.Parameters.AddWithValue("@VI_NID_UBICA", ent.nid_ubica);
-            cmd.Parameters.AddWithValue("@VI_NID_USUARIO", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@VI_Nid_usuario", ent.Nid_usuario);
             
             cmd.Parameters.AddWithValue("@vi_coddpto", ent.coddpto);
             cmd.Parameters.AddWithValue("@vi_codprov", ent.codprov);
@@ -1819,7 +1819,7 @@ namespace AppMiTaller.Intranet.DA
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AppMiTallerCN"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SRC_SPS_VERIFICAR_CAPACIDAD_ASESOR_BO", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@VI_NID_USUARIO", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@VI_Nid_usuario", ent.Nid_usuario);
             cmd.Parameters.AddWithValue("@VI_FECHA", ent.fe_prog);
             cmd.Parameters.AddWithValue("@VI_DD_ATENCION", ent.dd_atencion);
             try
@@ -1983,7 +1983,7 @@ namespace AppMiTaller.Intranet.DA
 
         public CitasBE Listar_HistorialCitasPorVehiculo(CitasBE ent)
         {
-            nid_usuario = Convert.ToInt32(ent.nid_usuario);
+            Nid_usuario = Convert.ToInt32(ent.Nid_usuario);
             CitasBE oHistorial = new CitasBE();
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AppMiTallerCN"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SRC_SPS_GET_DATOS_VEH_PROP", conn);
@@ -2053,7 +2053,7 @@ namespace AppMiTaller.Intranet.DA
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@nu_placa", pPlaca);
-            cmd.Parameters.AddWithValue("@nid_usuario", nid_usuario); //@004 I/F
+            cmd.Parameters.AddWithValue("@Nid_usuario", Nid_usuario); //@004 I/F
             try
             {
                 conn.Open();
@@ -2628,7 +2628,7 @@ namespace AppMiTaller.Intranet.DA
             Int32 indice = 0;
 
             indice = DReader.GetOrdinal("COD_USUARIO");
-            Entidad.nid_usuario = (DReader.IsDBNull(indice) ? 0 : DReader.GetInt32(indice));
+            Entidad.Nid_usuario = (DReader.IsDBNull(indice) ? 0 : DReader.GetInt32(indice));
             indice = DReader.GetOrdinal("ASESOR_SERV");
             Entidad.no_asesor = (DReader.IsDBNull(indice) ? "" : DReader.GetString(indice));
             indice = DReader.GetOrdinal("HORA_INICIO");
@@ -2866,8 +2866,8 @@ namespace AppMiTaller.Intranet.DA
             Entidad.nid_marca = (DReader.IsDBNull(indice) ? 0 : DReader.GetInt32(indice));
             indice = DReader.GetOrdinal("NO_MARCA");
             Entidad.no_marca = (DReader.IsDBNull(indice) ? "" : DReader.GetString(indice));
-            indice = DReader.GetOrdinal("NID_USUARIO");
-            Entidad.nid_usuario = (DReader.IsDBNull(indice) ? 0 : DReader.GetInt32(indice));
+            indice = DReader.GetOrdinal("Nid_usuario");
+            Entidad.Nid_usuario = (DReader.IsDBNull(indice) ? 0 : DReader.GetInt32(indice));
             indice = DReader.GetOrdinal("no_asesor");
             Entidad.no_asesor = (DReader.IsDBNull(indice) ? "" : DReader.GetString(indice));
             indice = DReader.GetOrdinal("nu_telefono_a");

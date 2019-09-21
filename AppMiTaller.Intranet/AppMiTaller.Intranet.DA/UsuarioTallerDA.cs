@@ -14,7 +14,7 @@ namespace AppMiTaller.Intranet.DA
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AppMiTallerCN"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SEU_SPI_ASESOR_MODULO", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             cmd.Parameters.AddWithValue("@vi_nid_modulo", ent.nid_modulo);
             cmd.Parameters.AddWithValue("@vi_co_usuario", ent.co_usuario_crea);
             cmd.Parameters.AddWithValue("@vi_co_usuario_red", ent.co_usuario_red);
@@ -43,7 +43,7 @@ namespace AppMiTaller.Intranet.DA
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AppMiTallerCN"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SEU_SPU_ASESOR_MODULO", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@vi_nid_usuario", ent.nid_usuario);
+            cmd.Parameters.AddWithValue("@vi_Nid_usuario", ent.Nid_usuario);
             cmd.Parameters.AddWithValue("@vi_nid_modulo", ent.nid_modulo);
             cmd.Parameters.AddWithValue("@vi_co_usuario", ent.co_usuario_crea);
             cmd.Parameters.AddWithValue("@vi_co_usuario_red", ent.co_usuario_red);
@@ -77,7 +77,7 @@ namespace AppMiTaller.Intranet.DA
                     db.ProcedureName = "[src_sps_usuarios_por_parametros_BO]";                    
 
                     db.AddParameter("@vi_co_perfil_login", DbType.String, ParameterDirection.Input, ent.Co_Perfil_Login);
-                    db.AddParameter("@vi_nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_Usuario_Login);
+                    db.AddParameter("@vi_Nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario_Login);
 
                     db.AddParameter("@vi_CUSR_ID", DbType.String, ParameterDirection.Input, ent.CUSR_ID);
 
@@ -172,7 +172,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[src_sps_usuario_por_Codigo_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -201,7 +201,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_sps_mae_talleres_mae_distrito_BO]";
                     db.AddParameter("@vi_co_perfil_login", DbType.String, ParameterDirection.Input, ent.Co_Perfil_Login);
-                    db.AddParameter("@vi_nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_Usuario_Login);
+                    db.AddParameter("@vi_Nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario_Login);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -249,7 +249,7 @@ namespace AppMiTaller.Intranet.DA
             return lista;
         }
 
-        public UsuarioBEList GETListarUbigeo(int nid_usuario)
+        public UsuarioBEList GETListarUbigeo(int Nid_usuario)
         {
             UsuarioBEList lista = new UsuarioBEList();
             IDataReader DReader = null;
@@ -258,7 +258,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[src_sps_ubigeo_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -347,7 +347,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[SRC_SPS_MODELOS_PORUSUARIO_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -375,7 +375,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[src_sps_PuntosDeRed_PorUsuario_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -404,7 +404,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[SRC_SPS_MODELO_NEGOCIOLINEA_MARCA_BO]";
                     db.AddParameter("@vi_co_perfil_login", DbType.String, ParameterDirection.Input, ent.Co_Perfil_Login);
-                    db.AddParameter("@vi_nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_Usuario_Login);
+                    db.AddParameter("@vi_Nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario_Login);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -423,7 +423,7 @@ namespace AppMiTaller.Intranet.DA
             return lista;
         }
 
-        public UsuarioBEList GETListarLineaComercialMarca(int nid_usuario)
+        public UsuarioBEList GETListarLineaComercialMarca(int Nid_usuario)
         {
             UsuarioBEList lista = new UsuarioBEList();
             IDataReader DReader = null;
@@ -432,7 +432,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[SRC_SPS_LINEACOMERCIAL_MARCA_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -451,7 +451,7 @@ namespace AppMiTaller.Intranet.DA
             return lista;
         }
 
-        public UsuarioBEList GETListarMarcaEmpresa(int nid_usuario)
+        public UsuarioBEList GETListarMarcaEmpresa(int Nid_usuario)
         {
             UsuarioBEList lista = new UsuarioBEList();
             IDataReader DReader = null;
@@ -460,7 +460,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[SRC_SPS_MARCA_EMPRESA_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -489,7 +489,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_sps_ubicacion_BO]";
                     db.AddParameter("@vi_co_perfil_login", DbType.String, ParameterDirection.Input, ent.Co_Perfil_Login);
-                    db.AddParameter("@vi_nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_Usuario_Login);
+                    db.AddParameter("@vi_Nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario_Login);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -656,7 +656,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[src_sps_Servicios_PorUsuario_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);                        
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);                        
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -684,7 +684,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[src_sps_Dias_Exceptuados_PorUsuario_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);                        
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);                        
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -712,7 +712,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[src_sps_Horarios_PorUsuario_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);                        
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);                        
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -740,7 +740,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[src_sps_Talleres_PorUsuario_AsesServ_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -768,7 +768,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[src_sps_Talleres_PorUsuario_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -797,7 +797,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_sps_PtoRedTaller_PorDistrito_BO]";
                     db.AddParameter("@vi_co_perfil_login", DbType.String, ParameterDirection.Input, ent.Co_Perfil_Login);
-                    db.AddParameter("@vi_nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_Usuario_Login);
+                    db.AddParameter("@vi_Nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario_Login);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -1208,7 +1208,7 @@ namespace AppMiTaller.Intranet.DA
             indice = DReader.GetOrdinal("fl_inactivo");
             Entidad.Fl_activo = (DReader.IsDBNull(indice) ? "" : DReader.GetString(indice));
 
-            indice = DReader.GetOrdinal("nid_usuario");
+            indice = DReader.GetOrdinal("Nid_usuario");
             Entidad.Nid_usuario = (DReader.IsDBNull(indice) ? 0 : DReader.GetInt32(indice));
 
             indice = DReader.GetOrdinal("CUSR_ID");
@@ -1344,7 +1344,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_spi_mae_usr_modelo_bo]";
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     db.AddParameter("@vi_nid_modelo", DbType.Int32, ParameterDirection.Input, ent.Nid_modelo);
                     db.AddParameter("@vi_co_usuario_crea", DbType.String, ParameterDirection.Input, ent.Co_usuario_crea);
                     db.AddParameter("@vi_co_usuario_red", DbType.String, ParameterDirection.Input, ent.Co_usuario_red);
@@ -1370,7 +1370,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_spi_mae_usr_taller_BO]";
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
 
                     db.AddParameter("@vi_nid_taller", DbType.Int32, ParameterDirection.Input, ent.nid_taller);
 
@@ -1413,7 +1413,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_spi_mae_usr_servicio_BO]";
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     db.AddParameter("@vi_nid_servicio", DbType.Int32, ParameterDirection.Input, ent.Nid_servicio);                 
 
                     if (String.IsNullOrEmpty(ent.Co_usuario_crea))
@@ -1455,7 +1455,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_spi_mae_usr_ubicacion_BO]";
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     db.AddParameter("@vi_nid_ubica", DbType.Int32, ParameterDirection.Input, ent.Nid_ubica);
 
                     if (String.IsNullOrEmpty(ent.Co_usuario_crea))
@@ -1542,7 +1542,7 @@ namespace AppMiTaller.Intranet.DA
 
                     db.AddParameter("@vi_CCOAPL", DbType.String, ParameterDirection.Input, ent.CCOAPL );                    
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
 
                     //db.AddParameter("@vi_nid_perfil", DbType.Int32, ParameterDirection.Input, ent.Nid_perfil);
 
@@ -1678,9 +1678,9 @@ namespace AppMiTaller.Intranet.DA
                     else
                         db.AddParameter("@vi_no_usuario_red", DbType.String, ParameterDirection.Input, ent.No_usuario_red);                                       
                     
-                    db.AddParameter("@vo_nid_usuario", DbType.Int32, ParameterDirection.Output, 0);
+                    db.AddParameter("@vo_Nid_usuario", DbType.Int32, ParameterDirection.Output, 0);
                     db.Execute();
-                    nId = Convert.ToInt32(db.GetParameter("@vo_nid_usuario"));                    
+                    nId = Convert.ToInt32(db.GetParameter("@vo_Nid_usuario"));                    
                 }
             }
             catch (Exception)
@@ -1701,7 +1701,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_spu_mae_usuarios_BO]";
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
 
                     db.AddParameter("@vi_no_ape_paterno", DbType.String, ParameterDirection.Input, ent.No_ape_paterno);
 
@@ -1886,7 +1886,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "src_sp_mant_usr_taller_bo";
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     db.AddParameter("@vi_co_talleres", DbType.String, ParameterDirection.Input, ent.No_taller);
                     db.AddParameter("@vi_co_usuario_crea", DbType.String, ParameterDirection.Input, ent.Co_usuario_crea);
                     db.AddParameter("@vi_co_usuario_red", DbType.String, ParameterDirection.Input, ent.Co_usuario_red);
@@ -1912,7 +1912,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "src_sp_mant_mae_usr_modelo_bo";
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     db.AddParameter("@vi_co_modelos", DbType.String, ParameterDirection.Input, ent.No_modelo);
                     db.AddParameter("@vi_co_usuario_crea", DbType.String, ParameterDirection.Input, ent.Co_usuario_crea);
                     db.AddParameter("@vi_co_usuario_red", DbType.String, ParameterDirection.Input, ent.Co_usuario_red);
@@ -1938,7 +1938,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "src_sp_mant_usr_servicio_bo";
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     db.AddParameter("@vi_co_servicios", DbType.String, ParameterDirection.Input, ent.No_servicio);
                     db.AddParameter("@vi_co_usuario_crea", DbType.String, ParameterDirection.Input, ent.Co_usuario_crea);
                     db.AddParameter("@vi_co_usuario_red", DbType.String, ParameterDirection.Input, ent.Co_usuario_red);
@@ -1967,7 +1967,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_sp_mant_usr_ubicacion_BO]";
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     db.AddParameter("@vi_nid_ubica", DbType.Int32, ParameterDirection.Input, ent.Nid_ubica);
 
                     if (String.IsNullOrEmpty(ent.Co_usuario_crea))
@@ -2012,7 +2012,7 @@ namespace AppMiTaller.Intranet.DA
 
                     db.AddParameter("@vi_CCOAPL", DbType.String, ParameterDirection.Input, ent.CCOAPL);
 
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
 
                     //db.AddParameter("@vi_nid_perfil", DbType.Int32, ParameterDirection.Input, ent.Nid_perfil);
                     db.AddParameter("@vi_co_perfil_usuario", DbType.String, ParameterDirection.Input, ent.Cod_perfil);
@@ -2136,7 +2136,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[SRC_SPI_CAPACIDAD_ATENCION_ASESOR_BO]";
 
-                    db.AddParameter("@VI_NID_USUARIO", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@VI_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     db.AddParameter("@VI_DIA_ATENC", DbType.Int32, ParameterDirection.Input, ent.Dd_atencion);
 
                     if (ent.qt_capacidad_fo.Equals(-1))

@@ -242,23 +242,6 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
             indice = DReader.GetOrdinal("cod_estado");
             oDestinoBE.Cod_estado = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
 
-            indice = DReader.GetOrdinal("fec_modi");
-            if (!DReader.IsDBNull(indice))
-            {
-                oDestinoBE.Fec_modi = DReader.GetDateTime(indice);
-                oDestinoBE.sfe_modi = oDestinoBE.Fec_modi.ToShortDateString();
-            }
-            else oDestinoBE.sfe_modi = String.Empty;
-
-            indice = DReader.GetOrdinal("Cod_usu_modi");
-            oDestinoBE.Cod_usu_modi = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
-
-            indice = DReader.GetOrdinal("nom_estacion");
-            oDestinoBE.Nom_estacion = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
-
-            indice = DReader.GetOrdinal("nom_usuario_red");
-            oDestinoBE.Nom_usuario_red = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
-
             return oDestinoBE;
         }
     }

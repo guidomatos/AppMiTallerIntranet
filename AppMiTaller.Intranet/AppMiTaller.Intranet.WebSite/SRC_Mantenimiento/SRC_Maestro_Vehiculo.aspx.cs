@@ -35,7 +35,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Vehiculo : System.Web.UI.Page
     }
     private void CargarMarcas()
     {
-        ddl_busmarca.DataSource = objNeg1.GETListarMarcas(Profile.Usuario.NID_USUARIO);
+        ddl_busmarca.DataSource = objNeg1.GETListarMarcas(Profile.Usuario.Nid_usuario);
         ddl_busmarca.DataTextField = "DES";
         ddl_busmarca.DataValueField = "ID";
         ddl_busmarca.DataBind();
@@ -45,7 +45,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Vehiculo : System.Web.UI.Page
 
     private void CargarModelos(VehiculoBE objEnt)
     {
-        ddl_busmodelo.DataSource = objNeg.GETListarModelosXMarca(objEnt, Profile.Usuario.NID_USUARIO);
+        ddl_busmodelo.DataSource = objNeg.GETListarModelosXMarca(objEnt, Profile.Usuario.Nid_usuario);
         ddl_busmodelo.DataTextField = "DES";
         ddl_busmodelo.DataValueField = "ID";
         ddl_busmodelo.DataBind();
@@ -55,7 +55,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Vehiculo : System.Web.UI.Page
 
     private void Buscar(VehiculoBE objEnt)
     {
-        Session["VehiculoBEList"] = objNeg.GETListarVehiculos(objEnt, Profile.Usuario.NID_USUARIO);
+        Session["VehiculoBEList"] = objNeg.GETListarVehiculos(objEnt, Profile.Usuario.Nid_usuario);
         gdVehiculos.DataSource = Session["VehiculoBEList"];
         gdVehiculos.DataBind();
     }
@@ -219,7 +219,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Vehiculo : System.Web.UI.Page
             Session["bus_objEnt"] = objEnt;
 
             //---------
-            this.oMaestroVehiculoBEList = objNeg.GETListarVehiculos(objEnt, Profile.Usuario.NID_USUARIO);
+            this.oMaestroVehiculoBEList = objNeg.GETListarVehiculos(objEnt, Profile.Usuario.Nid_usuario);
 
             if (oMaestroVehiculoBEList == null || oMaestroVehiculoBEList.Count == 0)
             {
@@ -301,7 +301,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Vehiculo : System.Web.UI.Page
             objEnt.qt_km_actual = Int64.Parse((txt_buskilometraje.Text.Length == 0 ? "-1" : txt_buskilometraje.Text.Trim()));
             objEnt.fl_activo = cboEstado.SelectedValue.ToString();
 
-            this.oMaestroVehiculoBEList = oMaestroVehiculoBL.GETListarVehiculos(objEnt, Profile.Usuario.NID_USUARIO);
+            this.oMaestroVehiculoBEList = oMaestroVehiculoBL.GETListarVehiculos(objEnt, Profile.Usuario.Nid_usuario);
 
             const string RUTA_DOCUMENTOS = ConstanteBE.RUTA_MANTENIMIENTO_SRC;
             String carpeta = String.Empty, nombre = String.Empty, RutaFinal = String.Empty;

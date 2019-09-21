@@ -2286,9 +2286,9 @@
         }
 
         function CargarInicial() {
-            var nid_usuario = "<%=this.Profile.Usuario.NID_USUARIO %>";
+            var Nid_usuario = "<%=this.Profile.Usuario.Nid_usuario %>";
             var nid_taller = $("#<%=hid_id_tllr.ClientID%>").val();
-            PageMethods.cargarDatosCombo(nid_taller, "0", nid_usuario, function (res) {
+            PageMethods.cargarDatosCombo(nid_taller, "0", Nid_usuario, function (res) {
                 $("#ddlTipoContenido,#ddlTipoR").empty(); $("#ddlTipoContenido,#ddlTipoR").append(res[0]);
                 $("#ddlEstadoContenido").empty(); $("#ddlEstadoContenido").append(res[1]);
                 $("#ddlNegocio").empty(); $("#ddlNegocio").append(res[2]);

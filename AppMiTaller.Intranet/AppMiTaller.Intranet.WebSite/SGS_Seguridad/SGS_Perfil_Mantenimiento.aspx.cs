@@ -60,7 +60,7 @@ public partial class SGS_Seguridad_SGS_Perfil_Mantenimiento : PaginaBase
         oOpcionSeguridadBE.CCOAPL = Profile.Aplicacion;
         oOpcionSeguridadBE.NIVEL = 1;
         oOpcionSeguridadBE.CSTRUCT = String.Empty;
-        oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, perfilID, 0/*Profile.Usuario.NID_USUARIO*/);
+        oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, perfilID, 0/*Profile.Usuario.Nid_usuario*/);
 
         this.txhModuloSelected.Value = String.Empty;
 
@@ -73,7 +73,7 @@ public partial class SGS_Seguridad_SGS_Perfil_Mantenimiento : PaginaBase
 
             if (this.txhModuloSelected.Value.Equals(String.Empty)) this.txhModuloSelected.Value = oOpcion.CSTRUCT.Trim();
 
-            foreach (OpcionSeguridadBE oOpcionDet in oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, perfilID, 0/*Profile.Usuario.NID_USUARIO*/))
+            foreach (OpcionSeguridadBE oOpcionDet in oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, perfilID, 0/*Profile.Usuario.Nid_usuario*/))
             {
                 //@001 - DAC - Inicio
                 //if (this.txhCodOpciones.Value.Trim().IndexOf("|" + oOpcionDet.NID_OPCION.ToString() + "|") < 0)
@@ -207,7 +207,7 @@ public partial class SGS_Seguridad_SGS_Perfil_Mantenimiento : PaginaBase
             oOpcionSeguridadBE.CCOAPL = Profile.Aplicacion;
             oOpcionSeguridadBE.NIVEL = 0;
             oOpcionSeguridadBE.CSTRUCT = this.txhModuloSelected.Value.Trim();
-            this.oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, perfilID, 0/*Profile.Usuario.NID_USUARIO*/);
+            this.oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, perfilID, 0/*Profile.Usuario.Nid_usuario*/);
 
             if (oOpcionSeguridadBEList != null && oOpcionSeguridadBEList.Count == 0) oOpcionSeguridadBEList.Add(new OpcionSeguridadBE());
 
@@ -602,7 +602,7 @@ public partial class SGS_Seguridad_SGS_Perfil_Mantenimiento : PaginaBase
             this.txhCadenaTotalPU.Value = "|";
             for (int i = 0; i < this.oPerfilUsuarioListAsig.Count; i++)
             {
-                this.txhCadenaTotalPU.Value = this.txhCadenaTotalPU.Value + this.oPerfilUsuarioListAsig[i].NID_USUARIO.ToString() + "|";
+                this.txhCadenaTotalPU.Value = this.txhCadenaTotalPU.Value + this.oPerfilUsuarioListAsig[i].Nid_usuario.ToString() + "|";
             }
 
             if (oPerfilUsuarioListAsig.Count == 0)
@@ -710,7 +710,7 @@ public partial class SGS_Seguridad_SGS_Perfil_Mantenimiento : PaginaBase
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
             DataKey dataKey = this.gvAsigPerfilUsuario.DataKeys[e.Row.RowIndex];
-            Int32.TryParse(dataKey.Values["NID_USUARIO"].ToString(), out aux);
+            Int32.TryParse(dataKey.Values["Nid_usuario"].ToString(), out aux);
             if (aux == 0)
             {
                 e.Row.Visible = false;
@@ -723,9 +723,9 @@ public partial class SGS_Seguridad_SGS_Perfil_Mantenimiento : PaginaBase
 
             this.txhNroFilasPU.Value = Convert.ToString(Convert.ToInt32(this.txhNroFilasPU.Value) + 1);
             chkSel = (CheckBox)e.Row.FindControl("chkSel");
-            chkSel.Attributes["onclick"] = String.Format("javascript:Fc_SeleccionaItem('{0}','{1}')", this.txhCadenaSelPU.ClientID, dataKey.Values["NID_USUARIO"].ToString());
+            chkSel.Attributes["onclick"] = String.Format("javascript:Fc_SeleccionaItem('{0}','{1}')", this.txhCadenaSelPU.ClientID, dataKey.Values["Nid_usuario"].ToString());
 
-            if (this.txhCadenaSelPU.Value.Contains("|" + dataKey.Values["NID_USUARIO"].ToString() + "|")) { chkSel.Checked = true; }
+            if (this.txhCadenaSelPU.Value.Contains("|" + dataKey.Values["Nid_usuario"].ToString() + "|")) { chkSel.Checked = true; }
             else { chkSel.Checked = false; }
         }
 

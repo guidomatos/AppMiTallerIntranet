@@ -32,12 +32,12 @@ namespace AppMiTaller.Intranet.BE
             set { _bo_resultado = value; }
         }
 
-        private int _nid_usuario;
+        private int _Nid_usuario;
 
-        public int nid_usuario
+        public int Nid_usuario
         {
-            get { return _nid_usuario; }
-            set { _nid_usuario = value; }
+            get { return _Nid_usuario; }
+            set { _Nid_usuario = value; }
         }
 	
         #endregion
@@ -856,12 +856,12 @@ namespace AppMiTaller.Intranet.BE
             set { _COESP_vi_cod_reserva = value; }
         }
 
-        private int _COESP_vi_nid_usuario;
+        private int _COESP_vi_Nid_usuario;
 
-        public int COESP_vi_nid_usuario
+        public int COESP_vi_Nid_usuario
         {
-            get { return _COESP_vi_nid_usuario; }
-            set { _COESP_vi_nid_usuario = value; }
+            get { return _COESP_vi_Nid_usuario; }
+            set { _COESP_vi_Nid_usuario = value; }
         }
 
         private string _COESP_vi_ho_inicio;

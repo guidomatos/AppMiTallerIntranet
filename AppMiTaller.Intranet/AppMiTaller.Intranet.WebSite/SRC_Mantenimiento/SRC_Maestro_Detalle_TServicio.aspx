@@ -352,7 +352,7 @@
 
 
             var parametros = new Array();
-            var usuario = "<%= Profile.Usuario.NID_USUARIO%>";
+            var usuario = "<%= Profile.Usuario.Nid_usuario%>";
 
             parametros[0] = usuario;
             sendInfo = { snidUsuario: usuario };
@@ -391,7 +391,7 @@
 
         function fc_eliminar() {
             var parametros = new Array();
-            parametros[0] = "<%= Profile.Usuario.NID_USUARIO%>";
+            parametros[0] = "<%= Profile.Usuario.Nid_usuario%>";
             parametros[1] = "<%= Profile.UsuarioRed%>";
             parametros[2] = "<%= Profile.Estacion%>";
             var seleccion = new Array();
@@ -520,7 +520,7 @@
             parametros[1] = $("#cboMarca").val();
             parametros[2] = $("#ckVisible").is(":checked");
             parametros[3] = nicEditors.findEditor('txtContenido').getContent();
-            parametros[4] = "<%= Profile.Usuario.NID_USUARIO%>";
+            parametros[4] = "<%= Profile.Usuario.Nid_usuario%>";
             parametros[5] = "<%= Profile.UsuarioRed%>";
             parametros[6] = "<%= Profile.Estacion%>";
             parametros[7] = $("#nid_tipo_servicio_marca").val();

@@ -10,11 +10,11 @@ namespace AppMiTaller.Intranet.BL
         public delegate void ErrorDelegate(object sender, Exception ex);
         public event ErrorDelegate ErrorEvent;
 
-        public VehiculoBEList GETListarVehiculos(VehiculoBE ent, Int32 nid_usuario)
+        public VehiculoBEList GETListarVehiculos(VehiculoBE ent, Int32 Nid_usuario)
         {
             try
             {
-                return new VehiculoDA().GETListarVehiculos(ent, nid_usuario);
+                return new VehiculoDA().GETListarVehiculos(ent, Nid_usuario);
             }
             catch (Exception ex)
             {
@@ -23,9 +23,9 @@ namespace AppMiTaller.Intranet.BL
             }
         }
 
-        public CombosBEList GETListarModelosXMarca(VehiculoBE ent, int nid_usuario)
+        public CombosBEList GETListarModelosXMarca(VehiculoBE ent, int Nid_usuario)
         {
-            return new VehiculoDA().GETListarModelosXMarca(ent, nid_usuario);
+            return new VehiculoDA().GETListarModelosXMarca(ent, Nid_usuario);
         }
 
         public int GETVAL_EXIS_VEH(VehiculoBE ent)

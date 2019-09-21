@@ -21,7 +21,6 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
                 }
                 if (DReader.Read())
                 {
-                    oBE = new ModeloBE();
                     oBE = CrearEntidadById(DReader);
                 }
                 DReader.Close();
@@ -125,7 +124,6 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
                     db.AddParameter("@vi_ch_cod_modelo", DbType.String, ParameterDirection.Input, codModelo);
                     db.AddParameter("@vi_va_nom_modelo", DbType.String, ParameterDirection.Input, nomModelo);
                     db.AddParameter("@vi_ch_cod_estado", DbType.String, ParameterDirection.Input, codEstado);
-                    db.AddParameter("@vi_in_id_usuario", DbType.Int32, ParameterDirection.Input, idUsuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -163,22 +161,10 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
             oBE.nid_linea_comercial = DReader.IsDBNull(indice) ? 0 : DReader.GetInt32(indice);
             indice = DReader.GetOrdinal("cod_negocio");
             oBE.co_negocio = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
+            indice = DReader.GetOrdinal("no_familia");
+            oBE.no_familia = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
             indice = DReader.GetOrdinal("cod_estado");
             oBE.fl_inactivo = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
-            indice = DReader.GetOrdinal("fec_modi");
-            if (!DReader.IsDBNull(indice))
-            {
-                oBE.fe_cambio = DReader.GetDateTime(indice);
-                oBE.sfe_cambio = oBE.fe_cambio.ToShortDateString();
-            }
-            else oBE.sfe_cambio = String.Empty;
-            indice = DReader.GetOrdinal("cod_usu_modi");
-            oBE.co_usuario_cambio = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
-            indice = DReader.GetOrdinal("nom_estacion");
-            oBE.no_estacion = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
-            indice = DReader.GetOrdinal("nom_usuario_red");
-            oBE.no_usuario_red = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
-
             return oBE;
         }
         private ModeloBE CrearEntidad(IDataReader DReader)
@@ -214,6 +200,8 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
             oBE.co_modelo = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
             indice = DReader.GetOrdinal("nom_modelo");
             oBE.no_modelo = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
+            indice = DReader.GetOrdinal("no_familia");
+            oBE.no_familia = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
             indice = DReader.GetOrdinal("nom_linea_importacion");
             oBE.no_linea_importacion = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
             indice = DReader.GetOrdinal("nom_linea_comercial");
@@ -342,7 +330,7 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
             return lista;
         }
 
-        public CombosBEList GETListarMarcas(int nid_usuario)
+        public CombosBEList GETListarMarcas(int Nid_usuario)
         {
             CombosBEList lista = new CombosBEList();
             IDataReader DReader = null;
@@ -351,7 +339,7 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[SRC_SPS_SEL_MARCA]";
-                    db.AddParameter("@nid_usuario", DbType.String, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@Nid_usuario", DbType.String, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())

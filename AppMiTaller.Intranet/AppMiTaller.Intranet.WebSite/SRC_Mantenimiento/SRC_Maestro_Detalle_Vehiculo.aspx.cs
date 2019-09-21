@@ -37,7 +37,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Vehiculo : System.Web
     }
     private void CargarMarcas()
     {
-        ddl_marca.DataSource = objNeg1.GETListarMarcas(Profile.Usuario.NID_USUARIO);
+        ddl_marca.DataSource = objNeg1.GETListarMarcas(Profile.Usuario.Nid_usuario);
         ddl_marca.DataTextField = "DES";
         ddl_marca.DataValueField = "ID";
         ddl_marca.DataBind();
@@ -1097,7 +1097,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Vehiculo : System.Web
             {
                 objEnt.nid_marca = int.Parse(ddl_marca.SelectedValue.ToString().Trim());
 
-                this.ddl_modelo.DataSource = objNeg.GETListarModelosXMarca(objEnt, Profile.Usuario.NID_USUARIO);
+                this.ddl_modelo.DataSource = objNeg.GETListarModelosXMarca(objEnt, Profile.Usuario.Nid_usuario);
                 this.ddl_modelo.DataTextField = "DES";
                 this.ddl_modelo.DataValueField = "ID";
                 this.ddl_modelo.DataBind();

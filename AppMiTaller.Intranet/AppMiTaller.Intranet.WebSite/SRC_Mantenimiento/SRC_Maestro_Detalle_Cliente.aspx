@@ -908,7 +908,7 @@
 
     <script type="text/javascript" language="javascript">
 
-        var nid_usuario = "<%=this.Profile.Usuario.NID_USUARIO %>";
+        var Nid_usuario = "<%=this.Profile.Usuario.Nid_usuario %>";
         var co_usuario = "<%=this.Profile.Usuario.CUSR_ID %>";
         var no_usuario_red = "<%=this.Profile.UsuarioRed %>";
         var no_estacion_red = "<%=this.Profile.Estacion %>";

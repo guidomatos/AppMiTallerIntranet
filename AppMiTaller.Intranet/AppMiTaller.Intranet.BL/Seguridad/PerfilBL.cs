@@ -143,7 +143,7 @@ namespace AppMiTaller.Intranet.BL
                 {
                     if (Int32.TryParse(arrUsuario[i], out nidUsuario))
                     {
-                        oUsuarioBE.NID_USUARIO = nidUsuario;
+                        oUsuarioBE.Nid_usuario = nidUsuario;
                         retornoDA = oPerfilDA.InsertarUsuariosRelacionado(oUsuarioBE, aplicacionID);
                         if (retornoDA == -2)
                         {

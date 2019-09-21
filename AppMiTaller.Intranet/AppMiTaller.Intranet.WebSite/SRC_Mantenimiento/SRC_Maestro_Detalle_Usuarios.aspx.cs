@@ -32,14 +32,14 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         {
             Inicializa();
 
-            if (Session["nid_usuario_nuevo"] != null)
+            if (Session["Nid_usuario_nuevo"] != null)
             {
                 tabMantDetalleUsuarios.Tabs[1].Enabled = false; tabMantDetalleUsuarios.Tabs[1].HeaderText = "";
                 tabMantDetalleUsuarios.Tabs[2].Enabled = false; tabMantDetalleUsuarios.Tabs[2].HeaderText = "";
                 tabMantDetalleUsuarios.Tabs[3].Enabled = false; tabMantDetalleUsuarios.Tabs[3].HeaderText = "";
                 tabMantDetalleUsuarios.Tabs[4].Enabled = false; tabMantDetalleUsuarios.Tabs[4].HeaderText = "";
             }
-            else if (Session["nid_usuario_editar"] != null || Session["nid_usuario_detalle"] != null)
+            else if (Session["Nid_usuario_editar"] != null || Session["Nid_usuario_detalle"] != null)
             {
                 HabilitarTabsPorPerfil();
             }
@@ -245,14 +245,14 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         btnEditar.Visible = false;
         ViewState.Add("existe_login", "0");
         if (Request.QueryString["nid_usu"] != null)
-            Session["nid_usuario_detalle"] = Request.QueryString["nid_usu"].ToString();
+            Session["Nid_usuario_detalle"] = Request.QueryString["nid_usu"].ToString();
 
-        if (Session["nid_usuario_nuevo"] != null)
+        if (Session["Nid_usuario_nuevo"] != null)
             hdf_pass.Value = "nuevo";
-        else if (Session["nid_usuario_editar"] != null || Session["nid_usuario_detalle"] != null)
+        else if (Session["Nid_usuario_editar"] != null || Session["Nid_usuario_detalle"] != null)
             hdf_pass.Value = "editar";
 
-        if (Session["nid_usuario_detalle"] != null)
+        if (Session["Nid_usuario_detalle"] != null)
         {
             btnEditar.Visible = true;
             btnGrabar.Visible = false;
@@ -290,14 +290,14 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         }
         //@001 - F
 
-        if (Session["nid_usuario_detalle"] != null || Session["nid_usuario_editar"] != null)
+        if (Session["Nid_usuario_detalle"] != null || Session["Nid_usuario_editar"] != null)
         {
             UsuarioTallerBL objneg = new UsuarioTallerBL();
             UsuarioBE objent = new UsuarioBE();
-            if (Session["nid_usuario_detalle"] != null)
-                objent.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-            else if (Session["nid_usuario_editar"] != null)
-                objent.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+            if (Session["Nid_usuario_detalle"] != null)
+                objent.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+            else if (Session["Nid_usuario_editar"] != null)
+                objent.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
             List<UsuarioBE> list = objneg.GETListarDetalleUsuarioPorCodigo(objent);
             ddl_tipo_doc.SelectedIndex = 1;
             ddl_tipo_doc.Enabled = false;
@@ -392,12 +392,12 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
             else
                 ddlModulo.SelectedIndex = 0;
 
-            if (Session["nid_usuario_detalle"] != null)
+            if (Session["Nid_usuario_detalle"] != null)
             {
                 HabilitarDatosGenerales(false);
                 ddl_tipo_doc.Enabled = false;
             }
-            else if (Session["nid_usuario_editar"] != null)
+            else if (Session["Nid_usuario_editar"] != null)
             {
                 HabilitarDatosGenerales(true);
                 ddl_tipo_doc.Enabled = false;
@@ -425,7 +425,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         ddl_linea_comercial_tienda.Enabled = false;
         Habilitar_PrmAdmTienda(false);
 
-        if (Session["nid_usuario_detalle"] != null || Session["nid_usuario_editar"] != null)
+        if (Session["Nid_usuario_detalle"] != null || Session["Nid_usuario_editar"] != null)
         {
             if (ViewState["perfil"].ToString() == "ATIE") //adm. tienda
             {
@@ -453,9 +453,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                     lst_modelo_sel_tienda.Items[i].Text = list3[i].DES;
                 }
 
-                if (Session["nid_usuario_detalle"] != null)
+                if (Session["Nid_usuario_detalle"] != null)
                     Habilitar_PrmAdmTienda(false);
-                else if (Session["nid_usuario_editar"] != null)
+                else if (Session["Nid_usuario_editar"] != null)
                 {
                     Habilitar_PrmAdmTienda(true);
                     ddl_provincia_tienda.Enabled = false;
@@ -488,7 +488,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
 
         Habilitar_PrmAdmTaller(false);
 
-        if (Session["nid_usuario_detalle"] != null || Session["nid_usuario_editar"] != null)
+        if (Session["Nid_usuario_detalle"] != null || Session["Nid_usuario_editar"] != null)
         {
             if (ViewState["perfil"].ToString() == "ATAL") //adm. taller
             {
@@ -513,11 +513,11 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                     lst_modelos_sel_taller.Items[i].Text = list5[i].DES;
                 }
 
-                if (Session["nid_usuario_detalle"] != null)
+                if (Session["Nid_usuario_detalle"] != null)
                 {
                     Habilitar_PrmAdmTaller(false);
                 }
-                else if (Session["nid_usuario_editar"] != null)
+                else if (Session["Nid_usuario_editar"] != null)
                 {
                     Habilitar_PrmAdmTaller(true);
 
@@ -550,7 +550,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         ddl_linea_comercial_ase_serv_t.SelectedIndex = 0;
         ddl_linea_comercial_ase_serv_t.Enabled = false;
         Habilitar_PrmAsesorServicio_Taller(false);
-        if (Session["nid_usuario_detalle"] != null || Session["nid_usuario_editar"] != null)
+        if (Session["Nid_usuario_detalle"] != null || Session["Nid_usuario_editar"] != null)
         {
             if (ViewState["perfil"].ToString() == "ASRV" || ViewState["perfil"].ToString() == "MECA") //asesor servicio //@004 I/F
             {
@@ -580,9 +580,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                     lst_modelos_sel_ase_serv_t.Items[i].Text = list6[i].DES;
                 }
 
-                if (Session["nid_usuario_detalle"] != null)
+                if (Session["Nid_usuario_detalle"] != null)
                     Habilitar_PrmAsesorServicio_Taller(false);
-                else if (Session["nid_usuario_editar"] != null)
+                else if (Session["Nid_usuario_editar"] != null)
                 {
                     Habilitar_PrmAsesorServicio_Taller(true);
                     ddl_marca_ase_serv_t.Enabled = false;
@@ -600,11 +600,11 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         ddl_hora_inicio.Enabled = false;
         ddl_hora_fin.Enabled = false;
 
-        if (Session["nid_usuario_nuevo"] != null)
+        if (Session["Nid_usuario_nuevo"] != null)
             CargarFeriados();
         Habilitar_PrmAsesorServicio_Horario(false);
 
-        if (Session["nid_usuario_detalle"] != null || Session["nid_usuario_editar"] != null)
+        if (Session["Nid_usuario_detalle"] != null || Session["Nid_usuario_editar"] != null)
         {
             if (ViewState["perfil"].ToString() == "ASRV" || ViewState["perfil"].ToString() == "MECA") //asesor servicio //@004 I/F
             {
@@ -717,9 +717,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                 }
                 else
                     CargarFeriados();
-                if (Session["nid_usuario_detalle"] != null)
+                if (Session["Nid_usuario_detalle"] != null)
                     Habilitar_PrmAsesorServicio_Horario(false);
-                else if (Session["nid_usuario_editar"] != null)
+                else if (Session["Nid_usuario_editar"] != null)
                 {
                     Habilitar_PrmAsesorServicio_Horario(true);
                     ddl_hora_inicio.Enabled = false;
@@ -739,7 +739,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
 
         Habilitar_PrmAsesorServicio_Serv(false);
 
-        if (Session["nid_usuario_detalle"] != null || Session["nid_usuario_editar"] != null)
+        if (Session["Nid_usuario_detalle"] != null || Session["Nid_usuario_editar"] != null)
         {
             if (ViewState["perfil"].ToString() == "ASRV") //asesor servicio
             {
@@ -753,9 +753,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                     lst_servicio_espec_sel_s.Items[i].Value = list9[i].IntID.ToString();
                     lst_servicio_espec_sel_s.Items[i].Text = list9[i].DES;
                 }
-                if (Session["nid_usuario_detalle"] != null)
+                if (Session["Nid_usuario_detalle"] != null)
                     Habilitar_PrmAsesorServicio_Serv(false);
-                else if (Session["nid_usuario_editar"] != null)
+                else if (Session["Nid_usuario_editar"] != null)
                     Habilitar_PrmAsesorServicio_Serv(true);
             }
         }
@@ -781,7 +781,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         ddl_linea_comercial_call.SelectedIndex = 0;
         ddl_linea_comercial_call.Enabled = false;
         Habilitar_PrmOprCallCenter_Taller(false);
-        if (Session["nid_usuario_detalle"] != null || Session["nid_usuario_editar"] != null)
+        if (Session["Nid_usuario_detalle"] != null || Session["Nid_usuario_editar"] != null)
         {
             if (ViewState["perfil"].ToString() == "CALL") //opr call center
             {
@@ -808,9 +808,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                     lst_modelos_sel_call.Items[i].Text = list11[i].DES;
                 }
 
-                if (Session["nid_usuario_detalle"] != null)
+                if (Session["Nid_usuario_detalle"] != null)
                     Habilitar_PrmOprCallCenter_Taller(false);
-                else if (Session["nid_usuario_editar"] != null)
+                else if (Session["Nid_usuario_editar"] != null)
                 {
                     Habilitar_PrmOprCallCenter_Taller(true);
                     ddl_provincia_call.Enabled = false;
@@ -830,7 +830,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
 
         Habilitar_PrmOprCallCenter_Servicio(false);
 
-        if (Session["nid_usuario_detalle"] != null || Session["nid_usuario_editar"] != null)
+        if (Session["Nid_usuario_detalle"] != null || Session["Nid_usuario_editar"] != null)
         {
             if (ViewState["perfil"].ToString() == "CALL") //asesor servicio
             {
@@ -844,9 +844,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                     lst_servicio_espec_sel_cc.Items[i].Value = list9[i].IntID.ToString();
                     lst_servicio_espec_sel_cc.Items[i].Text = list9[i].DES;
                 }
-                if (Session["nid_usuario_detalle"] != null)
+                if (Session["Nid_usuario_detalle"] != null)
                     Habilitar_PrmOprCallCenter_Servicio(false);
-                else if (Session["nid_usuario_editar"] != null)
+                else if (Session["Nid_usuario_editar"] != null)
                     Habilitar_PrmOprCallCenter_Servicio(true);
             }
         }
@@ -867,7 +867,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         UsuarioTallerBL objneg = new UsuarioTallerBL();
         UsuarioBE objent = new UsuarioBE();
 
-        objent.Nid_usuario = (Session["nid_usuario_editar"] != null) ? Convert.ToInt32(Session["nid_usuario_editar"].ToString()) : Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
+        objent.Nid_usuario = (Session["Nid_usuario_editar"] != null) ? Convert.ToInt32(Session["Nid_usuario_editar"].ToString()) : Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
 
         AppMiTaller.Intranet.BE.UsuarioBEList lstCapacidad = objneg.GETListarCapacidadAtencion_PorUsuario(objent);
 
@@ -907,7 +907,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         UsuarioTallerBL objneg = new UsuarioTallerBL();
         UsuarioBE objent = new UsuarioBE();
         objent.Co_Perfil_Login = Profile.Usuario.co_perfil_usuario;
-        objent.Nid_Usuario_Login = Profile.Usuario.NID_USUARIO;
+        objent.Nid_usuario_Login = Profile.Usuario.Nid_usuario;
         List<UsuarioBE> List = objneg.GETListarPtoRedTaller_PorDistrito(objent);
         DataTable dt = new DataTable();
         dt.Columns.Add("nid_ubica", System.Type.GetType("System.Int32"));
@@ -931,10 +931,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioBE ent1 = new UsuarioBE();
         UsuarioTallerBL neg1 = new UsuarioTallerBL();
-        if (Session["nid_usuario_detalle"] != null)
-            ent1.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent1.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent1.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent1.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list2 = neg1.GETListarPtoRed_PorUsuario(ent1);
         ViewState.Add("listptoredtda", list2);
         ent1 = null; neg1 = null;
@@ -943,10 +943,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioTallerBL neg2 = new UsuarioTallerBL();
         UsuarioBE ent2 = new UsuarioBE();
-        if (Session["nid_usuario_detalle"] != null)
-            ent2.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent2.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent2.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent2.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list3 = neg2.GETListarModelos_PorUsuario(ent2);
         ViewState.Add("list_mod", list3);
         ent2 = null; neg2 = null;
@@ -956,10 +956,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioTallerBL neg3 = new UsuarioTallerBL();
         UsuarioBE ent3 = new UsuarioBE();
-        if (Session["nid_usuario_detalle"] != null)
-            ent3.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent3.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent3.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent3.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list4 = neg3.GETListarTalleres_PorUsuario(ent3);
         ViewState.Add("listtaller", list4);
         ent3 = null; neg3 = null;
@@ -968,10 +968,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioTallerBL neg4 = new UsuarioTallerBL();
         UsuarioBE ent4 = new UsuarioBE();
-        if (Session["nid_usuario_detalle"] != null)
-            ent4.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent4.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent4.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent4.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list5 = neg4.GETListarModelos_PorUsuario(ent4);
         ViewState.Add("list_mod", list5);
         ent4 = null; neg4 = null;
@@ -981,10 +981,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioTallerBL neg9 = new UsuarioTallerBL();
         UsuarioBE ent9 = new UsuarioBE();
-        if (Session["nid_usuario_detalle"] != null)
-            ent9.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent9.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent9.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent9.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list10 = neg9.GETListarTalleres_PorUsuario(ent9);
         ViewState.Add("listtaller", list10);
         ent9 = null; neg9 = null;
@@ -993,10 +993,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioTallerBL neg10 = new UsuarioTallerBL();
         UsuarioBE ent10 = new UsuarioBE();
-        if (Session["nid_usuario_detalle"] != null)
-            ent10.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent10.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent10.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent10.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list11 = neg10.GETListarModelos_PorUsuario(ent10);
         ViewState.Add("list_mod", list11);
         ent10 = null; neg10 = null;
@@ -1005,10 +1005,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioBE ent8 = new UsuarioBE();
         UsuarioTallerBL neg8 = new UsuarioTallerBL();
-        if (Session["nid_usuario_detalle"] != null)
-            ent8.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent8.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent8.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent8.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list9 = neg8.GETListarServicios_PorUsuario(ent8);
         ViewState.Add("listserv_call", list9);
         ent8 = null; neg8 = null;
@@ -1018,10 +1018,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioTallerBL neg5_1 = new UsuarioTallerBL();
         UsuarioBE ent5_1 = new UsuarioBE();
-        if (Session["nid_usuario_detalle"] != null)
-            ent5_1.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent5_1.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent5_1.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent5_1.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list6_1 = neg5_1.GETListarTaller_PorUsuario_AsesServ(ent5_1);
         ViewState.Add("listtaller", list6_1);
         ent5_1 = null; neg5_1 = null;
@@ -1030,10 +1030,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioTallerBL neg5 = new UsuarioTallerBL();
         UsuarioBE ent5 = new UsuarioBE();
-        if (Session["nid_usuario_detalle"] != null)
-            ent5.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent5.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent5.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent5.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list6 = neg5.GETListarModelos_PorUsuario(ent5);
         ViewState.Add("list_mod", list6);
         ent5 = null; neg5 = null;
@@ -1042,10 +1042,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioBE ent6 = new UsuarioBE();
         UsuarioTallerBL neg6 = new UsuarioTallerBL();
-        if (Session["nid_usuario_detalle"] != null)
-            ent6.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent6.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent6.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent6.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list7 = neg6.GETListarHorario_PorUsuario(ent6);
         ViewState.Add("list_horario", list7);
         ent6 = null; neg6 = null;
@@ -1054,10 +1054,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioBE ent7 = new UsuarioBE();
         UsuarioTallerBL neg7 = new UsuarioTallerBL();
-        if (Session["nid_usuario_detalle"] != null)
-            ent7.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent7.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent7.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent7.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list8 = neg7.GETListarDiasExcep_PorUsuario(ent7);
         ViewState.Add("listDiasExcep", list8);
         ent7 = null; neg7 = null;
@@ -1066,10 +1066,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         UsuarioBE ent8 = new UsuarioBE();
         UsuarioTallerBL neg8 = new UsuarioTallerBL();
-        if (Session["nid_usuario_detalle"] != null)
-            ent8.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
-        else if (Session["nid_usuario_editar"] != null)
-            ent8.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
+        if (Session["Nid_usuario_detalle"] != null)
+            ent8.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
+        else if (Session["Nid_usuario_editar"] != null)
+            ent8.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
         List<UsuarioBE> list9 = neg8.GETListarServicios_PorUsuario(ent8);
         ViewState.Add("listserv", list9);
         ent8 = null; neg8 = null;
@@ -1159,7 +1159,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     private void CargarUbigeo(ref DropDownList ddl_dpto, ref DropDownList ddl_prov, ref DropDownList ddl_dist)
     {
         UsuarioTallerBL objNegUsu = new UsuarioTallerBL();
-        List<UsuarioBE> ListUbigeo = objNegUsu.GETListarUbigeo(Profile.Usuario.NID_USUARIO);
+        List<UsuarioBE> ListUbigeo = objNegUsu.GETListarUbigeo(Profile.Usuario.Nid_usuario);
         DataTable dtUbigeo = new DataTable();
         dtUbigeo.Columns.Add("coddpto", System.Type.GetType("System.String"));
         dtUbigeo.Columns.Add("codprov", System.Type.GetType("System.String"));
@@ -1193,7 +1193,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         UsuarioTallerBL objNeg = new UsuarioTallerBL();
         UsuarioBE objEnt = new UsuarioBE();
         objEnt.Co_Perfil_Login = Profile.Usuario.co_perfil_usuario;
-        objEnt.Nid_Usuario_Login = Profile.Usuario.NID_USUARIO;
+        objEnt.Nid_usuario_Login = Profile.Usuario.Nid_usuario;
         List<UsuarioBE> List = objNeg.GETListarUbicacion(objEnt);
         if (List.Count > 0)
         {
@@ -1235,7 +1235,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         UsuarioTallerBL objNeg = new UsuarioTallerBL();
         UsuarioBE objEnt = new UsuarioBE();
         //objEnt.Co_Perfil_Login = Profile.Usuario.co_perfil_usuario;
-        //objEnt.Nid_Usuario_Login = Profile.Usuario.NID_USUARIO;
+        //objEnt.Nid_usuario_Login = Profile.Usuario.Nid_usuario;
         List<UsuarioBE> List = objNeg.GETListarTipoPuntosRedPorDistrito();
         if (List.Count > 0)
         {
@@ -1284,7 +1284,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     private void CargarMarcaEmpresa(ref DropDownList ddl_empresa)
     {
         UsuarioTallerBL objNeg = new UsuarioTallerBL();
-        List<UsuarioBE> List = objNeg.GETListarMarcaEmpresa(Profile.Usuario.NID_USUARIO);
+        List<UsuarioBE> List = objNeg.GETListarMarcaEmpresa(Profile.Usuario.Nid_usuario);
         if (List.Count > 0)
         {
             DataTable dt = new DataTable();
@@ -1332,7 +1332,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     private void CargarLineaComercialMarca()
     {
         UsuarioTallerBL objNeg = new UsuarioTallerBL();
-        List<UsuarioBE> List = objNeg.GETListarLineaComercialMarca(Profile.Usuario.NID_USUARIO);
+        List<UsuarioBE> List = objNeg.GETListarLineaComercialMarca(Profile.Usuario.Nid_usuario);
         if (List.Count > 0)
         {
             DataTable dt = new DataTable();
@@ -1352,7 +1352,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         UsuarioTallerBL objneg = new UsuarioTallerBL();
         UsuarioBE objent = new UsuarioBE();
         objent.Co_Perfil_Login = Profile.Usuario.co_perfil_usuario;
-        objent.Nid_Usuario_Login = Profile.Usuario.NID_USUARIO;
+        objent.Nid_usuario_Login = Profile.Usuario.Nid_usuario;
         List<UsuarioBE> List = objneg.GETListarModelo_LineaMarca(objent);
         if (List.Count > 0)
         {
@@ -1573,7 +1573,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
             string co_talleres = string.Empty;
 
 
-            if (Session["nid_usuario_nuevo"] != null)
+            if (Session["Nid_usuario_nuevo"] != null)
             {
                 #region GRABAR
                 try
@@ -1841,7 +1841,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                             if (oParametros.SRC_Pais.Equals(2))
                             {
                                 CitasBE oCitas = new CitasBE();
-                                oCitas.nid_usuario = _ID_USUARIO;
+                                oCitas.Nid_usuario = _ID_USUARIO;
                                 oCitas.nid_modulo = Convert.ToInt32(ddlModulo.SelectedValue.ToString());
                                 oCitas.co_usuario_crea = Profile.UserName;
                                 oCitas.co_usuario_red = Profile.UsuarioRed;
@@ -2012,7 +2012,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                         //@004 F
 
                         //objEnt = null; objneg = null;
-                        Session["nid_usuario_nuevo"] = null; Session["nid_usuario_detalle"] = null; Session["nid_usuario_editar"] = null;
+                        Session["Nid_usuario_nuevo"] = null; Session["Nid_usuario_detalle"] = null; Session["Nid_usuario_editar"] = null;
                         lbl_mensajebox.Text = "El registro se guardo con exito.";
                         popup_msgbox_confirm.Show();
                     }
@@ -2021,7 +2021,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                 #endregion
             }
 
-            if (Session["nid_usuario_editar"] != null || Session["nid_usuario_detalle"] != null)
+            if (Session["Nid_usuario_editar"] != null || Session["Nid_usuario_detalle"] != null)
             {
                 #region ACTUALIZAR
 
@@ -2029,10 +2029,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                 {
                     fl_tipo = "2";
 
-                    if (Session["nid_usuario_editar"] != null)
-                        _ID_USUARIO = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
-                    else if (Session["nid_usuario_detalle"] != null)
-                        _ID_USUARIO = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
+                    if (Session["Nid_usuario_editar"] != null)
+                        _ID_USUARIO = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
+                    else if (Session["Nid_usuario_detalle"] != null)
+                        _ID_USUARIO = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
 
 
                     #region ACTUALIZAR_USUARIO
@@ -2103,10 +2103,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                             #region ACTUALIZAR_USUARIO_UBICACION - TIENDA
                             List<UsuarioBE> listub = (List<UsuarioBE>)ViewState["listptoredtda"];
 
-                            if (Session["nid_usuario_editar"] != null)
-                                objEnt.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
-                            else if (Session["nid_usuario_detalle"] != null)
-                                objEnt.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
+                            if (Session["Nid_usuario_editar"] != null)
+                                objEnt.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
+                            else if (Session["Nid_usuario_detalle"] != null)
+                                objEnt.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
 
 
                             objEnt.Co_usuario_cambio = Profile.UserName;
@@ -2680,10 +2680,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
 
                             Boolean _flag2 = true;
 
-                            if (Session["nid_usuario_editar"] != null)
-                                objEnt.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
-                            else if (Session["nid_usuario_detalle"] != null)
-                                objEnt.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
+                            if (Session["Nid_usuario_editar"] != null)
+                                objEnt.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
+                            else if (Session["Nid_usuario_detalle"] != null)
+                                objEnt.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
 
                             if (List.Count > lst_dias_excep.Items.Count)
                             {
@@ -2889,7 +2889,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
 
                             if (hfCapacidad.Value.ToString().Length > 0)
                             {
-                                objEnt.Nid_usuario = int.Parse((Session["nid_usuario_editar"] == null) ? Session["nid_usuario_detalle"].ToString() : Session["nid_usuario_editar"].ToString());
+                                objEnt.Nid_usuario = int.Parse((Session["Nid_usuario_editar"] == null) ? Session["Nid_usuario_detalle"].ToString() : Session["Nid_usuario_editar"].ToString());
                                 objEnt.Co_usuario_crea = Profile.UserName;
                                 objEnt.Co_usuario_red = Profile.UsuarioRed;
                                 objEnt.No_estacion_red = Profile.Estacion;
@@ -2999,7 +2999,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                             if (oParametros.SRC_Pais.Equals(2))
                             {
                                 CitasBE oCitas = new CitasBE();
-                                oCitas.nid_usuario = _ID_USUARIO;
+                                oCitas.Nid_usuario = _ID_USUARIO;
                                 oCitas.nid_modulo = Convert.ToInt32(ddlModulo.SelectedValue.ToString());
                                 oCitas.co_usuario_crea = Profile.UserName;
                                 oCitas.co_usuario_red = Profile.UsuarioRed;
@@ -3326,10 +3326,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
 
                             Boolean _flag2 = true;
 
-                            if (Session["nid_usuario_editar"] != null)
-                                objEnt.Nid_usuario = Convert.ToInt32(Session["nid_usuario_editar"].ToString());
-                            else if (Session["nid_usuario_detalle"] != null)
-                                objEnt.Nid_usuario = Convert.ToInt32(Session["nid_usuario_detalle"].ToString());
+                            if (Session["Nid_usuario_editar"] != null)
+                                objEnt.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_editar"].ToString());
+                            else if (Session["Nid_usuario_detalle"] != null)
+                                objEnt.Nid_usuario = Convert.ToInt32(Session["Nid_usuario_detalle"].ToString());
 
                             if (List.Count > lst_dias_excep.Items.Count)
                             {
@@ -3529,7 +3529,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
 
                             if (hfCapacidad.Value.ToString().Length > 0)
                             {
-                                objEnt.Nid_usuario = int.Parse((Session["nid_usuario_editar"] == null) ? Session["nid_usuario_detalle"].ToString() : Session["nid_usuario_editar"].ToString());
+                                objEnt.Nid_usuario = int.Parse((Session["Nid_usuario_editar"] == null) ? Session["Nid_usuario_detalle"].ToString() : Session["Nid_usuario_editar"].ToString());
                                 objEnt.Co_usuario_crea = Profile.UserName;
                                 objEnt.Co_usuario_red = Profile.UsuarioRed;
                                 objEnt.No_estacion_red = Profile.Estacion;
@@ -3573,7 +3573,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                         }
                         //@004 F
                         objEnt = null; objneg = null;
-                        Session["nid_usuario_nuevo"] = null; Session["nid_usuario_detalle"] = null; Session["nid_usuario_editar"] = null;
+                        Session["Nid_usuario_nuevo"] = null; Session["Nid_usuario_detalle"] = null; Session["Nid_usuario_editar"] = null;
                         lbl_mensajebox.Text = "El registro se actualizo con exito.";
                         popup_msgbox_confirm.Show();
                     }
@@ -3594,7 +3594,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
 
     private Boolean HayErrorEnDatosGenerales()
     {
-        if (Session["nid_usuario_editar"] != null || Session["nid_usuario_detalle"] != null)
+        if (Session["Nid_usuario_editar"] != null || Session["Nid_usuario_detalle"] != null)
         {
             if (ViewState["CUSR_ID"].ToString() != txt_login.Text.Trim())
             {
@@ -3607,7 +3607,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
                 }
             }
         }
-        else if (Session["nid_usuario_nuevo"] != null)
+        else if (Session["Nid_usuario_nuevo"] != null)
         {
             if (ExisteLogin(txt_login.Text.Trim()) == "1")
             {
@@ -3628,9 +3628,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
     {
         try
         {
-            Session["nid_usuario_nuevo"] = null;
-            Session["nid_usuario_editar"] = null;
-            Session["nid_usuario_detalle"] = null;
+            Session["Nid_usuario_nuevo"] = null;
+            Session["Nid_usuario_editar"] = null;
+            Session["Nid_usuario_detalle"] = null;
             Response.Redirect("SRC_Maestro_Usuarios.aspx");
         }
         catch { }

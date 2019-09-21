@@ -97,7 +97,7 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
                 {
                     db.ProcedureName = "sgsnet_sps_listado_tipo_destino_to_solicitar_despacho";
                     db.AddParameter("@vi_va_tip_ubica", DbType.String, ParameterDirection.Input, pcTipoUbica);
-                    db.AddParameter("@vi_in_nid_usuario", DbType.Int64, ParameterDirection.Input, pnUsuario);
+                    db.AddParameter("@vi_in_Nid_usuario", DbType.Int64, ParameterDirection.Input, pnUsuario);
 
                     DReader = db.GetDataReader();
                 }

@@ -74,7 +74,6 @@ public partial class SGS_UserControl_ComboNegocio : System.Web.UI.UserControl
     {
         if (!Page.IsPostBack)
         {
-            //CargarCombo();            
             if (ViewState["_Width"] != null) this.cboNegocio.Width = (Unit)ViewState["_Width"];
         }
     }

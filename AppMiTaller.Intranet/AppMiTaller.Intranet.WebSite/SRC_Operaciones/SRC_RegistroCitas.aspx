@@ -1943,7 +1943,7 @@
 
     <script type="text/javascript">
         var no_pagina = window.location.pathname;
-        var nid_usuario = "<%=this.Profile.Usuario.NID_USUARIO %>";
+        var Nid_usuario = "<%=this.Profile.Usuario.Nid_usuario %>";
         var co_usuario = "<%=this.Profile.UserName.ToString() %>";
         var co_usuario_red = "<%=this.Profile.UsuarioRed.ToString() %>";
         var no_estacion_red = "<%=this.Profile.Estacion.ToString() %>";
@@ -2041,7 +2041,7 @@
             /*#endregion - Format controles Modal Actualizar Propietario/Cliente*/
 
             //#region - Carga controles
-            var strParametros = "{ nid_usuario: " + nid_usuario + "}";
+            var strParametros = "{ Nid_usuario: " + Nid_usuario + "}";
             var strUrlServicio = no_pagina + "/Get_Inicial";
             this.fc_getJsonAjax(strParametros, strUrlServicio, function (objResponse) {
                 this.fc_FillCombo("cboMarca_RV", objResponse.oComboMarca, this.text_Seleccione);
@@ -2160,7 +2160,7 @@
 
                     var parametros = new Array();
                     parametros[0] = nu_placa;
-                    parametros[1] = nid_usuario;
+                    parametros[1] = Nid_usuario;
                     var strParametros = "{'strParametros':" + JSON.stringify(parametros) + "}";
                     var strUrlServicio = no_pagina + "/Get_Vehiculo";
                     this.fc_getJsonAjax(strParametros, strUrlServicio, function (objResponse) {
@@ -2399,7 +2399,7 @@
             if (nid_tipo_servicio > 0) {
                 var parametros = new Array();
                 parametros[0] = nid_tipo_servicio;
-                parametros[1] = nid_usuario;
+                parametros[1] = Nid_usuario;
                 parametros[2] = oCita.nid_modelo;
                 var strParametros = "{'strParametros':" + JSON.stringify(parametros) + "}";
                 var strUrlServicio = no_pagina + "/Get_Servicios";
@@ -2431,7 +2431,7 @@
                 parametros[0] = nid_servicio;
                 parametros[1] = oCita.nid_marca;
                 parametros[2] = oCita.nid_modelo;
-                parametros[3] = nid_usuario;
+                parametros[3] = Nid_usuario;
                 parametros[4] = oCita.nu_placa;
                 parametros[5] = id_contactcenter;
                 parametros[6] = loadCampanias;
@@ -2572,7 +2572,7 @@
                     parametros[2] = coddpto;
                     parametros[3] = codprov;
                     parametros[4] = coddist;
-                    parametros[5] = nid_usuario;
+                    parametros[5] = Nid_usuario;
                     var strParametros = "{'strParametros':" + JSON.stringify(parametros) + "}";
                     var strUrlServicio = no_pagina + "/Get_UbicacionDisponible";
                     fc_getJsonAjax(strParametros, strUrlServicio, function (objResponse) {
@@ -2890,10 +2890,10 @@
                     parametros[5] = nid_ubica;
                     parametros[6] = nid_taller;
                     parametros[7] = $("#txtFecInicio").val();
-                    //parametros[8] = nid_usuario;
+                    //parametros[8] = Nid_usuario;
                     parametros[8] = $("#cboHoraInicioReserva").val();
                     parametros[9] = $("#cboHoraFinalReserva").val();
-                    parametros[10] = nid_usuario;
+                    parametros[10] = Nid_usuario;
 
                     var strParametros = "{'strParametros':" + JSON.stringify(parametros) + "}";
                     var strUrlServicio = no_pagina + "/Get_HorarioDisponible";
@@ -2988,7 +2988,7 @@
             parametros[10] = IntervaloT;
             parametros[11] = $("#cboHoraInicioReserva").val();
             parametros[12] = $("#cboHoraFinalReserva").val();
-            parametros[13] = nid_usuario;
+            parametros[13] = Nid_usuario;
             var strParametros = "{'strParametros':" + JSON.stringify(parametros) + "}";
             var strUrlServicio = no_pagina + "/Get_HorarioDisponible_Asesor";
             fc_getJsonAjax(strParametros, strUrlServicio, function (objResponse) {
@@ -3298,7 +3298,7 @@
             var nid_marca = $(this).val();
             if (nid_marca > 0) {
                 var parametros = new Array();
-                parametros[0] = nid_usuario;
+                parametros[0] = Nid_usuario;
                 parametros[1] = nid_marca;
                 var strParametros = "{'strParametros':" + JSON.stringify(parametros) + "}";
                 var strUrlServicio = no_pagina + "/Get_Modelos";
@@ -3349,7 +3349,7 @@
             arr_parametros[7] = $("#txtNombres_BusVeh").val();
             arr_parametros[8] = $("#txtApePaterno_BusVeh").val();
             arr_parametros[9] = $("#txtApeMaterno_BusVeh").val();
-            arr_parametros[10] = nid_usuario;
+            arr_parametros[10] = Nid_usuario;
 
             var strUrlServicio = no_pagina + "/Get_BandejaVehiculo";
             JQGrid_Util.AutoWidthResponsive(idGrilla_Vehiculo);
@@ -3384,7 +3384,7 @@
             var nid_marca = $(this).val();
             if (nid_marca > 0) {
                 var parametros = new Array();
-                parametros[0] = nid_usuario;
+                parametros[0] = Nid_usuario;
                 parametros[1] = nid_marca;
                 var strParametros = "{'strParametros':" + JSON.stringify(parametros) + "}";
                 var strUrlServicio = no_pagina + "/Get_Modelos";
@@ -3727,7 +3727,7 @@
                         parametros[16] = co_usuario_red;
                         parametros[17] = no_estacion_red;
                         parametros[18] = oCita.nu_placa;
-                        parametros[19] = nid_usuario;
+                        parametros[19] = Nid_usuario;
                         parametros[20] = pais_celular;
                         parametros[21] = pais_fijo;
                         parametros[22] = anexo_telefono;
@@ -3779,7 +3779,7 @@
             else {
                 var parametros = new Array();
                 parametros[0] = fc_Trim($("#txtPlaca").val());
-                parametros[1] = nid_usuario;
+                parametros[1] = Nid_usuario;
                 var strParametros = "{'strParametros':" + JSON.stringify(parametros) + "}";
                 var strUrlServicio = no_pagina + "/Get_HistorialCita";
                 fc_getJsonAjax(strParametros, strUrlServicio, function (objResponse) {
@@ -4033,7 +4033,7 @@
             parametros[8] = $("#txtFecFinal_PT").val();
             parametros[9] = $("#cboHoraInicioReserva_PT").val();
             parametros[10] = $("#cboHoraFinalReserva_PT").val();
-            parametros[11] = nid_usuario;
+            parametros[11] = Nid_usuario;
             var strParametros = "{'strParametros':" + JSON.stringify(parametros) + "}";
             var strUrlServicio = no_pagina + "/Get_HorarioDisponible_ProxTurnos";
             fc_getJsonAjax(strParametros, strUrlServicio, function (objResponse) {

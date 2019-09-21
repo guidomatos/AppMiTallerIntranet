@@ -87,7 +87,7 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
 
         try
         {
-            ActualizaTabs(0);
+            ActualizaTabs();
             this.chkUpdateCombos.Style["display"] = "none";
 
             /*Combo Tipo*/
@@ -117,12 +117,6 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
             this.cboPerfil.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
             this.cboPerfil.Items[0].Value = String.Empty;
 
-            /*Combo Punto Venta*/
-            this.cboPuntoVenta.Items.Clear();
-            this.cboPuntoVenta.Items.Insert(0, new ListItem());
-            this.cboPuntoVenta.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboPuntoVenta.Items[0].Value = String.Empty;
-
             this.cboUbicacion.Items.Clear();
             
             DestinoBL oDestinoBL = new DestinoBL();
@@ -134,7 +128,6 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
             oDestinoBE.Nom_ubicacion = String.Empty;
             oDestinoBE.Cod_estado = ConstanteBE.FL_ESTADO_ACTIVO;
             DestinoBEList oDestinoBEList = oDestinoBL.Listar(oDestinoBE);
-            //@019 F
             this.cboUbicacion.DataSource = oDestinoBEList;
             this.cboUbicacion.DataTextField = "Nom_corto_ubicacion";
             this.cboUbicacion.DataValueField = "Id_ubicacion";
@@ -143,47 +136,6 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
             this.cboUbicacion.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
             this.cboUbicacion.Items[0].Value = String.Empty;
 
-            /*combo Ubicacion Dependiente*/
-            this.cboUbicacionDependiente.Items.Clear();
-            this.cboUbicacionDependiente.Items.Insert(0, new ListItem());
-            this.cboUbicacionDependiente.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboUbicacionDependiente.Items[0].Value = String.Empty;
-
-            /*Combo Almacenera*/
-            this.cboAlmacenera.Items.Clear();
-            this.cboAlmacenera.Items.Insert(0, new ListItem());
-            this.cboAlmacenera.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboAlmacenera.Items[0].Value = String.Empty;
-
-            /*Combo Jefe Venta*/
-            this.cboJefeVenta.Items.Clear();
-            this.cboJefeVenta.Items.Insert(0, new ListItem());
-            this.cboJefeVenta.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboJefeVenta.Items[0].Value = String.Empty;
-
-            /*Combo Gerente*/
-            this.cboGerente.Items.Clear();
-            this.cboGerente.Items.Insert(0, new ListItem());
-            this.cboGerente.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboGerente.Items[0].Value = String.Empty;
-
-            /*Combo Punto Venta*/
-            this.cboPuntoVentaConc.Items.Clear();
-            this.cboPuntoVentaConc.Items.Insert(0, new ListItem());
-            this.cboPuntoVentaConc.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboPuntoVentaConc.Items[0].Value = String.Empty;
-
-            /*Combo Gerente*/
-            this.cboGerenteConc.Items.Clear();
-            this.cboGerenteConc.Items.Insert(0, new ListItem());
-            this.cboGerenteConc.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboGerenteConc.Items[0].Value = String.Empty;
-
-            /*Combo Agente Aduana*/
-            this.cboAgente.Items.Clear();
-            this.cboAgente.Items.Insert(0, new ListItem());
-            this.cboAgente.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboAgente.Items[0].Value = String.Empty;
 
             /*Paginado*/
             SetPaginacion();
@@ -203,16 +155,6 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
             oUsuarioBE.NID_ROL = 0;
 
             oUsuarioList01 = oUsuarioBL.GetAllUsuarioBandeja(oUsuarioBE, Profile.Aplicacion);
-            
-            this.cboAprobadorVentaLiberada.Items.Clear();
-            this.cboAprobadorVentaLiberada.DataSource = oUsuarioList01;
-            this.cboAprobadorVentaLiberada.DataTextField = "VNOMUSR";
-            this.cboAprobadorVentaLiberada.DataValueField = "NID_USUARIO";
-            this.cboAprobadorVentaLiberada.DataBind();
-            this.cboAprobadorVentaLiberada.Items.Insert(0, new ListItem());
-            this.cboAprobadorVentaLiberada.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboAprobadorVentaLiberada.Items[0].Value = String.Empty;
-
 
             oUsuarioBE = new UsuarioBE();
             oUsuarioBE.VNOMUSR = String.Empty;
@@ -227,9 +169,6 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
 
             txtDNI.Attributes.Add("onKeyPress", "javascript:return fc_ValidaNumero();");
             
-            this.lblReqNBrevete.Style["display"] = "none";
-            this.lblReqFBrevete.Style["display"] = "none";
-            
         }
         catch (Exception ex)
         {
@@ -242,26 +181,9 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
         UsuarioBL oUsuarioBL = new UsuarioBL();
         oUsuarioBL.ErrorEvent += new UsuarioBL.ErrorDelegate((Master as Seguridad).Transaction_ErrorEvent);
 
-        this.trHrJefeVenta.Style["display"] = "none";
-        this.trUbicacion.Style["display"] = "none";
-        this.trCanalVenta.Style["display"] = "none";
-        this.trUbicacionDependiente.Style["display"] = "none";
-        this.trAlmacenera.Style["display"] = "none";
-        this.trJefeVenta.Style["display"] = "none";
-        this.trAgente.Style["display"] = "none";
-        this.trAprobador.Style["display"] = "none";
-        this.trCanalVentaAux.Style["display"] = "none";
-
-        
-        this.trGerenteConc.Style["display"] = "none";
-        this.trUbicacionConc.Style["display"] = "none";
-        
-        this.tdGerentetexto.Style["display"] = "";
-        this.tdGerentecombo.Style["display"] = "";
-
         if (this.usuarioID != 0)
         {
-            ActualizaTabs(0);
+            ActualizaTabs();
             tipoAccion = ConstanteBE.TIPO_MODIFICAR;
 
             this.oUsuarioBE = oUsuarioBL.GetUsuarioById(this.usuarioID);
@@ -283,41 +205,14 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
 
             if (this.cboTipoUsuario.Items.FindByValue(this.oUsuarioBE.NID_TIPO.ToString()) != null) this.cboTipoUsuario.SelectedValue = this.oUsuarioBE.NID_TIPO.ToString();
             if (this.cboPerfil.Items.FindByValue(this.oUsuarioBE.NID_PERFIL.ToString()) != null) this.cboPerfil.SelectedValue = this.oUsuarioBE.NID_PERFIL.ToString();
-
-            String rol = String.Empty, rol1;
-            String flConcesionario = String.Empty;
-
-            PerfilBL oPerfilBL = new PerfilBL();
-            oPerfilBL.ErrorEvent += new PerfilBL.ErrorDelegate((Master as Seguridad).Transaction_ErrorEvent);
-            PerfilBEList list = oPerfilBL.GetPerfilesBandeja(Profile.Aplicacion, String.Empty, ConstanteBE.FL_ESTADO_ACTIVO, "");
-            rol1 = this.cboPerfil.SelectedValue;
-
-            if (list != null)
-            {
-                PerfilBE obj = list.Find(delegate (PerfilBE p) { return p.NID_PERFIL.ToString() == rol1; });
-                if (obj != null)
-                {
-                    rol = obj.co_perfil_usuario.Trim();
-                    ConstTipo = obj.co_perfil_usuario.Trim();
-                    flConcesionario = obj.fl_concesionario.Trim();
-                }
-            }
-
-            cboUbicacionDependiente_SelectedIndexChanged(null, null);
+            if (this.cboUbicacion.Items.FindByValue(this.oUsuarioBE.NID_UBICA.ToString()) != null) this.cboUbicacion.SelectedValue = this.oUsuarioBE.NID_UBICA.ToString();
+            
 
             this.txtFecIni.Text = this.oUsuarioBE.SFE_INICIO_ACCESO;
             this.txtFecFin.Text = this.oUsuarioBE.SFE_FIN_ACCESO;
             this.txtHoraIni.Text = this.oUsuarioBE.HR_INICIO_ACCESO.Trim();
             this.txtHoraFin.Text = this.oUsuarioBE.HR_FIN_ACCESO.Trim();
             this.txtMensaje.Text = this.oUsuarioBE.VMSGBLQ.Trim();
-
-
-
-            this.chkDisponible.Checked = false;
-            this.lbl1erSuplente.Visible = false;
-            this.cbo1erSuplente.Visible = false;
-            this.lbl2doSuplente.Visible = false;
-            this.cbo2doSuplente.Visible = false;
         }
         else
         {
@@ -342,15 +237,6 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
         SeguridadBL oSeguridadBL = new SeguridadBL();
         oSeguridadBL.ErrorEvent += new SeguridadBL.ErrorDelegate((Master as Seguridad).Transaction_ErrorEvent);
         
-        String str_cod_empresa = "";
-        foreach (ListItem item in cbo_empresa.Items)
-        {
-            if (item.Selected)
-            {
-                str_cod_empresa += item.Value + ",";
-            }
-        }
-        
         CargaDesdeForm();
 
         if (!this.txtClave.Text.Trim().Equals(String.Empty))
@@ -362,7 +248,7 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
             this.txhNidUsuario.Value = retorno.ToString();
             JavaScriptHelper.Alert(this, Message.keyGrabar, "");
             this.usuarioID = retorno;
-            this.oUsuarioBE.NID_USUARIO = this.usuarioID;
+            this.oUsuarioBE.Nid_usuario = this.usuarioID;
             CargaUsuario();
         }
         else
@@ -471,10 +357,6 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
 
     #region "Eventos Combos"
 
-    protected void cboUbicacion_SelectedIndexChanged(object sender, EventArgs e)
-    {
-    }
-
     protected void combos_SelectedIndexChanged(object sender, EventArgs e)
     {
         String rol = String.Empty, rol1;
@@ -488,25 +370,6 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
 
         try
         {
-            this.trHrJefeVenta.Style["display"] = "none";
-            this.trJefeVenta.Style["display"] = "none";
-            this.trAlmacenera.Style["display"] = "none";
-            this.trAgente.Style["display"] = "none";
-            this.trUbicacion.Style["display"] = "none";
-            this.trCanalVenta.Style["display"] = "none";
-            this.trUbicacionDependiente.Style["display"] = "none";
-            this.trAprobador.Style["display"] = "none";
-            this.trCanalVentaAux.Style["display"] = "none";
-            this.trUbicacionConc.Style["display"] = "none";
-            this.trGerenteConc.Style["display"] = "none";
-            this.tdGerentetexto.Style["display"] = "";
-            this.tdGerentecombo.Style["display"] = "";
-            this.lblReqNBrevete.Style["display"] = "none";
-            this.lblReqFBrevete.Style["display"] = "none";
-
-            this.cboCanalVentaConc.Enabled = true;
-            this.cboJefeVenta.Enabled = true;
-
             codPerfil = this.cboPerfil.SelectedValue;
 
             PerfilBEList list = oPerfilBL.GetPerfilesBandeja(Profile.Aplicacion, String.Empty, ConstanteBE.FL_ESTADO_ACTIVO, "");
@@ -526,12 +389,7 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
             this.txtDNI.CssClass = "";
             this.cboTipoUsuario.Enabled = true;
 
-
-            this.trHrJefeVenta.Style["display"] = "";
-
-            this.trCanalVenta.Style["display"] = "";
-
-            this.cboUbicacion.Items.Clear();
+            
             DestinoBL oDestinoBL = new DestinoBL();
             oDestinoBL.ErrorEvent += new DestinoBL.ErrorDelegate((Master as Seguridad).Transaction_ErrorEvent);
             DestinoBE oDestinoBE = new DestinoBE();
@@ -541,6 +399,7 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
             oDestinoBE.Cod_estado = ConstanteBE.FL_ESTADO_ACTIVO;
             DestinoBEList oDestinoBEList = oDestinoBL.Listar(oDestinoBE);
 
+            this.cboUbicacion.Items.Clear();
             this.cboUbicacion.DataSource = oDestinoBEList;
             this.cboUbicacion.DataTextField = "Nom_corto_ubicacion";
             this.cboUbicacion.DataValueField = "Id_ubicacion";
@@ -549,116 +408,10 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
             this.cboUbicacion.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
             this.cboUbicacion.Items[0].Value = String.Empty;
 
-            this.cboUbicacionDependiente.Items.Clear();
-            this.cboUbicacionDependiente.Items.Insert(0, new ListItem());
-            this.cboUbicacionDependiente.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboUbicacionDependiente.Items[0].Value = String.Empty;
-
-            /*Combo Jefe Venta*/
-            this.cboJefeVenta.Items.Clear();
-            this.cboJefeVenta.Items.Insert(0, new ListItem());
-            this.cboJefeVenta.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboJefeVenta.Items[0].Value = String.Empty;
-
-            /*Combo Gerente*/
-            this.cboGerente.Items.Clear();
-            this.cboGerente.Items.Insert(0, new ListItem());
-            this.cboGerente.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-            this.cboGerente.Items[0].Value = String.Empty;
-
         }
         catch { }
     }
-
-    protected void cboCanalVenta_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        
-    }
-
-    protected void cboCanalVentaConc_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        
-    }
-
-    protected void cboPuntoVentaConc_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        
-    }
-
-    protected void cboPuntoVenta_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        
-    }
-    protected void cboUbicacionDependiente_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        Int32 ubicacion;
-        UsuarioBEList oUsuarioList;
-        UsuarioBL oUsuarioBL = new UsuarioBL();
-        UsuarioBE oUsuarioBE;
-        oUsuarioBL.ErrorEvent += new UsuarioBL.ErrorDelegate((Master as Seguridad).Transaction_ErrorEvent);
-        Int32.TryParse(this.cboUbicacionDependiente.SelectedValue, out ubicacion);
-        Int32 idperfil = 0;
-
-        oUsuarioBE = new UsuarioBE();
-        oUsuarioBE.NO_APE_MATERNO = String.Empty;
-        oUsuarioBE.NO_APE_PATERNO = String.Empty;
-        oUsuarioBE.VNOMUSR = String.Empty;
-        oUsuarioBE.NID_PERFIL = idperfil;
-        oUsuarioBE.FL_INACTIVO = ConstanteBE.FL_ESTADO_ACTIVO;
-        oUsuarioBE.NID_UBICA = 0;// ubicacion;
-        oUsuarioBE.NID_ROL = 1;
-
-        this.cboJefeVenta.Items.Clear();
-
-        oUsuarioList = oUsuarioBL.GetAllUsuarioBandeja(oUsuarioBE, Profile.Aplicacion);
-        this.cboJefeVenta.DataSource = oUsuarioList;
-        this.cboJefeVenta.DataTextField = "VNOMUSR";
-        this.cboJefeVenta.DataValueField = "NID_USUARIO";
-        this.cboJefeVenta.DataBind();
-        this.cboJefeVenta.Items.Insert(0, new ListItem());
-        this.cboJefeVenta.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-        this.cboJefeVenta.Items[0].Value = String.Empty;
-
-        oUsuarioBE = new UsuarioBE();
-        oUsuarioBE.NO_APE_MATERNO = String.Empty;
-        oUsuarioBE.NO_APE_PATERNO = String.Empty;
-        oUsuarioBE.VNOMUSR = String.Empty;
-        oUsuarioBE.NID_PERFIL = idperfil;
-        oUsuarioBE.FL_INACTIVO = ConstanteBE.FL_ESTADO_ACTIVO;
-        oUsuarioBE.NID_UBICA = 0;// ubicacion;
-        oUsuarioBE.NID_ROL = 2;
-
-        this.cboGerente.Items.Clear();
-
-        oUsuarioList = oUsuarioBL.GetAllUsuarioBandeja(oUsuarioBE, Profile.Aplicacion);
-        this.cboGerente.DataSource = oUsuarioList;
-        this.cboGerente.DataTextField = "VNOMUSR";
-        this.cboGerente.DataValueField = "NID_USUARIO";
-        this.cboGerente.DataBind();
-        this.cboGerente.Items.Insert(0, new ListItem());
-        this.cboGerente.Items[0].Text = ConstanteBE.OBJECTO_SELECCIONE;
-        this.cboGerente.Items[0].Value = String.Empty;
-    }
-
-    protected void chkDisponible_CheckedChanged(object sender, EventArgs e)
-    {
-        if (this.chkDisponible.Checked)
-        {
-            this.lbl1erSuplente.Visible = true;
-            this.cbo1erSuplente.Visible = true;
-            this.lbl2doSuplente.Visible = true;
-            this.cbo2doSuplente.Visible = true;
-        }
-        else
-        {
-            this.lbl1erSuplente.Visible = false;
-            this.cbo1erSuplente.Visible = false;
-            this.lbl2doSuplente.Visible = false;
-            this.cbo2doSuplente.Visible = false;
-        }
-
-    }
-
+    
     #endregion
 
     #region "Eventos de TAB"
@@ -667,20 +420,20 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
         Int32.TryParse(this.txhIndiceTab.Value.Trim(), out indiceTabOn);
         //indiceTabOn = this.tabContUsuario.ActiveTabIndex;
 
-        if (indiceTabOn == 1)
+        if (indiceTabOn == 0)
         {
             
         }
-        else if (indiceTabOn == 2)
+        else if (indiceTabOn == 1)
         {
             this.txhModuloSelected.Value = String.Empty;
             CargaOpcionesModulo();
         }
 
-        ActualizaTabs(indiceTabOn);
+        ActualizaTabs();
     }
 
-    private void ActualizaTabs(int indiceTab)
+    private void ActualizaTabs()
     {
         this.btnGrabar.Visible = false;
         this.btnGrabarPerfil.Visible = false;
@@ -692,7 +445,7 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
             this.btnGrabar.Visible = true;
             this.tblNuevoUsuario.Visible = true;
         }
-        else if (this.indiceTabOn == 2)
+        else if (this.indiceTabOn == 1)
         {
             this.tblPerfilAsociado.Visible = true;
             this.btnGrabarPerfil.Visible = true;
@@ -713,7 +466,7 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
         oOpcionSeguridadBE.CCOAPL = Profile.Aplicacion;
         oOpcionSeguridadBE.NIVEL = 1;
         oOpcionSeguridadBE.CSTRUCT = String.Empty;//this.oUsuarioBE.NID_PERFIL
-        oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, 0, this.usuarioID/*Profile.Usuario.NID_USUARIO*/);
+        oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, 0, this.usuarioID/*Profile.Usuario.Nid_usuario*/);
 
         this.txhCodOpciones.Value = String.Empty;
         this.txhIndOpciones.Value = String.Empty;
@@ -727,7 +480,7 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
 
             if (this.txhModuloSelected.Value.Trim().Equals(String.Empty)) this.txhModuloSelected.Value = oOpcion.CSTRUCT.Trim();
 
-            foreach (OpcionSeguridadBE oOpcionDet in oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, 0, this.usuarioID/*Profile.Usuario.NID_USUARIO*/))
+            foreach (OpcionSeguridadBE oOpcionDet in oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, 0, this.usuarioID/*Profile.Usuario.Nid_usuario*/))
             {
                 if (this.txhCodOpciones.Value.Trim().IndexOf("|" + oOpcionDet.NID_OPCION.ToString().Trim() + "|") < 0)
                 {
@@ -788,7 +541,7 @@ public partial class SGS_Seguridad_SGS_Usuario_Mantenimiento : PaginaBase
             oOpcionSeguridadBE.CCOAPL = Profile.Aplicacion;
             oOpcionSeguridadBE.NIVEL = 0;
             oOpcionSeguridadBE.CSTRUCT = this.txhModuloSelected.Value.Trim();//this.oUsuarioBE.NID_PERFIL
-            oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, 0, this.usuarioID/*Profile.Usuario.NID_USUARIO*/);
+            oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, 0, this.usuarioID/*Profile.Usuario.Nid_usuario*/);
 
             if (oOpcionSeguridadBEList != null && oOpcionSeguridadBEList.Count == 0) oOpcionSeguridadBEList.Add(new OpcionSeguridadBE());
 

@@ -77,9 +77,6 @@ public partial class SGS_Mantenimiento_SGS_Destino_Mantenimiento : PaginaBase
         this.ComboDistrito1.Condicion = ConstanteBE.OBJECTO_TIPO_SELECCIONE;
         ComboDistrito1.CssClass = "cboob";
 
-        tdAduana1.Style["display"] = "none";
-        tdAduana2.Style["display"] = "none";
-
         tipoAccion = ConstanteBE.TIPO_AGREGAR;
     }
     private void InicializaData()
@@ -174,7 +171,6 @@ public partial class SGS_Mantenimiento_SGS_Destino_Mantenimiento : PaginaBase
     }
     protected void btnRegresar_Click(object sender, ImageClickEventArgs e)
     {
-        chkAlmacenCampo.Checked.Equals("False");
         Response.Redirect(String.Format("SGS_Destino_Bandeja.aspx"), false);
     }
     private void CargarEntidadDesdeForm()

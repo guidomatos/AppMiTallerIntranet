@@ -7,7 +7,7 @@ namespace AppMiTaller.Intranet.BE
     [Serializable]
     public class TipoServicioBE
     {
-        public int nid_usuario { get; set; }
+        public int Nid_usuario { get; set; }
         public int Id_TipoServicio { get; set; }
         public String Co_tipo_servicio { get; set; }
         public String No_tipo_servicio { get; set; }

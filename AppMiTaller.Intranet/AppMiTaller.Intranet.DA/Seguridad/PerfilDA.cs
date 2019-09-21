@@ -199,7 +199,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
                 db.AddParameter("@VI_IN_NIVEL", DbType.Int32, ParameterDirection.Input, oOpcionSeguridadBE.NIVEL);
                 db.AddParameter("@VI_VC_STRUCT", DbType.String, ParameterDirection.Input, oOpcionSeguridadBE.CSTRUCT);
                 db.AddParameter("@VI_IN_PERFIL", DbType.Int32, ParameterDirection.Input, perfilID);
-                db.AddParameter("@vi_in_nid_usuario", DbType.Int32, ParameterDirection.Input, idUsuario);
+                db.AddParameter("@vi_in_Nid_usuario", DbType.Int32, ParameterDirection.Input, idUsuario);
                 reader = db.GetDataReader();
             }
 
@@ -364,7 +364,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
                     db.ProcedureName = "sgsnet_spi_perfil_usuario";
                     db.AddParameter("@vi_in_id_perfil", DbType.Int32, ParameterDirection.Input, oUsuarioBE.NID_PERFIL);
                     db.AddParameter("@vi_ch_cod_aplicacion", DbType.String, ParameterDirection.Input, aplicacionID);
-                    db.AddParameter("@vi_ch_id_usuario", DbType.Int32, ParameterDirection.Input, oUsuarioBE.NID_USUARIO);
+                    db.AddParameter("@vi_ch_id_usuario", DbType.Int32, ParameterDirection.Input, oUsuarioBE.Nid_usuario);
                     db.AddParameter("@vi_va_cod_usuario", DbType.String, ParameterDirection.Input, oUsuarioBE.CO_USUARIO_CREA);
                     db.AddParameter("@vi_va_nom_estacion_red", DbType.String, ParameterDirection.Input, oUsuarioBE.NO_ESTACION_RED);
                     db.AddParameter("@vi_va_nom_usuario_red", DbType.String, ParameterDirection.Input, oUsuarioBE.NO_USUARIO_RED);
@@ -425,8 +425,8 @@ namespace AppMiTaller.Intranet.DA.Seguridad
             UsuarioBE oUsuarioBE = new UsuarioBE();
             int indice;
 
-            indice = reader.GetOrdinal("nid_usuario");
-            if (!reader.IsDBNull(indice)) oUsuarioBE.NID_USUARIO = reader.GetInt32(indice);
+            indice = reader.GetOrdinal("Nid_usuario");
+            if (!reader.IsDBNull(indice)) oUsuarioBE.Nid_usuario = reader.GetInt32(indice);
 
             indice = reader.GetOrdinal("nom_usuario");
             oUsuarioBE.VNOMUSR = reader.IsDBNull(indice) ? String.Empty : reader.GetString(indice);

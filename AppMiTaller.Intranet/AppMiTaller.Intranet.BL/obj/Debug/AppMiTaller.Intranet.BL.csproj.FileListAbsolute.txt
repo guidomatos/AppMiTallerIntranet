@@ -43,3 +43,16 @@ C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.I
 C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.csproj.CopyComplete
 C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.dll
 C:\proyectos\AppMiTaller\AppMiTaller.Intranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.BL.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.BL.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.BE.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.DA.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\CarlosAg.ExcelXmlWriter.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\zxing.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.BE.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.DA.pdb
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.csprojAssemblyReference.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.csproj.CoreCompileInputs.cache
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.csproj.CopyComplete
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.dll
+D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.pdb

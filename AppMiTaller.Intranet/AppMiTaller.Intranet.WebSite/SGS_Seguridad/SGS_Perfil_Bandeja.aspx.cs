@@ -205,7 +205,7 @@ public partial class SGS_Seguridad_SGS_Perfil_Bandeja : PaginaBase
         String perfil = this.txtPerfil.Text.Trim();
         String estado = this.cboEstado.SelectedValue.ToString();
 
-        String idUsuario = Profile.Usuario.NID_USUARIO.ToString();
+        String idUsuario = Profile.Usuario.Nid_usuario.ToString();
 
 
         String coPaginaActual = CONSTANTE_SEGURIDAD.Perfiles;

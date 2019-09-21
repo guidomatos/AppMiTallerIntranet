@@ -85,7 +85,7 @@
                                             <tr>
                                                 <!-- CABECERA -->
                                                 <td>
-                                                    <img src="../Images/Tabs/borarriba.gif"></td>
+                                                    <img alt="" src="../Images/Tabs/borarriba.gif"></td>
                                             </tr>
                                             <tr style="height: 435px">
                                                 <td style="background-color: #ffffff" valign="top">

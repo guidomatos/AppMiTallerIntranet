@@ -28,7 +28,7 @@ public partial class Seguridad : System.Web.UI.MasterPage
             oOpcionSeguridadBE.CCOAPL = Profile.Aplicacion;
             oOpcionSeguridadBE.NIVEL = 0;
             oOpcionSeguridadBE.CSTRUCT = CONSTANTE_SEGURIDAD.Seguridad;
-            oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, Profile.Usuario.NID_PERFIL, Profile.Usuario.NID_USUARIO);
+            oOpcionSeguridadBEList = oPerfilBL.GetAllOpciones(oOpcionSeguridadBE, Profile.Usuario.NID_PERFIL, Profile.Usuario.Nid_usuario);
 
             OpcionSeguridadBE oOpSeguridad;
             for (int i = 0; i < oOpcionSeguridadBEList.Count; i++)

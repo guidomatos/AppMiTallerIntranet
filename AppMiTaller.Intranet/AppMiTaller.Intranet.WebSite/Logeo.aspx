@@ -6,7 +6,6 @@
     <title>SRC</title>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10; IE=EmulateIE11" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="Images/Minvest.ico" />
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="bootstrap/css/JqGrid/jquery-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
@@ -224,7 +223,7 @@
         
         <div class="contenedor-login">
 			<p class="header">
-				<img src="Images/logo_SGA.png" alt="Logo" style="display:none">
+				<img src="Images/logo_SGA.png" alt="Logo" style="display:none" />
 				<label class="title">
 							Sistema de Reserva de Citas</label>
 			</p>
@@ -232,7 +231,7 @@
                 <div style="text-align: right;">
                     <label style="font-size:16px;">
                         Ingreso al Sistema</label>
-                        <img alt="" src="Images/Flash/bandera.png" style="height:15px;margin-bottom: 5px;display:none">
+                        <img alt="" src="Images/Flash/bandera.png" style="height:15px;margin-bottom: 5px;display:none" />
 					</div>
                 <div>
                     <div style="background: url('Images/Flash/puntos.gif') repeat-x; padding-bottom:1px;">
@@ -280,17 +279,11 @@
                                 </div>
                                 <div>
                                     <div class="form-horizontal">
-                                    <div class="form-group" style="font-size:13px">
-                                    <div class="col-xs-6" style="text-align:left;">
-                                        <a id="lnkCambiarPwd" href="#">Cambiar contraseña</a>
+                                        <div class="form-group" style="font-size:13px">
+                                            <div class="col-xs-6" style="text-align:left;">
+                                                <a id="lnkCambiarPwd" href="#">Cambiar contraseña</a>
+                                            </div>
                                         </div>
-                                        <div class="col-xs-6" style="text-align:right";>
-                                        <a id="lnkRecuperarPwd" href="#">Recuperar contraseña</a>
-                                        </div>
-                                        
-                                    <asp:LinkButton ID="lbRecuperarContrasena" runat="server" OnClick="lbRecuperarContrasena_Click"
-                                        Style="display: none;">Recuperar Contraseña</asp:LinkButton>
-                                    </div>
                                     </div>
                                         
                                     <asp:Panel ID="pnlMensaje" runat="server" Visible="false">
@@ -411,18 +404,6 @@
             document.getElementById("<%=txtNewPwd_CambioPwd.ClientID%>").value = "";
             document.getElementById("<%=txtConfirmPwd_CambioPwd.ClientID%>").value = "";
             $("#modal_CambiarPwd").modal("show");
-        });
-
-        $("#lnkRecuperarPwd").click(function() {
-            if (document.getElementById("pnlLogeo_UserName").value != "") {
-                fc_Confirm("Esta acción reinicializará su contraseña y le enviará un correo con instrucciones para poder ingresar nuevamente al sistema. ¿Desea continuar?", function(res) {
-                    if (res == true) {
-                        document.getElementById("pnlLogeo_lbRecuperarContrasena").click();
-                    }
-                });
-            } else {
-                fc_Alert("Debe ingresar un usuario!");
-            }
         });
 
         $("#btnLimpiar_CambioPwd").click(function() {

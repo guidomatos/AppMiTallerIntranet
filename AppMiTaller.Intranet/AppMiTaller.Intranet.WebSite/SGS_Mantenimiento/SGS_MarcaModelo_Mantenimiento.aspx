@@ -346,7 +346,6 @@
                                 <asp:UpdatePanel id="upGvCiudad" runat="server" UpdateMode="Conditional">
                                     <contenttemplate>
                                         <asp:hiddenfield ID="txhIdModelo" runat="server"></asp:hiddenfield>
-                                        <asp:hiddenfield ID="txhIdMoneda" runat="server"></asp:hiddenfield>
                                         <asp:HiddenField ID="txhNombreArchivoBD" runat="server"/>
                                         <asp:GridView ID="gvModelo" runat="server" Width="785px" SkinId="Grilla"
                                             DataKeyNames="nid_modelo,fl_inactivo"
@@ -357,12 +356,11 @@
                                             OnSorting="gvModelo_Sorting" 
                                             AllowSorting="True">
                                             <PagerStyle HorizontalAlign="Right"/>
-                                            <Columns>                                
+                                            <Columns>
                                                 <asp:BoundField DataField="co_modelo" HeaderText="Codigo" SortExpression="co_modelo">
                                                     <ItemStyle Width="10%" />
                                                     <HeaderStyle Width="10%" />
                                                 </asp:BoundField>
-                                                
                                                 <asp:BoundField DataField="no_modelo" HeaderText="Modelo" SortExpression="no_modelo">
                                                     <ItemStyle Width="20%" />
                                                     <HeaderStyle Width="20%" />
@@ -407,7 +405,7 @@
 </cc1:TabContainer>
     
 <div id="overlay"></div>
-<div id="modalMsg" style="width: 470px; height: 400px;" class="HideModal">
+<div id="modalMsg" style="width: 470px; height: 200px;" class="HideModal">
 
     <asp:Panel ID="pnlRegistroModelo" runat="server" CssClass="PanelPopup_g" Style="display: block; width:470px;">
     <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:44px;">
@@ -461,8 +459,8 @@
                                 <td valign="bottom"><img alt="" src="../Images/Mantenimiento/fbarr.gif" width="450px" /></td>   
                             </tr>
                             <tr>
-                                <td style="background-color: #ffffff; vertical-align: top; width:540px; height:230px; padding-left:5px; padding-right:5px;">
-                                    <table style="width: 100%" border="0" cellpadding="1" cellspacing="1" class="cuerponuevo" bordercolor="red">
+                                <td style="background-color: #ffffff; vertical-align: top; width:540px; height:120px; padding-left:5px; padding-right:5px;">
+                                    <table style="width: 100%" border="0" cellpadding="1" cellspacing="1" class="cuerponuevo">
                                         <tr>
                                             <td style="width: 40%">Marca</td>
                                             <td style="width: 60%"><asp:TextBox ID="txtNomMarModeloPoput" runat="server" Columns="30" ReadOnly="True" SkinID="txtdes"></asp:TextBox></td>

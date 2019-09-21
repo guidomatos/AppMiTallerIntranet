@@ -411,7 +411,7 @@ public partial class SGS_Mantenimiento_SGS_MarcaModelo_Mantenimiento : PaginaBas
         String nomModelo = this.txtNomModelo.Text;
         String codEstado = this.cboEstadoModelo.SelectedValue;
 
-        this.oModelosBEList = oModelosBL.GetAllBandeja(this.idMarca, codModelo, nomModelo, codEstado, Profile.Usuario.NID_USUARIO);
+        this.oModelosBEList = oModelosBL.GetAllBandeja(this.idMarca, codModelo, nomModelo, codEstado, Profile.Usuario.Nid_usuario);
 
         if (this.oModelosBEList == null || this.oModelosBEList.Count == 0)
         {

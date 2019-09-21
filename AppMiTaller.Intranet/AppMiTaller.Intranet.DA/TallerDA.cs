@@ -36,7 +36,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[SRC_SPS_SEL_TALLERES_POR_PARAMETROS_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     db.AddParameter("@vi_co_perfil_usuario", DbType.String, ParameterDirection.Input, ent.Co_perfil_usuario);
                     db.AddParameter("@vi_co_taller", DbType.String, ParameterDirection.Input, ent.co_taller);
                     db.AddParameter("@vi_no_taller", DbType.String, ParameterDirection.Input, ent.no_taller);
@@ -124,7 +124,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_sps_ubicacion_BO]";
                     db.AddParameter("@vi_co_perfil_login", DbType.String, ParameterDirection.Input, ent.Co_perfil_usuario);
-                    db.AddParameter("@vi_nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -1056,7 +1056,7 @@ namespace AppMiTaller.Intranet.DA
             return res;
         }
 
-        public TallerBEList GETListarUbigeo(int nid_usuario)
+        public TallerBEList GETListarUbigeo(int Nid_usuario)
         {
             TallerBEList lista = new TallerBEList();
             IDataReader DReader = null;
@@ -1065,7 +1065,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[src_sps_ubigeo_BO]";
-                    db.AddParameter("@vi_nid_usuario", DbType.Int32, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario", DbType.Int32, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -1104,7 +1104,7 @@ namespace AppMiTaller.Intranet.DA
             return Entidad;
         }
 
-        public CombosBEList GETListarDepartamento(int nid_usuario)
+        public CombosBEList GETListarDepartamento(int Nid_usuario)
         {
             CombosBEList lista = new CombosBEList();
             IDataReader DReader = null;
@@ -1113,7 +1113,7 @@ namespace AppMiTaller.Intranet.DA
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "[src_sps_listado_departamento]";
-                    db.AddParameter("@nid_usuario", DbType.String, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@Nid_usuario", DbType.String, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -1131,7 +1131,7 @@ namespace AppMiTaller.Intranet.DA
             }
             return lista;
         }
-        public CombosBEList GETListarProvincia(TallerBE ent, int nid_usuario)
+        public CombosBEList GETListarProvincia(TallerBE ent, int Nid_usuario)
         {
             CombosBEList lista = new CombosBEList();
             IDataReader DReader = null;
@@ -1141,7 +1141,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_sps_listado_provincia]";
                     db.AddParameter("@coddpto", DbType.String, ParameterDirection.Input, ent.coddpto);
-                    db.AddParameter("@nid_usuario", DbType.String, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@Nid_usuario", DbType.String, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -1159,7 +1159,7 @@ namespace AppMiTaller.Intranet.DA
             }
             return lista;
         }
-        public CombosBEList GETListarDistrito(TallerBE ent, int nid_usuario)
+        public CombosBEList GETListarDistrito(TallerBE ent, int Nid_usuario)
         {
             CombosBEList lista = new CombosBEList();
             IDataReader DReader = null;
@@ -1170,7 +1170,7 @@ namespace AppMiTaller.Intranet.DA
                     db.ProcedureName = "[src_sps_listado_distrito]";
                     db.AddParameter("@coddpto", DbType.String, ParameterDirection.Input, ent.coddpto);
                     db.AddParameter("@codprov", DbType.String, ParameterDirection.Input, ent.codprov);
-                    db.AddParameter("@nid_usuario", DbType.String, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@Nid_usuario", DbType.String, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -1189,7 +1189,7 @@ namespace AppMiTaller.Intranet.DA
             return lista;
         }
 
-        public CombosBEList GETListarPuntoRed(TallerBE ent, int nid_usuario)
+        public CombosBEList GETListarPuntoRed(TallerBE ent, int Nid_usuario)
         {
             CombosBEList lista = new CombosBEList();
             IDataReader DReader = null;
@@ -1201,7 +1201,7 @@ namespace AppMiTaller.Intranet.DA
                     db.AddParameter("@vi_coddpto", DbType.String, ParameterDirection.Input, ent.coddpto);
                     db.AddParameter("@vi_codprov", DbType.String, ParameterDirection.Input, ent.codprov);
                     db.AddParameter("@vi_coddist", DbType.String, ParameterDirection.Input, ent.coddist);
-                    db.AddParameter("@nid_usuario", DbType.String, ParameterDirection.Input, nid_usuario);
+                    db.AddParameter("@Nid_usuario", DbType.String, ParameterDirection.Input, Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())
@@ -1418,7 +1418,7 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[SRC_SPS_LISTADO_MARCA_MODELO_BO]";
                     db.AddParameter("@vi_co_perfil_login", DbType.String, ParameterDirection.Input, ent.Co_perfil_usuario);
-                    db.AddParameter("@vi_nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
+                    db.AddParameter("@vi_Nid_usuario_login", DbType.Int32, ParameterDirection.Input, ent.Nid_usuario);
                     DReader = db.GetDataReader();
                 }
                 while (DReader.Read())

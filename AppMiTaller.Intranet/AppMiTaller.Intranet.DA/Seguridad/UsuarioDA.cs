@@ -54,7 +54,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "sgsnet_spd_usuario_masivo";
-                    db.AddParameter("@vi_va_nid_usuarios", DbType.String, ParameterDirection.Input, cadena);
+                    db.AddParameter("@vi_va_Nid_usuarios", DbType.String, ParameterDirection.Input, cadena);
                     db.AddParameter("@vi_in_contador", DbType.Int32, ParameterDirection.Input, nuRegistros);
                     db.AddParameter("@vi_va_cod_usuario", DbType.String, ParameterDirection.Input, oUsuario.CO_USUARIO_CREA);
                     db.AddParameter("@vi_va_nom_usuario_red", DbType.String, ParameterDirection.Input, oUsuario.NO_USUARIO_RED);
@@ -74,7 +74,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "sgsnet_spu_activar_usuario_masivo";
-                    db.AddParameter("@vi_va_nid_usuarios", DbType.String, ParameterDirection.Input, cadena);
+                    db.AddParameter("@vi_va_Nid_usuarios", DbType.String, ParameterDirection.Input, cadena);
                     db.AddParameter("@vi_in_contador", DbType.Int32, ParameterDirection.Input, nuRegistros);
                     db.AddParameter("@vi_va_cod_usuario", DbType.String, ParameterDirection.Input, oUsuario.CO_USUARIO_CREA);
                     db.AddParameter("@vi_va_nom_usuario_red", DbType.String, ParameterDirection.Input, oUsuario.NO_USUARIO_RED);
@@ -136,7 +136,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
                 using (Database db = new Database())
                 {
                     db.ProcedureName = "sgsnet_spu_usuario";
-                    db.AddParameter("@vi_in_id_usuario", DbType.Int32, ParameterDirection.Input, oUsuario.NID_USUARIO);
+                    db.AddParameter("@vi_in_id_usuario", DbType.Int32, ParameterDirection.Input, oUsuario.Nid_usuario);
                     db.AddParameter("@vi_va_apaterno", DbType.String, ParameterDirection.Input, oUsuario.NO_APE_PATERNO);
                     db.AddParameter("@vi_va_amterno", DbType.String, ParameterDirection.Input, oUsuario.NO_APE_MATERNO);
                     db.AddParameter("@vi_va_nombre", DbType.String, ParameterDirection.Input, oUsuario.VNOMUSR);
@@ -186,7 +186,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
                 if (reader.Read())
                 {
                     indice = reader.GetOrdinal("id_usuario");
-                    if (!reader.IsDBNull(indice)) oUsuarioBE.NID_USUARIO = reader.GetInt32(indice);
+                    if (!reader.IsDBNull(indice)) oUsuarioBE.Nid_usuario = reader.GetInt32(indice);
                     indice = reader.GetOrdinal("apaterno");
                     oUsuarioBE.NO_APE_PATERNO = reader.IsDBNull(indice) ? String.Empty : reader.GetString(indice);
                     indice = reader.GetOrdinal("amaterno");
@@ -291,7 +291,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
             int indice;
 
             indice = reader.GetOrdinal("id_usuario");
-            if (!reader.IsDBNull(indice)) oUsuarioBE.NID_USUARIO = reader.GetInt32(indice);
+            if (!reader.IsDBNull(indice)) oUsuarioBE.Nid_usuario = reader.GetInt32(indice);
 
             indice = reader.GetOrdinal("apaterno");
             oUsuarioBE.NO_APE_PATERNO = reader.IsDBNull(indice) ? String.Empty : reader.GetString(indice);
@@ -350,7 +350,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
             int indice;
 
             indice = reader.GetOrdinal("id_usuario");
-            if (!reader.IsDBNull(indice)) oUsuarioBE.NID_USUARIO = reader.GetInt32(indice);
+            if (!reader.IsDBNull(indice)) oUsuarioBE.Nid_usuario = reader.GetInt32(indice);
 
             indice = reader.GetOrdinal("apaterno");
             oUsuarioBE.NO_APE_PATERNO = reader.IsDBNull(indice) ? String.Empty : reader.GetString(indice);
@@ -398,7 +398,7 @@ namespace AppMiTaller.Intranet.DA.Seguridad
             oUsuarioBE.SFL_INACTIVO = reader.IsDBNull(indice) ? String.Empty : reader.GetString(indice);
 
             indice = reader.GetOrdinal("cod_estado");
-            oUsuarioBE.FL_INACTIVO = reader.IsDBNull(indice) ? String.Empty : reader.GetString(indice);
+            oUsuarioBE.Fl_inactivo = reader.IsDBNull(indice) ? String.Empty : reader.GetString(indice);
 
             indice = reader.GetOrdinal("nu_tipo_documento");
             oUsuarioBE.NU_TIPO_DOCUMENTO = reader.IsDBNull(indice) ? String.Empty : reader.GetString(indice);

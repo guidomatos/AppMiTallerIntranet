@@ -473,21 +473,22 @@
         $(document).ready(function() { fc_cargaInicial(); });
         function fc_cargaInicial() {
 
-         
+
             $("#cboMarca, #cboModelo").append($('<option></option>').val('').html("--Todos--"));
             $("#cboMarcaA, #cboModeloA").append($('<option></option>').val('').html("--Seleccione--"));
-            $("#cboMarca").change(function() { fc_select(this.id); });
-            $("#cboModelo").change(function() { fc_select(this.id); });
-            $("#cboMarcaA").change(function() { fc_select(this.id); });
-            $("#cboModeloA").change(function() { fc_select(this.id); });
+            $("#cboMarca").change(function () { fc_select(this.id); });
+            $("#cboModelo").change(function () { fc_select(this.id); });
+            $("#cboMarcaA").change(function () { fc_select(this.id); });
+            $("#cboModeloA").change(function () { fc_select(this.id); });
 
 
             var parametros = new Array();
-            var usuario = "<%= Profile.Usuario.NID_USUARIO%>";
-           
+            var usuario = "<%= Profile.Usuario.Nid_usuario%>";
+
             parametros[0] = usuario;
             sendInfo = { parametros: parametros };
-            callAJAX('imgCargandoBandeja', true, 'ObtenerMarcas', sendInfo, function(res) {
+
+            callAJAX('', true, 'ObtenerMarcas', sendInfo, function (res) {
                 var len = res.d.length;
                 for (var i = 0; i < len; i++) {
                     $("#cboMarca").append($("<option></option>").val(res.d[i].codigo).html(res.d[i].nombre));
@@ -498,7 +499,7 @@
                 }
             });
 
-            callAJAX('imgCargandoBandeja', true, 'ObtenerMarcas', sendInfo, function(res) {
+            callAJAX('', true, 'ObtenerMarcas', sendInfo, function (res) {
                 var len = res.d.length;
                 for (var i = 0; i < len; i++) {
                     $("#cboMarcaA").append($("<option></option>").val(res.d[i].codigo).html(res.d[i].nombre));
@@ -508,9 +509,6 @@
                     }
                 }
             });
-
-
-
         }
  
     </script>
@@ -877,12 +875,18 @@
     <script type="text/javascript">
 
         function callAJAX(img, async, strUrl, strParametros, fn_Callback) {
+            
             $.ajax({
-                type: "POST", url: "SGS_ServicioModelo_Bandeja.aspx/" + strUrl, data: JSON.stringify(strParametros), contentType: 'application/json; charset=utf-8', dataType: 'json', async: async,
-                beforeSend: function() { fc_DisplayProgress(''); },
-                success: function(data, textStatus) { var resultado = data; fn_Callback(resultado); },
-                complete: function() { fc_DisplayProgress("none"); },
-                error: function(jqXHR, textStatus, errorThrown) {
+                type: "POST",
+                url: "SRC_ServicioModelo_Bandeja.aspx/" + strUrl,
+                data: JSON.stringify(strParametros),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                async: async,
+                beforeSend: function () { fc_DisplayProgress(''); },
+                success: function (data, textStatus) { var resultado = data; fn_Callback(resultado); },
+                complete: function () { fc_DisplayProgress("none"); },
+                error: function (jqXHR, textStatus, errorThrown) {
                     fc_DisplayProgress("none");
                     var errEstado = jqXHR.status;
                     var errMensaje = jqXHR.responseText == "" ? "" : jQuery.parseJSON(jqXHR.responseText).Message;
