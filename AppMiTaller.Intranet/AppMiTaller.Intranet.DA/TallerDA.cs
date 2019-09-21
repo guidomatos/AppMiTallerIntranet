@@ -1761,8 +1761,8 @@ namespace AppMiTaller.Intranet.DA
             indice = DReader.GetOrdinal("di_ubica");
             Entidad.Di_ubica = (DReader.IsDBNull(indice) ? "" : DReader.GetString(indice));
 
-            indice = DReader.GetOrdinal("nu_telefono");
-            Entidad.Nu_telefono_ubica = (DReader.IsDBNull(indice) ? "" : DReader.GetString(indice));
+            //indice = DReader.GetOrdinal("nu_telefono");
+            //Entidad.Nu_telefono_ubica = (DReader.IsDBNull(indice) ? "" : DReader.GetString(indice));
 
             return Entidad;
         }

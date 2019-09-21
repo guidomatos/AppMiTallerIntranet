@@ -15,7 +15,6 @@ namespace AppMiTaller.Intranet.BE
     }
     public enum TipoTabla
     {
-        EMPRESA = 1,
         MARCA = 2,
         MODELO = 3
     }

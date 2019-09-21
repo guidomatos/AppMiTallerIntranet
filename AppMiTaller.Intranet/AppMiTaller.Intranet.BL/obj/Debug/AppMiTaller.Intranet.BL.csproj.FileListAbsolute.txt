@@ -56,3 +56,16 @@ D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTa
 D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.csproj.CopyComplete
 D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.dll
 D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.pdb
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.BL.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.BL.pdb
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.BE.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.DA.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\CarlosAg.ExcelXmlWriter.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\zxing.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.BE.pdb
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\bin\Debug\AppMiTaller.Intranet.DA.pdb
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.csprojAssemblyReference.cache
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.csproj.CoreCompileInputs.cache
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.csproj.CopyComplete
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BL\obj\Debug\AppMiTaller.Intranet.BL.pdb

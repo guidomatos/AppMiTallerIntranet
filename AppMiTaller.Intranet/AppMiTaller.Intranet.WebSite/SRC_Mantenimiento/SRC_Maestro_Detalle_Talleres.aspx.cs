@@ -383,7 +383,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
         ddl_dist.SelectedIndex = -1; ddl_dist.Enabled = false;
         ddl_ptored.SelectedIndex = -1; ddl_ptored.Enabled = false;
 
-        txt_telefono.Text = "";
         txt_direccion.Text = "";
     }
 
@@ -392,10 +391,8 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
     private void MostrarDetallePorPuntoRed(TallerBE ent)
     {
         txt_direccion.Text = String.Empty;
-        txt_telefono.Text = String.Empty;
         List<TallerBE> List = objNeg.GETDetallePorPuntoRed(objEnt);
         txt_direccion.Text = List[0].Di_ubica.ToString();
-        txt_telefono.Text = List[0].Nu_telefono_ubica.ToString();
     }
 
     private void MostrarDiasExceptuadosPorTaller()
@@ -877,13 +874,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                     else
                         ddl_IndicadorHGSI.SelectedIndex = 0;
                 }
-                //}
-                /*@001 F*/
-
-                //@003-I
-                chkValeBO.Checked = List[0].fl_taxi_BO.ToString().Equals("1");
-                chkValeFO.Checked = List[0].fl_taxi_FO.ToString().Equals("1");
-                //@003-F
+                
 
                 if (List[0].co_intervalo_atenc != 0)
                     ddl_intervAtenc.SelectedValue = List[0].co_intervalo_atenc.ToString();
@@ -926,7 +917,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                     ddl_ptored.Enabled = false;
                 }
                 txt_direccion.Text = List[0].no_direccion;
-                txt_telefono.Text = List[0].nu_telefono;
                 if (List[0].fl_activo != "")
                     ddl_estado.SelectedValue = List[0].fl_activo;
                 else
@@ -1008,7 +998,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
         ddl_ptored.Enabled = flag;
         ddl_estado.Enabled = flag;
         txt_direccion.Enabled = flag;
-        txt_telefono.Enabled = flag;
         //MAPA
         FileUpload1.Enabled = flag;
         btn_SubirMapa.Enabled = flag;
@@ -1062,9 +1051,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
         btn_bus_ExcepCalFecFin.Enabled = flag;
         ddl_bus_excepestado.Enabled = flag;
 
-        chkValeBO.Enabled = flag;
-        chkValeFO.Enabled = flag;
-        
     }
 
     private void Label_X_Pais()
@@ -1191,7 +1177,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                     objEnt.nid_ubica = Convert.ToInt32(ddl_ptored.SelectedValue);
 
                 objEnt.no_direccion = txt_direccion.Text.Trim();
-                objEnt.nu_telefono = txt_telefono.Text.Trim();
                 objEnt.tx_url_taller = "";
 
                 objEnt.co_usuario = Profile.UserName;
@@ -1202,9 +1187,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
 
                 if (ddl_IndicadorHGSI.Visible) objEnt.co_valoracion = ddl_IndicadorHGSI.SelectedValue;
                 
-                objEnt.fl_taxi_BO = chkValeBO.Checked ? "1" : "0";
-                objEnt.fl_taxi_FO = chkValeFO.Checked ? "1" : "0";
-
                 //MAPA
                 if (ViewState["mapa"] == null)
                     objEnt.tx_mapa_taller = "";
@@ -1399,8 +1381,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                     objEnt.nid_ubica = Convert.ToInt32(ddl_ptored.SelectedValue);
 
                 objEnt.no_direccion = txt_direccion.Text.Trim();
-                objEnt.nu_telefono = txt_telefono.Text.Trim();
-
                 objEnt.Co_usuario_modi = Profile.UserName;
                 objEnt.co_usuario_red = Profile.UsuarioRed;
                 objEnt.no_estacion_red = Profile.Estacion;
@@ -1408,9 +1388,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                 objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
 
                 if (ddl_IndicadorHGSI.Visible) objEnt.co_valoracion = ddl_IndicadorHGSI.SelectedValue;
-
-                objEnt.fl_taxi_BO = chkValeBO.Checked ? "1" : "0";
-                objEnt.fl_taxi_FO = chkValeFO.Checked ? "1" : "0";
 
                 //MAPA
                 if (ViewState["mapa"] == null)
@@ -2248,7 +2225,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
     private void CargarProvinciaPorDepartamento()
     {
         txt_direccion.Text = String.Empty;
-        txt_telefono.Text = String.Empty;
         if (ddl_dpto.SelectedIndex != 0)
         {
             DataRow[] oRow = ((System.Data.DataTable)ViewState["dtubigeo"]).Select("codprov <> '00' AND coddist='00' AND coddpto='" + ddl_dpto.SelectedValue + "'", "nombre", DataViewRowState.CurrentRows);
@@ -2306,7 +2282,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
         ddl_ptored.Enabled = false;
 
         txt_direccion.Text = String.Empty;
-        txt_telefono.Text = String.Empty;
     }
 
     protected void ddl_prov_SelectedIndexChanged(object sender, EventArgs e)
@@ -2336,7 +2311,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
             ddl_ptored.Enabled = false;
 
         txt_direccion.Text = String.Empty;
-        txt_telefono.Text = String.Empty;
 
     }
 

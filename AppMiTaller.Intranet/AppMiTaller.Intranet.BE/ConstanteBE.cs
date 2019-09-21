@@ -44,7 +44,6 @@ namespace AppMiTaller.Intranet.BE
         /*Negocios*/
         public const string CO_NEGOCIO_MOTOS = "MOT";
         public const string CO_NEGOCIO_VEHICULOS = "VEH";
-        public const string CO_NEGOCIO_MAQUINARIAS = "MAQ";
 
         /*CONSTANTES DE TABLAS GENERALES*/
         public const Int32 NID_TABLA_TIPO_USUARIO = 10;

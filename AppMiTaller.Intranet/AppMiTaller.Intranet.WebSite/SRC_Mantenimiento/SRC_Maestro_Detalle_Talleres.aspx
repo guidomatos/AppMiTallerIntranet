@@ -478,7 +478,6 @@
 
             var txt_codtall = document.getElementById('<%=txt_codtall.ClientID%>');
             var txt_nomtall = document.getElementById('<%=txt_nomtall.ClientID%>');
-            var txt_telefono = document.getElementById('<%=txt_telefono.ClientID%>');
             var ddl_intervAtenc = document.getElementById('<%=ddl_intervAtenc.ClientID%>');
 
             if (txt_codtall.value.trim() == "") {
@@ -493,13 +492,6 @@
                 return false;
             }
 
-            if (txt_telefono.value.trim() != "") {
-                if (txt_telefono.value.length < 7) {
-                    alert('Campo Telefono no válido. Ingrese 7 Digitos como Minimo');
-                    txt_telefono.focus();
-                    return false;
-                }
-            }
 
             if (ddl_intervAtenc.selectedIndex == 0 || ddl_intervAtenc.selectedIndex == -1) {
                 alert('Debe Seleccionar un Intervalo de Atencion');
@@ -732,13 +724,7 @@
                                                                                         <td>
                                                                                             <asp:TextBox ID="txt_direccion" runat="server" Width="250px" MaxLength="150"></asp:TextBox>&nbsp;
                                                                                         </td>
-                                                                                        <td>Vale de Taxi
-                                                                                        </td>
-                                                                                        <td>BO
-                                                                                            <asp:CheckBox ID="chkValeBO" runat="server" Checked="false" />
-                                                                                            FO
-                                                                                            <asp:CheckBox ID="chkValeFO" runat="server" Checked="false" />
-                                                                                        </td>
+
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td>Estado
@@ -746,16 +732,6 @@
                                                                                         <td>
                                                                                             <asp:DropDownList ID="ddl_estado" runat="server" Width="210px">
                                                                                             </asp:DropDownList>
-                                                                                        </td>
-                                                                                        <td>Teléfono
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <asp:TextBox ID="txt_telefono" runat="server" MaxLength="20" Columns="15"></asp:TextBox><cc1:MaskedEditExtender
-                                                                                                ID="meeTelefono" runat="server" TargetControlID="txt_telefono" Enabled="True"
-                                                                                                CultureAMPMPlaceholder="" CultureCurrencySymbolPlaceholder="" CultureDateFormat=""
-                                                                                                CultureThousandsPlaceholder="" CultureDecimalPlaceholder="" CultureTimePlaceholder=""
-                                                                                                CultureDatePlaceholder="" Mask="99999999999">
-                                                                                            </cc1:MaskedEditExtender>
                                                                                         </td>
                                                                                         <td></td>
                                                                                         <td></td>

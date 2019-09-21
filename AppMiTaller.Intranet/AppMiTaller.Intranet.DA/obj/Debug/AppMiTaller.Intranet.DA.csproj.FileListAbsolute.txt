@@ -34,3 +34,12 @@ D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTa
 D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Debug\AppMiTaller.Intranet.DA.csproj.CopyComplete
 D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Debug\AppMiTaller.Intranet.DA.dll
 D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Debug\AppMiTaller.Intranet.DA.pdb
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\bin\Debug\AppMiTaller.Intranet.DA.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\bin\Debug\AppMiTaller.Intranet.DA.pdb
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\bin\Debug\AppMiTaller.Intranet.BE.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\bin\Debug\AppMiTaller.Intranet.BE.pdb
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Debug\AppMiTaller.Intranet.DA.csprojAssemblyReference.cache
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Debug\AppMiTaller.Intranet.DA.csproj.CoreCompileInputs.cache
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Debug\AppMiTaller.Intranet.DA.csproj.CopyComplete
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Debug\AppMiTaller.Intranet.DA.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.DA\obj\Debug\AppMiTaller.Intranet.DA.pdb
