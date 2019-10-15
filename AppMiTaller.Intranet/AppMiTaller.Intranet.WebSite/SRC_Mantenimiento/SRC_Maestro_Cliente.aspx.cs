@@ -255,7 +255,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Cliente : System.Web.UI.Page
                                             , txh_nid_cliente.ClientID, dataKey.Values["nid_cliente"].ToString());
             Session["edidet_objEnt"] = "2";
             Session["NUEVO"] = null;
-            e.Row.Attributes["ondblclick"] = String.Format("javascript: location.href='SRC_Maestro_Detalle_Cliente.aspx?nid_cliente={0}'", dataKey.Values["nid_cliente"].ToString());
+           // e.Row.Attributes["ondblclick"] = String.Format("javascript: location.href='SRC_Maestro_Detalle_Cliente.aspx?nid_cliente={0}'", dataKey.Values["nid_cliente"].ToString());
         }
     }
     protected void gdClientes_Sorting(object sender, GridViewSortEventArgs e)

@@ -130,6 +130,7 @@
                                                                                             <asp:CheckBox ID="chkObservacion" runat="server" Text="Visible?"></asp:CheckBox>
                                                                                         </td>
                                                                                     </tr>
+                                                                                    <!--
                                                                                     <tr>
                                                                                         <td>Validar Kilometraje?
                                                                                         </td>
@@ -137,6 +138,7 @@
                                                                                             <asp:CheckBox ID="chkKm" runat="server"></asp:CheckBox>
                                                                                         </td>
                                                                                     </tr>
+                                                                                    -->
                                                                                     <tr>
                                                                                         <td colspan="2"></td>
                                                                                     </tr>

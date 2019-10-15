@@ -365,6 +365,7 @@ namespace AppMiTaller.Intranet.DA
                         db.AddParameter("@vi_fl_taxi_FO", DbType.String, ParameterDirection.Input, DBNull.Value);
                     else
                         db.AddParameter("@vi_fl_taxi_FO", DbType.String, ParameterDirection.Input, ent.fl_taxi_FO);
+                    db.AddParameter("@vi_descripcion", DbType.String, ParameterDirection.Input, ent.descripcion);
                     db.Execute();
                     nId = Convert.ToInt32(db.GetParameter("@vo_nid_taller"));
                     return nId;

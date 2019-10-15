@@ -140,11 +140,11 @@
 
                                     <asp:ImageButton ID="btnBuscar" runat="server" ToolTip="Buscar" ImageUrl="~/Images/iconos/b-buscar.gif"
                                         onmouseover="javascript:this.src='../Images/iconos/b-buscar2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-buscar.gif'" OnClick="btnBuscar_Click" />
-
+                                    <!--
                                     <asp:ImageButton ID="btnVerDet" runat="server" ToolTip="Detalle" ImageUrl="~/Images/iconos/b-ordendespacho.png"
                                         onmouseover="javascript:this.src='../Images/iconos/b-ordendespacho2.png'" onmouseout="javascript:this.src='../Images/iconos/b-ordendespacho.png'"
                                         OnClick="btnVerDet_Click" OnClientClick="javascript:return Valida_Boton_Detalle()" />
-
+                                    -->
                                     <asp:ImageButton ID="btnNuevo" runat="server" ToolTip="Nuevo" ImageUrl="~/Images/iconos/b-nuevo.gif"
                                         onmouseover="javascript:this.src='../Images/iconos/b-nuevo2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-nuevo.gif'"
                                         OnClick="btnNuevo_Click" />
@@ -152,7 +152,7 @@
                                     <asp:ImageButton ID="BtnEditar" runat="server" ToolTip="Editar" ImageUrl="~/Images/iconos/b-modificarped.gif"
                                         onmouseover="javascript:this.src='../Images/iconos/b-modificarped2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-modificarped.gif'"
                                         OnClick="BtnEditar_Click" OnClientClick="javascript:return Valida_Boton_Editar()" />
-
+                                    <!--
                                     <asp:Image ID="btnGargaMasiva" runat="server" ToolTip="Carga Masiva" Visible="true" ImageUrl="~/Images/iconos/b-importar.gif"
                                         Style="cursor: pointer" onClick="javascript: return Fc_AbrirCargaMasiva();"
                                         onmouseover="javascript:this.src='../Images/iconos/b-importar2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-importar.gif'" />
@@ -160,6 +160,7 @@
                                     <asp:ImageButton ID="btnExcel" runat="server" ToolTip="Excel" ImageUrl="~/Images/iconos/b-excel.gif"
                                         onmouseover="javascript:this.src='../Images/iconos/b-excel2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-excel.gif'"
                                         OnClick="btnExcel_Click" OnClientClick="javascript:return Valida_Boton_Exportar_Excel()" />
+                                    -->
 
                                 </td>
                             </tr>
@@ -235,7 +236,7 @@
                                                                                                 <asp:DropDownList ID="ddl_distrito" runat="server" AutoPostBack="True" Width="200px" OnSelectedIndexChanged="ddl_distrito_SelectedIndexChanged"></asp:DropDownList></td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td>Punto de Red</td>
+                                                                                            <td>Local</td>
                                                                                             <td>
                                                                                                 <asp:DropDownList ID="ddl_puntored" runat="server" Width="151px"></asp:DropDownList></td>
                                                                                             <td></td>

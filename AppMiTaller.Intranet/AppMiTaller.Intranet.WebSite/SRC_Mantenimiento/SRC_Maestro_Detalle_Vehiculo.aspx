@@ -760,7 +760,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
-                                                                                    <asp:Panel ID="p_cliente" runat="server">
+                                                                                    <asp:Panel ID="p_cliente" runat="server" Visible="true">
                                                                                         <table style="margin-left: 5px; margin-right: 5px; background-color: #ffffff" cellspacing="0"
                                                                                             cellpadding="0" width="960" border="0">
                                                                                             <tbody>
@@ -862,7 +862,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
-                                                                                    <asp:Panel ID="p_contacto" runat="server">
+                                                                                    <asp:Panel ID="p_contacto" runat="server" Visible="true">
                                                                                         <table style="margin-left: 5px; margin-right: 5px; background-color: #ffffff" cellspacing="0"
                                                                                             cellpadding="0" width="960" border="0">
                                                                                             <tbody>

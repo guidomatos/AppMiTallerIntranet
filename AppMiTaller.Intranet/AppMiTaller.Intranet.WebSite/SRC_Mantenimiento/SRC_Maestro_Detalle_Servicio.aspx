@@ -26,7 +26,7 @@
                 // track number of decimal points
                 if (numstr.charAt(i) == ".")
                     decCount++;
-                if (!((numstr.charAt(i) >= "0") && (numstr.charAt(i) <= "9") ||
+                if (!((numstr.charAt(i) >= "0") && (numstr.charAt(i) <= "8") ||
                     (numstr.charAt(i) == "-") || (numstr.charAt(i) == "."))) {
                     isValid = false;
                     break;
@@ -215,16 +215,18 @@
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
-                                                                                        <td>Tiempo Promedio </td>
+                                                                                        <td><asp:Label ID="lbTprom" Text="Tiempo Promedio" runat="server"></asp:Label></td>
                                                                                         <td>
                                                                                             <asp:TextBox ID="txtTprom" runat="server" MaxLength="5" SkinID="txtob"></asp:TextBox>&nbsp;
                                                                                         </td>
                                                                                     </tr>
+                                                                                    <!--
                                                                                     <tr>
                                                                                         <td>Quick Service</td>
                                                                                         <td>
                                                                                             <asp:CheckBox ID="chkquickservice" runat="server" Checked="True" Text=" " /></td>
                                                                                     </tr>
+                                                                                    -->
                                                                                     <tr>
                                                                                         <td>Estado</td>
                                                                                         <td>
@@ -232,6 +234,7 @@
                                                                                             </asp:DropDownList>
                                                                                         </td>
                                                                                     </tr>
+                                                                                    <!--
                                                                                     <tr>
                                                                                         <td valign="top">Dias Válidos</td>
                                                                                         <td>
@@ -246,6 +249,7 @@
                                                                                                 <asp:ListItem Selected="True" Value="7">DOM</asp:ListItem>
                                                                                             </asp:CheckBoxList></td>
                                                                                     </tr>
+                                                                                    -->
                                                                                 </tbody>
                                                                             </table>
                                                                         </asp:Panel>
@@ -277,6 +281,76 @@
         </tr>
     </table>
 
+    <asp:Panel ID="panelUpdateProgress" runat="server" CssClass="updateProgress">
+        <asp:UpdateProgress ID="UpdateProg1" DisplayAfter="0" runat="server">
+            <ProgressTemplate>
+                <div style="position: relative; text-align: center; vertical-align: middle;" id="DIV_PB">
+                    <center>
+                        <table id="TBL_WAIT" border="0" cellpadding="0" cellspacing="0" style="margin-top: 5px">
+                            <tr>
+                                <td style="width: 50px">
+                                    <asp:Image ID="Image56" runat="server" ImageUrl="~/Images/SRC/Espera.gif"></asp:Image>
+                                </td>
+                                <td style="font-size: 12px; color: dimgray; font-style: normal; font-family: verdana; text-align: center; font-variant: normal">Procesando...
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </asp:Panel>
+    <cc1:ModalPopupExtender ID="ModalProgress" runat="server" TargetControlID="panelUpdateProgress"
+        BackgroundCssClass="modalBackground" PopupControlID="panelUpdateProgress" />
+    <!-- UpdateProgress -->
+    <!-- modal popup MSGBOX  -->
+    <cc1:ModalPopupExtender ID="popup_msgbox_confirm" DropShadow="True" BackgroundCssClass="modalBackground"
+        TargetControlID="hid_popupmsboxconfirm" PopupControlID="upd_pn_msbox_confirm"
+        runat="server" DynamicServicePath="" Enabled="True">
+    </cc1:ModalPopupExtender>
+    <input id="hid_popupmsboxconfirm" type="hidden" runat="server" />
+    <asp:UpdatePanel ID="upd_pn_msbox_confirm" runat="server">
+        <ContentTemplate>
+            <asp:Panel ID="div_upd_msgbox_confirm2" Width="297px" runat="server" Style="background-repeat: repeat; background-image: url(../Images/fondo.gif); padding-top: 0px; padding-bottom: 8px">
+                <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; height: 44px;">
+                    <tr>
+                        <td style="width: 245px; background-repeat: repeat; background-image: url(../Images/flotante/popcab1.gif);">&nbsp;
+                        </td>
+                        <td style="width: 52px; background-repeat: repeat; background-image: url(../Images/flotante/popcab3.gif);">&nbsp;
+                        </td>
+                    </tr>
+                </table>
+                <table cellpadding="2" cellspacing="2" width="286px" style="vertical-align: middle; background-color: #FFFFFF;"
+                    align="center">
+                    <tr>
+                        <td>
+                            <asp:Panel ID="Panel2" runat="server">
+                                <table cellpadding="5" cellspacing="5" width="280px" align="left">
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="lbl_mensajebox" runat="server" Text="xxxx"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <asp:Button ID="btn_msgboxconfir_aceptar" CssClass="btn" runat="server" Text="ACEPTAR"
+                                                OnClick="btn_msgboxconfir_no_Click" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </asp:Panel>
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btnGrabar" EventName="Click" />
+        </Triggers>
+    </asp:UpdatePanel>
 
     <script type="text/javascript">
         setTabCabeceraOnForm('0');

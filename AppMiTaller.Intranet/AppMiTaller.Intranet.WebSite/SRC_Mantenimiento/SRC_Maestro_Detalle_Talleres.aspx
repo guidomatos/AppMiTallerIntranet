@@ -348,12 +348,12 @@
             //Set Pestaña Seleccionada
             var index = 0;
             if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabDatosGenerales').style.visibility != 'hidden') index = 0;
-            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabMapa').style.visibility != 'hidden') index = 1;
-            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabHorario').style.visibility != 'hidden') index = 2;
-            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabServicios').style.visibility != 'hidden') index = 3;
-            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabMarcasModelos').style.visibility != 'hidden') index = 4;
-            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabHorExcepional').style.visibility != 'hidden') index = 5;
-            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabContenidoInformativo').style.visibility != 'hidden') index = 6;
+            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabHorario').style.visibility != 'hidden') index = 1;
+            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabServicios').style.visibility != 'hidden') index = 2;
+            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabMarcasModelos').style.visibility != 'hidden') index = 3;
+            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabHorExcepional').style.visibility != 'hidden') index = 4;
+            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabContenidoInformativo').style.visibility != 'hidden') index = 5;
+            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabMapa').style.visibility != 'hidden') index = 6;
 
             Fc_SetCambiartab(index);
 
@@ -538,14 +538,14 @@
             else
                 $("#btnBuscarCont, #btnAgregarCont, #btnAprobarCont, #btnRechazarCont, #btnImprimirCont").hide(); //btnEditarCont
 
-            setTabCabeceraOffForm('6');
-            onTabCabeceraOverForm('3');
+            setTabCabeceraOffForm('5');
+            onTabCabeceraOverForm('2');
             setTabCabeceraOffForm('0');
+            setTabCabeceraOffForm('6');
             setTabCabeceraOffForm('1');
             setTabCabeceraOffForm('2');
-            setTabCabeceraOffForm('3');
-            setTabCabeceraOffForm('4');
             setTabCabeceraOffForm('5');
+            setTabCabeceraOffForm('4');
             setTabCabeceraOnForm(index);
             onTabCabeceraOverForm(index);
 
@@ -736,6 +736,14 @@
                                                                                         <td></td>
                                                                                         <td></td>
                                                                                     </tr>
+                                                                                    
+                                                                                    <tr>
+                                                                                                    <td>Descripción del taller
+                                                                                                    </td>
+                                                                                                    <td colspan="3">
+                                                                                                        <asp:TextBox ID="txt_descripcion" runat="server" Width="575px" TextMode="MultiLine"></asp:TextBox>
+                                                                                                    </td>
+                                                                                   </tr>
                                                                                     <tr>
                                                                                         <td></td>
                                                                                         <td></td>
@@ -761,98 +769,16 @@
                                             </table>
                                         </ContentTemplate>
                                     </cc1:TabPanel>
-                                    <cc1:TabPanel runat="server" ID="tabMapa">
+                                    
+                                    
+                                    <cc1:TabPanel runat="server" ID="tabHorario">
                                         <HeaderTemplate>
                                             <table id="tblHeader1" cellpadding="0" cellspacing="0" border="0">
                                                 <tr>
                                                     <td>
                                                         <img alt="" src="../Images/Tabs/tab-izq_off_plom.gif" /></td>
                                                     <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('1');"
-                                                        onmouseout="javascript:onTabCabeceraOutForm('1');">mapa
-                                                    </td>
-                                                    <td>
-                                                        <img alt="" src="../Images/Tabs/tab-der_off_plom.gif" /></td>
-                                                </tr>
-                                            </table>
-                                        </HeaderTemplate>
-                                        <ContentTemplate>
-                                            <table width="980" cellpadding="0" cellspacing="0" border="0">
-                                                <tr>
-                                                    <td>
-                                                        <img alt="" src="../Images/Tabs/borarriba.gif" /></td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="background-color: #ffffff; vertical-align: top; height: 450px">
-                                                        <table cellpadding="0" cellspacing="0" width="970" style="background-color: #ffffff; margin-left: 5px; margin-right: 5px;"
-                                                            border="0">
-                                                            <tr>
-                                                                <td class="lineadatos" style="height: 20px" valign="bottom">&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <asp:UpdatePanel ID="UpdParam" runat="server">
-                                                                        <ContentTemplate>
-                                                                            <table style="width: 965px;" class="textotab" border="0" cellpadding="2" cellspacing="1">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td style="width: 57px; height: 19px">Archivo
-                                                                                        </td>
-                                                                                        <td style="text-align: left; height: 19px" valign="top" colspan="3" align="center">
-                                                                                            <asp:FileUpload ID="FileUpload1" runat="server" CssClass="txtob" onchange="javascript:Fc_SubirImagen();"></asp:FileUpload>&nbsp;&nbsp;Solo se permiten imagenes con extension: (jpg, jpeg,
-                                                                                            png, gif)
-                                                                                            <asp:ImageButton ID="btn_SubirMapa" OnClick="btn_SubirMapa_Click" runat="server"
-                                                                                                ImageUrl="~/Images/iconos/subir.gif" Height="1px" Width="1px" ImageAlign="AbsMiddle"
-                                                                                                ToolTip="Subir Mapa"></asp:ImageButton>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td style="width: 57px" valign="top">Mapa
-                                                                                        </td>
-                                                                                        <td colspan="3" style="text-align: left" valign="top">
-                                                                                            <div style="border-right: dimgray 1px solid; border-top: dimgray 1px solid; border-left: dimgray 1px solid; width: 430px; border-bottom: dimgray 1px solid; height: 210px">
-                                                                                                <asp:Image ID="imgMapa" runat="server" Height="210px" Width="430px" BorderStyle="None" />
-                                                                                            </div>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td style="width: 57px;" valign="top"></td>
-                                                                                        <td valign="top" colspan="3">
-                                                                                            <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" Font-Italic="True" Font-Size="7pt"></asp:Label>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </ContentTemplate>
-                                                                        <Triggers>
-                                                                            <asp:PostBackTrigger ControlID="btn_SubirMapa" />
-                                                                            <asp:AsyncPostBackTrigger ControlID="tabMantMaesTaller" EventName="ActiveTabChanged" />
-                                                                        </Triggers>
-                                                                    </asp:UpdatePanel>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="lineadatos">&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <img alt="" src="../Images/Tabs/borabajo.gif" /></td>
-                                                </tr>
-                                            </table>
-                                        </ContentTemplate>
-                                    </cc1:TabPanel>
-                                    <cc1:TabPanel runat="server" ID="tabHorario">
-                                        <HeaderTemplate>
-                                            <table id="tblHeader2" cellpadding="0" cellspacing="0" border="0">
-                                                <tr>
-                                                    <td>
-                                                        <img alt="" src="../Images/Tabs/tab-izq_off_plom.gif" /></td>
-                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('2');"
-                                                        onmouseout="javascript:onTabCabeceraOutForm('2');">horario
+                                                        onmouseout="javascript:onTabCabeceraOutForm('1');">horario
                                                     </td>
                                                     <td>
                                                         <img alt="" src="../Images/Tabs/tab-der_off_plom.gif" /></td>
@@ -917,6 +843,7 @@
                                                                                 <td></td>
                                                                                 <td valign="top">
                                                                                     <table border="0" cellpadding="2" cellspacing="1" width="350">
+                                                                                        <!--
                                                                                         <tr>
                                                                                             <td style="width: 45%">Día
                                                                                             </td>
@@ -924,6 +851,7 @@
                                                                                                 <asp:TextBox ID="txt_dia" ReadOnly="True" runat="server" Columns="12" Width="120px"></asp:TextBox>
                                                                                             </td>
                                                                                         </tr>
+                                                                                        -->
                                                                                         <tr>
                                                                                             <td>Desde
                                                                                             </td>
@@ -956,6 +884,7 @@
                                                                                                 </asp:UpdatePanel>
                                                                                             </td>
                                                                                         </tr>
+                                                                                        <!--
                                                                                         <tr>
                                                                                             <td>Intervalo de Atencion
                                                                                             </td>
@@ -964,6 +893,7 @@
                                                                                                 </asp:DropDownList>
                                                                                             </td>
                                                                                         </tr>
+                                                                                        -->
                                                                                     </table>
                                                                                 </td>
                                                                             </tr>
@@ -972,9 +902,11 @@
                                                                                     <asp:Label ID="Label9" runat="server" SkinID="Divisiones" Text="Días Exceptuados"></asp:Label>
                                                                                 </td>
                                                                                 <td></td>
+                                                                                <!--
                                                                                 <td class="lineadatos">
                                                                                     <asp:Label ID="Label10" runat="server" SkinID="Divisiones" Text="Capacidad de Atención (Cupos)"></asp:Label>
                                                                                 </td>
+                                                                                -->
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="padding-top: 5px;" align="center">
@@ -1009,6 +941,7 @@
                                                                                     </asp:UpdatePanel>
                                                                                 </td>
                                                                                 <td></td>
+                                                                                <!--
                                                                                 <td valign="top">
                                                                                     <table border="0" cellpadding="2" cellspacing="1" width="300">
                                                                                         <tbody>
@@ -1065,6 +998,7 @@
                                                                                         </tbody>
                                                                                     </table>
                                                                                 </td>
+                                                                                -->
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -1086,12 +1020,12 @@
                                     </cc1:TabPanel>
                                     <cc1:TabPanel runat="server" ID="tabServicios">
                                         <HeaderTemplate>
-                                            <table id="tblHeader3" cellpadding="0" cellspacing="0" border="0">
+                                            <table id="tblHeader2" cellpadding="0" cellspacing="0" border="0">
                                                 <tr>
                                                     <td style="height: 20px">
                                                         <img alt="" src="../Images/Tabs/tab-izq_off_plom.gif" /></td>
-                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('3');"
-                                                        onmouseout="javascript:onTabCabeceraOutForm('3');">servicios
+                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('2');"
+                                                        onmouseout="javascript:onTabCabeceraOutForm('2');">servicios
                                                     </td>
                                                     <td style="height: 20px">
                                                         <img alt="" src="../Images/Tabs/tab-der_off_plom.gif" /></td>
@@ -1228,12 +1162,12 @@
                                     </cc1:TabPanel>
                                     <cc1:TabPanel runat="server" ID="tabMarcasModelos">
                                         <HeaderTemplate>
-                                            <table id="tblHeader4" cellpadding="0" cellspacing="0" border="0">
+                                            <table id="tblHeader3" cellpadding="0" cellspacing="0" border="0">
                                                 <tr>
                                                     <td style="height: 20px">
                                                         <img alt="" src="../Images/Tabs/tab-izq_off_plom.gif" /></td>
-                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('4');"
-                                                        onmouseout="javascript:onTabCabeceraOutForm('4');" style="height: 20px">marcas y modelos
+                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('3');"
+                                                        onmouseout="javascript:onTabCabeceraOutForm('3');" style="height: 20px">marcas y modelos
                                                     </td>
                                                     <td style="height: 20px">
                                                         <img alt="" src="../Images/Tabs/tab-der_off_plom.gif" /></td>
@@ -1381,12 +1315,12 @@
                                     </cc1:TabPanel>
                                     <cc1:TabPanel runat="server" ID="tabHorExcepional">
                                         <HeaderTemplate>
-                                            <table id="tblHeader5" cellpadding="0" cellspacing="0" border="0">
+                                            <table id="tblHeader4" cellpadding="0" cellspacing="0" border="0">
                                                 <tr>
                                                     <td>
                                                         <img alt="" src="../Images/Tabs/tab-izq_off_plom.gif" /></td>
-                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('5');"
-                                                        onmouseout="javascript:onTabCabeceraOutForm('5');">Horario Excepcional
+                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('4');"
+                                                        onmouseout="javascript:onTabCabeceraOutForm('4');">Horario Excepcional
                                                     </td>
                                                     <td>
                                                         <img alt="" src="../Images/Tabs/tab-der_off_plom.gif" /></td>
@@ -1538,12 +1472,12 @@
                                     <!-- @002-I -->
                                     <cc1:TabPanel runat="server" ID="tabContenidoInformativo">
                                         <HeaderTemplate>
-                                            <table id="tblHeader6" cellpadding="0" cellspacing="0" border="0">
+                                            <table id="tblHeader5" cellpadding="0" cellspacing="0" border="0">
                                                 <tr>
                                                     <td>
                                                         <img alt="" src="../Images/Tabs/tab-izq_off_plom.gif" /></td>
-                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('6');"
-                                                        onmouseout="javascript:onTabCabeceraOutForm('6');">Contenidos Informativos
+                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('5');"
+                                                        onmouseout="javascript:onTabCabeceraOutForm('5');">Contenidos Informativos
                                                     </td>
                                                     <td>
                                                         <img alt="" src="../Images/Tabs/tab-der_off_plom.gif" /></td>
@@ -1650,6 +1584,91 @@
                                                             <img alt="" src="../Images/Tabs/borabajo.gif" style="width: 100%" /></td>
                                                     </tr>
                                                 </tbody>
+                                            </table>
+                                        </ContentTemplate>
+                                    </cc1:TabPanel>
+                                    
+                                    <cc1:TabPanel runat="server" ID="tabMapa" Visible="true">
+                                        <HeaderTemplate>
+                                            <table id="tblHeader6" cellpadding="0" cellspacing="0" border="0">
+                                                <tr>
+                                                    <td>
+                                                        <img alt="" src="../Images/Tabs/tab-izq_off_plom.gif" /></td>
+                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('6');"
+                                                        onmouseout="javascript:onTabCabeceraOutForm('6');">mapa
+                                                    </td>
+                                                    <td>
+                                                        <img alt="" src="../Images/Tabs/tab-der_off_plom.gif" /></td>
+                                                </tr>
+                                            </table>
+                                        </HeaderTemplate>
+                                        <ContentTemplate>
+                                            <table width="980" cellpadding="0" cellspacing="0" border="0">
+                                                <tr>
+                                                    <td>
+                                                        <img alt="" src="../Images/Tabs/borarriba.gif" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="background-color: #ffffff; vertical-align: top; height: 450px">
+                                                        <table cellpadding="0" cellspacing="0" width="970" style="background-color: #ffffff; margin-left: 5px; margin-right: 5px;"
+                                                            border="0">
+                                                            <tr>
+                                                                <td class="lineadatos" style="height: 20px" valign="bottom">&nbsp;
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:UpdatePanel ID="UpdParam" runat="server">
+                                                                        <ContentTemplate>
+                                                                            <table style="width: 965px;" class="textotab" border="0" cellpadding="2" cellspacing="1">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="width: 57px; height: 19px">Archivo
+                                                                                        </td>
+                                                                                        <td style="text-align: left; height: 19px" valign="top" colspan="3" align="center">
+                                                                                            <asp:FileUpload ID="FileUpload1" runat="server" CssClass="txtob" onchange="javascript:Fc_SubirImagen();"></asp:FileUpload>&nbsp;&nbsp;Solo se permiten imagenes con extension: (jpg, jpeg,
+                                                                                            png, gif)
+                                                                                            <asp:ImageButton ID="btn_SubirMapa" OnClick="btn_SubirMapa_Click" runat="server"
+                                                                                                ImageUrl="~/Images/iconos/subir.gif" Height="1px" Width="1px" ImageAlign="AbsMiddle"
+                                                                                                ToolTip="Subir Mapa"></asp:ImageButton>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="width: 57px" valign="top">Mapa
+                                                                                        </td>
+                                                                                        <td colspan="3" style="text-align: left" valign="top">
+                                                                                            <div style="border-right: dimgray 1px solid; border-top: dimgray 1px solid; border-left: dimgray 1px solid; width: 430px; border-bottom: dimgray 1px solid; height: 210px">
+                                                                                                <asp:Image ID="imgMapa" runat="server" Height="210px" Width="430px" BorderStyle="None" />
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="width: 57px;" valign="top"></td>
+                                                                                        <td valign="top" colspan="3">
+                                                                                            <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" Font-Italic="True" Font-Size="7pt"></asp:Label>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </ContentTemplate>
+                                                                        <Triggers>
+                                                                            <asp:PostBackTrigger ControlID="btn_SubirMapa" />
+                                                                            <asp:AsyncPostBackTrigger ControlID="tabMantMaesTaller" EventName="ActiveTabChanged" />
+                                                                        </Triggers>
+                                                                    </asp:UpdatePanel>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="lineadatos">&nbsp;
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img alt="" src="../Images/Tabs/borabajo.gif" /></td>
+                                                </tr>
                                             </table>
                                         </ContentTemplate>
                                     </cc1:TabPanel>

@@ -860,12 +860,14 @@
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
+                                                                                                    <!--
                                                                                                     <td>Tipo
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <asp:DropDownList ID="ddl_tipo" runat="server" Width="188px" OnSelectedIndexChanged="ddl_tipo_SelectedIndexChanged">
                                                                                                         </asp:DropDownList>
                                                                                                     </td>
+                                                                                                    -->
                                                                                                     <td>Perfil
                                                                                                     </td>
                                                                                                     <td>
@@ -941,6 +943,7 @@
                                                                                                     <td></td>
                                                                                                     <td></td>
                                                                                                 </tr>
+                                                                                                <!--
                                                                                                 <tr>
                                                                                                     <td style="height: 19px" colspan="4">
                                                                                                         <hr />
@@ -950,9 +953,9 @@
                                                                                                     <td>Fec. Inicio Acceso
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <asp:TextBox ID="txt_fec_inicio_acceso" runat="server" Width="89px"></asp:TextBox>&nbsp;<asp:ImageButton
+                                                                                                        <asp:TextBox ID="txt_fec_inicio_acceso" runat="server" Width="89px" visible="false"></asp:TextBox>&nbsp;<asp:ImageButton
                                                                                                             ID="btn_Calendario1" runat="server" ImageUrl="~/Images/iconos/calendario.gif"
-                                                                                                            ImageAlign="AbsMiddle"></asp:ImageButton>
+                                                                                                            ImageAlign="AbsMiddle" Visible="false"></asp:ImageButton>
                                                                                                         <cc1:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_fec_inicio_acceso"
                                                                                                             Format="dd/MM/yyyy" PopupButtonID="btn_Calendario1">
                                                                                                         </cc1:CalendarExtender>
@@ -960,12 +963,13 @@
                                                                                                             Mask="99/99/9999" MaskType="Date">
                                                                                                         </cc1:MaskedEditExtender>
                                                                                                     </td>
+                                                                                                    
                                                                                                     <td>Fec. Fin Acceso
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <asp:TextBox ID="txt_fin_acceso" runat="server" Width="86px" MaxLength="10"></asp:TextBox>&nbsp;<asp:ImageButton
+                                                                                                        <asp:TextBox ID="txt_fin_acceso" runat="server" Width="86px" MaxLength="10" Visible="false"></asp:TextBox>&nbsp;<asp:ImageButton
                                                                                                             ID="btn_calendario2" runat="server" ImageUrl="~/Images/iconos/calendario.gif"
-                                                                                                            ImageAlign="AbsMiddle"></asp:ImageButton><cc1:CalendarExtender ID="CalendarExtender2"
+                                                                                                            ImageAlign="AbsMiddle" Visible="false"></asp:ImageButton><cc1:CalendarExtender ID="CalendarExtender2"
                                                                                                                 runat="server" TargetControlID="txt_fin_acceso" Format="dd/MM/yyyy" PopupButtonID="btn_calendario2">
                                                                                                             </cc1:CalendarExtender>
                                                                                                         <cc1:MaskedEditExtender ID="MaskedEditExtender2" runat="server" TargetControlID="txt_fin_acceso"
@@ -977,7 +981,7 @@
                                                                                                     <td>Hora Inicio
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <asp:TextBox ID="txt_hora_inicio" runat="server" MaxLength="5" Columns="8"></asp:TextBox>
+                                                                                                        <asp:TextBox ID="txt_hora_inicio" runat="server" MaxLength="5" Columns="8" Visible="false"></asp:TextBox>
                                                                                                         <cc1:MaskedEditExtender ID="MaskedEditExtender31" runat="server" TargetControlID="txt_hora_inicio"
                                                                                                             Mask="99:99" MessageValidatorTip="true" OnFocusCssClass="MaskedEditFocus" OnInvalidCssClass="MaskedEditError"
                                                                                                             MaskType="Time" AcceptAMPM="True" ErrorTooltipEnabled="True" />
@@ -985,7 +989,7 @@
                                                                                                     <td>Hora Fin
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <asp:TextBox ID="txt_hora_fin" runat="server" MaxLength="5" Columns="8"></asp:TextBox>
+                                                                                                        <asp:TextBox ID="txt_hora_fin" runat="server" MaxLength="5" Columns="8" Visible="false"></asp:TextBox>
                                                                                                         <cc1:MaskedEditExtender ID="MaskedEditExtender41" runat="server" TargetControlID="txt_hora_fin"
                                                                                                             Mask="99:99" MessageValidatorTip="true" OnFocusCssClass="MaskedEditFocus" OnInvalidCssClass="MaskedEditError"
                                                                                                             MaskType="Time" AcceptAMPM="True" ErrorTooltipEnabled="True" />
@@ -1015,13 +1019,12 @@
                                                                                                         <asp:CheckBox ID="chk_consulta_VIN" runat="server" Text="Consulta de VIN" TextAlign="Left"></asp:CheckBox>
                                                                                                     </td>
                                                                                                 </tr>
+                                                                                                -->
                                                                                                 <tr>
                                                                                                     <td>
                                                                                                         <asp:HiddenField ID="hdf_pass_nuevo" runat="server"></asp:HiddenField>
                                                                                                         <asp:HiddenField ID="hf_hayerror" runat="server"></asp:HiddenField>
                                                                                                     </td>
-                                                                                                    <td></td>
-                                                                                                    <td></td>
                                                                                                     <td></td>
                                                                                                 </tr>
                                                                                             </tbody>

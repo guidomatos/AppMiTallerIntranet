@@ -46,12 +46,16 @@
                                     <asp:ImageButton ID="btnBuscarWarrant" runat="server" ToolTip="Buscar" ImageUrl="~/Images/iconos/b-buscar.gif"
                                         onmouseover="javascript:this.src='../Images/iconos/b-buscar2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-buscar.gif'"
                                         OnClick="btnBuscarWarrant_Click" />
+                                    <!--
                                     <asp:ImageButton ID="btnVerDet" runat="server" ToolTip="Detalle" ImageUrl="~/Images/iconos/b-ordendespacho.png"
-                                        onmouseover="javascript:this.src='../Images/iconos/b-ordendespacho2.png'" onmouseout="javascript:this.src='../Images/iconos/b-ordendespacho.png'" OnClick="btnVerDet_Click" /><asp:ImageButton ID="BtnEditar" runat="server" ToolTip="Editar" ImageUrl="~/Images/iconos/b-modificarped.gif"
+                                        onmouseover="javascript:this.src='../Images/iconos/b-ordendespacho2.png'" onmouseout="javascript:this.src='../Images/iconos/b-ordendespacho.png'" OnClick="btnVerDet_Click" />
+                                    -->
+                                    <asp:ImageButton ID="BtnEditar" runat="server" ToolTip="Editar" ImageUrl="~/Images/iconos/b-modificarped.gif"
                                             onmouseover="javascript:this.src='../Images/iconos/b-modificarped2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-modificarped.gif'" OnClick="BtnEditar_Click" />
-                                    <asp:ImageButton ID="btnExcel" runat="server" ToolTip="Excel" ImageUrl="~/Images/iconos/b-excel.gif"
+                                   <!-- <asp:ImageButton ID="btnExcel" runat="server" ToolTip="Excel" ImageUrl="~/Images/iconos/b-excel.gif"
                                         onmouseover="javascript:this.src='../Images/iconos/b-excel2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-excel.gif'" OnClick="btnExcel_Click" OnClientClick="javascript:return Valida_Boton_Exportar()" />
-                                </td>
+                                    -->
+                               </td>
                             </tr>
                         </table>
                     </td>
@@ -109,6 +113,7 @@
                                                                         <td style="width: 203px">
                                                                             <asp:DropDownList ID="ddl_marca" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_marca_SelectedIndexChanged" Width="180px">
                                                                             </asp:DropDownList></td>
+                                                                        <!--
                                                                         <td>Negocio</td>
                                                                         <td style="width: 203px">
                                                                             <asp:DropDownList ID="ddl_negocio" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_negocio_SelectedIndexChanged" Width="180px">
@@ -116,6 +121,7 @@
                                                                         <td>Familia</td>
                                                                         <td style="width: 203px">
                                                                             <asp:DropDownList ID="ddl_familia" runat="server" Width="180px"></asp:DropDownList></td>
+                                                                        -->
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Modelo</td>
@@ -156,8 +162,8 @@
                                                                                         <ItemStyle HorizontalAlign="Center" />
                                                                                     </asp:BoundField>
                                                                                     <asp:BoundField DataField="no_modelo" HeaderText="Nombre" SortExpression="no_modelo"></asp:BoundField>
-                                                                                    <asp:BoundField DataField="no_negocio" HeaderText="Negocio" SortExpression="no_negocio"></asp:BoundField>
-                                                                                    <asp:BoundField DataField="no_familia" HeaderText="Familia" SortExpression="no_familia"></asp:BoundField>
+                                                                                    <asp:BoundField DataField="no_negocio" HeaderText="Negocio" SortExpression="no_negocio" Visible="false"></asp:BoundField>
+                                                                                    <asp:BoundField DataField="no_familia" HeaderText="Familia" SortExpression="no_familia" Visible="false"></asp:BoundField>
                                                                                     <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado"></asp:BoundField>
                                                                                 </Columns>
                                                                             </asp:GridView>

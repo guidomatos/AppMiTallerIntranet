@@ -19,3 +19,9 @@ D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTa
 D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.pdb
 D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\bin\Debug\AppMiTaller.Intranet.BE.dll
 D:\gmatos\proyectos\AppMiTaller\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\bin\Debug\AppMiTaller.Intranet.BE.pdb
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\bin\Debug\AppMiTaller.Intranet.BE.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\bin\Debug\AppMiTaller.Intranet.BE.pdb
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.csprojAssemblyReference.cache
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.csproj.CoreCompileInputs.cache
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.dll
+G:\CURSOS PERSONALES\XAMARIN\Github\AppMiTallerIntranet\AppMiTaller.Intranet\AppMiTaller.Intranet.BE\obj\Debug\AppMiTaller.Intranet.BE.pdb

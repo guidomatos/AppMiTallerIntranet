@@ -836,8 +836,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
 
                 // --> 18.05
                 //tabMantMaesTaller.ActiveTabIndex = 0;
-                tabMantMaesTaller.Tabs[5].Enabled = false;
-                tabMantMaesTaller.Tabs[6].Enabled = false;//@002
+                tabMantMaesTaller.Tabs[4].Enabled = false;
+                tabMantMaesTaller.Tabs[5].Enabled = false;//@002
+                tabMantMaesTaller.Tabs[6].Enabled = false;
                 //tabContenidoInformativo.Visible = false;
                 //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "", "<script>CargarInicial();</script>", false);
             }
@@ -1179,6 +1180,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                 objEnt.no_direccion = txt_direccion.Text.Trim();
                 objEnt.tx_url_taller = "";
 
+                objEnt.descripcion = txt_descripcion.Text.Trim();
+                
+                
                 objEnt.co_usuario = Profile.UserName;
                 objEnt.co_usuario_red = Profile.UsuarioRed;
                 objEnt.no_estacion_red = Profile.Estacion;
@@ -1381,6 +1385,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                     objEnt.nid_ubica = Convert.ToInt32(ddl_ptored.SelectedValue);
 
                 objEnt.no_direccion = txt_direccion.Text.Trim();
+
+                objEnt.descripcion = txt_descripcion.Text.Trim();
+
                 objEnt.Co_usuario_modi = Profile.UserName;
                 objEnt.co_usuario_red = Profile.UsuarioRed;
                 objEnt.no_estacion_red = Profile.Estacion;

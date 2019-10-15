@@ -5827,8 +5827,8 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Usuarios : System.Web
         {
             if (ddl_tipo_doc.SelectedValue.ToString().Equals(oDNI))
             {
-                txt_nro_documento.MaxLength = 9;
-                txt_nro_documento.Attributes.Add("onkeypress", "return SoloLetrasNumeros(event)");
+                txt_nro_documento.MaxLength = 8;
+                txt_nro_documento.Attributes.Add("onkeypress", "return SoloNumeros(event)");
             }
             else if (ddl_tipo_doc.SelectedValue.ToString().Equals(oRUC))
             {

@@ -208,12 +208,12 @@
                                                 onmouseout="javascript:this.src='../Images/iconos/b-buscar.gif'"
                                                 OnClick="btnBuscar_Click" runat="server"
                                                 ImageUrl="~/Images/iconos/b-buscar.gif" ToolTip="Buscar"></asp:ImageButton>
-
+                                            <!--
                                             <asp:ImageButton ID="btnVerDet" onmouseover="javascript:this.src='../Images/iconos/b-ordendespacho2.png'"
                                                 onmouseout="javascript:this.src='../Images/iconos/b-ordendespacho.png'" OnClick="btnVerDet_Click"
                                                 runat="server" OnClientClick="javascript:return Valida_Boton_Detalle()"
                                                 ImageUrl="~/Images/iconos/b-ordendespacho.png" ToolTip="Detalle"></asp:ImageButton>
-
+                                            -->
                                             <asp:ImageButton ID="btnNuevo" onmouseover="javascript:this.src='../Images/iconos/b-nuevo2.gif'"
                                                 onmouseout="javascript:this.src='../Images/iconos/b-nuevo.gif'"
                                                 OnClick="btnNuevo_Click" runat="server" ImageUrl="~/Images/iconos/b-nuevo.gif"
@@ -224,18 +224,18 @@
                                                 onmouseout="javascript:this.src='../Images/iconos/b-modificarped.gif'"
                                                 OnClick="BtnEditar_Click" runat="server" OnClientClick="javascript:return Valida_Boton_Editar()"
                                                 ImageUrl="~/Images/iconos/b-modificarped.gif" ToolTip="Editar"></asp:ImageButton>
-
+                                            <!--
                                             <asp:ImageButton ID="btnExcel" onmouseover="javascript:this.src='../Images/iconos/b-excel2.gif'"
                                                 onmouseout="javascript:this.src='../Images/iconos/b-excel.gif'" OnClick="btnExcel_Click"
                                                 runat="server" ImageUrl="~/Images/iconos/b-excel.gif" OnClientClick="javascript:return Valida_Boton_Exportar()"
                                                 ToolTip="Excel"></asp:ImageButton>
-
+                                            
                                             <asp:Image ID="btnGargaMasiva" Visible="true" runat="server" ImageUrl="~/Images/iconos/b-importar.gif"
                                                 onclick="javascript: return Fc_AbrirCargaMasiva();"
                                                 onmouseout="javascript:this.src='../Images/iconos/b-importar.gif'"
                                                 onmouseover="javascript:this.src='../Images/iconos/b-importar2.gif'" Style="cursor: pointer"
                                                 ToolTip="Importar Datos" />
-
+                                             -->
                                         </td>
                                     </tr>
                                 </tbody>

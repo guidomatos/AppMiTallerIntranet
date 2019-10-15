@@ -61,10 +61,12 @@
                                             <asp:ImageButton ID="btnBuscarWarrant" onmouseover="javascript:this.src='../Images/iconos/b-buscar2.gif'"
                                                 onmouseout="javascript:this.src='../Images/iconos/b-buscar.gif'" OnClick="btnBuscarWarrant_Click"
                                                 runat="server" ImageUrl="~/Images/iconos/b-buscar.gif" ToolTip="Buscar"></asp:ImageButton>
+                                            <!--
                                             <asp:ImageButton ID="btnVerDet" onmouseover="javascript:this.src='../Images/iconos/b-ordendespacho2.png'"
                                                 onmouseout="javascript:this.src='../Images/iconos/b-ordendespacho.png'" OnClick="btnVerDet_Click"
                                                 runat="server" OnClientClick="javascript:return Validar_Seleccion_Registro();"
                                                 ImageUrl="~/Images/iconos/b-ordendespacho.png" ToolTip="Detalle"></asp:ImageButton>
+                                            -->
                                             <asp:ImageButton ID="btnNuevo" onmouseover="javascript:this.src='../Images/iconos/b-nuevo2.gif'"
                                                 onmouseout="javascript:this.src='../Images/iconos/b-nuevo.gif'" OnClick="btnNuevo_Click"
                                                 runat="server" ImageUrl="~/Images/iconos/b-nuevo.gif" ToolTip="Nuevo"></asp:ImageButton>
@@ -72,12 +74,13 @@
                                                 onmouseout="javascript:this.src='../Images/iconos/b-modificarped.gif'" OnClick="BtnEditar_Click"
                                                 runat="server" OnClientClick="javascript:return Validar_Seleccion_Registro();"
                                                 ImageUrl="~/Images/iconos/b-modificarped.gif" ToolTip="Editar"></asp:ImageButton>
+                                           <!--
                                             <asp:ImageButton ID="btnExcel" onmouseover="javascript:this.src='../Images/iconos/b-excel2.gif'"
                                                 onmouseout="javascript:this.src='../Images/iconos/b-excel.gif'" OnClick="btnExcel_Click"
                                                 runat="server"
                                                 OnClientClick="javascript:return Valida_Boton_Exportar();"
                                                 ImageUrl="~/Images/iconos/b-excel.gif" ToolTip="Excel"></asp:ImageButton>
-
+                                            -->
                                             <asp:HiddenField ID="hf_exportaexcel" runat="server" />
 
                                         </td>

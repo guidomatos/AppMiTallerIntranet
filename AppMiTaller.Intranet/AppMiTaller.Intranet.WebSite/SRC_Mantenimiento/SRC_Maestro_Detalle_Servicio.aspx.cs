@@ -54,6 +54,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Servicio : System.Web
     void CargaInicial()
     {
         btnEditar.Visible = false;
+        ViewState.Add("existe_login", "0");
         if (Request.QueryString["Id_Servicio"] != null)
         {
             Session["txh_Id_Servicio"] = Request.QueryString["Id_Servicio"];
@@ -150,6 +151,11 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Servicio : System.Web
             txtCodigo.Text = "";
             txtNom.Text = "";
         }
+        if (op == "0")
+        {
+            txtTprom.Visible = false;
+            lbTprom.Visible = false;
+        }
     }
 
     protected void _mesg(string sms)
@@ -160,11 +166,12 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Servicio : System.Web
     {
         if (op == "0")
         {
-            if (chkquickservice.Checked == true)
+            /*if (chkquickservice.Checked == true)
                 objServBE.Fl_quick_service = "1";
             else
                 objServBE.Fl_quick_service = "0";
-
+            */
+            objServBE.Fl_quick_service = "0";
             string nom_dia = string.Empty;
             foreach (ListItem dia in chkDias.Items)
             {
@@ -175,8 +182,8 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Servicio : System.Web
             objServBE.Co_Servicio = txtCodigo.Text.Trim();
             objServBE.No_Servicio = txtNom.Text.Trim();
             objServBE.Id_TipoServicio = Int32.Parse(cboTServicio.SelectedValue.ToString());
-            objServBE.Qt_tiempo_prom = Int32.Parse(txtTprom.Text.Trim());
-            objServBE.no_dias_validos = nom_dia;
+            objServBE.Qt_tiempo_prom = 1;
+            objServBE.no_dias_validos = "1|2|3|4|5|6|7";
             //----------------------------------------------
             objServBE.co_usuario_crea = Profile.UserName;
             objServBE.no_usuario_red = Profile.UsuarioRed;
@@ -188,7 +195,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Servicio : System.Web
             res = objServBL.InsertServicio(objServBE);
             if (res == 0)
             {
-                Parametros.SRC_Mensaje_Redireccionar(this, "El registro se guardo con exito.", "SRC_Maestro_Servicio.aspx");
+              //  Parametros.SRC_Mensaje_Redireccionar(this, "El registro se guardo con exito.", "SRC_Maestro_Servicio.aspx");
+                lbl_mensajebox.Text = "El registro se guardo con exito.";
+                popup_msgbox_confirm.Show();
             }
             else if (res == 3)
             {
@@ -203,17 +212,18 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Servicio : System.Web
             objServBE.No_Servicio = txtNom.Text.Trim();
             objServBE.Id_TipoServicio = Int32.Parse(cboTServicio.SelectedValue.ToString());
             objServBE.Qt_tiempo_prom = Int32.Parse(txtTprom.Text.Trim());
-            if (chkquickservice.Checked == true)
+            /*if (chkquickservice.Checked == true)
                 objServBE.Fl_quick_service = "1";
             else
-                objServBE.Fl_quick_service = "0";
+                objServBE.Fl_quick_service = "0";*/
+            objServBE.Fl_quick_service = "0";
             string nom_dia = string.Empty;
             foreach (ListItem dia in chkDias.Items)
             {
                 if (dia.Selected) nom_dia += dia.Value + "|";
             }
             if (!string.IsNullOrEmpty(nom_dia)) nom_dia = nom_dia.Substring(0, nom_dia.Length - 1);
-            objServBE.no_dias_validos = nom_dia;
+            objServBE.no_dias_validos = "1|2|3|4|5|6|7";
             objServBE.co_usuario_cambio = Profile.UserName;
             objServBE.no_usuario_red = Profile.UsuarioRed;
             objServBE.no_estacion_red = Profile.Estacion;
@@ -230,6 +240,12 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Servicio : System.Web
                 _mesg("Codigo ya existe.");
             }
         }
+    }
+    protected void btn_msgboxconfir_no_Click(object sender, EventArgs e)
+    {
+        if (ViewState["existe_login"].ToString() == "0")
+            Response.Redirect("SRC_Maestro_Servicio.aspx");
+        popup_msgbox_confirm.Hide();
     }
     protected void btnEditar_Click(object sender, ImageClickEventArgs e)
     {

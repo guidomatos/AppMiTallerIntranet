@@ -64,6 +64,8 @@ namespace AppMiTaller.Intranet.BE
         public List<TallerDiasExceptuadosBE> lstTallerDiasExceptuados { get; set; }
         public List<TallerServiciosBE> lstTallerServicios { get; set; }
         public List<TallerModelosBE> lstTallerModelos { get; set; }
+
+        public string descripcion { get; set; }
         public TallerBE() { 
             this.lstTallerHorarios = new List<TallerHorariosBE>();
             this.lstTallerDiasExceptuados = new List<TallerDiasExceptuadosBE>();

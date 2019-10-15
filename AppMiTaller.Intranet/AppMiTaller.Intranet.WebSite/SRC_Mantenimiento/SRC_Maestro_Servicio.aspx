@@ -51,8 +51,10 @@
                                         OnClick="btnNuevo_Click" />
                                     <asp:ImageButton ID="BtnEditar" runat="server" ToolTip="Editar" ImageUrl="~/Images/iconos/b-modificarped.gif"
                                         onmouseover="javascript:this.src='../Images/iconos/b-modificarped2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-modificarped.gif'" OnClick="BtnEditar_Click" />
+                                    <!--
                                     <asp:ImageButton ID="btnExcel" runat="server" ToolTip="Excel" ImageUrl="~/Images/iconos/b-excel.gif"
                                         onmouseover="javascript:this.src='../Images/iconos/b-excel2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-excel.gif'" OnClick="btnExcel_Click" OnClientClick="javascript:return Valida_Boton_Exportar()" />
+                                    -->
                                 </td>
                             </tr>
                         </table>

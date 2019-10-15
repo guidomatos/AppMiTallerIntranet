@@ -145,12 +145,13 @@
                                                 onmouseout="javascript:this.src='../Images/iconos/b-modificarped.gif'"
                                                 OnClick="BtnEditar_Click" runat="server" OnClientClick="javascript:return Valida_Boton_Editar()"
                                                 ImageUrl="~/Images/iconos/b-modificarped.gif" ToolTip="Editar"></asp:ImageButton>
+                                           <!--
                                             <asp:ImageButton ID="btnExcel" onmouseover="javascript:this.src='../Images/iconos/b-excel2.gif'"
                                                 onmouseout="javascript:this.src='../Images/iconos/b-excel.gif'"
                                                 OnClick="btnExcel_Click" runat="server" ImageUrl="~/Images/iconos/b-excel.gif"
                                                 OnClientClick="javascript:return Valida_Boton_Exportar();"
                                                 ToolTip="Excel"></asp:ImageButton>
-
+                                            -->
 
                                         </td>
                                     </tr>
