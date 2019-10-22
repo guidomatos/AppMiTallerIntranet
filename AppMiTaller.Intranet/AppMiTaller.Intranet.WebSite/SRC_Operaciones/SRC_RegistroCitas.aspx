@@ -385,9 +385,6 @@
                                             checked="checked" />
                                         <label for="chkEmailCli">
                                             E-mail</label>
-                                        <input id="chkSMSCli" type="checkbox" checked="checked" />
-                                        <label for="chkSMSCli">
-                                            SMS</label>
                                     </div>
                                 </div>
                                 <div id="divDatosRecord">
@@ -2214,7 +2211,6 @@
                         }
 
                         if (objResponse.oRecordatorio != null) {
-                            $("#chkSMSCli").prop("checked", objResponse.oRecordatorio.fl_record_sms);
                             if (fn_ExistDisplayControl("divDatosRecord")) {
                                 $("#cboDiaContacto").val(objResponse.oRecordatorio.dd_record);
                                 $("#cboHIContacto").val(objResponse.oRecordatorio.ho_record_ini);
@@ -2295,7 +2291,6 @@
             $("#txtEmailAlternativo").val("");
             $("#txtObservaciones").val("");
             //Recordatorio
-            //////$("#chkSMSCli").val("");
             $("#cboDiaContacto").val("");
             $("#cboHIContacto").val("");
             $("#cboHFContacto").val("");
@@ -2318,7 +2313,6 @@
             $("#txtEmailAlternativo").prop("disabled", fl_bloqueo);
             $("#txtObservaciones").prop("disabled", fl_bloqueo);
             //Recordatorio
-            $("#chkSMSCli").prop("disabled", fl_bloqueo);
             $("#cboDiaContacto").prop("disabled", fl_bloqueo);
             $("#cboHIContacto").prop("disabled", fl_bloqueo);
             $("#cboHFContacto").prop("disabled", fl_bloqueo);
@@ -2382,7 +2376,6 @@
                     else $("#div_NotaIdentidadValidada").hide();
 
                     if (objResponse.oRecordatorio != null && objResponse.oRecordatorio != "") {
-                        $("#chkSMSCli").prop("checked", objResponse.oRecordatorio.fl_record_sms);
                         $("#cboDiaContacto").val(objResponse.oRecordatorio.dd_record);
                         $("#cboHIContacto").val(objResponse.oRecordatorio.ho_record_ini);
                         $("#cboHFContacto").val(objResponse.oRecordatorio.ho_record_fin);
@@ -3066,7 +3059,7 @@
             this.oCita.nu_telefono_oficina = $("#txtTelefonoOficina").val();
             this.oCita.nu_celular = $("#txtTelefonoMovil1").val();
             this.oCita.nu_celular_alter = $("#txtTelefonoMovil2").val();
-            this.oCita.co_tipo_record = ($("#chkSMSCli").prop("checked") == true ? "3" : "1");
+            this.oCita.co_tipo_record = "1";
             this.oCita.dd_record = $("#cboDiaContacto").val();
             this.oCita.ho_record_ini = $("#cboHIContacto").val();
             this.oCita.ho_record_fin = $("#cboHFContacto").val();
@@ -3196,13 +3189,6 @@
             }
             if (fc_Trim(oCita.nu_telefono) == "") {
                 fc_Alert("Ingrese el teléfono fijo del contacto."); return false;
-            }
-
-            var chkSMSCli = document.getElementById("chkSMSCli");
-            if (chkSMSCli.checked) {
-                if (fc_Trim(oCita.nu_celular) == "") {
-                    fc_Alert("Ingrese el teléfono móvil del contacto."); return false;
-                }
             }
 
             //Emails

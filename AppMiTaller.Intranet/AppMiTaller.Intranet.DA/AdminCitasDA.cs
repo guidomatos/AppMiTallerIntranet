@@ -100,8 +100,7 @@ namespace AppMiTaller.Intranet.DA
                 }
                 while (DReader.Read())
                 {
-                    AdminCitaBE oAdminCitaBE = CrearEntidad_AdminCitasP(DReader);
-                    lista.Add(oAdminCitaBE);
+                    lista.Add(CrearEntidad_AdminCitasP(DReader));
                 }
 
                 DReader.Close();
@@ -541,12 +540,6 @@ namespace AppMiTaller.Intranet.DA
             indice = DReader.GetOrdinal("no_modelo");
             var1 = DReader.GetString(indice);
             Entidad.grid_no_modelo = (var1 == null ? "" : var1.Trim());
-
-            indice = DReader.GetOrdinal("nu_vin");
-            var1 = DReader.GetString(indice);
-            Entidad.grid_nu_vin = (var1 == null ? "" : var1.Trim()); 
-
-
             return Entidad;
         }
         private AdminCitaBE CrearEntidad_AdminCitaDet(IDataRecord DReader)
