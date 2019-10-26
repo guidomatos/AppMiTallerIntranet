@@ -963,3 +963,4 @@ begin
 	where fl_inactivo = '0'
 end
 go
+

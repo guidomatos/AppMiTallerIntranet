@@ -23,8 +23,13 @@ IF NOT EXISTS(
 		AND TABLE_NAME = 'mae_cliente' 
 		AND COLUMN_NAME = 'no_clave_web'
     )
-    BEGIN
-        ALTER TABLE dbo.mae_cliente
-		ADD no_clave_web varchar(20) NULL
-    END
+BEGIN
+    ALTER TABLE dbo.mae_cliente
+	ADD no_clave_web varchar(100) NULL
+END
+ELSE
+BEGIN
+	ALTER TABLE dbo.mae_cliente
+	ALTER COLUMN no_clave_web varchar(100) NULL
+END
 GO
