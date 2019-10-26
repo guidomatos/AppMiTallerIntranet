@@ -35,3 +35,48 @@ begin
 	
 end
 GO
+
+
+
+if exists (SELECT o.name FROM sys.objects o inner join sys.schemas s on o.schema_id = s.schema_id and o.type = 'P' and s.name = 'dbo' and o.name = 'src_sps_cliente_por_id')
+    drop procedure src_sps_cliente_por_id
+GO
+
+create procedure src_sps_cliente_por_id
+/****************************************************************
+Nombre: src_sps_cliente_por_id
+Objetivo: Obtener datos del cliente por ID
+Notas:
+*****************************************************************
+exec dbo.src_sps_cliente_por_id 1509561
+select*from mae_cliente where nu_documento = '46124933'
+****************************************************************/
+(
+@vi_nid_cliente int
+)
+as
+begin
+
+	select
+	top 1
+	cli.nid_cliente,
+	cli.co_tipo_cliente,
+	cli.co_tipo_documento,
+	cli.nu_documento,
+	cli.no_cliente,
+	cli.no_ape_pat,
+	cli.no_ape_mat,
+	cli.nu_celular,
+	cli.no_correo,
+	cli.tx_direccion,
+	vehi.nid_vehiculo,
+	vehi.nu_placa,
+	vehi.nid_marca,
+	vehi.nid_modelo
+	from mae_cliente cli
+	left join mae_vehiculo vehi on vehi.nid_contacto = cli.nid_cliente and vehi.fl_activo = 'A'
+	where
+	cli.nid_cliente = @vi_nid_cliente
+	
+end
+GO

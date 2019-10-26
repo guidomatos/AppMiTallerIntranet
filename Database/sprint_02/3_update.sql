@@ -34,3 +34,8 @@ update mae_parametros
 set fl_valor3 = '1'
 where co_parametro = 'PARAMETRO_SYS_12'
 go
+
+update mae_tabla_detalle
+set no_valor1 = 'Pasaporte'
+where no_valor2 = '04'
+and nid_tabla_gen = 40

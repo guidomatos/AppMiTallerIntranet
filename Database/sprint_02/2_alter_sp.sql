@@ -869,3 +869,97 @@ END
 
 END           
 GO
+
+
+
+ALTER PROCEDURE [dbo].[src_sps_combo_FO]
+/***************************************************************************      
+OBJETIVO: LISTA COMBO DE UN MAESTRO
+****************************************************************************/      
+(      
+	@vi_co_maestro varchar(50),
+	@vi_co_padre varchar(20)
+)      
+AS      
+BEGIN
+	if(@vi_co_maestro = 'MARCAS')  
+	begin
+		select ltrim(nid_marca) as [value], no_marca as [nombre] from mae_marca where fl_inactivo = '0'
+		order by [nombre]
+	end  
+	else if(@vi_co_maestro = 'MODELOS')
+	begin
+		select ltrim(nid_modelo) as [value], no_modelo as [nombre] from mae_modelo 
+			where fl_inactivo = '0'
+			and nid_marca = @vi_co_padre
+			order by [nombre]
+	end  
+	else if(@vi_co_maestro = 'TIPO_SERVICIOS')  
+	begin
+		select distinct ltrim(ts.nid_tipo_servicio) as [value], ts.no_tipo_servicio as [nombre] from mae_tipo_servicio ts
+		inner join mae_servicio_especifico ser on ser.nid_tipo_servicio = ts.nid_tipo_servicio and ser.fl_activo = 'A'
+			where ts.fl_activo = 'A'
+			and ts.nid_tipo_servicio <> 8
+			and (isnull(@vi_co_padre,'')='' or ser.nid_servicio in (
+					select distinct nid_servicio from mae_servicio_especifico_modelo a
+					where nid_modelo = @vi_co_padre and a.fl_inactivo = 'A'  
+				)  
+			)
+			order by [nombre]
+	end  
+	else if(@vi_co_maestro = 'SERVICIOS')
+	begin
+		select ltrim(nid_servicio) as [value], no_servicio as [nombre] from mae_servicio_especifico
+			where fl_activo = 'A'
+			and nid_tipo_servicio = @vi_co_padre
+			order by [nombre]
+	end 
+	else if(@vi_co_maestro='UBIGEO')
+	begin
+		declare @dep varchar(2)
+		declare @pro varchar(2)
+		declare @dis varchar(2)
+
+		exec @dep = [dbo].[sgsnet_sps_split] @vi_co_padre, '|', 1  
+		exec @pro = [dbo].[sgsnet_sps_split] @vi_co_padre, '|', 2  
+		exec @dis = [dbo].[sgsnet_sps_split] @vi_co_padre, '|', 3  
+
+		if(@dep='00')
+		begin
+			SELECT  ltrim(coddpto) as [value], nombre as [nombre] FROM mae_ubigeo 
+			where codprov='00' and coddist='00' 
+			order by [nombre]
+		end
+		else if(@pro='00')
+		begin
+			SELECT  ltrim(codprov) as [value], nombre as [nombre] FROM mae_ubigeo 
+			where coddpto=@dep and codprov!='00' and coddist='00'
+			order by [nombre]
+		end
+		else
+		begin
+			SELECT  ltrim(coddist) as [value], nombre as [nombre] FROM mae_ubigeo 
+			where coddpto=@dep and codprov=@pro and coddist!='00'
+			order by [nombre]
+		end
+	end
+	else if(@vi_co_maestro='TIPO_PERSONA')
+	begin
+		SELECT NO_VALOR2 as [value], NO_VALOR1 as [nombre] FROM MAE_TABLA_DETALLE    
+		WHERE NID_TABLA_GEN=54
+	end
+END
+go
+
+
+ALTER PROCEDURE SRC_SPS_MARCAS_FO
+/*****************************************************************************    
+OBJETIVO: LISTAR LAS MARCAS
+****************************************************************************/
+as
+begin
+	select nid_marca, co_marca, no_marca
+	from mae_marca
+	where fl_inactivo = '0'
+end
+go
