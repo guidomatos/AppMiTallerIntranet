@@ -964,3 +964,622 @@ begin
 end
 go
 
+
+ALTER PROCEDURE SRC_SPI_RESERVAR_CITA_WEB_FO
+/*****************************************************************************                                                                  
+OBJETIVO: RESERVAR UNA CITA
+******************************************************************************/
+(                                                             
+------------------------------------                                                            
+-- mae_cliente                                                          
+------------------------------------                                                            
+ @vi_nid_contacto int,
+ @vi_nid_vehiculo int,
+-----------------------------------
+-- tbl_cita              
+-----------------------------------                                                            
+ @vi_nid_taller int,                                                                  
+ @vi_nid_usuario int,                                                                  
+ @vi_nid_servicio int,                                                                  
+ @vi_nu_placa varchar(50),
+ @vi_nid_marca int,                
+ @vi_nid_modelo int,                
+ @vi_fe_programada datetime,
+ @vi_ho_inicio varchar(5),
+ @vi_ho_fin char(5),
+ @vi_tx_observacion text,
+-----------------------------------                                                            
+-- mae_horario_excepcional                                      
+-----------------------------------                                       
+@vi_dd_atencion smallint
+)                                                                  
+as                                                                  
+begin try                                                   
+                                                                  
+    set dateformat dmy                                        
+    set language spanish  
+  
+	DECLARE @val_retorno INT, @val_msg_retorno VARCHAR(MAX)
+	set @vi_nu_placa = LTRIM(RTRIM(ISNULL(@vi_nu_placa,'')));  
+	set @vi_ho_inicio = LTRIM(RTRIM(ISNULL(@vi_ho_inicio,'')));  
+	set @vi_ho_fin = LTRIM(RTRIM(ISNULL(@vi_ho_fin,'')));  
+       
+	 --declaración de variables                                                                  
+	 declare @vl_id_cita int                                                      
+	 declare @vl_nid_estado int                                                                  
+	 declare @vl_cod_estado varchar(5)                                                                  
+	 declare @vo_id_usuario int                                                                  
+	 declare @vl_nu_error int, @vl_fl_transaccion char(1);                                                              
+	----------------------------------------------------------------------------                                                                
+ 
+	 declare @vl_cod_norm    varchar(20) --> perxxx                                                                  
+	 declare @vl_cod_fecha   varchar(20) --> yyyymmddhhmm                                                                  
+	 declare @vl_cod_corel   varchar(20) --> 000001 (correlativo)   =>                                                               
+	 declare @vl_cod_reserva varchar(50) --> @vl_cod_norm + @vl_cod_fecha + @vl_cod_corel  =>                      
+                                                                  
+	 declare @vl_cod_max varchar(50)                                                                  
+	 declare @vl_marca   varchar(100)                                       
+                                    
+	--------------------------------------                                    
+	-- mae_capacidad_atencion                                    
+	-------------------------------                                    
+	declare @vl_capacidad_t int            
+	declare @vl_capacidad_u int                                    
+	declare @vl_capacidad_m int
+            
+	select @vl_capacidad_t = (case tca.fl_control  when 'T' then tca.qt_capacidad else qt_capacidad_fo end)  
+   from mae_capacidad_atencion tca where nid_propietario = @vi_nid_taller  
+   and fl_tipo = 'T' and dd_atencion = @vi_dd_atencion and fl_activo = 'A'  
+                                    
+	select @vl_capacidad_u = qt_capacidad_fo from mae_capacidad_atencion  
+      where nid_propietario = @vi_nid_usuario  
+      and fl_tipo = 'A' and dd_atencion = @vi_dd_atencion and fl_activo = 'A'  
+          
+	select @vl_capacidad_m = qt_capacidad from mae_taller_modelo_capacidad ttmc  where ttmc.nid_taller = @vi_nid_taller  
+      and ttmc.nid_modelo = @vi_nid_modelo and ttmc.dd_atencion = @vi_dd_atencion and ttmc.fl_activo = 'A'  
+
+	--------------------------------                                                          
+	-- verificamos si existe capacidad de atención                                        
+	-----------------------------------                                                          
+	declare @vl_res varchar(5)                         
+	set @vl_res = 'OK'                                          
+	----------------------------------                                     
+          
+	if  ((select fl_valor3 from mae_parametros where nid_parametro = 8)= '0') and (          
+	select  COUNT(tc.nid_cita)          
+	 from tbl_cita tc                                    
+	 inner join mae_cliente tct            on(tc.nid_contacto_src = tct.nid_cliente  and tct.fl_inactivo='0')              
+	 inner join tbl_estado_cita te         on(tc.nid_cita         = te.nid_cita      and te.fl_activo   ='A')                           
+	 inner join mae_tabla_detalle td       on(td.nid_tabla_gen_det= te.co_estado_cita  and td.fl_inactivo ='0')           
+	 where LTRIM(RTRIM(REPLACE(tc.nu_placa,'-',''))) = @vi_nu_placa                  
+	 and tc.fl_activo = 'A'                    
+	 and td.no_valor3 in ('EC01','EC04','EC07') ) > 0   
+	begin       -- placa con cita pendientes                          
+	  set @vl_res = 'C0'           
+	end            
+	-------------------------------------------          
+	else if @vl_capacidad_t is not null and (                              
+	select  @vl_capacidad_t - count(tc.nid_cita)                                    
+	from tbl_cita tc                                    
+	inner join tbl_estado_cita   te on ( te.nid_cita = tc.nid_cita     and te.fl_activo   = 'A')                                    
+	inner join mae_tabla_detalle td on ( te.co_estado_cita = td.nid_tabla_gen_det and td.fl_inactivo = '0'                                    
+	   and td.no_valor3 in ('EC01','EC04') )                                    
+	where tc.nid_taller  = @vi_nid_taller                                    
+	and   tc.fe_programada = @vi_fe_programada                                    
+	and   tc.fl_origen  = 'F'                                    
+	and   tc.fl_activo  = 'A'                                    
+	) <= 0                                    
+	begin       -- el taller ya alcanzo su limite de capacidad                                    
+	  set @vl_res = 'C4'                                               
+	end           
+	-------------    /*013*/          
+	else if @vl_capacidad_m is not null and  (            
+	select  @vl_capacidad_m - count(tc.nid_cita)          
+	from tbl_cita tc           
+	inner join tbl_estado_cita   te  on te.nid_cita = tc.nid_cita  and  te.fl_activo   = 'A'             
+	inner join mae_tabla_detalle tdc on tdc.nid_tabla_gen_det=te.co_estado_cita  and tdc.fl_inactivo = '0'           
+	   and tdc.no_valor3 in ('EC01','EC04','EC06')          
+	where tc.nid_taller    = @vi_nid_taller             
+	and   tc.nid_modelo    = @vi_nid_modelo                                   
+	and   tc.fe_programada = @vi_fe_programada          
+	/*and   tc.fl_origen  = 'F'*/          
+	and   tc.fl_activo  = 'A'             
+	) <= 0                                 
+	begin       -- capacidad del taller respecto al modelo alcanzo su limite                       
+	  set @vl_res = 'C6'                                               
+	end           
+	-------------                                    
+	else if @vl_capacidad_u is not null and  (                                    
+	select  @vl_capacidad_u - count(tc.nid_cita)                                    
+	from tbl_cita tc                                    
+	inner join tbl_estado_cita   te on ( te.nid_cita = tc.nid_cita     and te.fl_activo   = 'A')                                    
+	inner join mae_tabla_detalle td on ( te.co_estado_cita = td.nid_tabla_gen_det and td.fl_inactivo = '0'                                    
+	   and td.no_valor3 in ('EC01','EC04') )                                    
+	where te.nid_usuario = @vi_nid_usuario                                    
+	and   tc.fe_programada = @vi_fe_programada                            
+	and   tc.fl_origen  = 'F'                                    
+	and   tc.fl_activo  = 'A'       
+	) <= 0                                    
+	begin      -- el asesor ya alcanzo su limite de capacidad                                    
+	  set @vl_res = 'C5'                                               
+	end                                                           
+	-------------------------------------------                                                                      
+	else if  (                                                                                          
+	select                                                 
+	  count(tc.nid_cita)                                                                  
+	from tbl_cita tc                                
+	inner join tbl_estado_cita te   on (tc.nid_cita  = te.nid_cita  and te.fl_activo = 'A'  and te.nid_usuario = @vi_nid_usuario)                                
+	inner join mae_tabla_detalle td on (te.co_estado_cita =  td.nid_tabla_gen_det and td.fl_inactivo = '0' )                                
+	where td.no_valor3  in ('EC01','EC04','EC07')                                
+	and tc.nid_taller = @vi_nid_taller                                  
+	and tc.nu_placa  = @vi_nu_placa                                   
+	and tc.nid_servicio = @vi_nid_servicio                                   
+	and tc.fe_programada= @vi_fe_programada                                  
+	and tc.ho_inicio = @vi_ho_inicio                                 
+	and tc.fl_activo = 'A'                                                         
+	) > 1                                                                              
+	begin       -- ya se ha registrado este vehiculo con estos mismo datos                                                
+	  set @vl_res = 'C1'                                               
+	end                                                               
+	else if (                                                                                                                          
+	select                                                             
+	  count(tc.nid_cita)                                                                  
+	from tbl_cita tc                                
+	inner join tbl_estado_cita te   on (tc.nid_cita  = te.nid_cita  and te.fl_activo = 'A'  and te.nid_usuario = @vi_nid_usuario)                                
+	inner join mae_tabla_detalle td on (te.co_estado_cita =  td.nid_tabla_gen_det and td.fl_inactivo = '0' )                                
+	where td.no_valor3  in ('EC01','EC04','EC07')                                
+	and tc.nid_taller = @vi_nid_taller                                  
+	and tc.fe_programada= @vi_fe_programada                           
+	and tc.ho_inicio = @vi_ho_inicio                                 
+	and tc.fl_activo = 'A'                                                          
+	) >1                                                                              
+	begin  -- ya se ha registrado un vehiculo en este horario                      
+	  set @vl_res = 'C2'                                                
+	end                                              
+	else if (      
+	select                                 
+	  count(tc.nid_cita)                                  
+	from tbl_cita tc                                
+	inner join tbl_estado_cita te   on (tc.nid_cita  = te.nid_cita  and te.fl_activo = 'A' )                                
+	inner join mae_tabla_detalle td on (te.co_estado_cita =  td.nid_tabla_gen_det and td.fl_inactivo = '0' )                                
+	where td.no_valor3 in ('EC01','EC04','EC07')                                
+	and tc.nu_placa     = @vi_nu_placa                                  
+	and tc.fe_programada= @vi_fe_programada                                  
+	and tc.ho_inicio    = @vi_ho_inicio                                 
+	and tc.fl_activo    = 'A'                                                      
+	)>1           
+	begin  --  este vehiculo ya ha reservado una cita en esta misma hora                                              
+	 set @vl_res = 'C3'                                                
+	end                                              
+	else                                                                    
+	  begin                                 
+	 set @vl_res = 'OK' 
+	  end                                              
+	---------------------                                                           
+	if @vl_res <> 'OK'                                                              
+	begin                                                              
+	 select @vl_res as vo_resultado                                               
+	 return                                                            
+	end
+
+	---------------------------------------------                                                            
+	-- insertar registro de cita                       
+	---------------------------------------------                                                   
+	-- GENERAMOS UN CODIGO DE RESERVA
+	----------------------------------------------------------                                  
+                    
+	set @vl_marca = (select no_marca from mae_marca where nid_marca = @vi_nid_marca)                                                          
+	set @vl_marca = left(@vl_marca,3)
+	set @vl_cod_norm  = 'PE' + @vl_marca                                                           
+                                                        
+	set @vl_cod_fecha = datename(yyyy,getdate()) +                                        
+     right('00'+ cast(month(getdate()) as varchar(2)),2) +                                                          
+     right('00'+ cast(day(getdate()) as varchar(2)),2)   +                                                           
+     right('00'+ datename(hh,getdate()),2) +                                                           
+     right('00'+ datename(minute,getdate()),2)                                                          
+                                                                                                
+	set @vl_cod_max = (select max(right(cod_reserva_cita,6)) from tbl_cita              
+	where  substring(cod_reserva_cita,6,8) = left(@vl_cod_fecha,8))                          
+                                                          
+	set @vl_cod_corel = right( '000000' + cast(isnull(@vl_cod_max,'000000') + 1  as varchar(6)),6 )                 
+                                                      
+	---------------------------------------------------------------------                                         
+	set @vl_cod_reserva = @vl_cod_norm + @vl_cod_fecha + @vl_cod_corel              
+	---------------------------------------------------------------------                                                                  
+                                                                  
+	--Verificamos si está activado el parámetro de Confirmación Automática
+
+	if (select fl_valor3 from mae_parametros where nid_parametro = 12) = '1'                                            
+	begin                                                              
+		set @vl_cod_estado = (select nid_tabla_gen_det from mae_tabla_detalle where no_valor3 = 'EC04')
+	end
+	else
+	begin
+		set dateformat dmy                          
+		if( datediff(day,getdate(),@vi_fe_programada) <=1 )                          
+			set @vl_cod_estado =  (select nid_tabla_gen_det from mae_tabla_detalle where no_valor3 = 'EC04')                          
+		else                          
+		set @vl_cod_estado =  (select nid_tabla_gen_det from mae_tabla_detalle where no_valor3 = 'EC01')                          
+	end
+                                                 
+	------------------------------------------------------                                                
+
+	begin transaction
+
+	set @vl_fl_transaccion = '1';
+                                                                                          
+	insert into tbl_cita
+      (
+	  [nid_contacto_src]                                                                  
+      ,[nid_taller]                                                                  
+      ,[nid_servicio]                                   
+      ,[nid_vehiculo]                                                                  
+      ,[cod_reserva_cita]                                                                  
+      ,[nu_placa]
+      ,[nid_marca]                                                                  
+      ,[nid_modelo]                                      
+      ,[fe_programada]                                                                  
+      ,[fl_origen]                                                                  
+      ,[ho_inicio]                                                          
+      ,[ho_fin]                                                                  
+      ,[fl_datos_pendientes]      
+      ,[tx_observacion]                                                    
+      ,[fl_reprog]                                                                  
+      ,[fe_crea]                                                                  
+      ,[fl_activo]        
+      ,[fl_taxi]
+      ,[co_origencita]
+	  ,[co_tipo_cita]
+   )   
+   values                                                                  
+   (   @vi_nid_contacto                                                              
+      ,@vi_nid_taller                                                                  
+      ,@vi_nid_servicio                                                                  
+      ,@vi_nid_vehiculo                                                                    
+      ,@vl_cod_reserva                                                                  
+      ,@vi_nu_placa
+      ,@vi_nid_marca                                         
+      ,@vi_nid_modelo                                                                  
+      ,@vi_fe_programada                                                                  
+      ,'F'                                                                  
+      ,@vi_ho_inicio                                        
+      ,@vi_ho_fin                                                                  
+      ,'0'                        
+      ,@vi_tx_observacion                                            
+      ,'0'                                        
+      ,getdate()                                                                  
+      ,'A'           
+      ,NULL
+	  ,'0'
+	  ,'001'
+  )                                                          
+                                                                   
+	set @vl_id_cita = @@identity
+                                                                   
+	insert into tbl_estado_cita
+	(
+	[nid_cita]                                                                  
+    ,[nid_usuario]                                     
+    ,[co_estado_cita]                                                     
+    ,[fe_crea]                                                                  
+    ,[fl_activo]
+	)
+	values                                                                  
+    (                                                                  
+     @vl_id_cita                                                    
+    ,@vi_nid_usuario                                     
+    ,@vl_cod_estado                                                                  
+    ,getdate()                                                                  
+    ,'A'                                         
+	)
+                                                           
+	set @vl_nid_estado = @@identity
+                                                           
+	insert into tbl_reprog_cita
+	(
+	[nid_cita]                                                                  
+    ,[fe_reprogramacion]                                    
+    ,[ho_inicio]      
+    ,[ho_fin]                                                                  
+    ,[tx_observacion]                                                              
+    ,[fe_crea]                                                              
+    ,[fl_activo]
+	)
+	values                                                              
+	(
+	@vl_id_cita                                                                  
+    ,@vi_fe_programada                                                                  
+    ,@vi_ho_inicio                                                                  
+    ,@vi_ho_fin                                                       
+    ,@vi_tx_observacion                                                              
+    ,getdate()                                              
+    ,'A'                                                                  
+	)
+                                                       
+	set @vl_nid_estado = @@identity                                                        
+                                                         
+	---------------------------------------                                                            
+	---- verificacion de capacidad de atencion
+	--------------------------------------                                      
+                                    
+	set @vl_capacidad_t = (select qt_capacidad_fo from mae_capacidad_atencion                                     
+      where nid_propietario = @vi_nid_taller                    
+      and fl_tipo = 'T' and dd_atencion = @vi_dd_atencion and fl_activo = 'A')                                   
+                                    
+	set @vl_capacidad_u = (select qt_capacidad_fo from mae_capacidad_atencion                                     
+      where nid_propietario = @vi_nid_usuario                                     
+      and fl_tipo = 'A' and dd_atencion = @vi_dd_atencion and fl_activo = 'A')                                  
+                                                                  
+	----------------------------------                                         
+ 
+	if @vl_capacidad_t is not null and  (                                     
+	select  @vl_capacidad_t - count(tc.nid_cita)                                    
+	from tbl_cita tc                                    
+	inner join tbl_estado_cita   te on ( te.nid_cita = tc.nid_cita     and te.fl_activo   = 'A')                                    
+	inner join mae_tabla_detalle td on ( te.co_estado_cita = td.nid_tabla_gen_det and td.fl_inactivo = '0'                                    
+			  and td.no_valor3 in ('EC01','EC04') )                                    
+	where tc.nid_taller  = @vi_nid_taller                                    
+	and   tc.fe_programada = @vi_fe_programada                                 
+	and   tc.fl_origen  = 'F'                                    
+	and   tc.fl_activo  = 'A'                                    
+	) < 0                                    
+	begin       -- el taller ya alcanzo su limite de capacidad                                    
+	  set @vl_res = 'C4'                                               
+	end              
+	-------------   /*013*/          
+	else if @vl_capacidad_m is not null and  (            
+	select  @vl_capacidad_m - count(tc.nid_cita)          
+	from tbl_cita tc           
+	inner join tbl_estado_cita   te  on te.nid_cita = tc.nid_cita  and  te.fl_activo   = 'A'             
+	inner join mae_tabla_detalle tdc on tdc.nid_tabla_gen_det=te.co_estado_cita  and tdc.fl_inactivo = '0'           
+	   and tdc.no_valor3 in ('EC01','EC04','EC06')          
+	where tc.nid_taller    = @vi_nid_taller  
+	and   tc.nid_modelo    = @vi_nid_modelo                                   
+	and   tc.fe_programada = @vi_fe_programada              
+	/*and   tc.fl_origen  = 'F'*/          
+	and   tc.fl_activo  = 'A'         
+	) < 0                                    
+	begin       -- capacidad del taller respecto al modelo alcanzo su limite                       
+	  set @vl_res = 'C6'                                               
+	end                                  
+	-------------                                    
+	else if @vl_capacidad_u is not null and  (                                     
+	select  @vl_capacidad_u - count(tc.nid_cita)                                    
+	from tbl_cita tc                                    
+	inner join tbl_estado_cita   te on ( te.nid_cita = tc.nid_cita     and te.fl_activo   = 'A')                                    
+	inner join mae_tabla_detalle td on ( te.co_estado_cita = td.nid_tabla_gen_det and td.fl_inactivo = '0'                                    
+			  and td.no_valor3 in ('EC01','EC04') )                                    
+	where te.nid_usuario = @vi_nid_usuario                                    
+	and   tc.fe_programada = @vi_fe_programada                                    
+	and   tc.fl_origen  = 'F'                                    
+	and   tc.fl_activo  = 'A'                    ) < 0                                    
+	begin       -- el asesor ya alcanzo su limite de capacidad                                    
+	  set @vl_res = 'C5'                                               
+	end                                       
+	--------------------------------------------                                                        
+	else if (                                                                                 
+	select                                                                             
+	  count(tc.nid_cita)                         
+	from tbl_cita tc                                
+	inner join tbl_estado_cita te   on (tc.nid_cita  = te.nid_cita  and te.fl_activo = 'A' and te.nid_usuario = @vi_nid_usuario   )                                
+	inner join mae_tabla_detalle td on (te.co_estado_cita =  td.nid_tabla_gen_det and td.fl_inactivo = '0' )                                
+	where td.no_valor3  in ('EC01','EC04','EC07')                                
+	and tc.nu_placa     = @vi_nu_placa  
+	and tc.nid_taller   = @vi_nid_taller                                    
+	and tc.nid_servicio = @vi_nid_servicio                                    
+	and tc.fe_programada= @vi_fe_programada                                  
+	and tc.ho_inicio    = @vi_ho_inicio                                 
+	and tc.fl_activo    = 'A'                                                          
+	) > 1                                                                              
+	begin  -- ya se ha registrado este vehiculo con estos mismo datos                
+                                         
+	 set @vl_res = 'C1'                                              
+	end                                                               
+	else if (                                                                                                                        
+	select                                                                             
+	  count(tc.nid_cita)                                                                  
+	from tbl_cita tc                                
+	inner join tbl_estado_cita te   on (tc.nid_cita  = te.nid_cita  and te.fl_activo = 'A' and te.nid_usuario = @vi_nid_usuario   )                                
+	inner join mae_tabla_detalle td on (te.co_estado_cita =  td.nid_tabla_gen_det and td.fl_inactivo = '0' )                                
+	where td.no_valor3  in ('EC01','EC04','EC07')                                
+	and tc.nid_taller   = @vi_nid_taller                                    
+	and tc.fe_programada= @vi_fe_programada                                  
+	and tc.ho_inicio    = @vi_ho_inicio                                 
+	and tc.fl_activo    = 'A'                                                         
+	) >1                                                                  
+	begin                                                      
+	  set @vl_res = 'C2'                                  
+	end                                              
+	else if (                            
+	select                                                                             
+	  count(tc.nid_cita)                                                                  
+	from tbl_cita tc                                
+	inner join tbl_estado_cita te   on (tc.nid_cita  = te.nid_cita  and te.fl_activo = 'A' and te.nid_usuario = @vi_nid_usuario   )                                
+	inner join mae_tabla_detalle td on (te.co_estado_cita =  td.nid_tabla_gen_det and td.fl_inactivo = '0' )                                
+	where td.no_valor3  in ('EC01','EC04','EC07')                                
+	and tc.nu_placa     = @vi_nu_placa                                    
+	and tc.fe_programada= @vi_fe_programada                                  
+	and tc.ho_inicio    = @vi_ho_inicio                                 
+	and tc.fl_activo    = 'A'                                                      
+	)>1                                                                          
+	begin  --  este vehiculo ya ha reservado una cita en esta misma hora                                              
+	 set @vl_res = 'C3'                                                
+	end                                          
+	else                                   
+	  begin                                                                  
+	 set @vl_res = 'C0'
+	  end                                              
+                                                               
+	-------------------------------------------------                                                
+	if @vl_res <> 'C0'                                                            
+                                                          
+	begin                                                                                        
+		set @vl_fl_transaccion = '2'                          
+		select @vl_res as vo_resultado                    
+		rollback transaction                              
+	end                                                            
+	else                                                           
+	begin                                                    
+		select @vl_cod_reserva as vo_cod_reserva_cita                                                          
+	end                                                            
+	  commit transaction                                                                  
+	  set @vl_fl_transaccion = '0'                                                       
+                                                           
+	end try                                                                  
+	begin catch          
+                                                                                                 
+	 set @vl_nu_error = error_number();
+	 if @vl_nu_error = 2627 set @vo_id_usuario = -2;
+	 else if @vl_nu_error = 515 set @vo_id_usuario = -3;
+	 else if @vl_nu_error = 547 set @vo_id_usuario = -4;
+	 else set @vo_id_usuario = -1;
+                                                         
+	 if (@vl_fl_transaccion = '1')                                                       
+	 begin                                                      
+	 rollback transaction                                                          
+	 select @vl_nu_error as vo_error                                           
+	 end                                                      
+	 else if (@vl_fl_transaccion = '2')       
+	 begin                                                          
+	 rollback transaction                                                            
+		select @vl_res as vo_resultado                                                           
+	 end                                                              
+end catch
+go
+
+ALTER PROCEDURE SRC_SPU_DATOS_CONTACTO_FO
+/*****************************************************************************          
+OBJETIVO  : ACTUALIZA LOS DATOS DE CLIENTE          
+HISTORIAL  :           
+****************************************************************************          
+****************************************************************************/          
+(          
+@vi_id_contacto    int,
+@vi_no_nombre      varchar(50),
+@vi_no_ape_paterno varchar(50),
+@vi_no_ape_materno varchar(50),
+@vi_nu_documento   varchar(20),
+@vi_no_email       varchar(255),
+@vi_nu_tel_movil   varchar(20)
+)          
+as          
+begin try          
+ 
+	--declaración de variables          
+	declare @vo_id_usuario int          
+	declare @vo_resultado int          
+	declare @vl_nu_error int, @vl_fl_transaccion char(1);          
+          
+	--inicialización de variables
+	set @vl_fl_transaccion = '0';
+          
+	if not exists(select nid_cliente from mae_cliente where nid_cliente = @vi_id_contacto )          
+	begin          
+		set @vo_resultado = '0'          
+		select @vo_resultado as vo_resultado          
+		return
+	end
+          
+	begin transaction
+
+	set @vl_fl_transaccion = '1';
+
+	update mae_cliente
+	set
+	co_tipo_cliente = '0001',
+	nu_documento = @vi_nu_documento,
+	no_cliente = @vi_no_nombre,
+	no_ape_pat = @vi_no_ape_paterno,
+	no_ape_mat = @vi_no_ape_materno,
+	nu_celular = @vi_nu_tel_movil,
+	no_correo = @vi_no_email
+	where nid_cliente = @vi_id_contacto
+
+
+	commit transaction
+	set @vl_fl_transaccion = '0';
+          
+	set @vo_resultado = 1;
+	select @vo_resultado as vo_resultado
+          
+end try          
+begin catch          
+	--select error_message(), error_number()          
+	-- 2627 error de unique          
+	-- 515 error de insertar valor null no permitido          
+	-- 547 error conflicto de llave foranea          
+	set     @vl_nu_error = error_number()          
+	if      @vl_nu_error = 2627 set @vo_id_usuario = -2          
+	else if @vl_nu_error = 515 set @vo_id_usuario  = -3          
+	else if @vl_nu_error = 547 set @vo_id_usuario  = -4          
+	else   set @vo_id_usuario = -1          
+
+	if (@vl_fl_transaccion = '1') rollback transaction          
+	select @vo_id_usuario as vo_id_error          
+end catch 
+go
+
+ALTER PROCEDURE SRC_SPS_LISTAR_CITA_POR_DATOS_FO
+/*****************************************************************************                                  
+OBJETIVO       : Consultar Cita
+Nota:
+exec SRC_SPS_LISTAR_CITA_POR_DATOS_FO @vi_nu_placa = 'CIX629'
+****************************************************************************                                  
+****************************************************************************/                       
+(                    
+	@vi_nid_cita int = 0,
+	@vi_nu_placa varchar(20) = '',
+	@vi_nid_cliente int = 0
+)
+as
+begin
+
+	set datefirst  1
+                 
+	select
+	tc.nid_cita, tc.cod_reserva_cita,
+	convert(varchar(10),tc.fe_programada,103) as	fe_programada,
+	tc.ho_inicio ho_inicio_c,tc.ho_fin ho_fin_c,tc.fl_origen,      
+	tc.fl_datos_pendientes,tc.tx_observacion,tc.qt_km_inicial,convert(varchar(10),tc.fe_atencion,103) fe_atencion,tc.tx_glosa_atencion,          
+	te.nid_estado,
+	tde.no_valor3 as co_estado, tde.no_valor1 as no_estado, cast(tde.no_valor2 as int) as nu_estado,
+	tct.nid_cliente,tct.no_cliente,tct.no_ape_pat, tct.no_ape_mat,ltrim(rtrim(tct.co_tipo_documento)) co_tipo_documento, tct.nu_documento,      
+	tct.no_correo, tct.no_correo_empresa no_correo_trabajo,tct.no_correo_contacto no_correo_alter,      
+	tct.nu_telefono nu_telefono_c, tct.nu_celular nu_celular_c,      
+	tc.nid_servicio,ts.no_servicio,ts.fl_quick_service,ts.nid_tipo_servicio,tts.no_tipo_servicio,              
+	tt.nid_taller,tt.no_taller,tdt.no_valor3 co_intervalo,cast(tdt.no_valor1 as int) nu_intervalo,      
+	tt.no_direccion no_direccion_t,tt.nu_telefono nu_telefono_t,      
+	tt.tx_mapa_taller,tt.tx_url_taller, cast(th.dd_atencion as int) dd_atencion_t,th.ho_inicio ho_inicio_t,th.ho_fin ho_fin_t,              
+	tu.nid_ubica,tu.no_ubica_corto,tu.coddpto,tu.codprov,tu.coddist,tubg.nombre no_distrito,      
+	tc.nid_vehiculo,tc.nu_placa,tc.nid_modelo,tmd.no_modelo,tc.nid_marca,tmr.no_marca,      
+	te.nid_usuario nid_asesor,(isnull(u.vnomusr,'')+' '+isnull(u.no_ape_paterno,'')+' '+isnull(u.no_ape_materno,'')) as no_asesor,      
+	u.VTELEFONO as nu_telefono_a,u.VCORREO  no_correo_asesor,      
+	ISNULL(tte.nid_taller_empresa,0) nid_taller_empresa,tte.no_banco,tte.nu_cuenta ,tte.no_correo_callcenter,tte.nu_callcenter    
+	,tt.fl_nota       
+	,tc.no_nombreqr
+	from tbl_cita tc
+	inner join mae_cliente tct             on tc.nid_contacto_src = tct.nid_cliente       and tct.fl_inactivo='0'      
+	inner join mae_marca tmr               on tc.nid_marca        = tmr.nid_marca         and tmr.fl_inactivo='0'      
+	inner join mae_modelo tmd              on tc.nid_modelo     = tmd.nid_modelo
+	inner join mae_servicio_especifico ts  on tc.nid_servicio     = ts.nid_servicio       and ts.fl_activo   ='A'      
+	inner join mae_taller tt               on tc.nid_taller       = tt.nid_taller         and tt.fl_activo   ='A'      
+	inner join mae_tabla_detalle tdt       on tdt.nid_tabla_gen_det= tt.co_intervalo_atenc and tdt.fl_inactivo ='0'      
+	inner join mae_horario th              on th.nid_propietario  = tt.nid_taller         and th.fl_tipo     ='T' and th.dd_atencion = datepart(weekday,tc.fe_programada) and th.fl_activo ='A'    
+	inner join mae_tipo_servicio tts       on ts.nid_tipo_servicio= tts.nid_tipo_servicio and tts.fl_activo  ='A'      
+	inner join mae_ubicacion tu            on tu.nid_ubica        = tt.nid_ubica          and tu.fl_inactivo ='0'      
+	inner join mae_ubigeo  tubg            on tubg.coddpto = tu.coddpto and tubg.codprov = tu.codprov and tubg.coddist= tu.coddist      
+	inner join tbl_estado_cita te          on tc.nid_cita         = te.nid_cita           and te.fl_activo   ='A'      
+	inner join mae_tabla_detalle tde       on tde.nid_tabla_gen_det = te.co_estado_cita     and tde.fl_inactivo ='0'    
+	inner join usr u                       on te.nid_usuario      = u.nid_usuario         and u.fl_inactivo  ='0'      
+	left  join mae_taller_empresa tte      on tte.nid_taller = tt.nid_taller and tte.nid_empresa = tmr.nid_empresa and tte.fl_activo = 'A'      
+	inner join mae_vehiculo v on v.nid_vehiculo = tc.nid_vehiculo
+	where      
+		(tc.nid_cita  = @vi_nid_cita or @vi_nid_cita = 0)  
+	and (tc.nu_placa  = @vi_nu_placa or @vi_nu_placa = '')
+	and (tc.nid_contacto_src = @vi_nid_cliente or @vi_nid_cliente = 0)
+	and (tc.fl_activo = 'A')
+	and (tde.no_valor3 != 'EC03') --No se muestran Citas Anuladas
+	order by tc.fe_programada desc,tc.ho_inicio asc                    
+                    
+end
+go

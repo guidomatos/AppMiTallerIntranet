@@ -267,6 +267,17 @@ begin try
 		)
 
 	end
+	else
+	begin
+		update mae_vehiculo
+		set 
+		nid_propietario = @vl_nid_cliente,
+		nid_cliente = @vl_nid_cliente,
+		nid_contacto = @vl_nid_cliente,
+		nid_marca = @vi_nid_marca,
+		nid_modelo = @vi_nid_modelo
+		where nid_vehiculo = @vl_nid_vehiculo
+	end
 
 	--ACTUALIZACION DE ACCESO
 	declare @vl_no_clave_web_encriptada varchar(100);
@@ -306,4 +317,36 @@ begin catch
 	if (@vl_fl_transaccion = '1') rollback transaction          
 	select @vo_id_usuario as vo_id_error          
 end catch 
+go
+
+if exists (SELECT o.name FROM sys.objects o inner join sys.schemas s on o.schema_id = s.schema_id and o.type = 'P' and s.name = 'dbo' and o.name = 'src_sps_vehiculo_por_cliente_web')
+    drop procedure src_sps_vehiculo_por_cliente_web
+GO
+
+CREATE PROCEDURE src_sps_vehiculo_por_cliente_web
+/*****************************************************************************
+Nombre: src_sps_vehiculo_por_cliente_web
+Objetivo: Listar Datos de Vehiculo del Cliente Web
+Nota:
+****************************************************************************
+exec dbo.src_sps_vehiculo_por_cliente_web 1509561
+select*from mae_cliente where nu_documento = '46124933'
+****************************************************************************/
+(        
+@vi_nid_cliente int
+)        
+AS
+BEGIN
+
+	SELECT
+	veh.nid_vehiculo,
+	veh.nid_marca,
+	veh.nid_modelo,
+	veh.nu_placa
+	FROM mae_vehiculo veh
+	INNER JOIN mae_cliente cli on cli.nid_cliente = veh.nid_contacto
+	WHERE
+	veh.fl_activo = 'A'
+
+END
 go
