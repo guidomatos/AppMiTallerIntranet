@@ -119,7 +119,7 @@ begin try
 	declare @vo_id_usuario int          
 	declare @vo_resultado int          
 	declare @vl_nu_error int, @vl_fl_transaccion char(1);
-	DECLARE @val_retorno INT, @val_msg_retorno VARCHAR(MAX)
+	declare @val_retorno int, @val_msg_retorno varchar(max)
 
 	set @vi_nu_documento = LTRIM(RTRIM(ISNULL(@vi_nu_documento,'')));
 	set @vi_no_nombre = LTRIM(RTRIM(ISNULL(@vi_no_nombre,'')));
@@ -158,7 +158,8 @@ begin try
 	if (ISNULL(@vl_nid_vehiculo,0) != 0)
 	begin
 		
-		declare @vl_nu_documento_vehiculo_actual varchar(20)
+		declare @vl_nu_documento_vehiculo_actual varchar(20);
+
 		select
 		@vl_nu_documento_vehiculo_actual = cli.nu_documento
 		from mae_vehiculo veh
@@ -245,6 +246,7 @@ begin try
 	
 	if (ISNULL(@vl_nid_vehiculo,0) = 0)
 	begin
+
 		insert mae_vehiculo
 		(
 		nid_propietario,
@@ -264,11 +266,12 @@ begin try
 		@vi_nid_marca,
 		@vi_nid_modelo,
 		'A'
-		)
+		);
 
 	end
 	else
 	begin
+
 		update mae_vehiculo
 		set 
 		nid_propietario = @vl_nid_cliente,
@@ -277,18 +280,32 @@ begin try
 		nid_marca = @vi_nid_marca,
 		nid_modelo = @vi_nid_modelo
 		where nid_vehiculo = @vl_nid_vehiculo
+
 	end
 
 	--ACTUALIZACION DE ACCESO
-	declare @vl_no_clave_web_encriptada varchar(100);
+	if exists
+	(
+		select 1 from mae_cliente
+		where 
+			nid_cliente = @vl_nid_cliente
+		and ISNULL(no_clave_web,'') = ''
+		and fl_inactivo = '0'
+	)
+	begin
 
-	if (ISNULL(@vi_no_clave_web,'') = '') set @vi_no_clave_web = '12345678';
-	select @vl_no_clave_web_encriptada = dbo.fn_EncriptarClave(@vi_no_clave_web);
+		declare @vl_no_clave_web_encriptada varchar(100);
 
-	update mae_cliente
-	set no_clave_web = @vl_no_clave_web_encriptada
-	where nid_cliente = @vl_nid_cliente
-	and ISNULL(no_clave_web,'') = ''
+		if (ISNULL(@vi_no_clave_web,'') = '') set @vi_no_clave_web = '12345678';
+		select @vl_no_clave_web_encriptada = dbo.fn_EncriptarClave(@vi_no_clave_web);
+
+		update mae_cliente
+		set no_clave_web = @vl_no_clave_web_encriptada
+		where
+			nid_cliente = @vl_nid_cliente
+		and ISNULL(no_clave_web,'') = ''
+
+	end
 
 	commit transaction
 
@@ -330,7 +347,9 @@ Objetivo: Listar Datos de Vehiculo del Cliente Web
 Nota:
 ****************************************************************************
 exec dbo.src_sps_vehiculo_por_cliente_web 1509561
+exec dbo.src_sps_vehiculo_por_cliente_web 1509570
 select*from mae_cliente where nu_documento = '46124933'
+select*from mae_cliente where nu_documento = '42997694'
 ****************************************************************************/
 (        
 @vi_nid_cliente int
@@ -346,7 +365,8 @@ BEGIN
 	FROM mae_vehiculo veh
 	INNER JOIN mae_cliente cli on cli.nid_cliente = veh.nid_contacto
 	WHERE
-	veh.fl_activo = 'A'
+		veh.fl_activo = 'A'
+	and veh.nid_contacto = @vi_nid_cliente
 
 END
 go
