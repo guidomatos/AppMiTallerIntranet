@@ -3,7 +3,7 @@ go
 
 declare @vl_nid_usuario int
 declare @vl_co_usuario varchar(20)
-set @vl_co_usuario = 'admintaller109'
+set @vl_co_usuario = 'admintaller1'
 --set @vl_co_usuario = 'asesorserv146'
 
 /*
@@ -39,20 +39,22 @@ and tal.no_taller = 'TALLER 71'
 --and prf.co_perfil_usuario = 'ATAL'
 and utal.nid_usuario = @vl_nid_usuario
 
+-- jefes de taller con citas atendidas
 
-select*from USR where nid_usuario = 9352
-
-select*from OPM where CSTRUCT like '1303__'
-
-select*from OPM where CSTRUCT = '13'
-select*from OPM where CSTRUCT = '1303'
-select*from OPM where CSTRUCT = '130301'
-select*from OPM where CSTRUCT like '130301__'
-
-select*from OPP where nid_perfil = 65
-
-select*from OPP where nid_opcion IN (
-	select nid_opcion from OPM where CSTRUCT like '130301__'
-)
-and nid_perfil = 65
-
+select
+mar.no_marca,
+tal.no_taller,
+usu.nid_usuario,
+usu.VNOMUSR + ' ' + usu.no_ape_paterno + ' ' + ISNULL(usu.no_ape_materno,'') as no_jefe_taller
+from tbl_cita cita
+inner join tbl_estado_cita ec on ec.nid_cita = cita.nid_cita and ec.fl_activo = 'A'
+inner join mae_marca mar on mar.nid_marca = cita.nid_marca
+inner join mae_taller tal on tal.nid_taller = cita.nid_taller
+inner join mae_usr_taller utal on utal.nid_taller = tal.nid_taller and utal.fl_activo = 'A'
+inner join USR usu on usu.nid_usuario = utal.nid_usuario
+inner join PRFUSR pu on pu.nid_usuario = usu.nid_usuario and pu.fl_inactivo = '0'
+inner join PRF prf on prf.nid_perfil = pu.nid_perfil
+where
+	cita.fl_activo = 'A'
+and ec.co_estado_cita = 996 --Atendida
+and prf.co_perfil_usuario = 'ATAL'

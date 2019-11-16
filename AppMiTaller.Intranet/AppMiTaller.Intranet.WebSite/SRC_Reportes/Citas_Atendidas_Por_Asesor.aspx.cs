@@ -22,12 +22,12 @@ public partial class SRC_Reportes_Citas_Atendidas_Por_Asesor : System.Web.UI.Pag
 
     [System.Web.Script.Services.ScriptMethod(ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
     [WebMethod]
-    public static object GetDataReporte()
+    public static object GetDataReporte(Int32 nid_usuario)
     {
         ReporteBL objBL = new ReporteBL();
         List<object> listaDataReporte = new List<object>();
 
-        CitasBEList objResponseBL = objBL.ListarCitasAtendidasPorAsesor();
+        CitasBEList objResponseBL = objBL.ListarCitasAtendidasPorAsesor(nid_usuario);
         foreach (CitasBE obj in objResponseBL)
         {
             listaDataReporte.Add(new

@@ -1,12 +1,6 @@
 use AppMiTaller
 go
 
---select*from OPM where CSTRUCT like '13__'
---select*from OPM where CSTRUCT like '1303__'
---select*from OPM where CSTRUCT like '1304'
---select*from OPM where CSTRUCT like '1304__'
-
-begin tran
 
 declare @id_opcion_1 int; --Reporte por Marca
 declare @id_opcion_2 int; --Reporte por Asesor
@@ -123,5 +117,3 @@ begin
 	
 end
 go
-
-commit tran

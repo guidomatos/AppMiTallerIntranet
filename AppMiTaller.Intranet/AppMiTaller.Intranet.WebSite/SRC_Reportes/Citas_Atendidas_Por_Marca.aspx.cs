@@ -22,12 +22,12 @@ public partial class SRC_Reportes_Citas_Atendidas_Por_Marca : System.Web.UI.Page
 
     [System.Web.Script.Services.ScriptMethod(ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
     [WebMethod]
-    public static object GetDataReporte()
+    public static object GetDataReporte(Int32 nid_usuario)
     {
         ReporteBL objBL = new ReporteBL();
         List<object> listaDataReporte = new List<object>();
 
-        CitasBEList objResponseBL = objBL.ListarCitasAtendidasPorMarca();
+        CitasBEList objResponseBL = objBL.ListarCitasAtendidasPorMarca(nid_usuario);
         foreach (CitasBE obj in objResponseBL)
         {
             listaDataReporte.Add(new

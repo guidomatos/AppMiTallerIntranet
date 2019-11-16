@@ -47,12 +47,13 @@
     <script type="text/javascript">
 
         var no_pagina = window.location.pathname;
+        var nid_usuario = "<%=this.Profile.Usuario.Nid_usuario %>";
 
         fc_GetDataReporte();
 
         function fc_GetDataReporte() {
 
-            var strParametros = "{ }";
+            var strParametros = "{ nid_usuario: " + nid_usuario + "}";
             var strUrlServicio = no_pagina + "/GetDataReporte";
             this.fc_getJsonAjax(strParametros, strUrlServicio, function (objResponse) {
 

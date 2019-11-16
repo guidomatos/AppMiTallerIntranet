@@ -33,10 +33,31 @@ where
 ec.co_estado_cita = 994 --Confirmada
 
 Test:
-exec src_sps_reporte_citas_atendidas_por_marca
+exec src_sps_reporte_citas_atendidas_por_marca @vi_nid_usuario=6725
+exec src_sps_reporte_citas_atendidas_por_marca @vi_nid_usuario=8175
 */
+(
+@vi_nid_usuario int
+)
 as
 begin
+
+	--Taller(es) gestionados por Jefe de Taller
+	declare @tmpTallerUsuario as table
+	(
+		nid_taller int
+	)
+
+	insert @tmpTallerUsuario
+	(nid_taller)
+	select
+	tal.nid_taller
+	from mae_taller tal
+	inner join mae_usr_taller utal on utal.nid_taller = tal.nid_taller and utal.fl_activo = 'A'
+	where 
+		tal.fl_activo = 'A'
+	and utal.nid_usuario = @vi_nid_usuario
+
  
 	select
 	mar.no_marca,
@@ -47,6 +68,7 @@ begin
 	where
 		cita.fl_activo = 'A'
 	and ec.co_estado_cita = 996 --Atendida
+	and cita.nid_taller IN (select nid_taller from @tmpTallerUsuario)
 	group by mar.no_marca
 
 end
@@ -61,10 +83,30 @@ go
 create procedure src_sps_reporte_citas_atendidas_por_asesor
 /*
 Test:
-exec src_sps_reporte_citas_atendidas_por_asesor
+exec src_sps_reporte_citas_atendidas_por_asesor @vi_nid_usuario=6725
+exec src_sps_reporte_citas_atendidas_por_asesor @vi_nid_usuario=8175
 */
+(
+@vi_nid_usuario int
+)
 as
 begin
+
+	--Taller(es) gestionados por Jefe de Taller
+	declare @tmpTallerUsuario as table
+	(
+		nid_taller int
+	)
+
+	insert @tmpTallerUsuario
+	(nid_taller)
+	select
+	tal.nid_taller
+	from mae_taller tal
+	inner join mae_usr_taller utal on utal.nid_taller = tal.nid_taller and utal.fl_activo = 'A'
+	where 
+		tal.fl_activo = 'A'
+	and utal.nid_usuario = @vi_nid_usuario
  
 	select
 	no_asesor,
@@ -80,6 +122,7 @@ begin
 		where
 			cita.fl_activo = 'A'
 		and ec.co_estado_cita = 996 --Atendida
+		and cita.nid_taller IN (select nid_taller from @tmpTallerUsuario)
 	) as tbl
 	group by no_asesor
 

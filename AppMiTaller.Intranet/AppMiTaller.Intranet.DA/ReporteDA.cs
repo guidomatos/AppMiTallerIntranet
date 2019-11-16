@@ -8,7 +8,7 @@ namespace AppMiTaller.Intranet.DA
     public class ReporteDA
     {
         
-        public CitasBEList ListarCitasAtendidasPorMarca()
+        public CitasBEList ListarCitasAtendidasPorMarca(Int32 nid_usuario)
         {
             CitasBEList lista = new CitasBEList();
             CitasBE Entidad;
@@ -17,6 +17,7 @@ namespace AppMiTaller.Intranet.DA
             SqlDataReader reader = null;
 
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@vi_nid_usuario", nid_usuario);
 
             try
             {
@@ -45,7 +46,7 @@ namespace AppMiTaller.Intranet.DA
             return lista;
         }
 
-        public CitasBEList ListarCitasAtendidasPorAsesor()
+        public CitasBEList ListarCitasAtendidasPorAsesor(Int32 nid_usuario)
         {
             CitasBEList lista = new CitasBEList();
             CitasBE Entidad;
@@ -54,6 +55,7 @@ namespace AppMiTaller.Intranet.DA
             SqlDataReader reader = null;
 
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@vi_nid_usuario", nid_usuario);
 
             try
             {
