@@ -72,12 +72,11 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
 
                     db.AddParameter("@vi_va_cod_marca", DbType.String, ParameterDirection.Input, oMarcaBE.co_marca);
                     db.AddParameter("@vi_va_nom_marca", DbType.String, ParameterDirection.Input, oMarcaBE.no_marca);
-                    db.AddParameter("@vi_ch_cod_importador", DbType.Int32, ParameterDirection.Input, oMarcaBE.nid_importador);
+                    db.AddParameter("@vi_in_id_empresa", DbType.Int32, ParameterDirection.Input, oMarcaBE.nid_empresa);
                     db.AddParameter("@vi_ch_cod_estado", DbType.String, ParameterDirection.Input, oMarcaBE.fl_inactivo);
                     db.AddParameter("@vi_va_cod_usuario", DbType.String, ParameterDirection.Input, oMarcaBE.co_usuario_creacion);
                     db.AddParameter("@vi_va_nom_estacion", DbType.String, ParameterDirection.Input, oMarcaBE.no_estacion);
                     db.AddParameter("@vi_va_nom_usuario_red", DbType.String, ParameterDirection.Input, oMarcaBE.no_usuario_red);
-                    db.AddParameter("@vi_in_id_empresa", DbType.Int32, ParameterDirection.Input, oMarcaBE.nid_empresa);
                     res = Int32.Parse(db.ExecuteScalar().ToString());
                 }
             }
@@ -97,12 +96,12 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
                     db.AddParameter("@vi_int_id_marca", DbType.Int32, ParameterDirection.Input, oMarcaBE.nid_marca);
                     db.AddParameter("@vi_va_cod_marca", DbType.String, ParameterDirection.Input, oMarcaBE.co_marca);
                     db.AddParameter("@vi_va_nom_marca", DbType.String, ParameterDirection.Input, oMarcaBE.no_marca);
-                    db.AddParameter("@vi_ch_cod_importador", DbType.Int32, ParameterDirection.Input, oMarcaBE.nid_importador);
+                    db.AddParameter("@vi_in_id_empresa", DbType.Int32, ParameterDirection.Input, oMarcaBE.nid_empresa);
                     db.AddParameter("@vi_int_cod_estado", DbType.String, ParameterDirection.Input, oMarcaBE.fl_inactivo);
                     db.AddParameter("@vi_va_cod_usuario", DbType.String, ParameterDirection.Input, oMarcaBE.co_usuario_creacion);
                     db.AddParameter("@vi_va_nom_estacion", DbType.String, ParameterDirection.Input, oMarcaBE.no_estacion);
                     db.AddParameter("@vi_va_nom_usuario_red", DbType.String, ParameterDirection.Input, oMarcaBE.no_usuario_red);
-                    db.AddParameter("@vi_in_id_empresa", DbType.Int32, ParameterDirection.Input, oMarcaBE.nid_empresa);
+                    
                     res = Int32.Parse(db.ExecuteScalar().ToString());
                 }
             }
@@ -196,10 +195,13 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
             oMarcaBE.co_marca = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
             indice = DReader.GetOrdinal("nom_marca");
             oMarcaBE.no_marca = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
-            indice = DReader.GetOrdinal("logo");
-            oMarcaBE.logo = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
-            indice = DReader.GetOrdinal("id_importador");
-            oMarcaBE.nid_importador = DReader.GetInt32(indice);
+            indice = DReader.GetOrdinal("id_empresa");
+            if (!DReader.IsDBNull(indice))
+                oMarcaBE.nid_empresa = DReader.GetInt32(indice);
+            else
+                oMarcaBE.nid_empresa = 0;
+            indice = DReader.GetOrdinal("nu_ruc");
+            oMarcaBE.nu_ruc = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
             indice = DReader.GetOrdinal("cod_usu_crea");
             oMarcaBE.co_usuario_creacion = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
             indice = DReader.GetOrdinal("cod_estado");
@@ -218,22 +220,7 @@ namespace AppMiTaller.Intranet.DA.Mantenimiento
             oMarcaBE.no_estacion = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
             indice = DReader.GetOrdinal("nom_usuario_red");
             oMarcaBE.no_usuario_red = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
-            indice = DReader.GetOrdinal("id_empresa");
-            if (!DReader.IsDBNull(indice))
-                oMarcaBE.nid_empresa = DReader.GetInt32(indice);
-            else
-                oMarcaBE.nid_empresa = 0;
-            indice = DReader.GetOrdinal("imagen");
-            if (!DReader.IsDBNull(indice))
-            {
-                myData = new Byte[Convert.ToInt32((DReader.GetBytes(indice, 0, null, 0, Int32.MaxValue)))];
-                oMarcaBE.imagen_logo = myData;
-            }
-
-            indice = DReader.GetOrdinal("tamanio_imagen");
-            if (!DReader.IsDBNull(indice)) oMarcaBE.tamanio_imagen = DReader.GetInt32(indice);
-            indice = DReader.GetOrdinal("nu_ruc");
-            oMarcaBE.nu_ruc = DReader.IsDBNull(indice) ? String.Empty : DReader.GetString(indice);
+            
             return oMarcaBE;
         }
     }

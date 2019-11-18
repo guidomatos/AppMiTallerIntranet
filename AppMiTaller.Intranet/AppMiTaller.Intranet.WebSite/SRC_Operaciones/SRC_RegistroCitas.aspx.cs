@@ -599,73 +599,63 @@ public partial class SRC_Operaciones_SRC_RegistroCitas : System.Web.UI.Page
 
             if (nid_servicio > 0)
             {
-                CitasBE oValidaKmBE = new CitasBL().Obtiene_Validacion_Km(nu_placa, nid_servicio, nid_marca);
-                
-                if (oValidaKmBE.tx_alternativo_01 == "-1")
+                ServicioBL oMaestroServicioBL = new ServicioBL();
+                ServicioBE oMaestroServicioBE = new ServicioBE();
+                oMaestroServicioBE.Id_Servicio = nid_servicio;
+                ServicioBEList oMaestroServicioBEList = oMaestroServicioBL.GETListarDatosServicios(oMaestroServicioBE);
+                fl_quick_service = oMaestroServicioBEList[0].Fl_quick_service;
+                fl_dias_validos = oMaestroServicioBEList[0].no_dias_validos;
+
+                #region - Obtiene Ubigeo Disponible
+                CitasBL oCitasBL = new CitasBL();
+                CitasBE oCitasBE = new CitasBE();
+                oCitasBE.nid_Servicio = nid_servicio;
+                oCitasBE.nid_modelo = nid_modelo;
+                oCitasBE.Nid_usuario = Nid_usuario;
+                CitasBEList oUbigeoDisponible = oCitasBL.GetListar_Ubigeos_Disponibles(oCitasBE);
+                if (oUbigeoDisponible.Count > 0)
                 {
-                    msg_retorno = oValidaKmBE.tx_alternativo_02;
+                    object objDepartamento;
+                    foreach (CitasBE oUbigeo in oUbigeoDisponible)
+                    {
+                        objDepartamento = new { value = oUbigeo.coddpto.ToString(), nombre = oUbigeo.nomdpto };
+                        oComboDepartamento.Add(objDepartamento);
+                    }
+
+                    object objProvincia;
+                    List<CitasBE> oProvinciaDisponible = oUbigeoDisponible.OrderBy(prov => prov.nomprov).ToList();
+                    String codprov = String.Empty;
+                    foreach (CitasBE oUbigeo in oProvinciaDisponible)
+                    {
+                        if (fl_ubigeo_all == "1") { codprov = oUbigeo.coddpto + oUbigeo.codprov; }
+                        else { codprov = oUbigeo.codprov; }
+                        objProvincia = new { value = codprov, nombre = oUbigeo.nomprov, coddpto = oUbigeo.coddpto };
+                        oComboProvincia.Add(objProvincia);
+                    }
+
+                    object objDistrito;
+                    List<CitasBE> oDistritoDisponible = oUbigeoDisponible.OrderBy(dist => dist.nomdist).ToList();
+                    String coddist = String.Empty;
+                    foreach (CitasBE oUbigeo in oDistritoDisponible)
+                    {
+                        if (fl_ubigeo_all == "1") { coddist = oUbigeo.coddpto + oUbigeo.codprov + oUbigeo.coddis; }
+                        else { coddist = oUbigeo.coddis; }
+                        objDistrito = new
+                        {
+                            value = coddist,
+                            nombre = oUbigeo.nomdist,
+                            coddpto = oUbigeo.coddpto,
+                            codprov = oUbigeo.codprov
+                        };
+                        oComboDistrito.Add(objDistrito);
+                    }
+                }
+                else
+                {
+                    msg_retorno = "No hay talleres disponibles para este servicio y modelo.";
                     fl_seguir = "0";
                 }
-
-                if (fl_seguir != "0")
-                {
-                    ServicioBL oMaestroServicioBL = new ServicioBL();
-                    ServicioBE oMaestroServicioBE = new ServicioBE();
-                    oMaestroServicioBE.Id_Servicio = nid_servicio;
-                    ServicioBEList oMaestroServicioBEList = oMaestroServicioBL.GETListarDatosServicios(oMaestroServicioBE);
-                    fl_quick_service = oMaestroServicioBEList[0].Fl_quick_service;
-                    fl_dias_validos = oMaestroServicioBEList[0].no_dias_validos;
-
-                    #region - Obtiene Ubigeo Disponible
-                    CitasBL oCitasBL = new CitasBL();
-                    CitasBE oCitasBE = new CitasBE();
-                    oCitasBE.nid_Servicio = nid_servicio;
-                    oCitasBE.nid_modelo = nid_modelo;
-                    oCitasBE.Nid_usuario = Nid_usuario;
-                    CitasBEList oUbigeoDisponible = oCitasBL.GetListar_Ubigeos_Disponibles(oCitasBE);
-                    if (oUbigeoDisponible.Count > 0)
-                    {
-                        object objDepartamento;
-                        foreach (CitasBE oUbigeo in oUbigeoDisponible)
-                        {
-                            objDepartamento = new { value = oUbigeo.coddpto.ToString(), nombre = oUbigeo.nomdpto };
-                            oComboDepartamento.Add(objDepartamento);
-                        }
-
-                        object objProvincia;
-                        List<CitasBE> oProvinciaDisponible = oUbigeoDisponible.OrderBy(prov => prov.nomprov).ToList();
-                        String codprov = String.Empty;
-                        foreach (CitasBE oUbigeo in oProvinciaDisponible)
-                        {
-                            if (fl_ubigeo_all == "1") { codprov = oUbigeo.coddpto + oUbigeo.codprov; }
-                            else { codprov = oUbigeo.codprov; }
-                            objProvincia = new { value = codprov, nombre = oUbigeo.nomprov, coddpto = oUbigeo.coddpto };
-                            oComboProvincia.Add(objProvincia);
-                        }
-
-                        object objDistrito;
-                        List<CitasBE> oDistritoDisponible = oUbigeoDisponible.OrderBy(dist => dist.nomdist).ToList();
-                        String coddist = String.Empty;
-                        foreach (CitasBE oUbigeo in oDistritoDisponible)
-                        {
-                            if (fl_ubigeo_all == "1") { coddist = oUbigeo.coddpto + oUbigeo.codprov + oUbigeo.coddis; }
-                            else { coddist = oUbigeo.coddis; }
-                            objDistrito = new
-                            {
-                                value = coddist,
-                                nombre = oUbigeo.nomdist,
-                                coddpto = oUbigeo.coddpto,
-                                codprov = oUbigeo.codprov
-                            };
-                            oComboDistrito.Add(objDistrito);
-                        }
-                    }
-                    else
-                    {
-                        msg_retorno = "No hay talleres disponibles para este servicio y modelo.";
-                        fl_seguir = "0";
-                    }
-                }
+                
                 #endregion - Obtiene Ubigeo Disponible
             }
 

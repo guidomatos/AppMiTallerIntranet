@@ -73,9 +73,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
             dtUbigeo.Rows.Add(ListUbigeo[i].coddpto, ListUbigeo[i].codprov, ListUbigeo[i].coddist, ListUbigeo[i].Ubigeo);
 
         ViewState.Add("dtubigeo", dtUbigeo);
-        ddl_prov.Items.Insert(0, "--Seleccione--");
+        ddl_prov.Items.Insert(0, new ListItem("--Seleccione--", ""));
+
         ddl_prov.Enabled = false;
-        ddl_dist.Items.Insert(0, "--Seleccione--");
+        ddl_dist.Items.Insert(0, new ListItem("--Seleccione--", ""));
         ddl_dist.Enabled = false;
         DataRow[] oRow = dtUbigeo.Select("codprov='00' AND coddist='00'", "nombre", DataViewRowState.CurrentRows);
         ddl_dpto.Items.Clear();
@@ -85,7 +86,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
             ddl_dpto.Items[i].Value = oRow[i]["coddpto"].ToString();
             ddl_dpto.Items[i].Text = oRow[i]["nombre"].ToString();
         }
-        ddl_dpto.Items.Insert(0, "--Seleccione--");
+        ddl_dpto.Items.Insert(0, new ListItem("--Seleccione--", ""));
         ddl_dpto.SelectedIndex = 0;
         ddl_dpto.AutoPostBack = true;
         objneg = null; ListUbigeo = null; dtUbigeo = null;
@@ -375,9 +376,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
     {
         txt_codtall.Text = "";
         txt_nomtall.Text = "";
-        
-        if (ddl_IndicadorHGSI.Visible) ddl_IndicadorHGSI.SelectedIndex = -1;
-        
         ddl_dpto.SelectedIndex = -1;
         ddl_prov.Enabled = false;
         ddl_dist.SelectedIndex = -1; ddl_dist.Enabled = false;
@@ -560,18 +558,9 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
             dt = null;
         }
         objNeg = null; objEnt = null;
-        ddl_ptored.Items.Insert(0, "--Seleccione--");
+        ddl_ptored.Items.Insert(0, new ListItem("--Seleccione--", ""));
         ddl_ptored.SelectedIndex = 0;
         ddl_ptored.Enabled = false;
-    }
-    private void CargarHGSI()
-    {
-        TallerBL objNeg = new TallerBL();
-        ddl_IndicadorHGSI.DataSource = objNeg.GETListarIndicadorHGSI();
-        ddl_IndicadorHGSI.DataTextField = "DES";
-        ddl_IndicadorHGSI.DataValueField = "ID";
-        ddl_IndicadorHGSI.DataBind();
-        ddl_IndicadorHGSI.Items.Insert(0, new ListItem("--Seleccione--", ""));
     }
     private void CargarDiasHabiles_Horas_PorTaller()
     {
@@ -728,10 +717,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
 
         //tabMantMaesTaller.Tabs[6].Enabled = false;
         hidPerfil.Value = Profile.Usuario.co_perfil_usuario;
-
-        hidAprobar.Value = (Master as Principal).ValidaAccesoOpcion(ConstanteBE.SRC_MantTaller_AccionAprobarCont).Equals(CONSTANTE_SEGURIDAD.AccesoEdicion) ? "inline" : "none";
-        hidRechazar.Value = (Master as Principal).ValidaAccesoOpcion(ConstanteBE.SRC_MantTaller_AccionRechazarCont).Equals(CONSTANTE_SEGURIDAD.AccesoEdicion) ? "inline" : "none";
-        hidImprimir.Value = (Master as Principal).ValidaAccesoOpcion(ConstanteBE.SRC_MantTaller_AccionDescargarCont).Equals(CONSTANTE_SEGURIDAD.AccesoEdicion) ? "inline" : "none";
          
 
         Label_X_Pais();
@@ -744,11 +729,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
         this.btnNuevo.Style.Add("display", "none");
         this.chkI.Checked = true;
         this.txt_capacidad.Enabled = false;
-
-
-
-        ddl_IndicadorHGSI.Visible = (Master as Principal).ValidaAccesoOpcion(ConstanteBE.SRC_MantTaller_OpcionHSGI).Equals(CONSTANTE_SEGURIDAD.AccesoEdicion);
-        lbl_HGSI.Visible = (Master as Principal).ValidaAccesoOpcion(ConstanteBE.SRC_MantTaller_OpcionHSGI).Equals(CONSTANTE_SEGURIDAD.AccesoEdicion);
 
         if (Request.QueryString["nid_taller"] != null)
         {
@@ -792,28 +772,11 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
             CargarEstado();
             CargarUbigeo();
             CargarUbicacion();
-
-
-            /*@001 I*/
-            //if (Convert.ToString(ConfigurationManager.AppSettings["CodPais"]).Equals("2")) /*SOLO CHILE*/
-            //{
-                //lbl_HGSI.Visible = true;
-                //ddl_IndicadorHGSI.Visible = true;
-            if (ddl_IndicadorHGSI.Visible) CargarHGSI();
-            //}
-            //else
-            //{
-            //    lbl_HGSI.Visible = false;
-            //    ddl_IndicadorHGSI.Visible = false;
-            //}
-            /*@001 F*/
-
             CargarHora();
             CargarIntervalosAtencion();
 
             hidUsuarioRed.Value = Profile.UsuarioRed;
             hidEstacionRed.Value = Profile.Estacion;
-            hdnPathFileServer.Value = ConstanteBE.RUTA_IMAGENES_CONTENIDO_WEB;
 
             //-------------------------------------------------------------
 
@@ -827,9 +790,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
             {
                 ViewState.Add("hora_defecto_nuevo", "1");
                 hid_id_tllr.Value = "0";
-                ddl_prov.Items.Insert(0, "--Seleccione--");
-                ddl_dist.Items.Insert(0, "--Seleccione--");
-                ddl_ptored.Items.Insert(0, "--Seleccione--");
+                ddl_prov.Items.Insert(0, new ListItem("--Seleccione--", ""));
+                ddl_dist.Items.Insert(0, new ListItem("--Seleccione--", ""));
+                ddl_ptored.Items.Insert(0, new ListItem("--Seleccione--", ""));
+
                 ddl_intervAtenc.SelectedIndex = 0;
                 Nuevo();
                 CargarDiasDisponibles();
@@ -839,7 +803,7 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                 tabMantMaesTaller.Tabs[4].Enabled = false;
                 tabMantMaesTaller.Tabs[5].Enabled = false;//@002
                 tabMantMaesTaller.Tabs[6].Enabled = false;
-                //tabContenidoInformativo.Visible = false;
+                
                 //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "", "<script>CargarInicial();</script>", false);
             }
             else if (Session["editar"] != null || Session["detalle"] != null)
@@ -863,19 +827,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                 txt_codtall.Text = List[0].co_taller;
                 txt_codtall.Enabled = false;
                 txt_nomtall.Text = List[0].no_taller;
-
-
-                /*@001 I*/
-                //if (Convert.ToString(ConfigurationManager.AppSettings["CodPais"]).Equals("2")) /*SOLO CHILE*/
-                //{
-                if (ddl_IndicadorHGSI.Visible)
-                {
-                    if (!String.IsNullOrEmpty(List[0].co_valoracion))
-                        ddl_IndicadorHGSI.SelectedValue = List[0].co_valoracion.Trim();
-                    else
-                        ddl_IndicadorHGSI.SelectedIndex = 0;
-                }
-                
 
                 if (List[0].co_intervalo_atenc != 0)
                     ddl_intervAtenc.SelectedValue = List[0].co_intervalo_atenc.ToString();
@@ -990,9 +941,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
         //DATOS GENERALES
         txt_codtall.Enabled = flag;
         txt_nomtall.Enabled = flag;
-        /*@001 I*/
-        ddl_IndicadorHGSI.Enabled = flag;
-        /*@001 F*/
         ddl_dpto.Enabled = flag;
         ddl_prov.Enabled = flag;
         ddl_dist.Enabled = flag;
@@ -1082,7 +1030,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
         txt_capacidad_bo.Attributes.Add("onkeypress", "return SoloNumeros(event)");
         txt_capacidad.Attributes.Add("onkeypress", "return SoloNumeros(event)");
 
-        fileToUpload.Attributes.Add("onchange", "javascript:return ajaxFileUpload();");//@002
         if (!Page.IsPostBack)
         {
             Inicializa();            
@@ -1167,29 +1114,17 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
 
                 objEnt.co_taller = txt_codtall.Text.Trim();
                 objEnt.no_taller = txt_nomtall.Text.Trim();
-                if (ddl_intervAtenc.SelectedIndex == 0)
-                    objEnt.Cod_intervalo = 0;
-                else
-                    objEnt.Cod_intervalo = Convert.ToInt32(ddl_intervAtenc.SelectedValue);
-
-                if (ddl_ptored.SelectedIndex == 0)
-                    objEnt.nid_ubica = 0;
-                else
-                    objEnt.nid_ubica = Convert.ToInt32(ddl_ptored.SelectedValue);
-
+                objEnt.co_valoracion = "";
+                objEnt.Cod_intervalo = ddl_intervAtenc.SelectedIndex == 0 ? 0 : Convert.ToInt32(ddl_intervAtenc.SelectedValue);
+                objEnt.nid_ubica = ddl_ptored.SelectedIndex == 0 ? 0 : Convert.ToInt32(ddl_ptored.SelectedValue);
                 objEnt.no_direccion = txt_direccion.Text.Trim();
                 objEnt.tx_url_taller = "";
-
                 objEnt.descripcion = txt_descripcion.Text.Trim();
-                
-                
+
                 objEnt.co_usuario = Profile.UserName;
                 objEnt.co_usuario_red = Profile.UsuarioRed;
                 objEnt.no_estacion_red = Profile.Estacion;
-
                 objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-
-                if (ddl_IndicadorHGSI.Visible) objEnt.co_valoracion = ddl_IndicadorHGSI.SelectedValue;
                 
                 //MAPA
                 if (ViewState["mapa"] == null)
@@ -1374,18 +1309,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
 
                 objEnt.co_taller = txt_codtall.Text.Trim();
                 objEnt.no_taller = txt_nomtall.Text.Trim();
-                if (ddl_intervAtenc.SelectedIndex == 0)
-                    objEnt.Cod_intervalo = 0;
-                else
-                    objEnt.Cod_intervalo = Convert.ToInt32(ddl_intervAtenc.SelectedValue);
-
-                if (ddl_ptored.SelectedIndex == 0)
-                    objEnt.nid_ubica = 0;
-                else
-                    objEnt.nid_ubica = Convert.ToInt32(ddl_ptored.SelectedValue);
-
+                objEnt.co_valoracion = "";
+                objEnt.Cod_intervalo = ddl_intervAtenc.SelectedIndex == 0 ? 0 : Convert.ToInt32(ddl_intervAtenc.SelectedValue);
+                objEnt.nid_ubica = ddl_ptored.SelectedIndex == 0 ? 0 : Convert.ToInt32(ddl_ptored.SelectedValue);
                 objEnt.no_direccion = txt_direccion.Text.Trim();
-
                 objEnt.descripcion = txt_descripcion.Text.Trim();
 
                 objEnt.Co_usuario_modi = Profile.UserName;
@@ -1393,8 +1320,6 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
                 objEnt.no_estacion_red = Profile.Estacion;
 
                 objEnt.fl_activo = (ddl_estado.SelectedIndex != 0 ? ddl_estado.SelectedValue : "");
-
-                if (ddl_IndicadorHGSI.Visible) objEnt.co_valoracion = ddl_IndicadorHGSI.SelectedValue;
 
                 //MAPA
                 if (ViewState["mapa"] == null)
@@ -2248,14 +2173,14 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
         else
             ddl_prov.Enabled = false;
 
-        ddl_prov.Items.Insert(0, "--Seleccione--");
+        ddl_prov.Items.Insert(0, new ListItem("--Seleccione--", ""));
         ddl_prov.SelectedIndex = 0;
 
-        ddl_dist.Items.Insert(0, "--Seleccione--");
+        ddl_dist.Items.Insert(0, new ListItem("--Seleccione--", ""));
         ddl_dist.SelectedIndex = 0;
         ddl_dist.Enabled = false;
 
-        ddl_ptored.Items.Insert(0, "--Seleccione--");
+        ddl_ptored.Items.Insert(0, new ListItem("--Seleccione--", ""));
         ddl_ptored.SelectedIndex = 0;
         ddl_ptored.Enabled = false;
     }
@@ -2281,10 +2206,10 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
         }
         else
             ddl_dist.Enabled = false;
-        ddl_dist.Items.Insert(0, "--Seleccione--");
+        ddl_dist.Items.Insert(0, new ListItem("--Seleccione--", ""));
         ddl_dist.SelectedIndex = 0;
 
-        ddl_ptored.Items.Insert(0, "--Seleccione--");
+        ddl_ptored.Items.Insert(0, new ListItem("--Seleccione--", ""));
         ddl_ptored.SelectedIndex = 0;
         ddl_ptored.Enabled = false;
 
@@ -3348,217 +3273,8 @@ public partial class SRC_Mantenimiento_SRC_Maestro_Detalle_Talleres : System.Web
     #endregion
 
     private static string _TODOS = "--Todos--";
-    private static string _CARPETA = "Contenidos";
-
-    [WebMethod]
-    public static string[] ListarContenidoInformativoTaller(string nid_taller)
-    {
-        return TallerBL.ListarContenidoInformativoTaller(int.Parse(nid_taller));
-    }
-
-    [WebMethod]
-    public static string[] actualizarContenido(string[] filtro)
-    {
-        ProfileCommon oUsuario = ((ProfileCommon)HttpContext.Current.Profile);
-        TallerContenidoBE oMaestroTallerContenidoBE = new TallerContenidoBE();
-        string[] res = new string[] { "", "" };
-
-        oMaestroTallerContenidoBE.fl_tipo = "1";
-        oMaestroTallerContenidoBE.co_masivo = filtro[1].ToString().Trim();
-        oMaestroTallerContenidoBE.co_estado = filtro[2].ToString().Trim();
-        oMaestroTallerContenidoBE.tx_observacion = "";
-        //-------------
-        oMaestroTallerContenidoBE.co_usuario = oUsuario.UserName;
-        oMaestroTallerContenidoBE.no_usuario_red = filtro[3].ToString().Trim();
-        oMaestroTallerContenidoBE.no_estacion_red = filtro[4].ToString().Trim();
-
-        string oRespuesta = TallerBL.ActualizarEstadoContenido(oMaestroTallerContenidoBE);
-        string sMensaje = string.Empty;
-
-        if (string.IsNullOrEmpty(oRespuesta))
-        {
-            //Error aplicacion
-            sMensaje = "-1|No se pudo realizar la acción.\\nConsulte con el administrador.";
-        }
-        else if (oRespuesta.Split('|').GetValue(0).ToString().Equals("-1"))
-        {
-            //Error BD
-            int retorno = int.Parse(oRespuesta.Split('|').GetValue(1).ToString());
-            if (retorno == -4) sMensaje = "No se pudo realizar la acción.\nNo existe la llave foránea.";
-            else if (retorno == -3) sMensaje = "No se pudo realizar la acción.\nSe ingresó un valor nulo en un campo no permitido.";
-            else if (retorno == -2) sMensaje = "No se pudo realizar la acción.\nSe ingresó un valor duplicado.";
-            else if (retorno == -1) sMensaje = "No se pudo realizar la acción.\nConsulte con el administrador.";
-            else if (retorno == -5) sMensaje = "No se pudo realizar la acción.\nNombre ingresado ya existe.";
-            else sMensaje = "No se pudo realizar la acción.\nConsulte con el administrador.";
-
-            sMensaje = "-1|" + sMensaje;
-        }
-        else if (oRespuesta.Split('|').GetValue(0).ToString().Equals("1"))
-        {
-            int cant = int.Parse(oRespuesta.Split('|').GetValue(1).ToString());
-            string no_estado = filtro[2].ToString().Trim().Equals("A") ? "aprobó" : "rechazó";
-            if (cant == 1)
-                sMensaje = "1|Se " + no_estado + " el contenido satisfactoriamente.";
-            else
-                sMensaje = "1|Se " + no_estado + " los " + cant.ToString() + " contenidos satisfactoriamente.";
-
-        }
-        return sMensaje.Split('|');
-
-    }
-
-    [WebMethod]
-    public static string[] CrearDirectorio()
-    {
-        string[] res = new string[] { "", "", "" };
-
-        try
-        { 
-            string sCodigo = TallerBL.ListarCodigoContenido();
-
-            string Serverpath = _CARPETA + "\\";
-            string sDirPath = HttpContext.Current.Server.MapPath(Serverpath + sCodigo);
-            System.IO.DirectoryInfo ObjSearchDir = new System.IO.DirectoryInfo(sDirPath);
-            res[0] = "1";
-            res[1] = sCodigo;
-            res[2] = sDirPath;           
-            if (!ObjSearchDir.Exists)
-            {
-                ObjSearchDir.Create();
-            }           
-
-        }
-        catch //(Exception mEx)
-        {
-            res[0] = "-1";
-        }
-
-        return res;
-    }
-
-    [WebMethod]
-    public static string[] ListarContenidoTaller(string nid_contenido_taller)
-    {
-        string Serverpath = _CARPETA + "\\";//System.Configuration.ConfigurationManager.AppSettings["FolderPath"];
-        string sRutaServer = HttpContext.Current.Server.MapPath(Serverpath); //Server.MapPath(Serverpath + RanNumber);
-        
-        return TallerBL.ListarContenidoTaller(int.Parse(nid_contenido_taller), sRutaServer);
-        //string STR = Server.MapPath("./Mapas");
-    }
-
-    [WebMethod]
-    public static string[] registrarContenido(string[] filtro)
-    {
-        TallerContenidoBE oMaestroTallerContenidoBE = new TallerContenidoBE();
-        string[] res = new string[] { "", "" };
-
-        oMaestroTallerContenidoBE.nid_taller_contenido = filtro[0].ToString().Trim().Equals("") ? 0 : int.Parse(filtro[0].ToString());
-        oMaestroTallerContenidoBE.co_taller_contenido = filtro[1].ToString().Trim();
-        oMaestroTallerContenidoBE.nid_taller = int.Parse(filtro[2].ToString());
-        oMaestroTallerContenidoBE.nid_negocio_taller = int.Parse(filtro[3].ToString());
-        oMaestroTallerContenidoBE.co_tipo = filtro[4].ToString().Trim();
-        oMaestroTallerContenidoBE.no_titulo = filtro[5].ToString().Trim();
-        oMaestroTallerContenidoBE.fe_inicio = string.IsNullOrEmpty(filtro[6].ToString()) ? "" : Convert.ToDateTime(filtro[6].Trim()).ToString("dd-MM-yyyy");
-        oMaestroTallerContenidoBE.fe_fin = string.IsNullOrEmpty(filtro[7].ToString()) ? "" : Convert.ToDateTime(filtro[7].Trim()).ToString("dd-MM-yyyy");
-        oMaestroTallerContenidoBE.tx_contenido = filtro[8].ToString().Trim();
-        oMaestroTallerContenidoBE.co_estado = filtro[9].ToString().Trim();
-        oMaestroTallerContenidoBE.tx_observacion = filtro[10].ToString().Trim();
-        oMaestroTallerContenidoBE.co_fotos = filtro[11].ToString().Trim();
-        oMaestroTallerContenidoBE.co_descrip = filtro[12].ToString().Trim();
-        //-------------
-        oMaestroTallerContenidoBE.co_usuario =((ProfileCommon)HttpContext.Current.Profile).UserName;
-        oMaestroTallerContenidoBE.no_usuario_red = filtro[13].ToString().Trim();
-        oMaestroTallerContenidoBE.no_estacion_red = filtro[14].ToString().Trim();
-
-        string oRespuesta = TallerBL.InsertarContenidoTaller(oMaestroTallerContenidoBE);
-        string sMensaje = string.Empty;
 
 
-        if (string.IsNullOrEmpty(oRespuesta))
-        {
-            //Error aplicacion
-            sMensaje = "-1|No se pudo realizar la acción.\\nConsulte con el administrador.";
-        }
-        else if (oRespuesta.Split('|').GetValue(0).ToString().Equals("-1"))
-        {
-            //Error BD al Importar los datos.
-            int retorno = int.Parse(oRespuesta.Split('|').GetValue(1).ToString());
-            if (retorno == -4) sMensaje = "No se pudo realizar la acción.\\nNo existe la llave foránea.";
-            else if (retorno == -3) sMensaje = "No se pudo realizar la acción.\\nSe ingresó un valor nulo en un campo no permitido.";
-            else if (retorno == -2) sMensaje = "No se pudo realizar la acción.\\nSe ingresó un valor duplicado.";
-            else if (retorno == -1) sMensaje = "No se pudo realizar la acción.\\nConsulte con el administrador.";
-            else if (retorno == -5) sMensaje = "No se pudo realizar la acción.\\nNombre ingresado ya existe.";
-            else sMensaje = "No se pudo realizar la acción.\\nConsulte con el administrador.";
-
-            sMensaje = "-1|" + sMensaje;
-        }
-        else if (oRespuesta.Split('|').GetValue(0).ToString().Equals("1"))
-        {
-            if (filtro[0].ToString().Equals("0"))
-                sMensaje = "1|El contenido se registró satisfactoriamente";
-            else
-                sMensaje = "1|El contenido se actualizó satisfactoriamente";
-        }
-        return sMensaje.Split('|');
-
-    }
-
-
-
-    [WebMethod]
-    public static string[] cargarDatosCombo(string nid_taller1, string nid_taller2,string nid_usuario)
-    {
-        string[] res = new string[] { "", "", "", ""};
-        res[0] = TallerBL.ListarTipoContenido(1, _TODOS);
-        res[1] = TallerBL.ListarEstadosContenido(1, _TODOS);
-        res[2] = TallerBL.ListarNegocioTaller(int.Parse(nid_taller1), int.Parse(nid_usuario), 1, _TODOS);
-        res[3] = TallerBL.ListarNegocioTaller(int.Parse(nid_taller2), int.Parse(nid_usuario), 1, _TODOS);
-
-        return res;
-    }    
-    [WebMethod]
-    public static string cargarTipoContenido()
-    {
-        return TallerBL.ListarTipoContenido(1, _TODOS);
-    }    
-    [WebMethod]
-    public static string cargarEstadoContenido()
-    {
-        return TallerBL.ListarEstadosContenido(1, _TODOS);
-    }    
-    [WebMethod]
-    public static string cargarNegocioTaller(string nid_taller)
-    {
-        int id_usuario = (((ProfileCommon)HttpContext.Current.Profile)).Usuario.Nid_usuario;
-        int id_taller = int.Parse(nid_taller);
-
-        return TallerBL.ListarNegocioTaller(id_taller,id_usuario, 1, _TODOS);
-    }
-
-
-
-
-    [WebMethod]
-    public static string Buscar(string[] filtro)
-    {
-        string opcion = "";
-
-        Hashtable lsFiltro = new Hashtable();
-
-        lsFiltro["nid_taller"] = filtro[0].Trim();
-        lsFiltro["no_titulo"] = filtro[1].Trim();
-        lsFiltro["fe_vigencia_ini"] = filtro[2].Trim();
-        lsFiltro["fe_vigencia_fin"] = filtro[3].Trim();
-        lsFiltro["fe_actualizacion"] = filtro[4].Trim();
-        lsFiltro["co_tipo"] = filtro[5].Trim();
-        lsFiltro["co_estado"] = filtro[6].Trim();
-        lsFiltro["nid_negocio_taller"] = filtro[7].Trim();
-
-        int registros = int.Parse(filtro[8].Trim());
-        int pagina = int.Parse(filtro[9].Trim());
-
-        return TallerBL.ListarBandejaContenido(opcion, lsFiltro, registros, pagina);
-    }
     private void Estructura_DT_HorExcep()
     {
         DT_HorExcep = new System.Data.DataTable();

@@ -286,42 +286,7 @@ namespace AppMiTaller.Intranet.DA
             }
             return lista;
         }
-        //@001-F
-
-        //I @005
-        public CitasBE Obtiene_Validacion_Km(string patente, int nid_servicio, int nid_marca)
-        {
-            CitasBE oHistorial = new CitasBE();
-            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AppMiTallerCN"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("SRC_SPS_OBTENER_KM_ULTIMAOT", conn);
-            SqlDataReader reader = null;
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@vi_patente", patente);
-            cmd.Parameters.AddWithValue("@vi_nid_servicio", nid_servicio);
-            cmd.Parameters.AddWithValue("@vi_nid_marca", nid_marca);
-            try
-            {
-                conn.Open();
-                reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    oHistorial = Entidad_Validacion_Km(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception)
-            {
-                if (reader != null && !reader.IsClosed) reader.Close();
-                throw;
-            }
-            finally
-            {
-                conn.Close();
-                conn.Dispose();
-            }
-            return oHistorial;
-        }
+        
         private CitasBE Entidad_Validacion_Km(IDataRecord DReader)
         {
             CitasBE Entidad = new CitasBE();

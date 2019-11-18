@@ -11,7 +11,7 @@ namespace AppMiTaller.Intranet.BE
         public Int32 nid_marca { get; set; }
         public String nu_ruc { get; set; }
         public String co_marca { get; set; }
-        public Int32 nid_importador { get; set; }
+        
         public Int32 nid_empresa { get; set; }
         public String no_marca { get; set; }
         public String logo { get; set; }

@@ -291,87 +291,26 @@ namespace AppMiTaller.Intranet.DA
                 {
                     db.ProcedureName = "[src_spi_mae_taller_BO]";
 
-                    if (String.IsNullOrEmpty(ent.co_taller))
-                        db.AddParameter("@vi_co_taller", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_co_taller", DbType.String, ParameterDirection.Input, ent.co_taller);
-
-                    if (String.IsNullOrEmpty(ent.no_taller))
-                        db.AddParameter("@vi_no_taller", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_no_taller", DbType.String, ParameterDirection.Input, ent.no_taller);
-
-                    if (ent.Cod_intervalo == 0)
-                        db.AddParameter("@vi_co_intervalo_atenc", DbType.Int32, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_co_intervalo_atenc", DbType.Int32, ParameterDirection.Input, ent.Cod_intervalo);
-
-                    if (ent.nid_ubica == 0)
-                        db.AddParameter("@vi_nid_ubica", DbType.Int32, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_nid_ubica", DbType.Int32, ParameterDirection.Input, ent.nid_ubica);
-
-                    if (String.IsNullOrEmpty(ent.no_direccion))
-                        db.AddParameter("@vi_no_direccion", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_no_direccion", DbType.String, ParameterDirection.Input, ent.no_direccion);
-
-                    if (String.IsNullOrEmpty(ent.nu_telefono))
-                        db.AddParameter("@vi_nu_telefono", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_nu_telefono", DbType.String, ParameterDirection.Input, ent.nu_telefono);
-
-                    if (String.IsNullOrEmpty(ent.tx_mapa_taller))
-                        db.AddParameter("@vi_tx_mapa_taller", DbType.String, ParameterDirection.Input, "");
-                    else
-                        db.AddParameter("@vi_tx_mapa_taller", DbType.String, ParameterDirection.Input, ent.tx_mapa_taller);
-
-                    if (String.IsNullOrEmpty(ent.tx_url_taller))
-                        db.AddParameter("@vi_tx_url_taller", DbType.String, ParameterDirection.Input, "");
-                    else
-                        db.AddParameter("@vi_tx_url_taller", DbType.String, ParameterDirection.Input, ent.tx_url_taller);
-
-
-                    if (String.IsNullOrEmpty(ent.co_usuario))
-                        db.AddParameter("@vi_co_usuario_crea", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_co_usuario_crea", DbType.String, ParameterDirection.Input, ent.co_usuario);
-
-                    if (String.IsNullOrEmpty(ent.co_usuario_red))
-                        db.AddParameter("@vi_co_usuario_red", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_co_usuario_red", DbType.String, ParameterDirection.Input, ent.co_usuario_red);
-
-                    if (String.IsNullOrEmpty(ent.no_estacion_red))
-                        db.AddParameter("@vi_no_estacion_red", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_no_estacion_red", DbType.String, ParameterDirection.Input, ent.no_estacion_red);
-
-                    if (String.IsNullOrEmpty(ent.fl_activo))
-                        db.AddParameter("@vi_fl_activo", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_fl_activo", DbType.String, ParameterDirection.Input, ent.fl_activo);
-
-                    db.AddParameter("@vo_nid_taller", DbType.Int32, ParameterDirection.Output, 0);
-                    if (String.IsNullOrEmpty(ent.co_valoracion))
-                        db.AddParameter("@vi_co_valoracion", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_co_valoracion", DbType.String, ParameterDirection.Input, ent.co_valoracion);
-                    if (String.IsNullOrEmpty(ent.fl_taxi_BO))
-                        db.AddParameter("@vi_fl_taxi_BO", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_fl_taxi_BO", DbType.String, ParameterDirection.Input, ent.fl_taxi_BO);
-                    if (String.IsNullOrEmpty(ent.fl_taxi_FO))
-                        db.AddParameter("@vi_fl_taxi_FO", DbType.String, ParameterDirection.Input, DBNull.Value);
-                    else
-                        db.AddParameter("@vi_fl_taxi_FO", DbType.String, ParameterDirection.Input, ent.fl_taxi_FO);
+                    db.AddParameter("@vi_co_taller", DbType.String, ParameterDirection.Input, ent.co_taller);
+                    db.AddParameter("@vi_no_taller", DbType.String, ParameterDirection.Input, ent.no_taller);
                     db.AddParameter("@vi_descripcion", DbType.String, ParameterDirection.Input, ent.descripcion);
+                    db.AddParameter("@vi_co_intervalo_atenc", DbType.Int32, ParameterDirection.Input, ent.Cod_intervalo);
+                    db.AddParameter("@vi_nid_ubica", DbType.Int32, ParameterDirection.Input, ent.nid_ubica);
+                    db.AddParameter("@vi_no_direccion", DbType.String, ParameterDirection.Input, ent.no_direccion);
+                    db.AddParameter("@vi_tx_mapa_taller", DbType.String, ParameterDirection.Input, ent.tx_mapa_taller);
+                    db.AddParameter("@vi_tx_url_taller", DbType.String, ParameterDirection.Input, ent.tx_url_taller);
+                    db.AddParameter("@vi_fl_activo", DbType.String, ParameterDirection.Input, ent.fl_activo);
+                    db.AddParameter("@vi_co_usuario_crea", DbType.String, ParameterDirection.Input, ent.co_usuario);
+                    db.AddParameter("@vi_co_usuario_red", DbType.String, ParameterDirection.Input, ent.co_usuario_red);
+                    db.AddParameter("@vi_no_estacion_red", DbType.String, ParameterDirection.Input, ent.no_estacion_red);
+                    db.AddParameter("@vo_nid_taller", DbType.Int32, ParameterDirection.Output, 0);
+
                     db.Execute();
                     nId = Convert.ToInt32(db.GetParameter("@vo_nid_taller"));
                     return nId;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 nId = 0;
             }
@@ -429,7 +368,6 @@ namespace AppMiTaller.Intranet.DA
                     else
                         db.AddParameter("@vi_fl_activo", DbType.String, ParameterDirection.Input, ent.fl_activo);
 
-                    //db.AddParameter("@nid_horario", DbType.Int32, ParameterDirection.Output, 0);
                     res = db.Execute();
                 }
             }
@@ -1327,35 +1265,6 @@ namespace AppMiTaller.Intranet.DA
             }
             return lista;
         }
-        public CombosBEList GETListarIndicadorHGSI()
-        {
-            CombosBEList lista = new CombosBEList();
-            IDataReader DReader = null;
-            try
-            {
-                using (Database db = new Database())
-                {
-                    db.ProcedureName = "[src_sps_listado_indicador_HGSI]";
-                    DReader = db.GetDataReader();
-                }
-                while (DReader.Read())
-                {
-                    ComboBE oCombosBE = CrearEntidad_Combo3(DReader);
-                    lista.Add(oCombosBE);
-                }
-
-                DReader.Close();
-            }
-            catch (Exception)
-            {
-                if (DReader != null && !DReader.IsClosed) DReader.Close();
-                throw;
-            }
-            return lista;
-        }
-
-        /*@001 F*/
-
 
         public TallerBEList GETListarServicios()
         {
@@ -1538,10 +1447,6 @@ namespace AppMiTaller.Intranet.DA
 
             return Entidad;
         }
-
-        /* ULTIMO */
-
-        /************************ start Carlos *******************/
         public TallerBEList ListarHorario_Taller(TallerBE ent)
         {
             TallerBEList lista = new TallerBEList();
@@ -1570,7 +1475,6 @@ namespace AppMiTaller.Intranet.DA
             }
             return lista;
         }
-        /************************ end Carlos *******************/
         #region "Populate"
         private ComboBE CrearEntidad_Combo3(IDataRecord DReader)
         {

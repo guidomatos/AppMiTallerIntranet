@@ -13,18 +13,6 @@ namespace AppMiTaller.Intranet.BL
         public delegate void ErrorDelegate(object sender, Exception ex);
         public event ErrorDelegate ErrorEvent;
 
-        public CitasBE Obtiene_Validacion_Km(string patente, int nid_servicio, int nid_marca)
-        {
-            try
-            {
-                return new CitasDA().Obtiene_Validacion_Km(patente, nid_servicio, nid_marca);
-            }
-            catch (Exception ex)
-            {
-                this.ErrorEvent(this, ex);
-                return null;
-            }
-        }
         public static System.Xml.XmlDocument WSListarCitasXML(string consultaXML)
         {
             return CitasDA.WSListarCitasXML(consultaXML);

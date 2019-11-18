@@ -165,7 +165,7 @@
             if (opt == "1") {
                 document.getElementById("modalMsg").className = "HideModal";
                 document.getElementById("overlay").className = "";
-                Fc_CancelarPoput();
+                fc_CancelarPoput();
             } else if (opt == "2") {
                 document.getElementById("modalMsg1").className = "HideModal";
                 document.getElementById("overlay1").className = "";

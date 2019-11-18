@@ -258,11 +258,11 @@ public partial class SGS_Mantenimiento_SGS_MarcaModelo_Mantenimiento : PaginaBas
 
         oMarcaBE.co_marca = this.txtCodMarca.Text;
         oMarcaBE.no_marca = this.txtNomMarca.Text;
+        oMarcaBE.nid_empresa = Int32.Parse(this.cboEmpMarca.SelectedValue);
         oMarcaBE.fl_inactivo = this.cboEstadoMarca.SelectedValue;
         oMarcaBE.co_usuario_creacion = Profile.Usuario.CUSR_ID;
         oMarcaBE.no_estacion = Profile.Estacion;
         oMarcaBE.no_usuario_red = Profile.UsuarioRed;
-        oMarcaBE.nid_empresa = Int32.Parse(this.cboEmpMarca.SelectedValue);
         
         return true;
     }

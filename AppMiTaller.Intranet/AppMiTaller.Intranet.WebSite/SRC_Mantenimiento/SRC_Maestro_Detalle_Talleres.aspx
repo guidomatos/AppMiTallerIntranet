@@ -7,12 +7,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <script src="Scripts/jquery.MultiFile.js" type="text/javascript"></script>
-    <script src="Scripts/AjaxFileupload.js" type="text/javascript"></script>
-    <script src="Scripts/jquery.jcarousel.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.js"></script>
-    <script src="Scripts/nicEdit.js" type="text/javascript"></script>
-
     <style type="text/css">
         .ctxt {
             color: #555B6C;
@@ -33,99 +27,6 @@
             font-weight: bold;
         }
 
-        .jcarousel-wrapper {
-            background-color: #FFFFFF;
-            border: 1px solid #646464;
-            margin: 10px 0;
-            padding-top: 10px;
-            position: relative;
-        }
-
-            .jcarousel-wrapper .photo-credits {
-                bottom: 0;
-                color: #FFFFFF;
-                font-size: 13px;
-                opacity: 0.66;
-                position: absolute;
-                right: 15px;
-                text-shadow: 0 0 1px rgba(0, 0, 0, 0.85);
-            }
-
-                .jcarousel-wrapper .photo-credits a {
-                    color: #FFFFFF;
-                }
-
-        .jcarousel {
-            height: 180px;
-            margin-left: 85px;
-            overflow: hidden;
-            position: relative;
-            width: 150px;
-        }
-
-            .jcarousel ul {
-                list-style: none outside none;
-                margin: 0;
-                padding: 0;
-                position: relative;
-                width: 20000em;
-            }
-
-            .jcarousel li {
-                float: left;
-            }
-
-        .jcarousel-control-prev, .jcarousel-control-next {
-            position: absolute;
-            width: 30px;
-        }
-
-        .jcarousel-control-prev {
-            left: -32px;
-        }
-
-        .jcarousel-control-next {
-            right: -32px;
-        }
-
-        .jcarousel-control-prev.inactive, .jcarousel-control-prev.inactive:hover {
-            background: url("../Images/SRC/nav_left.gif") no-repeat scroll -100px top transparent;
-            cursor: default;
-        }
-
-        .jcarousel-control-next.inactive, .jcarousel-control-next.inactive:hover {
-            background: url("../Images/SRC/nav_right.gif") no-repeat scroll -20px top transparent;
-            cursor: default;
-        }
-
-        .jcarousel-pagination {
-            left: 10px;
-            margin: 0;
-            text-align: center;
-            vertical-align: middle;
-        }
-
-            .jcarousel-pagination a {
-                background: none repeat scroll 0 0 #FFFFFF;
-                border-radius: 14px 14px 14px 14px;
-                color: #4E443C;
-                display: inline-block;
-                font-size: 11px;
-                line-height: 14px;
-                margin-right: 2px;
-                min-width: 14px;
-                opacity: 0.75;
-                padding: 3px;
-                text-align: center;
-                text-decoration: none;
-            }
-
-                .jcarousel-pagination a.active {
-                    background: none repeat scroll 0 0 #4E443C;
-                    color: #FFFFFF;
-                    opacity: 1;
-                    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
-                }
 
         .wrapper {
             margin: auto;
@@ -153,31 +54,7 @@
                 font-size: 12px;
             }
 
-        .contenidoTab {
-            height: 22px;
-            margin: auto;
-            position: relative;
-            text-align: center;
-            width: 454px;
-        }
 
-        .contenidoBody {
-            background-color: #FFFFFF;
-            border: 2px solid #466DB7;
-            border-top-width: 1px;
-            margin: auto;
-            width: 450px;
-            height: 165px;
-        }
-
-        .contenido {
-            border: 1px solid #464646;
-            border-radius: 5px 5px 5px 5px;
-            margin: 10px;
-            padding: 2px;
-            width: 95%;
-            height: auto;
-        }
 
         .divTab {
             border: 2px solid #466DB7;
@@ -257,56 +134,7 @@
         }
     </style>
     <script type="text/javascript">
-
-        //JS Opcion Carrusel
-        (function ($) {
-            $(function () {
-                $('.jcarousel').jcarousel();
-                $('.jcarousel-control-prev')
-                    .on('jcarouselcontrol:active', function () { $(this).removeClass('inactive'); })
-                    .on('jcarouselcontrol:inactive', function () { $(this).addClass('inactive'); })
-                    .jcarouselControl({ target: '-=1' });
-
-                $('.jcarousel-control-next')
-                    .on('jcarouselcontrol:active', function () { $(this).removeClass('inactive'); })
-                    .on('jcarouselcontrol:inactive', function () { $(this).addClass('inactive'); })
-                    .jcarouselControl({ target: '+=1' });
-
-                $('.jcarousel-pagination')
-                    .on('jcarouselpagination:active', 'a', function () { $(this).addClass('active'); })
-                    .on('jcarouselpagination:inactive', 'a', function () { $(this).removeClass('active'); })
-                    .jcarouselPagination();
-
-            });
-        })(jQuery);
-
-        function fc_MostrarPromocion(nid_taller) {
-            //hid_id_tllr
-            PageMethods.ListarContenidoInformativoTaller(nid_taller, function (res) {
-
-                if (res[0] != '0') {
-                    //alert(res);
-                    $("#divHeader, #tabImagenes, #tab1, #tab2, #tab3").empty();
-                    $("#divHeader").append('TALLER: ' + res[0]);
-                    $("#tabImagenes").append(res[4]);
-                    $("#tab1").append(res[1]);
-                    $("#tab2").append(res[2]);
-                    $("#tab3").append(res[3]);
-
-                    fc_tab(1);
-
-                    $('.jcarousel').jcarousel(); //Usar el carrusel
-
-
-                }
-                else {
-                    alert('Este taller no contiene un contenido informativo.');
-                }
-            });
-
-            return false;
-        }
-
+        
         function fc_tab(tab) {
             //alert(tab);
             document.getElementById('tab1').style.display = 'none';
@@ -352,8 +180,7 @@
             else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabServicios').style.visibility != 'hidden') index = 2;
             else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabMarcasModelos').style.visibility != 'hidden') index = 3;
             else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabHorExcepional').style.visibility != 'hidden') index = 4;
-            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabContenidoInformativo').style.visibility != 'hidden') index = 5;
-            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabMapa').style.visibility != 'hidden') index = 6;
+            else if (document.getElementById('ctl00_ContentPlaceHolder1_tabMantMaesTaller_tabMapa').style.visibility != 'hidden') index = 5;
 
             Fc_SetCambiartab(index);
 
@@ -363,7 +190,6 @@
             setTabCabeceraOffForm('3');
             setTabCabeceraOffForm('4');
             setTabCabeceraOffForm('5');
-            setTabCabeceraOffForm('6');
             setTabCabeceraOnForm(index);
             onTabCabeceraOverForm(index);
 
@@ -479,6 +305,12 @@
             var txt_codtall = document.getElementById('<%=txt_codtall.ClientID%>');
             var txt_nomtall = document.getElementById('<%=txt_nomtall.ClientID%>');
             var ddl_intervAtenc = document.getElementById('<%=ddl_intervAtenc.ClientID%>');
+            var ddl_dpto = document.getElementById('<%=ddl_dpto.ClientID%>');
+            var ddl_prov = document.getElementById('<%=ddl_prov.ClientID%>');
+            var ddl_dist = document.getElementById('<%=ddl_dist.ClientID%>');
+            var ddl_ptored = document.getElementById('<%=ddl_ptored.ClientID%>');
+            var ddl_estado = document.getElementById('<%=ddl_estado.ClientID%>');
+            
 
             if (txt_codtall.value.trim() == "") {
                 alert('Ingrese Codigo de Taller.');
@@ -492,12 +324,37 @@
                 return false;
             }
 
+            if ($.trim($(ddl_dpto).val()) == '') {
+                alert('Debe Seleccionar un Departamento');
+                return false;
+            }
+
+            if ($.trim($(ddl_prov).val()) == '') {
+                alert('Debe Seleccionar una Provincia');
+                return false;
+            }
+
+            if ($.trim($(ddl_dist).val()) == '') {
+                alert('Debe Seleccionar un Distrito');
+                return false;
+            }
+
+            if ($.trim($(ddl_ptored).val()) == '') {
+                alert('Debe Seleccionar un Local');
+                return false;
+            }
+
+            if ($.trim($(ddl_estado).val()) == '') {
+                alert('Debe Seleccionar un Estado');
+                return false;
+            }
 
             if (ddl_intervAtenc.selectedIndex == 0 || ddl_intervAtenc.selectedIndex == -1) {
                 alert('Debe Seleccionar un Intervalo de Atencion');
                 return false;
             }
-            return true;         //pasa al submit
+
+            return true;
         }
 
         function SoloNumeros(eventObj) {
@@ -518,49 +375,25 @@
         }
 
         function Fc_Cambiartab(sender, e) {
-            var CurrentTab1 = sender;
             var index = sender.get_activeTab()._tabIndex;
 
             document.getElementById('<%=this.btnNuevo.ClientID%>').style.display = (index == 5) ? 'inline' : 'none';
             document.getElementById('<%=this.btnBuscar.ClientID%>').style.display = (index == 5) ? 'inline' : 'none';
 
             if (document.getElementById('<%=this.btnEditar.ClientID%>').style.display == 'none')
-                document.getElementById('<%=this.btnGrabar.ClientID%>').style.display = (index == 6 || index == 5) ? 'none' : 'inline';
+                document.getElementById('<%=this.btnGrabar.ClientID%>').style.display = (index == 5) ? 'none' : 'inline';
 
-            $("#btnEditarCont").hide();
-            if (index == 6) {
-                CargarInicial();
-                $("#btnBuscarCont, #btnAgregarCont").show(); //btnEditarCont
-
-                document.getElementById("btnAprobarCont").style.display = document.getElementById('<%=this.hidAprobar.ClientID%>').value;
-                document.getElementById("btnRechazarCont").style.display = document.getElementById('<%=this.hidRechazar.ClientID%>').value;
-            }
-            else
-                $("#btnBuscarCont, #btnAgregarCont, #btnAprobarCont, #btnRechazarCont, #btnImprimirCont").hide(); //btnEditarCont
-
-            setTabCabeceraOffForm('5');
-            onTabCabeceraOverForm('2');
+            
             setTabCabeceraOffForm('0');
-            setTabCabeceraOffForm('6');
             setTabCabeceraOffForm('1');
             setTabCabeceraOffForm('2');
-            setTabCabeceraOffForm('5');
+            setTabCabeceraOffForm('3');
             setTabCabeceraOffForm('4');
+            setTabCabeceraOffForm('5');
             setTabCabeceraOnForm(index);
             onTabCabeceraOverForm(index);
-
         }
 
-    </script>
-
-    <script type="text/javascript">
-        bkLib.onDomLoaded(function () {
-            new nicEditor({
-                iconsPath: './Scripts/nicEditorIcons.gif', maxHeight: 100
-                , buttonList: ['save', 'bold', 'italic', 'underline', 'left', 'center', 'right', 'justify', 'ol', 'ul', 'fontSize', 'fontFamily', 'fontFormat', 'indent', 'outdent', 'image', 'link', 'unlink', 'forecolor', 'bgcolor']
-            }).panelInstance('txtContenido');
-
-        });
     </script>
 
     <asp:UpdatePanel ID="Upd_GENERAL" runat="server">
@@ -573,25 +406,6 @@
                             border="0" style="width: 230px; left: 770px;">
                             <tr>
                                 <td style="width: 100%" align="right">
-                                    <a id="btnBuscarCont" href="javascript:fc_Buscar(1);">
-                                        <img alt="" src="../Images/iconos/b-buscar.gif" title="Buscar" border="0" onmouseover="javascript:this.src='../Images/iconos/b-buscar2.gif'"
-                                            onmouseout="javascript:this.src='../Images/iconos/b-buscar.gif'" />
-                                    </a><a id="btnAgregarCont" href="javascript:fc_Agregar();">
-                                        <img alt="" src="../Images/iconos/b-nuevo.gif" title="Agregar" border="0" onmouseover="javascript:this.src='../Images/iconos/b-nuevo2.gif'"
-                                            onmouseout="javascript:this.src='../Images/iconos/b-nuevo.gif'" />
-                                    </a>
-                                    <input id="btnEditarCont" type="image" title="Editar" style="border-width: 0px; display: none;"
-                                        src="../Images/iconos/b-registrofecha.gif" onmouseover="javascript:this.src='../Images/iconos/b-registrofecha2.gif'"
-                                        onmouseout="javascript:this.src='../Images/iconos/b-registrofecha.gif'" />
-                                    <input id="btnAprobarCont" type="image" title="Aprobar" style="border-width: 0px; display: none;" onclick="javascript: return fc_AprobarRechazar('A');"
-                                        src="../Images/iconos/b-confirmar_aprob.png" onmouseover="javascript:this.src='../Images/iconos/b-confirmar_aprob2.png'"
-                                        onmouseout="javascript:this.src='../Images/iconos/b-confirmar_aprob.png'" />
-                                    <input id="btnRechazarCont" type="image" align="absbottom" title="Rechazar" style="border-width: 0px; display: none;" onclick="javascript: return fc_AprobarRechazar('R');"
-                                        src="../Images/iconos/b-cerrarincidencia.png" onmouseover="javascript:this.src='../Images/iconos/b-cerrarincidencia2.png'"
-                                        onmouseout="javascript:this.src='../Images/iconos/b-cerrarincidencia.png'" />
-                                    <input id="btnImprimirCont" type="image" title="Imprimir" visible="false"
-                                        style="border-width: 0px; display: none;" src="../Images/iconos/b-imprimir.gif"
-                                        onmouseover="javascript:this.src='../Images/iconos/b-imprimir2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-imprimir.gif'" />
                                     <asp:ImageButton ID="btnBuscar" runat="server" ToolTip="Buscar" ImageUrl="~/Images/iconos/b-buscar.gif"
                                         onmouseover="javascript:this.src='../Images/iconos/b-buscar2.gif'" onmouseout="javascript:this.src='../Images/iconos/b-buscar.gif'"
                                         OnClick="btnBuscar_Click" />
@@ -655,14 +469,6 @@
                                                                             <table class="textotab" border="0" cellpadding="2" cellspacing="1" width="965">
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td></td>
-                                                                                        <td></td>
-                                                                                        <td></td>
-                                                                                        <td></td>
-                                                                                        <td></td>
-                                                                                        <td></td>
-                                                                                    </tr>
-                                                                                    <tr>
                                                                                         <td style="width: 9%;">Código
                                                                                         </td>
                                                                                         <td style="width: 24%;">
@@ -674,15 +480,6 @@
                                                                                         <td style="width: 27%">
                                                                                             <asp:TextBox ID="txt_nomtall" runat="server" SkinID="txtob" Width="250px" MaxLength="50"></asp:TextBox>
                                                                                         </td>
-                                                                                        <!-- @001 I -->
-                                                                                        <td style="width: 9%;">
-                                                                                            <asp:Label ID="lbl_HGSI" runat="server" Text="HGSI"></asp:Label>
-                                                                                        </td>
-                                                                                        <td style="width: 9%;">
-                                                                                            <asp:DropDownList ID="ddl_IndicadorHGSI" runat="server">
-                                                                                            </asp:DropDownList>
-                                                                                        </td>
-                                                                                        <!-- @001 F -->
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td>
@@ -769,8 +566,6 @@
                                             </table>
                                         </ContentTemplate>
                                     </cc1:TabPanel>
-                                    
-                                    
                                     <cc1:TabPanel runat="server" ID="tabHorario">
                                         <HeaderTemplate>
                                             <table id="tblHeader1" cellpadding="0" cellspacing="0" border="0">
@@ -884,7 +679,6 @@
                                                                                                 </asp:UpdatePanel>
                                                                                             </td>
                                                                                         </tr>
-                                                                                        <!--
                                                                                         <tr>
                                                                                             <td>Intervalo de Atencion
                                                                                             </td>
@@ -893,7 +687,6 @@
                                                                                                 </asp:DropDownList>
                                                                                             </td>
                                                                                         </tr>
-                                                                                        -->
                                                                                     </table>
                                                                                 </td>
                                                                             </tr>
@@ -1469,133 +1262,14 @@
                                             <!-- INICIO HORARIO EXCEPCIONAL  -->
                                         </ContentTemplate>
                                     </cc1:TabPanel>
-                                    <!-- @002-I -->
-                                    <cc1:TabPanel runat="server" ID="tabContenidoInformativo">
-                                        <HeaderTemplate>
-                                            <table id="tblHeader5" cellpadding="0" cellspacing="0" border="0">
-                                                <tr>
-                                                    <td>
-                                                        <img alt="" src="../Images/Tabs/tab-izq_off_plom.gif" /></td>
-                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('5');"
-                                                        onmouseout="javascript:onTabCabeceraOutForm('5');">Contenidos Informativos
-                                                    </td>
-                                                    <td>
-                                                        <img alt="" src="../Images/Tabs/tab-der_off_plom.gif" /></td>
-                                                </tr>
-                                            </table>
-                                        </HeaderTemplate>
-                                        <ContentTemplate>
-                                            <table cellspacing="0" cellpadding="0" width="980" border="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <img alt="" src="../Images/Tabs/borarriba.gif" /></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="vertical-align: top; height: 450px; background-color: #ffffff">
-                                                            <table style="margin-left: 5px; margin-right: 5px; background-color: #ffffff" cellspacing="0"
-                                                                cellpadding="0" width="970" border="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td valign="bottom">
-                                                                            <asp:Label ID="Label5" runat="server" SkinID="lblTR">CRITERIO DE BUSQUEDA</asp:Label>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <table style="padding-bottom: 5px; padding-top: 5px" border="0" cellpadding="2" cellspacing="1"
-                                                                                class="cbusqueda" width="965">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td style="width: 15%">Titulo
-                                                                                        </td>
-                                                                                        <td style="width: 35%">
-                                                                                            <input id="txtTitulo" type="text" class="ctxt" style="width: 250px;" maxlength="255" />
-                                                                                        </td>
-                                                                                        <td style="width: 15%"></td>
-                                                                                        <td style="width: 35%"></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td>Fecha Vigencia
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <uc2:TextBoxFecha ID="txtFechaVigIni" runat="server" Width="80px" />
-                                                                                            <uc2:TextBoxFecha ID="txtFechaVigFin" runat="server" Width="80px" />
-                                                                                        </td>
-                                                                                        <td>Fecha de Registro
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <uc2:TextBoxFecha ID="txtFechaActualizacion" runat="server" Width="80px" />
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td>Tipo de Contenido
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <select id="ddlTipoContenido" class="cdll" style="width: 200px;">
-                                                                                            </select>
-                                                                                        </td>
-                                                                                        <td>Estado
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <select id="ddlEstadoContenido" class="cdll" style="width: 200px;">
-                                                                                            </select>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td>Negocio
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <select id="ddlNegocio" class="cdll" style="width: 200px;">
-                                                                                            </select>
-                                                                                        </td>
-                                                                                        <td></td>
-                                                                                        <td></td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                            <table border="0" cellpadding="1" cellspacing="0" width="960">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td>
-                                                                                            <table cellpadding="0" cellspacing="0" width="970">
-                                                                                                <tr>
-                                                                                                    <td style="width: 100px">
-                                                                                                        <img alt="" src="../Images/iconos/fbusqueda.gif" style="border-width: 0px; width: 970px;" /></td>
-                                                                                                </tr>
-                                                                                            </table>
-                                                                                            <br />
-                                                                                            <input id="txthIDContenido" type="hidden" />
-                                                                                            <table id="gvContenido" style="border-color: white; border-width: 0px; width: 100%; border-collapse: collapse;"
-                                                                                                border="0" rules="all" cellspacing="0" cellpadding="3">
-                                                                                            </table>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height: 4px">
-                                                            <img alt="" src="../Images/Tabs/borabajo.gif" style="width: 100%" /></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </ContentTemplate>
-                                    </cc1:TabPanel>
-                                    
                                     <cc1:TabPanel runat="server" ID="tabMapa" Visible="true">
                                         <HeaderTemplate>
                                             <table id="tblHeader6" cellpadding="0" cellspacing="0" border="0">
                                                 <tr>
                                                     <td>
                                                         <img alt="" src="../Images/Tabs/tab-izq_off_plom.gif" /></td>
-                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('6');"
-                                                        onmouseout="javascript:onTabCabeceraOutForm('6');">mapa
+                                                    <td class="TabCabeceraOffForm" onmouseover="javascript:onTabCabeceraOverForm('5');"
+                                                        onmouseout="javascript:onTabCabeceraOutForm('5');">mapa
                                                     </td>
                                                     <td>
                                                         <img alt="" src="../Images/Tabs/tab-der_off_plom.gif" /></td>
@@ -1985,261 +1659,6 @@
     <cc1:ModalPopupExtender ID="ModalProgress" runat="server" TargetControlID="panelUpdateProgress"
         BackgroundCssClass="modalBackground" PopupControlID="panelUpdateProgress" />
 
-    <div id="__PopPanelCont__" class="modalBackground" style="left: 0px; top: 0px; display: none; position: fixed; z-index: 10000; display: none;">
-    </div>
-    <div id="pnlPopupCont" class="PanelPopup_g" style="display: none; width: 620px; position: fixed;">
-        <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; height: 44px;">
-            <tr>
-                <td class="TitleL">&nbsp;
-                </td>
-                <td class="TitleC" style="width: 320px;">&nbsp;
-                </td>
-                <td class="TitleR">&nbsp;
-                </td>
-            </tr>
-        </table>
-        <table class="Cuerpo" cellpadding="0" cellspacing="0" style="width: 600px;">
-            <tr valign="bottom">
-                <td style="width: 200px">
-
-                    <table id="Table2" runat="server" width="100%" cellpadding="0" cellspacing="0" border="0"
-                        style="height: 20px">
-                        <tr id="Tr1" runat="server">
-                            <td id="Td1" runat="server">
-                                <img alt="" src="../Images/Tabs/tab-izq.gif" /></td>
-                            <td id="Td2" class="TabCabeceraOn" style="width: 220px; text-align: center" runat="server">Agregar Contenido
-                            </td>
-                            <td id="Td3" runat="server">
-                                <img alt="" src="../Images/Tabs/tab-der.gif" /></td>
-                        </tr>
-                    </table>
-                </td>
-                <td align="right">
-                    <table cellpadding="0" cellspacing="0" border="0" style="width: 100%">
-                        <tr>
-                            <td align="right">
-                                <input id="btnGuardarEnviar" type="image" title="Guardar y Enviar"
-                                    style="border-width: 0px;" src="../Images/iconos/b-imp_defi.gif" onmouseover="javascript:this.src='../Images/iconos/b-imp_defi2.gif'"
-                                    onmouseout="javascript:this.src='../Images/iconos/b-imp_defi.gif'" />
-                                <input id="btnGuardarCont" type="image" title="Guardar Contenido"
-                                    style="border-width: 0px;" src="../Images/iconos/b-guardar.gif" onmouseover="javascript:this.src='../Images/iconos/b-guardar2.gif'"
-                                    onmouseout="javascript:this.src='../Images/iconos/b-guardar.gif'" />
-                                <input id="btnCerrarCont" type="image" title="Cerrar" style="border-width: 0px;"
-                                    src="../Images/iconos/b-cerrar.gif" onmouseover="javascript:this.src='../Images/iconos/b-cerrar2.gif'"
-                                    onmouseout="javascript:this.src='../Images/iconos/b-cerrar.gif'" onclick="javascript: return fc_MostrarRegistroCont(0)" />
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-        <table class="Cuerpo" style="width: 480px; height: 465px;" cellpadding="0" cellspacing="0">
-            <tr>
-                <td>
-                    <img alt="" src="../Images/Mantenimiento/fbarr.gif" width="600px" /></td>
-            </tr>
-            <tr>
-                <td style="background-color: #ffffff; vertical-align: top; height: 465px;">
-                    <table style="width: 100%;" cellpadding="0" cellspacing="0" border="0">
-                        <tr>
-                            <td style="padding: 5px;">
-                                <table cellpadding="0" cellspacing="0" border="0">
-                                    <tr valign="bottom">
-                                        <td style="width: 120px; padding-right: 3px">
-                                            <table id="tblHeader001" cellpadding="0" cellspacing="0" border="0" style="height: 20px; text-align: center">
-                                                <tr>
-                                                    <td>
-                                                        <img alt="" src="../Images/Tabs/tabon2-izq_vf.gif" /></td>
-                                                    <td class="TabCabeceraOnForm" onclick="javascript:return fc_CambiaTabCargaMasiva(001)" style="width: 120px; cursor: pointer">Datos</td>
-                                                    <td>
-                                                        <img alt="" src="../Images/Tabs/tabon2-der_vf.gif" /></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td style="width: 150px; padding-right: 3px">
-                                            <table id="tblHeader002" cellpadding="0" cellspacing="0" border="0" style="height: 20px; text-align: center">
-                                                <tr>
-                                                    <td>
-                                                        <img alt="" src="../Images/Tabs/tabon2-izq_vf.gif" /></td>
-                                                    <td class="TabCabeceraOnForm" onclick="javascript:return fc_CambiaTabCargaMasiva(002)" style="width: 150px; cursor: pointer">Vista Previa</td>
-                                                    <td>
-                                                        <img alt="" src="../Images/Tabs/tabon2-der_vf.gif" /></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div id="tabPopup0" class="DivCuerpoTab" style="width: 100%; height: 475px;">
-                                    <div style="height: 10px;">&nbsp;<input id="txhSelDatos" type="hidden" /></div>
-                                    <table style="width: 100%;" class="cuerponuevo" id="tblCuerpo">
-                                        <tr id="TRC01">
-                                            <td style="width: 10%;">Tipo
-                                            </td>
-                                            <td style="width: 25%;">
-                                                <select id="ddlTipoR" class="cdll" style="width: 120px;">
-                                                </select>
-                                            </td>
-                                            <td style="width: 15%;" id="TDC101">Negocio
-                                            </td>
-                                            <td style="width: 50%;" id="TDC102">
-                                                <select id="ddlNegocioR" class="cdll" style="width: 120px;">
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr id="TRC02">
-                                            <td>Código
-                                            </td>
-                                            <td>
-                                                <input id="txtCodigoR" runat="server" type="text" class="ctxt" style="width: 100px;" readonly="readonly" maxlength="20" />
-                                            </td>
-                                            <td>Fec. Vigencia
-                                            </td>
-                                            <td>
-                                                <uc2:TextBoxFecha ID="txtFechaVigIniR" runat="server" Width="80px" />
-                                                y
-                                                <uc2:TextBoxFecha ID="txtFechaVigFinR" runat="server" Width="80px" />
-                                            </td>
-                                        </tr>
-                                        <tr id="TRC03">
-                                            <td>Título
-                                            </td>
-                                            <td colspan="3">
-                                                <input id="txtTituloR" type="text" class="ctxt" style="width: 99%;" maxlength="255" />
-                                            </td>
-                                        </tr>
-                                        <tr id="TRC04" style="display: none;">
-                                            <td>Orden
-                                            </td>
-                                            <td colspan="3">
-                                                <input id="txtOrdenR" type="text" class="ctxt" style="width: 100px;" maxlength="10" />
-                                            </td>
-                                        </tr>
-                                        <tr id="TRC05">
-                                            <td>Descripción
-                                            </td>
-                                            <td colspan="3">
-                                                <input id="txtDescripcionR" type="text" class="ctxt" style="width: 99%;" maxlength="255" />
-                                            </td>
-                                        </tr>
-                                        <tr id="TRC06">
-                                            <td style="vertical-align: top;">Contenido
-                                            </td>
-                                            <td colspan="3">
-                                                <textarea style="width: 505px; height: 120px;" id="txtContenido" cols="2" rows="2"></textarea>
-                                            </td>
-                                        </tr>
-                                        <tr id="TRC07">
-                                            <td style="vertical-align: top;">Fotos
-                                            </td>
-                                            <td colspan="3">
-                                                <asp:FileUpload ID="fileToUpload" runat="server" ClientIDMode="Static" Width="230px" />
-                                                <span>(Max: 1MB |Formato: JPG,JPEG,PNG | 150px x 150px)</span>
-                                                <table class="Cuerpo" cellpadding="0" cellspacing="0" style="padding-top: 5px; width: 98%; margin: 0px;">
-                                                    <tr>
-                                                        <td>
-                                                            <table id="gvArchivosH" cellspacing="0" border="0" style="border-color: White; border-width: 0px; width: 100%; border-collapse: collapse;"
-                                                                rules="all">
-                                                                <tr class="CabeceraGrilla" style="color: White;">
-                                                                    <th scope='col' style='width: 5%;'>N°
-                                                                    </th>
-                                                                    <th scope='col' style='width: 65%;'>Nombres
-                                                                    </th>
-                                                                    <th scope='col' style='width: 30%;'>Opción
-                                                                    </th>
-                                                                    <th scope='col' style='width: 1px; display: none;'></th>
-                                                                </tr>
-                                                            </table>
-                                                            <div class="mant" style="text-align: left; overflow-x: hidden; overflow-y: scroll; height: 80px">
-                                                                <table id="uploadedDiv" runat="server" cellspacing="0" border="0" style="border-color: White; border-width: 0px; width: 100%; border-collapse: collapse;"
-                                                                    rules="all">
-                                                                </table>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        <tr id="TRC08">
-                                            <td>Observación
-                                            </td>
-                                            <td colspan="3">
-                                                <textarea id="txtObservaacionR" cols="20" rows="2" class="ctxt" style="width: 97%;"></textarea>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div id="tabPopup1" class="DivCuerpoTab" style="width: 100%; height: 475px;">
-                                    <div style="height: 10px;"></div>
-                                    <div style="overflow: auto; width: 580px;">
-                                        <table style="width: 100%; background-color: #F4F7FB; border-color: #C5D5F0; border-style: solid; border-width: 1px 1px 3px;">
-                                            <tr>
-                                                <td style="width: 100%;">
-                                                    <div style="position: relative; height: 500px; margin-left: auto; margin-right: auto; display: none;">
-                                                        <div id="PopPanelWM" style="border: dimgray 1px solid; width: 455px; height: 475px; margin-left: 40px; vertical-align: middle; padding: 10px; background-color: #F0F5FB;">
-                                                            <div style="background: none repeat scroll 0 0 #466DB7; display: block; padding: 5px; border-radius: 4px;">
-                                                                <span style="color: #E4E2E2; font-weight: bold; font-family: Verdana,Arial,sans-serif; font-size: 12px;">Promociones y Noticias</span> <span id="close" style="">cerrar</span>
-                                                            </div>
-                                                            <div id='divHeader' class='header'>
-                                                            </div>
-                                                            <div id='divImagen' style='border: 1px dotted #464646; width: 450px; margin: auto;'>
-                                                                <div class="wrapper">
-                                                                    <div class="jcarousel-wrapper">
-                                                                        <div data-jcarousel="true" class="jcarousel">
-                                                                            <ul style="left: -1200px; top: 0px;" id='tabImagenes'>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <a href="#" class="carrousel_left jcarousel-control-prev"></a><a href="#" class="carrousel_right jcarousel-control-next active"></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class='contenidoTab' id="navegador">
-                                                                <ul style="margin: 0px;">
-                                                                    <li onclick='fc_tab(1);'>
-                                                                        <div id='Htab1' class='divTab' style='border-right: 0px;'>
-                                                                            Promociones
-                                                                        </div>
-                                                                    </li>
-                                                                    <li onclick='fc_tab(2);'>
-                                                                        <div id='Htab2' class="divTab" style="width: 33.2%;">
-                                                                            Noticias
-                                                                        </div>
-                                                                    </li>
-                                                                    <li onclick='fc_tab(3);'>
-                                                                        <div id='Htab3' class='divTab' style='border-left: 0px; float: right; width: 147px;'>
-                                                                            Datos
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="contenidoBody" id='tab1' style="display: block; overflow-x: hidden; overflow-y: scroll;">
-                                                            </div>
-                                                            <div class="contenidoBody" id='tab2' style="display: none; overflow-y: scroll;">
-                                                            </div>
-                                                            <div class="contenidoBody" id='tab3' style="display: none; overflow-x: hidden; overflow-y: scroll;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div id="dvVista">
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img alt="" src="../Images/Mantenimiento/fba.gif" width="600px" /></td>
-            </tr>
-        </table>
-    </div>
-    <asp:HiddenField ID="hdnFileFolder" runat="server" />
-    <asp:HiddenField ID="hdnCountFiles" runat="server" Value="0" />
-    <asp:HiddenField ID="hdnUploadFilePath" runat="server" />
     <asp:HiddenField ID="hidFechaHoy" runat="server" />
     <asp:HiddenField ID="hidPerfil" runat="server" />
     <asp:HiddenField ID="hidAprobar" runat="server" />
@@ -2247,7 +1666,6 @@
     <asp:HiddenField ID="hidImprimir" runat="server" />
     <asp:HiddenField ID="hidUsuarioRed" runat="server" />
     <asp:HiddenField ID="hidEstacionRed" runat="server" />
-    <asp:HiddenField ID="hdnPathFileServer" runat="server" />
 
     <input id="hidCodFotos" type="hidden" />
     <!-- PopPup - Cargando.. -->
@@ -2283,468 +1701,16 @@
         function CargarInicial() {
             var Nid_usuario = "<%=this.Profile.Usuario.Nid_usuario %>";
             var nid_taller = $("#<%=hid_id_tllr.ClientID%>").val();
-            PageMethods.cargarDatosCombo(nid_taller, "0", Nid_usuario, function (res) {
-                $("#ddlTipoContenido,#ddlTipoR").empty(); $("#ddlTipoContenido,#ddlTipoR").append(res[0]);
-                $("#ddlEstadoContenido").empty(); $("#ddlEstadoContenido").append(res[1]);
-                $("#ddlNegocio").empty(); $("#ddlNegocio").append(res[2]);
-                $("#ddlNegocioR").empty(); $("#ddlNegocioR").append(res[3]);
-            }, fc_showError);
-
-            fc_Limpiar();
-            $("#btnBuscarCont, #btnAgregarCont, #btnAprobarCont, #btnRechazarCont, #btnImprimirCont").hide(); //btnEditarCont
-            document.getElementById("txtObservaacionR").readOnly = (document.getElementById('<%=this.hidAprobar.ClientID%>').value == "none");
-
         }
-
-        function fc_Limpiar() {
-
-            $("#txtTitulo").val('');
-            $("#<%=txtFechaVigIni.ClientID %>_txtFecha").val('');
-            $("#<%=txtFechaVigFin.ClientID %>_txtFecha").val('');
-            $("#<%=txtFechaActualizacion.ClientID %>_txtFecha").val('');
-            document.getElementById("ddlTipoContenido").selectedIndex = 0;
-            document.getElementById("ddlEstadoContenido").selectedIndex = 0;
-            document.getElementById("ddlNegocio").selectedIndex = 0;
-            $("#gvContenido").empty();
-            $("#gvContenido").append(fc_GetCabGrilla());
-            $("#txthIDContenido").val('0');
-            $("#txhSelDatos").val('|');
-            return false;
-        }
-
-        function fc_GetCabGrilla() {
-            var header = "";
-
-            header += "<tr class='CabeceraGrilla' style='color:White;'>";
-            header += "<th scope=\"col\" style='width: 3%;'></th>";
-            header += "<th scope='col'   style='width:8%;'>Tipo</th>";
-            header += "<th scope='col'   style='width:8%;'>Negocio</th>";
-            header += "<th scope='col'   style='width:22%;'>Título</th>";
-            header += "<th scope='col'   style='width:15%;'>Fec. Vigencia</th>";
-            header += "<th scope='col'   style='width:10%;'>Fec. Actualizac.</th>";
-            header += "<th scope='col'   style='width:25%;'>Observación</th>";
-            header += "<th scope='col'   style='width:8%;'>Estado</th>";
-            header += "</tr>";
-
-            return header;
-        }
-
-        function fc_Buscar(pagina) {
-
-            var filtro = new Array();
-
-            filtro[0] = $("#<%=hid_id_tllr.ClientID %>").val();
-            filtro[1] = $("#txtTitulo").val();
-            filtro[2] = $("#<%=txtFechaVigIni.ClientID %>_txtFecha").val();
-            filtro[3] = $("#<%=txtFechaVigFin.ClientID %>_txtFecha").val();
-            filtro[4] = $("#<%=txtFechaActualizacion.ClientID %>_txtFecha").val();
-            filtro[5] = $("#ddlTipoContenido").val();
-            filtro[6] = $("#ddlEstadoContenido").val();
-            filtro[7] = $("#ddlNegocio").val();
-
-            filtro[8] = 10;
-            filtro[9] = pagina;
-
-            CallWebMethodAGP('Buscar', filtro,
-                function (res) {
-                    $('#gvContenido').empty();
-                    $("#gvContenido").append(fc_GetCabGrilla());
-                    if (res != '') {
-                        $("#gvContenido").append(res);
-                    }
-                    else {
-                        alert('No se encontraron coincidencias.')
-                    }
-                    $("#txthIDContenido").val('0');
-                    $("#txhSelDatos").val('|');
-                }
-            );
-
-        }
-
-        $("#ddlTipoR").change(function () {
-            if (($("#ddlTipoR").val() == '001') || ($("#ddlTipoR").val() == '002')) {
-                $("#TRC02, #TRC03, #TRC06, #TRC07, #TRC08").css('display', '');
-                $("#TRC05").css('display', 'none');
-                $("#gvArchivosH tbody tr:eq(0) th:eq(0)").html('N°');
-                $("#gvArchivosH tbody tr:eq(0) th:eq(1)").html('Nombres');
-                $("#gvArchivosH tbody tr:eq(0) th:eq(2)").html('Opción');
-                $("#gvArchivosH tbody tr:eq(0) th:eq(3)").html('');
-            }
-            else if ($("#ddlTipoR").val() == '003') {
-                $("#TRC02, #TRC03, #TRC06").css('display', 'none');
-                $("#TRC05").css('display', '');
-                $("#gvArchivosH tbody tr:eq(0) th:eq(0)").html('N°');
-                $("#gvArchivosH tbody tr:eq(0) th:eq(1)").html('Descripción');
-                $("#gvArchivosH tbody tr:eq(0) th:eq(2)").html('Opción');
-                $("#gvArchivosH tbody tr:eq(0) th:eq(3)").html('');
-            }
-
-            $("#<%=uploadedDiv.ClientID %>").empty();
-
-            return false;
-
-        });
 
         function Fc_SetCambiartab(index) {
 
             document.getElementById('<%=this.btnNuevo.ClientID%>').style.display = (index == 5) ? 'inline' : 'none';
             document.getElementById('<%=this.btnBuscar.ClientID%>').style.display = (index == 5) ? 'inline' : 'none';
 
-            $("#btnEditarCont").hide();
-            if (index == 6) {
-                //CargarInicial();
-                $("#btnBuscarCont, #btnAgregarCont").show();
-
-                document.getElementById("btnAprobarCont").style.display = document.getElementById('<%=this.hidAprobar.ClientID%>').value;
-                document.getElementById("btnRechazarCont").style.display = document.getElementById('<%=this.hidRechazar.ClientID%>').value;
-            }
-            else
-                $("#btnBuscarCont, #btnAgregarCont, #btnAprobarCont, #btnRechazarCont, #btnImprimirCont").hide(); //btnEditarCont
-
             return false;
         }
 
-        function fc_Agregar() {
-
-
-            PageMethods.CrearDirectorio(function (res) {
-                if (res[0] == '1') {
-                    $("#<%=txtCodigoR.ClientID %>").val(res[1]);
-                    $("#<%=hdnFileFolder.ClientID %>").val(res[1]);
-                    $("#<%=hdnUploadFilePath.ClientID %>").val(res[2]);
-
-                    fc_LimpiarFichaCont();
-                    fc_MostrarRegistroCont(1);
-
-                    $("#txthIDContenido").val('0');
-
-                    document.getElementById("btnGuardarEnviar").style.display = (document.getElementById('<%=this.hidAprobar.ClientID%>').value == "") ? "none" : "";
-                }
-                else {
-                    alert('Error al crear un nuevo contenido.');
-                }
-            });
-
-            var s2 = "";
-            //return false;
-        }
-
-        function fc_MostrarRegistroCont(estilo) {
-
-            document.getElementById('pnlPopupCont').style.left = (screen.width - 600) / 2 + 'px';
-            document.getElementById('pnlPopupCont').style.top = (screen.height - 748) / 2 + 'px';
-            document.getElementById('__PopPanelCont__').style.width = screen.width + 'px';
-            document.getElementById('__PopPanelCont__').style.height = screen.height + 'px';
-            document.getElementById('__PopPanelCont__').style.display = (estilo == '1') ? 'block' : 'none';
-            document.getElementById('pnlPopupCont').style.display = (estilo == '1') ? 'block' : 'none';
-
-            return false;
-        }
-
-        function fc_LimpiarFichaCont() {
-
-            document.getElementById("ddlTipoR").selectedIndex = 1;
-            $("#ddlTipoR").removeAttr('disabled');
-            document.getElementById("ddlNegocioR").selectedIndex = 0;
-            $("#<%=txtFechaVigIniR.ClientID %>_txtFecha").val('');
-            $("#<%=txtFechaVigFinR.ClientID %>_txtFecha").val('');
-            //txtCodigoR
-            $("#txtTituloR").val('');
-
-            nicEditors.findEditor('txtContenido').setContent('');
-
-
-            $("#<%=uploadedDiv.ClientID %>").empty();
-            $("#txtOrdenR").val('');
-            $("#txtDescripcionR").val('');
-            $("#txtObservaacionR").val('');
-            //$("#dvVista").empty();
-            $("#txtObservaacionR").val('');
-
-            $("#hidCodFotos").val('');
-            $("#ddlTipoR").trigger("change");
-            fc_CambiaTabCargaMasiva(001);
-            return false;
-        }
-
-        function fc_VistaPrevia() {
-
-            $("#dvVista").empty();
-
-            if ($("#ddlTipoR").val() == '001' || $("#ddlTipoR").val() == '002')//PROMO - NOTICIA
-            {
-                $("#dvVista").append(nicEditors.findEditor('txtContenido').getContent());
-
-                $("#<%=uploadedDiv.ClientID%> tbody tr").each(function (index) {
-
-                    var imagen = '<%=ConfigurationManager.AppSettings["VirtualPath"].ToString() %>' + $("#<%=hdnPathFileServer.ClientID %>").val()
-                        + $("#<%=hdnFileFolder.ClientID %>").val() + '/' + $("#<%=uploadedDiv.ClientID%> tbody tr:eq(" + index + ") td:eq(1)").html();
-                    var divIMG = "<div style = 'text-align: center; width: 100%; margin: 10px;'> " +
-                        "<img src='" + imagen + "' alt='' width='150px' height='150px' style='border: solid 1px grey;' />" +
-                        "</div>";
-                    $("#dvVista").append(divIMG);
-
-                });
-            }
-            else {
-
-                $("#<%=uploadedDiv.ClientID%> tbody tr").each(function (index) {
-
-                    var descrip = fc_Trim($("#<%=uploadedDiv.ClientID%> tbody tr:eq(" + index + ") td:eq(1) input[type='text']").val());
-
-                    var imagen = '<%=ConfigurationManager.AppSettings["VirtualPath"].ToString() %>' + $("#<%=hdnPathFileServer.ClientID %>").val()
-                        + $("#<%=hdnFileFolder.ClientID %>").val() + '/' + $("#<%=uploadedDiv.ClientID%> tbody tr:eq(" + index + ") td:eq(3)").html();
-                    var divIMG = "<div style = 'text-align: center; width: 100%; margin: 10px;'> " +
-                        "<img src='" + imagen + "' alt='' width='150px' height='150px' style='border: solid 1px grey;' />" +
-                        "</div>" +
-                        "<div style = 'text-align: center; width: 100%; margin-top: 5px;'><span>" + descrip + "</span> </div>";
-
-                    $("#dvVista").append(divIMG);
-
-                });
-            }
-
-            return false;
-        }
-
-        function Fc_SelCheckContenido(nid_contenido, index, co_estado) {
-
-            if ($("#chkSel" + index + "").is(':checked')) {
-                $("#txhSelDatos").val($("#txhSelDatos").val() + nid_contenido + '-' + co_estado + '|');
-            }
-            else {
-                $("#txhSelDatos").val($("#txhSelDatos").val().replace('|' + nid_contenido + '-' + co_estado + '|', '|'));
-            }
-
-            return false;
-        }
-        function fc_EditarContenido(id_contenido, co_estado) {
-
-            $("#txthIDContenido").val(id_contenido);
-
-            PageMethods.ListarContenidoTaller(id_contenido, function (res) {
-
-                document.getElementById('ddlTipoR').value = res[4];
-
-                document.getElementById('<%=txtCodigoR.ClientID%>').value = res[1];
-                document.getElementById('<%=hdnFileFolder.ClientID%>').value = res[1];
-                document.getElementById('<%=hdnUploadFilePath.ClientID%>').value = '';
-
-                $("#ddlTipoR").attr('disabled', 'disabled');
-                $("#ddlTipoR").trigger("change");
-
-
-                if (res[4] == '003') {
-                    document.getElementById('ddlNegocioR').value = res[3];
-                }
-                else {
-
-                    document.getElementById('ddlNegocioR').value = res[3];
-                    document.getElementById('<%=txtFechaVigIniR.ClientID %>_txtFecha').value = res[6];
-                    document.getElementById('<%=txtFechaVigFinR.ClientID %>_txtFecha').value = res[7];
-                    document.getElementById('txtTituloR').value = res[5];
-                    nicEditors.findEditor('txtContenido').setContent(res[8]);
-
-                }
-                $("#<%=uploadedDiv.ClientID%>").append(res[11]);
-
-                if (co_estado == '002' && (document.getElementById('<%=this.hidAprobar.ClientID%>').value != "inline")) {
-                    //por aprobar
-                    alert('El contenido informativo no se puede editar ya que esta en proceso de Aprobacion.');
-
-                    $("#tblCuerpo").find(":input").attr("disabled", "disabled");
-                    $("#tblCuerpo").find("img").attr("disabled", "disabled");
-                    $("#tblCuerpo").find("a").attr("disabled", "disabled").attr("onclick", "return false").attr("target", "none").removeAttr("target").removeAttr("href");
-
-                    document.getElementById('btnGuardarCont').style.display = 'none';
-                    document.getElementById('btnGuardarEnviar').style.display = 'none';
-                }
-                else {
-                    //APROBADO
-                    $("#tblCuerpo").find(":input").removeAttr("disabled");
-                    $("#tblCuerpo").find("img").removeAttr("disabled");
-
-
-                    document.getElementById('btnGuardarCont').style.display = '';
-                    document.getElementById("btnGuardarEnviar").style.display = (document.getElementById('<%=this.hidAprobar.ClientID%>').value == "") ? "none" : "";
-                }
-
-                fc_MostrarRegistroCont(1);
-                document.getElementById("tabPopup1").style.display = "none";
-
-            }, fc_showError);
-
-            return false;
-        }
-
-        function fc_SelContenido(id_contenido) {
-            $("#txthIDContenido").val(id_contenido);
-            return false;
-        }
-
-        function fc_AprobarRechazar(estado) {
-
-            var sDatos = $("#txhSelDatos").val().split('|');
-            if (sDatos.length <= 2)
-
-                alert('Debes seleccionar al menos un registro.');
-
-            else {
-                //002:Por aprobar |001:Registrado            
-                for (var i = 1; i < sDatos.length - 1; i++) {
-                    var id_contenido = sDatos[i].split('-')[0];
-                    var co_estado = sDatos[i].split('-')[1];
-                    if (co_estado != '001' && co_estado != '002') {
-                        alert('Solo se debe seleccionar contenidos en estado "Registrado" o "Por aprobar".');
-                        return false;
-                    }
-                }
-
-                //envio masivo de aprobacion
-                var msgVal = '¿Esta seguro de ' + ((estado == 'A') ? 'Aprobar' : 'Desaprobar') + (((sDatos.length - 2) == 1) ? ' el contenido informativo?' : ' los (' + (sDatos.length - 2) + ') contenidos informativos? ');
-                if (confirm(msgVal)) {
-
-                    var filtro = new Array();
-                    filtro[1] = $("#txhSelDatos").val().substring(1);
-                    filtro[2] = estado;
-                    filtro[3] = document.getElementById('<%=hidUsuarioRed.ClientID %>').value;
-                    filtro[4] = document.getElementById('<%=hidEstacionRed.ClientID %>').value;
-
-                    PageMethods.actualizarContenido(filtro, function (res) {
-
-                        if (res[0] == '-1')
-                            alert(res[1]); //error
-                        else if (res[0] == '1') {
-                            fc_Buscar(1);
-                            alert(res[1]);
-                        }
-
-                    });
-                }
-            }
-
-            return false;
-        }
-
-
-
-        $("#btnImprimirContr").click(function () {
-
-            return false;
-        });
-
-        $("#btnGuardarCont, #btnGuardarEnviar").click(function () {
-            var msg = '';
-            var fehoy = $("#<%=hidFechaHoy.ClientID%>").val();
-            var feini = $("#<%=txtFechaVigIniR.ClientID %>_txtFecha").val();
-            var fefin = $("#<%=txtFechaVigFinR.ClientID %>_txtFecha").val();
-
-            var tipo = ($("#ddlTipoR").val() == '003') ? "2" : "1";
-
-            if (document.getElementById("ddlTipoR").selectedIndex == 0)
-                msg += "-Debe seleccionar el tipo de contenido.\n";
-            if (document.getElementById("ddlNegocioR").selectedIndex == 0/* && tipo == "1"*/)
-                msg += "-Debe seleccionar un negocio.\n";
-
-
-            if (fc_Trim(feini) != "" && tipo == "1") {
-                if (!isFecha(fc_Trim(feini), "dd/MM/yyyy"))
-                    msg += "-Formato de fecha inicio no válido.\n";
-                else if (($("#txthIDContenido").val() == '0') && !fn_fecha_compara(fehoy, feini))//Solo al guardar
-                    msg += "-La Fecha de inicio no puede ser menor a la de hoy.\n";
-            }
-
-
-            if (fc_Trim(fefin) != "" && tipo == "1") {
-                if (!isFecha(fc_Trim(fefin), "dd/MM/yyyy"))
-                    msg += "-Formato de fecha fin no válido.\n";
-                else if (($("#txthIDContenido").val() == '0') && !fn_fecha_compara(fehoy, fefin))
-                    msg += "-La Fecha fin no puede ser menor a la de hoy.\n";
-            }
-            if (fc_Trim(feini) != "" && fc_Trim(fefin) != "" && tipo == "1")
-                if (!fn_fecha_compara(feini, fefin))
-                    msg += "-La Fecha fin no puede ser menor a la de fecha de inicio.\n";
-
-            if (fc_Trim($("#txtTituloR").val()) == '' && tipo == "1")
-                msg += "-Debes ingresar un título.\n";
-
-
-            if (fc_Trim(nicEditors.findEditor('txtContenido').getContent()) == '' && tipo == "1")
-                msg += "-Debes ingresar un contenido.\n";
-
-            if (tipo == "2") {
-                if ($("#<%=uploadedDiv.ClientID%> tbody tr").length == 0)
-                    msg += "-Debes agregar al menos una imagen.\n";
-            }
-
-            if (msg != '')
-                alert(msg);
-            else if (confirm("¿Desea registrar el contenido " +
-                (($(this).attr('id') == 'btnGuardarCont') ? "" : "y enviar para su aprobación") + " ?")) {
-
-                var co_imagenes = '';
-                var co_descrip = '';
-                $("#<%=uploadedDiv.ClientID%> tbody tr").each(function (index) {
-                    if (tipo == '1')
-                        co_imagenes += $("#<%=uploadedDiv.ClientID%> tbody tr:eq(" + index + ") td:eq(4)").html() + '|' + $("#<%=uploadedDiv.ClientID%> tbody tr:eq(" + index + ") td:eq(1)").html() + '$';
-                    else {
-                        co_imagenes += $("#<%=uploadedDiv.ClientID%> tbody tr:eq(" + index + ") td:eq(4)").html() + '|' + $("#<%=uploadedDiv.ClientID%> tbody tr:eq(" + index + ") td:eq(3)").html() + '$';
-                        co_descrip += fc_Trim($("#<%=uploadedDiv.ClientID%> tbody tr:eq(" + index + ") td:eq(1) input[type='text']").val()) + '|';
-                    }
-                });
-
-
-                var filtro = new Array();
-
-                filtro[0] = $("#txthIDContenido").val();
-                filtro[1] = $("#<%=txtCodigoR.ClientID %>").val();
-                filtro[2] = $("#<%=hid_id_tllr.ClientID %>").val();
-                filtro[3] = $("#ddlNegocioR").val(); // (tipo == '2') ? '0' : $("#ddlNegocioR").val();
-                filtro[4] = $("#ddlTipoR").val();
-                filtro[5] = (tipo == '2') ? '' : $("#txtTituloR").val();
-                filtro[6] = (tipo == '2') ? '' : $("#<%=txtFechaVigIniR.ClientID %>_txtFecha").val();
-                filtro[7] = (tipo == '2') ? '' : $("#<%=txtFechaVigFinR.ClientID %>_txtFecha").val();
-                filtro[8] = (tipo == '2') ? '' : nicEditors.findEditor('txtContenido').getContent();
-                filtro[9] = ($(this).attr('id') == 'btnGuardarCont') ? '001' : '002'; //Aprobar
-                //filtro[10] = ($("#<%=hidPerfil.ClientID %>").val() == '001') ? $("#txtObservaacionR").val() : '';
-                filtro[10] = (document.getElementById("txtObservaacionR").style.visibility == "visible") ? $("#txtObservaacionR").val() : '';
-
-                filtro[11] = co_imagenes;
-                filtro[12] = co_descrip;
-
-                filtro[13] = document.getElementById('<%=hidUsuarioRed.ClientID %>').value;
-                filtro[14] = document.getElementById('<%=hidEstacionRed.ClientID %>').value;
-
-                PageMethods.registrarContenido(filtro, function (res) {
-
-                    if (res[0] == '-1') alert(res[1]); //error
-                    else if (res[0] == '1') {
-
-                        if ($("#hidCodFotos").val() != '') {
-                            //alert($("#hidCodFotos").val());
-                            $.each($("#hidCodFotos").val().split('$'), function (index, valor) {
-                                if (valor != '') {
-
-                                    //var nid_foto = valor.split('|')[0];
-                                    var co_foto = valor.split('|')[1];
-                                    var no_foto = valor.split('|')[2];
-
-                                    eliminarImagenServer(co_foto, no_foto);
-                                }
-                            });
-                        }
-                        $("#txthIDContenido").val('0');
-                        alert(res[1]);
-                        fc_Buscar(1);
-                        fc_MostrarRegistroCont(0);
-                    }
-                }, fc_showError);
-
-            }
-
-            return false;
-        });
 
         function fn_fecha_format(ddMMyyyy, caracter) {
             fecha = ddMMyyyy.split(caracter);
@@ -2794,9 +1760,6 @@
                 setTabCabeceraOnTabToTab("001");
             }
             else if (indice == 002) {
-
-                fc_VistaPrevia();
-
                 document.getElementById("tabPopup1").style.display = "inline";
                 setTabCabeceraOnTabToTab("002");
             }
@@ -2804,222 +1767,6 @@
 
         CargarInicial();
 
-
-    </script>
-
-    <script type="text/javascript">
-
-        // check extension of file to be upload
-        function checkFileExtension(file) {
-            var flag = true;
-            var extension = file.substr((file.lastIndexOf('.') + 1));
-
-            switch (extension) {
-                case 'jpg': case 'JPG':
-                case 'jpeg': case 'JPEG':
-                case 'png': case 'PNG':
-                    flag = true;
-                    break;
-                default:
-                    flag = false;
-            }
-            return flag;
-        }
-
-        //get file path from client system
-        function getNameFromPath(strFilepath) {
-
-            var objRE = new RegExp(/([^\/\\]+)$/);
-            var strName = objRE.exec(strFilepath);
-
-            if (strName == null) {
-                return null;
-            }
-            else {
-                return strName[0];
-            }
-        }
-
-        // Asynchronous file upload process
-        function ajaxFileUpload() {
-
-            //alert($("#<%=hdnFileFolder.ClientID %>").val());
-            if ($("#ddlTipoR").val() == '003' && fc_Trim($("#txtDescripcionR").val()) == '') {
-                alert('-Debe ingresar la descripción de la imagen a subir.');
-                //$("#<%=fileToUpload.ClientID %>").val("");
-                //alert($("#<%=hdnFileFolder.ClientID %>").val());
-                return false;
-            }
-            //alert('1');
-            var FileFolder = $("#<%=hdnFileFolder.ClientID %>").val();
-            //alert(FileFolder);
-            var fileToUpload = getNameFromPath($("#<%=fileToUpload.ClientID %>").val());
-            //var filename = fileToUpload.substr(0, (fileToUpload.lastIndexOf('.')));
-            var filename = fileToUpload;
-
-            if (checkFileExtension(fileToUpload)) {
-
-                var flag = true;
-                var counter = $("#<%=hdnCountFiles.ClientID %>").val();
-
-                if (filename != "" && filename != null && FileFolder != "0") {
-
-                    for (var i = 0; i <= $("#<%=uploadedDiv.ClientID%> tbody tr").length - 1; i++) {
-                        if (document.getElementById("<%=uploadedDiv.ClientID%>").rows[i].cells[3].innerHTML == filename) {
-                            flag = false;
-                            $("#<%=fileToUpload.ClientID %>").val("");
-                            break;
-                        }
-                    }
-
-
-                    if (flag) {
-
-                        $.ajaxFileUpload({
-                            url: 'FileUpload.ashx?id=' + FileFolder,
-                            secureuri: false,
-                            fileElementId: '<%=fileToUpload.ClientID %>',
-                            dataType: 'json',
-                            success: function (data, status) {
-
-                                if (typeof (data.error) != 'undefined') {
-                                    if (data.error != '') {
-                                        alert(data.error);
-                                    } else {
-                                        ShowUploadedFiles(data.upfile, filename);
-                                        $("#<%=fileToUpload.ClientID %>").val("");
-                                    }
-                                }
-                            },
-                            error: function (data, status, e) {
-                                alert(e);
-                            }
-                        });
-                    }
-                    else {
-                        alert('El archivo ' + filename + ' ya existe')
-                        return false;
-                    }
-                }
-            }
-            else {
-                alert('Solo se pueden cargar archivos con extensión (JPG,JPEG,PNG).');
-            }
-            return false;
-
-        }
-        //show uploaded file
-        function ShowUploadedFiles(file, fileName) {
-            count = parseInt($("#<%=hdnCountFiles.ClientID %>").val()) + 1;
-
-            var hdnid = 'hdnDocId_' + count;
-            var txtDocDescId = 'txtDocDesc_' + count;
-            //var lblfilename = 'lblfilename_' + count;
-            //var path = $("#<%=hdnUploadFilePath.ClientID %>").val();
-            var path = $("#<%=hdnFileFolder.ClientID %>").val();
-
-            //------------------
-            var fila = '';
-            var sRow = '';
-            var sGrilla = '';
-
-            sGrilla += "<tr style=\"height:20px;cursor:pointer;" + sRow + " \"  id='" + hdnid + "' ";
-            sGrilla += " onclick=\"javascript: fc_SeleccionaFilaSimple(this);\"  ";
-            sGrilla += " class=\"textogrilla\" ";
-            sGrilla += " >";
-
-
-            sGrilla += "<td style=\"width: 5%;\" scope=\"col\" align=\"center\" >" + count + "</td>";
-            sGrilla += "<td style=\"width:67%;\" scope=\"col\" align=\"left\" >";
-
-            if ($("#ddlTipoR").val() == '001' || $("#ddlTipoR").val() == '002') {
-
-                sGrilla += fileName;
-            }
-            else {
-                sGrilla += "<input type=\"text\"  class=\"ctxt\"  style=\"width:98%;\" maxlength=\"255\" value=\"" + fc_Trim($("#txtDescripcionR").val()) + "\" />";
-                $("#txtDescripcionR").val('');
-            }
-
-            sGrilla += "</td>";
-            sGrilla += "<td style=\"width:35%;\" scope=\"col\" align=\"center\" >" +
-                "<span style='float:left; margin-left:10px; width:40px;' ><a href='#' class='dellink' onclick='deleterow(\"#" + hdnid + "," + file + "\")'>Eliminar</a></span>" + // for deleting file
-                "<span style='float:left; margin-left:10px; width:40px;' ><a class='dellink' target='_blank' href='FileUpload.ashx?filepath=" + path + "&file=" + file + "' >Ver</a></span>" + // for downloading file
-                "</td>";
-            sGrilla += "<td style=\"width:1px;display:none;\" scope=\"col\" align=\"left\" >" + fileName + "</td>";
-            sGrilla += "<td style=\"width:1px;display:none;\" scope=\"col\" align=\"left\" >0</td>";
-
-            sGrilla += "</tr>";
-
-            $("#<%=uploadedDiv.ClientID %>").append(sGrilla);
-            $("#<%=hdnCountFiles.ClientID %>").val(count);
-            fc_OrdenarGrilla();
-            return false;
-        }
-
-        // delete existing file
-        function deleterow(divrow) {
-            var str = divrow.split(",");
-            var row = str[0];
-            var file = str[1];
-            //var path = $("#<%=hdnUploadFilePath.ClientID %>").val();
-            var path = $("#<%=hdnFileFolder.ClientID %>").val();
-            if (confirm('¿Estas seguro de eliminar el archivo?')) {
-                $.ajax({
-                    url: "FileUpload.ashx?path=" + path + "&file=" + file,
-                    type: "GET",
-                    cache: false,
-                    async: true,
-                    success: function (html) {
-
-                    }
-                });
-                $(row).remove();
-                fc_OrdenarGrilla();
-            }
-            return false;
-        }
-
-        function eliminarImagenServer(path, file) {
-
-            $.ajax({
-                url: "FileUpload.ashx?path=" + path + "&file=" + file,
-                type: "GET",
-                cache: false,
-                async: true,
-                success: function (html) {
-                    //return '1';
-                }
-            });
-
-            return false;
-        }
-        function fc_EliminarFoto(dato) {
-            var str = dato.split(",");
-            var nid_foto = str[1];
-            var co_contenido = str[2];
-            var no_foto = str[3];
-            if (confirm('¿Estas seguro de eliminar el archivo?')) {
-                $("#" + str[0]).remove();
-                fc_OrdenarGrilla();
-
-                $("#hidCodFotos").val($("#hidCodFotos").val() + nid_foto + '|' + co_contenido + '|' + no_foto + '$');
-            }
-            return false;
-        }
-        function fc_OrdenarGrilla() {
-
-            $("#<%=uploadedDiv.ClientID%> tbody tr").each(function (index) {
-
-                $(this).children("td").each(function (index2) {
-                    if (index2 == 0) {
-                        $(this).text((index + 1));
-                    }
-                })
-            });
-
-            return false;
-        }
 
     </script>
 
